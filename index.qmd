@@ -1,0 +1,19 @@
+# Introduction {.unnumbered}
+
+In this course you will learn about forecasting methods.
+
+## Progress plan
+
+## Literature
+
+<figure style="float:right; padding:10px; text-align:center">
+
+<img src="bilder/fpp3_front_cover.jpg" alt="FPP3 Third edition" width="130" height="170"/>
+
+<figcaption>FPP Third edition</figcaption>
+
+</figure>
+
+We will use the textbook by @hyndman2018, i.e. the online version which can be accessed at <https://otexts.com/fpp3/>.
+
+## Curriculum

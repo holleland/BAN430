@@ -1,0 +1,56 @@
+{
+    "sources": [
+        {
+            "URL": "https://otexts.com/fpp3/",
+            "author": [
+                {
+                    "family": "Hyndman",
+                    "given": "Rob J"
+                },
+                {
+                    "family": "Athanasopoulos",
+                    "given": "George"
+                }
+            ],
+            "id": "hyndman2018",
+            "issued": {
+                "date-parts": [
+                    [
+                        2018
+                    ]
+                ]
+            },
+            "publisher": "OTexts",
+            "title": "Forecasting: Principles and practice",
+            "title-short": "Forecasting",
+            "type": "book"
+        },
+        {
+            "author": [
+                {
+                    "family": "Wickham",
+                    "given": "Hadley"
+                },
+                {
+                    "family": "Grolemund",
+                    "given": "Garrett"
+                }
+            ],
+            "id": "wickham2016r",
+            "issued": {
+                "date-parts": [
+                    [
+                        2016
+                    ]
+                ]
+            },
+            "publisher": "\" O’Reilly Media, Inc.\"",
+            "title": "R for data science: Import, tidy, transform, visualize, and model data",
+            "title-short": "R for data science",
+            "type": "book"
+        }
+    ],
+    "project_biblios": [
+        "references.bib"
+    ]
+}
