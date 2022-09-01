@@ -3,15 +3,27 @@ project:
   output-dir: docs
 
 book:
-  title: BAN430 Forecasting
+  title: BAN430 Forecasting 
   author: "Sondre Hølleland"
   date: "9.8.2022"
+  page-footer: 
+    center: "Copyright 2022, Sondre Hølleland" 
+  logo: "bilder/nhh.png"
   alignment: "left"
   chapters:
     - index.qmd
-    - randrstudio.qmd
+    - part: 1_randrstudio.qmd
+      chapters:
+        - 1_1_readingData.qmd
     - 2_timeseriesgraphics.qmd
     - 3_decomposition.qmd
+    - 4_timeseriesfeatures.qmd
+    - 5_forecasterstoolbox.qmd
+    - 6_judgementalforecast.qmd
+    - 7_regressionmodels.qmd
+    - 8_ARIMAmodels.qmd
+    - 9_Volatitiliy_forecasting.qmd
+    - 10_Practicle_forecasting_issues.qmd
     - references.qmd
 
 
@@ -21,16 +33,19 @@ sidebar:
   style: "docked"
   alignment: "left"
   border: true
-  logo: "bilder/nhh.png"
   number-depth: 3
+
+
 
 
 format:
   html:
     toc: true
+    alignment: left
     toc-depth: 4
     toc-title: Chapter contents
     toc-location: left
+    page-layout: full
     theme: 
     - cosmo
     - custom.scss
@@ -46,6 +61,5 @@ editor: visual
 
 body-footer: | 
   Sondre Hølleland
-margin-header: |
-   <a href="https://www.nhh.no/"><img src="bilder/nhh.png" width="240"></a>
+
 

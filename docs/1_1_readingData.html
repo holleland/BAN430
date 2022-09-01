@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Sondre Hølleland">
-<meta name="dcterms.date" content="2022-09-08">
 
-<title>BAN430 Forecasting</title>
+<title>BAN430 Forecasting - 1&nbsp; Time series graphics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -17,25 +15,69 @@ span.underline{text-decoration: underline;}
 div.column{display: inline-block; vertical-align: top; width: 50%;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
 }
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -46,7 +88,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./1_randrstudio.html" rel="next">
+<link href="./2_timeseriesgraphics.html" rel="next">
+<link href="./1_randrstudio.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -86,7 +129,7 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">BAN430 Forecasting</h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Time series graphics</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -114,7 +157,7 @@ div.csl-indent {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">Introduction</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Introduction</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -127,7 +170,7 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./1_1_readingData.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Time series graphics</span></a>
+  <a href="./1_1_readingData.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Time series graphics</span></a>
   </div>
 </li>
       </ul>
@@ -188,12 +231,7 @@ div.csl-indent {
     <h2 id="toc-title">Chapter contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
-  <ul class="collapse">
-  <li><a href="#progress-plan" id="toc-progress-plan" class="nav-link" data-scroll-target="#progress-plan">Progress plan</a></li>
-  <li><a href="#literature" id="toc-literature" class="nav-link" data-scroll-target="#literature">Literature</a></li>
-  <li><a href="#curriculum" id="toc-curriculum" class="nav-link" data-scroll-target="#curriculum">Curriculum</a></li>
-  </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link active" data-scroll-target="#exercises"> <span class="header-section-number">1.1</span> Exercises</a></li>
   </ul>
 </nav>
 </nav>
@@ -205,174 +243,34 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">BAN430 Forecasting</h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Time series graphics</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Sondre Hølleland </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">September 8, 2022</p>
-    </div>
-  </div>
     
   </div>
   
 
 </header>
 
-<section id="introduction" class="level1 unnumbered">
-<h1 class="unnumbered">Introduction</h1>
-<p>In this course you will learn about forecasting methods.</p>
-<section id="progress-plan" class="level2">
-<h2 class="anchored" data-anchor-id="progress-plan">Progress plan</h2>
+<p>This is a book created from markdown and executable code.</p>
+<section id="exercises" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="exercises"><span class="header-section-number">1.1</span> Exercises</h2>
+<p>Is 1+1 the same as 2?</p>
+<details>
+<summary>
+Løsning
+</summary>
 <div class="cell">
-<div class="cell-output-display">
-<table class="table table-sm table-striped">
-<colgroup>
-<col style="width: 10%">
-<col style="width: 29%">
-<col style="width: 14%">
-<col style="width: 31%">
-<col style="width: 13%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: right;">Week number</th>
-<th style="text-align: left;">Subject</th>
-<th style="text-align: left;">Reading material</th>
-<th style="text-align: left;">First lecture</th>
-<th style="text-align: left;">Second lecture</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">Introduction and R</td>
-<td style="text-align: left;">Chapter 1</td>
-<td style="text-align: left;">Introduction lecture BAN430</td>
-<td style="text-align: left;">Basic R / recap</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">Time series graphics</td>
-<td style="text-align: left;">Chapter 2</td>
-<td style="text-align: left;">Graphics</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">4</td>
-<td style="text-align: left;">Time series decomposition</td>
-<td style="text-align: left;">Chapter 3</td>
-<td style="text-align: left;">Time series decomposition</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">5</td>
-<td style="text-align: left;">Time series features</td>
-<td style="text-align: left;">Chapter 4</td>
-<td style="text-align: left;">Time series features</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">6</td>
-<td style="text-align: left;">Forecasters toolbox</td>
-<td style="text-align: left;">Chapter 5</td>
-<td style="text-align: left;">Forecasters toolbox</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">7</td>
-<td style="text-align: left;">Judgmental forecasts</td>
-<td style="text-align: left;">Chapter 6</td>
-<td style="text-align: left;">Judgmental forecasts</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">8</td>
-<td style="text-align: left;">Regression models</td>
-<td style="text-align: left;">Chapter 7</td>
-<td style="text-align: left;">Regression models</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">9</td>
-<td style="text-align: left;">ARIMA models</td>
-<td style="text-align: left;">Chapter 9</td>
-<td style="text-align: left;">ARIMA models</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">10</td>
-<td style="text-align: left;">ARIMA models</td>
-<td style="text-align: left;">Chapter 9</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">11</td>
-<td style="text-align: left;">Volatility forecasting</td>
-<td style="text-align: left;">Course website</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">12</td>
-<td style="text-align: left;">Some practicle forecasting issues</td>
-<td style="text-align: left;">Chapter 13</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">13</td>
-<td style="text-align: left;">Preparations for the exam</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Discussion lecture/exercise seminar</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">14</td>
-<td style="text-align: left;">Home exam</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-</tbody>
-</table>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">+</span><span class="dv">1</span> <span class="sc">==</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</section>
-<section id="literature" class="level2">
-<h2 class="anchored" data-anchor-id="literature">Literature</h2>
-<figure style="float:right; padding:10px; text-align:center" class="figure">
-<p><img src="bilder/fpp3_front_cover.jpg" alt="FPP3 Third edition" width="130" height="170" class="figure-img"></p>
-<figcaption class="figure-caption">
-FPP Third edition
-</figcaption>
-</figure>
-<p>We will use the textbook by <span class="citation" data-cites="hyndman2018">Hyndman and Athanasopoulos (<a href="references.html#ref-hyndman2018" role="doc-biblioref">2018</a>)</span>, i.e.&nbsp;the online version which can be accessed at <a href="https://otexts.com/fpp3/" class="uri">https://otexts.com/fpp3/</a>.</p>
-</section>
-<section id="curriculum" class="level2">
-<h2 class="anchored" data-anchor-id="curriculum">Curriculum</h2>
-<p>Textbook (<span class="citation" data-cites="hyndman2018">Hyndman and Athanasopoulos (<a href="references.html#ref-hyndman2018" role="doc-biblioref">2018</a>)</span>) chapters 1-9 and 13. Additional notes by lecturer on volatility forecasting. All the material on this website.</p>
+</details>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
-<div id="ref-hyndman2018" class="csl-entry" role="doc-biblioentry">
-Hyndman, Rob J, and George Athanasopoulos. 2018. <em>Forecasting: Principles and Practice</em>. OTexts. <a href="https://otexts.com/fpp3/">https://otexts.com/fpp3/</a>.
-</div>
-</div>
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -475,10 +373,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
+      <a href="./1_randrstudio.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">R and Rstudio</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./1_randrstudio.html" class="pagination-link">
-        <span class="nav-page-text">R and Rstudio</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./2_timeseriesgraphics.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Time series graphics</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

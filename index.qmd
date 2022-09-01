@@ -4,6 +4,15 @@ In this course you will learn about forecasting methods.
 
 ## Progress plan
 
+```{r lecturePlan, echo = FALSE, message = FALSE, warning = FALSE}
+library(tidyverse)
+plan <- readxl::read_excel("lecturePlan.xlsx")
+plan[is.na(plan)] <- " "
+plan <- plan %>% 
+  select(-Comments)
+knitr::kable(plan)
+```
+
 ## Literature
 
 <figure style="float:right; padding:10px; text-align:center">
@@ -17,3 +26,5 @@ In this course you will learn about forecasting methods.
 We will use the textbook by @hyndman2018, i.e. the online version which can be accessed at <https://otexts.com/fpp3/>.
 
 ## Curriculum
+
+Textbook (@hyndman2018) chapters 1-9 and 13. Additional notes by lecturer on volatility forecasting. All the material on this website.  
