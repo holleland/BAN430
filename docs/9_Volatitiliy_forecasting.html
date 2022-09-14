@@ -56,22 +56,6 @@ ul.task-list{list-style: none;}
   }
 }</script>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -90,10 +74,13 @@ ul.task-list{list-style: none;}
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./" class="sidebar-logo-link">
+      <img src="./bilder/nhh.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">BAN430 Forecasting</a> 
     </div>
@@ -120,7 +107,7 @@ ul.task-list{list-style: none;}
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./1_1_readingData.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Time series graphics</span></a>
+  <a href="./1_1_readingData.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Reading data</span></a>
   </div>
 </li>
       </ul>
@@ -180,12 +167,10 @@ ul.task-list{list-style: none;}
     
 </nav>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
-<p>�PNG  IHDR��ю�sRGB���gAMA���a pHYs���o�d=IDATx^��[U�����v���v���v���3����pE��a:I��dvQ����(�u��gY�킨&lt;���oY]AQ, �T�“�,���s�����<span class="math inline">�&amp;�</span>������}f&amp;��Ͻ7ɹ߹��@�p�5N��7PS̡�Y��@�aڔhV��y��i%k&lt;L��6�OD<em>�2�RK� ��D��Զ���l’k”@��MjO��</em>�_4?L��.W�5s(����K�OQϮnU�����v=�O�I�����عde.��3��h��7�“�^=����z� %��5��TU��MV� �~8�N؜QE���=�|�{N����h�/��cD�)�s�&amp; ����{��‘��e��Ӫ�o@����A{恨�Pâ’�������Y�=�����p���<span class="citation" data-cites="T">(<a href="references.html#ref-T" role="doc-biblioref"><strong>T?</strong></a>)</span>�!<em>&gt;���S�^�<span class="citation" data-cites="TF">(<a href="references.html#ref-TF" role="doc-biblioref"><strong>TF?</strong></a>)</span>���QI �����/���gU�e�De����j�̸�d�������z�2De�JQ5FjCT�W�o�F��<sup>���Q��<span class="citation" data-cites="T">(<a href="references.html#ref-T" role="doc-biblioref"><strong>T?</strong></a>)</span>��9�y�z��M=Q�2D%��#5<span class="math inline">���=X�/BTF���QI ��H�*;��ծހ��Q��@T�����cW�����umL��D%�����٢��� *#@T�J�J�C��ǿ?���x��u��@�iͲ�3� ���ϙS�����F��G�mM��D%'Vܡ��� *#@T�J�*2�^��kvQ</span>�+m���H��������9/9����U4�Z�ڦ�(Y��.���R{�����Z?<span class="citation" data-cites="TF">(<a href="references.html#ref-TF" role="doc-biblioref"><strong>TF?</strong></a>)</span>���QIL�ʖT���w��-�xܻ�</sup>���P�q�|�’+���x�8��E�sUM=Q�2D%1)����޻����5”��1�2����</em>�GQ�����?�j���� <em>�)QES������2���.�KZ�i���X�K�]y���</em>�7Q����P���u <em>#<span class="citation" data-cites="TF">(<a href="references.html#ref-TF" role="doc-biblioref"><strong>TF?</strong></a>)</span>��<span class="math inline">&amp;DULR�F��}�Im]6��OiEg��ȧ\YATŻ��9�'��ց��Q�������Z:���r�"�l*!+���2Ӳ�ͪ�����k��Pj\T��!��U[�@TF���QI��*:q+��8V��K)��F�je{�W�J��_QE3��¶vU]]6����ۥK틊#&amp;V��[��k��� *I��r���u�:��ɪ+���o���QU��E%&gt;[�?�%U_�@TF���QI�U4�ق���7�c���Z/���O��W����{�DUQ�GL���w�����Q���**7Ie�Rq��'@X�O���V�^ �EV~E���#I�7@���k�A���D��u�fǉ��ښ��G�� �4ԍ�D�u�N;�(�O�Q�2D%)ET^%�%����JyO�FO���&amp;+��*'���%�C�?�_�Sk@TF���QI��*:��Zw���WY I-Y�ZUM���D��.�B�߻���cT�O����Ǿh��V�W-Q�2D%1!*qE +���஛� IJ����6S�qR-Q��9��g�Ŀ߫m#R��~��`���a�����D%&amp;V�[�UK@TF���QI��ʚx;/���?�A�</span>�B�</em>&amp;��K(��c�L�d�j��J_J��Mv?�s?Oj��DN~U�V�y���;����� g�OT1����Z� <em>#<span class="citation" data-cites="T">(<a href="references.html#ref-T" role="doc-biblioref"><strong>T?</strong></a>)</span>?�rJ</em>�b��&amp;ޕ�&gt;��ɣ��ɗU5Dee��y��iM<code>5Y�c��7q��\t�ԙe�����o�y�Zh�k;x�ͣM�4�-|�V,5**q=6��i�=I��+T��De����\Q�$�������%��a��mDmr�XUD��TX3p9m?�����:C���C��� ��&lt;ߖ/4;�N��$�a�|�;����y��}\5**~c�ۧ"/Z�I�g-Q�2D%)ET���5���o+$!��v�vϢ�s����Sݐ��+�Q ڷ~�#�L�*����Z�ΒZG���ڷY)�����?���b��jΟsn�ƚ?��çS0)g.����Ŀ��[�Ԥ����^�?��.�FL���;?�@TF���QI��*��u�?�o��E"RPV��.�:o}�b��=7j���U$��k��6)%!��˺�xk�����X����L^C0���q�牎^H�����Y����]H���mi�������O��.� *#@T��2s&gt;ſ�[V,^eU��D�����J\���y)u�೩Gs���</code>�z�y0g�[��Ev�����ɽ?���m��ǰ����U���֡��ж���h퐼Sg��� <em>�WQ�I4}˪C�1�r<span class="math inline">�%~E���'���++��]"���Zβb�2ґ|6�� ����G3��~����&lt;��K�^R�"j���o��&amp;{����� W��� *IUD����t��r:jQTV��\q</span>uvq��e8+�an3���{��~���d����|�ǋ��)���nӽ}?�co���<span class="citation" data-cites="T">(<a href="references.html#ref-T" role="doc-biblioref"><strong>T?</strong></a>)</span>�)&lt;�&amp;m�l�Ċޡ�T���2De�JRiQ�I</em>K%dU���郴<code>Yخ   �ݭm�M</code>d��.���.�R]t��1i������6”V�I��x��op���6�S�̥�Y���+��&amp;T���2De�JRIQy�TӲ*_T�2t��sy=�m����“57/��<code>���OWϦDN����).5k�jn9��m��6&lt;�m�L���H�N�67OP��sTM����Q��TJTV�? Jj�M��ک��\��ӽ�QY�G�i�&amp;Z;���~G�fz���v��t�/�Y�k��lZ�����b��q~��w q��r�V��;�7|�j��(&gt;M��ִW���^��6� *#@T�J�JHjUIe?�k��*8���U$�f�mW�~n{H�fz�釨���N�Y�c�&gt;���м�'��:����J�b�h]4�u�k�dSG�w�}{gb/���=���@TF���QIL��]RS*�J��TQE�߲?%&gt;�O�m��xy�k�̕Լj�������</code>ڔ��żd��v��)�Tۏ3��{��{�<code>��xL&gt;��+Q�Z�����L ��x    �2De�JbRT�$������TQ��v���ݑ֜�*�����4v?lܹ�B��g֙���#��M�׾h��[UE����Q���Ut�֒%�M1YY)&gt;�(SV��Q����fպ&lt;���q�&gt;y'g���D%ް%���9{���q���� *#@T��%U���~q��\Y�**�٩e�+U����&gt;����9�F�Cji�l�y��S�J�D���S%�g�&gt;��W��� *�_Q��T6BV����Y�,��#��-�uy�����%�ͭ�T���wB��j�GO��:;H[��V5��2De�J�GTV�Aj]R=�b�.�6�����($�p�#ܦ�4mgJ������[]&lt;�^�����n/��ԩ�s)��Y_�H �8E"�UM%���Q���U���r%�M!YuΧ0?�]���*��㣪�4���X���*����TK��.��m��Ա����p{�'L���}���$� *#@T�gT~%��NV�qqqX}{]�����!-:�DU���U\[�sW�J~�k�?�Uע}�����ሸ\���'��JQ�2D%�?�����7�ch-��A��}�r��?���p��c���oohͦ\Q�&lt;�gV�g�Ե�ޛ���4oi�*.̦�b ��K-��ׇ.u.*A@��3���;t�j_) *#@TF��$�EU��'*�@�V�����'�}��&gt;��e����j\#d&gt;r�UoSlܱ��I�5��˯+��,��3��8".Z�u�oUM%���Q��@T{�����3������c��]��=��~��e�/��D%������rDL���g� *#@TF��$Uc�AD%��;�늿)'&gt;[�u�gU�i *#@TF��$Uc�aDe�b�&lt;}���}{���@TF���QI ��H�J��������1���P5����Q��@T���IF�}:".Z�u�;U�) *#@TF��$Uc��D%+�g4���9�z�kT�  *#@TF��$Uc�EE|���yY��d^ᳪ�� @TF���QI ��HC�J�#�|����޽IU���� * D�iPQ  ������s�(�-Q5~���Q��@T��Qp�5��sr�z�|LU��2De�J�v��,��S v)W.i�X�+i�1�Ԟ���.Ӷ���.�&gt;��ZV�=� ���X�R�G�?��!KՔDe�������7G�}�&gt;99L����lDe�������f�����8�����y��)��� *  ^���� ^��2�Bc����H ����MՔ De����)#=�5z�~]�/�ֽ���R���Q��@T��W���+V��_����@[��9�CTF���QI ��ȫHTD��6��i�:    $Q�P��j�̄�1U���(3'*{bEr�~�99D[�~T�x��f *3���7UE�IQ   ���5�z�I���'�/@T�De&amp;U���(3-*y� �m��uO�0��WUx��f *3���7UE�yQ�W�H��~�99H[���j܀����L *�y�1q\y/����| ��R�,���3��;��=�-T5ŀ����L *3�f����Q�V���-I�v�O ��R+��M�����;b�j�ͪ�U5Q�    De&amp;��5�G�t�^���am{��*J��J���ɯ�!'ϱ�^�j QU3��@T�#����o����;��|��jL��(�$*b�����n�3��TE! �j�2���WTQ �K�$�$�~����E%'V�[���ͻ/W5:jWT�2Eq�� W��? *}��o�)t�iG���6�r���������i˼��YD������H0���Ʃ��Q�2D%���f�꺣����%m;߉=�ϱ�jMD�w�����m�@T6�Y2{���L�eڲ�FU3��� *�IQE��QK�r�s���YLd��Y�QY��|E�-��۵m�K*�Tk�G?���u D5����6��8L�ͻNW5N *#@TF��$&amp;E%��Ek�����8����x�Q�D3�WNV%%Q9&amp;;x�ŧ����껪� De����*���ʰ�D ��W�\�ߦ��@�w�Y�d���Q��@T�1*� HJ����L��Wr����j���r�2D%1:�"v7�(R":�m�Si��Uj�S�    �&amp;k&lt;L���ɶ�D�;8���QBL�J$������z�� ��i/�����\���Ŝ�WĿ����������J�T=H"c�9XDR�&gt;��V���*�Y|f4�߮���6�L�H��]M����T * *#@T��*!�F���5�jjY�z#Z{�=��Q��������v�ۿ��Y�&amp;�JK3����成΀x0� *#@T��{�K�Uo� %��~��+�/Լj��n��7 �r�+4���!�kUDe�����د(�N�c�G�y=SN���ԙZh���� G����ϑ</code>�iں[�Q�2D%���’�����:F�PY�c����x��S�m��͢��vۜ����”���X��<em>��!&gt;�����2De�JQN4}&gt;W��� 6�&lt;������DU�YI���Ɯ&lt;K=�O��� </em>�<span class="citation" data-cites="TF">(<a href="references.html#ref-TF" role="doc-biblioref"><strong>TF?</strong></a>)</span>��<span class="math inline">�.��q6Q�Q�r��%f�17�+�y0_��N�!��7~�۲�R�7���\���QI ��D�����YU��N�e�c�6ND�k�K���b�R`�&lt;���y˜��\���QI�U� ���1o�.�D��F^��3V�Q���� Y����.W��&lt;q</span>?2�m��a�o���,� D�De�JR����+ead6��׶���2���������+���H5’Rb��&gt;�k����+,��Xq y D�De�JR�����֮��<span class="math inline">�غ���ڶ����J�I������K �z��F�ڗR���w��� ��뷷�@T.@TF��</span>��ʚ��V�9QU�/a<em>��A������</em><sub>|RUI����X����x��e��/�ŋ竞�ҽc’�?���</sub>Qk�ZJ�q�&lt;����Q�D3?y��o��<span class="citation" data-cites="T">(<a href="references.html#ref-T" role="doc-biblioref"><strong>T?</strong></a>)</span>.@TF��<span class="math inline">�*���[��yA�&gt;S��&amp;{�"�7�G�����1�Ua�W݋�'M^��ky&lt;�H�*9��@�6{D�De�JQ���!&gt;����ΰ�G;y�����;?Kµ�*ʑ��k�v{D�De�JQ��5�Bc�j�_����������m�M�[�T+����c��&gt;�9��oe�����M���\���QI *}�o�q���{�Y�NR��xY���g��u�u1Y���������LʝXQ�Q��`2E��n���������tI�0����f^��T]������[�gaw9n���l�� ���@T.@TF��</span>~D��}<span class="math inline">Y�h�:�WTV�iZڱCUI����c�o��QY�;i��t������1����}JR�/N�!��OX�z�� ��3�(&lt;!�o�u7�]}}�@T&gt;hjZɲ��~ �r�2D%)ET��KԲ�LU)9��6��&gt;e�t5"�D{��+�:���Qă</span>��ja[�]w�_��m���~��&gt;��7GVݑVڑ^ɿͲ��0�&gt;qB��s(���C�<span class="citation" data-cites="T">(<a href="references.html#ref-T" role="doc-biblioref"><strong>T?</strong></a>)</span>.@TF��<span class="math inline">��J</span>:�!Z�v��Pg�5g���a��!Q9�#�l��� D5S�,”�ޮ�%Q�Q���**�h�U]}:C�1�O�]�SQ��}�<em>{�-V����U�:D5��2��r�2D%)GT�b��ěT�Ö�ؽ��ѧ”���p�H�&amp;��~P��D5���&lt;��r�2D%)OT2b��8��I���5N]m�n; ����UI ���� �����ď���³�!v7��y�2���3��������,�o���</em>���g����J�J eU�����”)D5�x�XQ�Q����[�0�LO/7~DUo��L�<code>�;���Q�Q��TCT"��5�}�C|��ۛDUQXTL(�^�O*�� *I�De�N+:j����n����mk*UEilQ�W�H]��/D�De�JR-Q�X�����K��FR���O�.���4���Ċԓ�}��\���QI�)*;�9��y/�/3���4���&gt;Z�1��AT.@TF��$UUQU�W����nbD�De�JQ5F � ��XQ�Q��@T����4Sx���}��\���QI ��DUa��V��~6�o�� * D���*�, �N��7������j�@T�@\�"�{� * *#@T��12��M  �/�j4Q1щ���㿅��Qâ %���y��Ɖ�&amp;+����.U��</code>�U]̢:hLT����J�x���6�OD*�2�RK� �����£�ڶ�������F�Z[�Ԟ�ʲ�h���B’�zr�����4�p�xb&lt;�IEND�B`�</p>
-</div></div>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page-right" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -304,7 +289,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
+<nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
       <a href="./8_ARIMAmodels.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">ARIMA models</span></span>
@@ -317,6 +302,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+      <div class="nav-footer-center">Copyright 2022, Sondre Hølleland</div>
+  </div>
+</footer>
 
 
 

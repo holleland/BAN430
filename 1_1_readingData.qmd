@@ -1,12 +1,17 @@
-# Time series graphics
+## Reading data
 
 This is a book created from markdown and executable code.
 
 ## Exercises
+
 Is 1+1 the same as 2?
 
-<details><summary>Løsning</summary>
+<details>
+
+<summary>Solution</summary>
+
 ```{r eval = FALSE}
 1+1 == 2
 ```
+
 </details>

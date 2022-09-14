@@ -1,0 +1,24 @@
+---
+title: "Time series graphics"
+author: "Sondre Hølleland"
+editor: visual
+---
+
+# Time series graphics
+```{r}
+library(tidyverse)
+dat <- readxl::read_excel("../data/US10YTRR.xlsx")
+with(dat, plot(date, price, type = "l"))
+pacf(dat$price)
+library(fpp3)
+dat <- dat %>% 
+  mutate(date = as.Date(date)) %>%
+  as_tsibble(index = "date", regular = TRUE)%>%
+  mutate(trading_day = row_number()) %>%
+  tsibble(index = trading_day)
+autoplot(dat, .vars = price)
+dat %>%
+  PACF(price) %>%
+  autoplot() 
+
+```

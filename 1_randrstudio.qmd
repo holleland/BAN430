@@ -25,6 +25,11 @@ In this course, we will be using R and Rstudio to e.g. visualize time series, es
 install.packages("fpp3", dependencies = TRUE)
 ```
 
+
+
+<iframe src="https://player.vimeo.com/video/745712614?h=ead0e1cf78" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+
+
 Other useful packages to install are
 
 ```{r installreadxl, eval = FALSE}
@@ -207,3 +212,17 @@ dat %>%
 ### Epilogue {.unnumbered}
 
 We cannot illustrate all aspects here, but you will learn new elements by studying examples throughout the course. This recap is mostly for remembering the basics of data manipulation in R and simple plotting. As you will see in the continuation, the coding is not much more complex then what you have seen here and the fpp3 package uses the same type of logic and syntax as the tidyverse. There will however be some new functions specific for time series analysis that you will need to learn.
+
+
+### Exercises {.unnumbered}
+
+
+1. Set working directory.
+2. Load the data.
+3. Filter away observations prior to 2010.
+4. Remove columns except .. and time
+5. Summarize data to monthly means
+6. Make a plot with time on x-axis and monthly means on y-axis
+7. Save the figure to file. 
+
+
