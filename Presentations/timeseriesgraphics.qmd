@@ -1,7 +1,9 @@
 ---
 title: "Time series graphics"
 author: "Sondre Hølleland"
-editor: visual
+format: 
+  beamer:
+    incremental: true  
 ---
 
 # Time series graphics

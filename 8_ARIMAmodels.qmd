@@ -1,1 +1,279 @@
 # ARIMA models
+
+
+
+
+## Shiny app for playing with ACF and ARMA models{-}
+
+
+<iframe src="https://sholleland.shinyapps.io/ban430_shinyapps" width= "600px" height="1300px">
+</iframe>
+
+The following shiny app has been developed by Sondre Hølleland and being administred at [https://sholleland.shinyapps.io/ban430_shinyapps](https://sholleland.shinyapps.io/ban430_shinyapps). Due to restrictions relating to available computing hours on the free shinyapps account, the app may not work. You may then copy the code below to run the shiny app locally on your own computer. Remember that understanding the details of this code is not necessary.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-overflow: wrap
+#| code-summary: "Shiny app code:"
+library(shiny)
+library(tidyverse)
+library(fpp3)
+library(ggpubr)
+sbp.width <- 3
+
+theme_set(theme_bw() + theme(panel.grid.major = element_blank(),
+                             panel.grid.minor = element_blank()))
+# Define UI for application that draws a histogram
+ui <- fluidPage(
+
+    # Application title
+    titlePanel("ARMA models"),
+    tabsetPanel(
+      tabPanel("AR(1)", 
+               
+               sidebarLayout(
+                 sidebarPanel(width = sbp.width,
+                              uiOutput("artext"),
+                   sliderInput("arphi",
+                               "phi:",
+                               min = -.99,
+                               max = .99,
+                               value = .7,
+                               step = .01),
+                   sliderInput("arsigma",
+                               "sigma:",
+                               min = 0,
+                               max = 10,
+                               value = 1,
+                               step = .2),
+                   numericInput("arseed",
+                                "Seed:",
+                                value = 1234,
+                                min = 0, 
+                                max = 9999,
+                                step = 1),
+                   numericInput("arn",
+                                "Sample size:",
+                                value = 500,
+                                min = 100, 
+                                max = 5000,
+                                step = 100)
+                 ),
+                 
+                 # Show a plot of the generated distribution
+                 mainPanel(
+                   plotOutput("arPlot", height = "600px")
+                 )
+               )),
+      tabPanel("MA(1)",  
+               
+               sidebarLayout(
+                 sidebarPanel(width = sbp.width,
+                              uiOutput("matext"),
+                   sliderInput("matheta",
+                               "theta:",
+                               min = -1,
+                               max = 1,
+                               value = .7,
+                               step = .01),
+                   sliderInput("masigma",
+                               "sigma:",
+                               min = 0,
+                               max = 10,
+                               value = 1,
+                               step = .2),
+                   numericInput("maseed",
+                                "Seed:",
+                                value = 1234,
+                                min = 0, 
+                                max = 9999,
+                                step = 1),
+                   numericInput("man",
+                                "Sample size:",
+                                value = 500,
+                                min = 100, 
+                                max = 5000,
+                                step = 100)
+                 ),
+                 
+                 # Show a plot of the generated distribution
+                 mainPanel(
+                   plotOutput("maPlot", height = "600px")
+                 )
+               )),
+      tabPanel("ARMA(1,1)", 
+              
+               sidebarLayout(
+                 sidebarPanel(width = sbp.width,
+                              uiOutput("armatext"),
+                   sliderInput("armaphi",
+                               "phi:",
+                               min = -.99,
+                               max = .99,
+                               value = .7,
+                               step = .01),
+                   sliderInput("armatheta",
+                               "theta:",
+                               min = -1,
+                               max = 1,
+                               value = .7,
+                               step = .01),
+                   sliderInput("armasigma",
+                               "sigma:",
+                               min = 0,
+                               max = 10,
+                               value = 1,
+                               step = .2),
+                   numericInput("armaseed",
+                                "Seed:",
+                                value = 1234,
+                                min = 0, 
+                                max = 9999,
+                                step = 1),
+                   numericInput("arman",
+                                "Sample size:",
+                                value = 500,
+                                min = 100, 
+                                max = 5000,
+                                step = 100)
+                 ),
+                 
+                 # Show a plot of the generated distribution
+                 mainPanel(
+                   plotOutput("armaPlot", height = "600px")
+                 )
+               ))))
+    # Sidebar with a slider input for number of bins 
+   
+
+
+# Define server logic required to draw a histogram
+server <- function(input, output) {
+    output$artext <- renderUI({
+      withMathJax("Model: $$Y_t=\\phi \\,Y_{t-1}+Z_t,\\quad Z_t\\sim \\text{i.i.d N}(0,\\sigma^2)$$")
+    })
+    output$matext <- renderUI({
+      withMathJax("Model: $$Y_t=\\theta\\, Z_{t-1}+Z_t,\\quad Z_t\\sim \\text{i.i.d N}(0,\\sigma^2)$$")
+    })
+    output$armatext <- renderUI({
+      withMathJax("Model: $$Y_t=\\phi\\, Y_{t-1}+\\theta \\,Z_{t-1}+Z_t,\\quad Z_t\\sim \\text{i.i.d N}(0,\\sigma^2)$$")
+    })
+    output$arPlot <- renderPlot({
+      set.seed(input$arseed)
+      burnin <- 200
+      x <- rnorm(input$arn+burnin, sd = input$arsigma)
+      for(i in 2:length(x))
+        x[i] <- input$arphi*x[i-1]+rnorm(1, sd = input$arsigma)
+      df <- tsibble(x = x[burnin+1:(length(x)-burnin)],
+                    t = 1:(length(x)-burnin),
+                    index = "t")
+      # Theoretical acf: 
+      
+      theoretical.correlations <- 
+        tibble(lag = 1:29,
+               acf = ARMAacf(ar = c(input$arphi), lag.max = 29, pacf =FALSE)[-1],
+               pacf = ARMAacf(ar = c(input$arphi), lag.max = 29, pacf =TRUE))
+      # generate bins based on input$bins from ui.R
+       ggarrange(
+         df %>% autoplot() + scale_y_continuous("AR(1) series")+
+           scale_x_continuous("Time index", expand = c(0,0)),
+         ggarrange(df %>% ACF() %>% autoplot()+
+                     scale_x_continuous("Lag", expand = c(0,0),limit=c(0.5,29.5), breaks = seq(0,30,5))+
+                     ylab("Sample PACF"),
+         df %>% PACF() %>% autoplot()+
+           scale_x_continuous("Lag", expand = c(0,0),limit=c(0.5,29.5), breaks = seq(0,30,5))+
+           ylab("Sample PACF"), 
+         theoretical.correlations %>% ggplot(aes(x=lag))+
+           geom_segment(aes(x=lag,xend=lag,y=0,yend=acf))+geom_hline(yintercept=0)+
+           scale_x_continuous("Lag", expand = c(0,0),limit=c(0.5,29.5), breaks = seq(0,30,5))+
+           scale_y_continuous("Theoretical ACF"),
+         theoretical.correlations %>% ggplot(aes(x=lag))+
+           geom_segment(aes(x=lag,xend=lag,y=0,yend=pacf))+geom_hline(yintercept=0)+
+           scale_x_continuous("Lag", expand = c(0,0),limit=c(0.5,29.5), breaks = seq(0,30,5))+
+           scale_y_continuous("Theoretical PACF"),
+         nrow = 2, ncol = 2),
+         ncol = 1, nrow = 2, heights = c(1,2))
+    })
+
+    output$maPlot <- renderPlot({
+      set.seed(input$maseed)
+      burnin <- 200
+      z <- rnorm(input$man+burnin, sd = input$masigma)
+      x <- numeric(input$man+burnin)
+      for(i in 2:length(x))
+        x[i] <- input$matheta*z[i-1]+z[i]
+      df <- tsibble(x = x[burnin+1:(length(x)-burnin)],
+                    t = 1:(length(x)-burnin),
+                    index = "t")
+      
+      theoretical.correlations <- 
+        tibble(lag = 1:29,
+               acf = ARMAacf(ma = c(input$matheta), lag.max = 29, pacf =FALSE)[-1],
+               pacf = ARMAacf(ma = c(input$matheta), lag.max = 29, pacf =TRUE))
+      # generate bins based on input$bins from ui.R
+      ggarrange(
+        df %>% autoplot() + scale_y_continuous("MA(1) series")+
+          scale_x_continuous("Time index", expand = c(0,0)),
+        ggarrange(df %>% ACF() %>% autoplot()+
+                    scale_x_continuous("Lag", expand = c(0,0),limit=c(0.5,29.5), breaks = seq(0,30,5))+
+                                         ylab("Sample ACF"),
+                  df %>% PACF() %>% autoplot()+
+                    scale_x_continuous("Lag", expand = c(0,0),limit=c(0.5,29.5), breaks = seq(0,30,5))+
+                                         ylab("Sample PACF"), 
+                  theoretical.correlations %>% ggplot(aes(x=lag))+
+                    geom_segment(aes(x=lag,xend=lag,y=0,yend=acf))+geom_hline(yintercept=0)+
+                    scale_x_continuous("Lag", expand = c(0,0),limit=c(0.5,29.5), breaks = seq(0,30,5))+
+                    scale_y_continuous("Theoretical ACF"),
+                  theoretical.correlations %>% ggplot(aes(x=lag))+
+                    geom_segment(aes(x=lag,xend=lag,y=0,yend=pacf))+geom_hline(yintercept=0)+
+                    scale_x_continuous("Lag", expand = c(0,0),limit=c(0.5,29.5), breaks = seq(0,30,5))+
+                    scale_y_continuous("Theoretical PACF"),
+                  nrow = 2, ncol = 2),
+        ncol = 1, nrow = 2, heights = c(1,2))
+    })
+    output$armaPlot <- renderPlot({
+      set.seed(input$armaseed)
+      burnin <- 200
+      #sdZ = sqrt(input$armasigma *(1-input$armaphi^2)/(1+2*input$armaphi*input$armatheta + input$armatheta^2))
+      z <- rnorm(input$arman+burnin, sd = input$armasigma)
+      x <- numeric(input$arman+burnin)
+      for(i in 2:length(x))
+        x[i] <- input$armaphi*x[i-1]+input$armatheta*z[i-1]+z[i]
+      df <- tsibble(x = x[burnin+1:(length(x)-burnin)],
+                    t = 1:(length(x)-burnin),
+                    index = "t")
+      
+      theoretical.correlations <- 
+        tibble(lag = 1:29,
+               acf = ARMAacf(ar = c(input$armaphi), ma = c(input$armatheta), lag.max = 29, pacf =FALSE)[-1],
+               pacf = ARMAacf(ar = c(input$armaphi), ma = c(input$armatheta), lag.max = 29, pacf =TRUE))
+      # generate bins based on input$bins from ui.R
+      ggarrange(
+        df %>% autoplot() + scale_y_continuous("MA(1) series")+
+          scale_x_continuous("Time index", expand = c(0,0)),
+        ggarrange(df %>% ACF() %>% autoplot()+
+                    scale_x_continuous("Lag", expand = c(0,0),limit=c(0.5,29.5), breaks = seq(0,30,5))+
+                                         ylab("Sample ACF"),
+                  df %>% PACF() %>% autoplot()+
+                    scale_x_continuous("Lag", expand = c(0,0),limit=c(0.5,29.5), breaks = seq(0,30,5))+
+                                         ylab("Sample PACF"), 
+                  theoretical.correlations %>% ggplot(aes(x=lag))+
+                    geom_segment(aes(x=lag,xend=lag,y=0,yend=acf))+geom_hline(yintercept=0)+
+                    scale_x_continuous("Lag", expand = c(0,0),limit=c(0.5,29.5), breaks = seq(0,30,5))+
+                    scale_y_continuous("Theoretical ACF"),
+                  theoretical.correlations %>% ggplot(aes(x=lag))+
+                    geom_segment(aes(x=lag,xend=lag,y=0,yend=pacf))+geom_hline(yintercept=0)+
+                    scale_x_continuous("Lag", expand = c(0,0),limit=c(0.5,29.5), breaks = seq(0,30,5))+
+                    scale_y_continuous("Theoretical PACF"),
+                  nrow = 2, ncol = 2),
+        ncol = 1, nrow = 2, heights = c(1,2))
+    })
+}
+
+# Run the application 
+shinyApp(ui = ui, server = server)
+
+```
+

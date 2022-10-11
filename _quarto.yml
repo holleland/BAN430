@@ -55,6 +55,7 @@ format:
     documentclass: scrreprt
 
 editor: visual
+server: shiny
 
 
 body-footer: | 
