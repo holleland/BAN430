@@ -1,0 +1,40 @@
+# R and Rstudio
+
+In this course, we will be using R and Rstudio to e.g. visualize time series, estimate model parameters, forecast, etc. It is therefore essential to have some basic knowledge of how to write an R script and how to read in data and do some simple data manipulation for preparing the data for different time series analysis. Hopefully, most of you have some experience with R and Rstudio before. If you have, this will be a short recap, if not this will be a very short introduction covering the most basic operations.
+
+### Installing R and Rstudio {.unnumbered}
+
+1.  Install R:
+    -   Go to: [cran.uib.no](https://cran.uib.no/)
+    -   Press download R for Linux/MacOS/Windows
+    -   Press base
+    -   Download R-4.x.x for Linux/MacOS/Windows
+    -   Run the installation using default options
+2.  Install Rstudio
+    -   Go to: [rstudio.com](https://www.rstudio.com/products/rstudio/)
+    -   Select Rstudio desktop
+    -   Press Download Rstudio desktop
+    -   Select the Rstudio desktop with open source licence, which is free\
+    -   Select the version for your operating system
+    -   Run the installation using default settings
+3.  Open Rstudio and check that it works (it should start without any error messages).
+4.  Install the R-package of the book "fpp3".
+    -   In Rstudio, select Tools -\> Install packages -\> write "fpp3" and make sure install dependencies is marked. Press Install. You can also run the following code in the console
+
+```{r, eval = FALSE}
+#| echo: true
+install.packages("fpp3", dependencies = TRUE)
+```
+
+<iframe src="https://player.vimeo.com/video/745712614?h=ead0e1cf78" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
+
+</iframe>
+
+Other useful packages to install are
+
+```{r installreadxl, eval = FALSE}
+install.packages("tidyverse", dependencies = TRUE)
+install.packages("readxl")
+```
+
+(will add other packages as we go)

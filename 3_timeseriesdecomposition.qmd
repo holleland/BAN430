@@ -56,7 +56,7 @@ dat <- dat %>%
   summarize(Employed = sum(Employed)) %>%
   as_tsibble(index = Quarter) # Time series table
 dat %>% 
-  autoplot(Employed, lwd = 1, colour = "blue")
+  autoplot(Employed, colour = "blue")
 dat <- dat %>%
   mutate(
     `12-MA` = slider::slide_dbl(Employed, mean,
@@ -127,7 +127,7 @@ dat %>%
   mutate(random = ifelse(.model == "classical", 
                          random, 
                          irregular)) %>%
-  autoplot(lwd = 1)
+  autoplot()
 ```
 
 </details>

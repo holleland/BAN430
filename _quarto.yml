@@ -1,66 +1,73 @@
 project:
-  type: book
-  output-dir: docs
+  type: website
 
-book:
-  title: BAN430 Forecasting 
-  author: "Sondre Hølleland"
-  date: "9.8.2022"
-  page-footer: 
-    center: "Copyright 2022, Sondre Hølleland" 
-  logo: "bilder/nhh.png"
-  alignment: "left"
-  chapters:
-    - index.qmd
-    - 1_randrstudio.qmd
-    - 2_timeseriesgraphics.qmd
-    - 3_decomposition.qmd
-    - 4_timeseriesfeatures.qmd
-    - 5_forecasterstoolbox.qmd
-    - 6_judgementalforecast.qmd
-    - 7_regressionmodels.qmd
-    - 8_ARIMAmodels.qmd
-    - 9_Volatitiliy_forecasting.qmd
-    - 10_Practicle_forecasting_issues.qmd
-    - references.qmd
+website:
+  title: "BAN430 Forecasting"
+  image: bilder/nhh.png
+  page-navigation: true
+  navbar:
+    logo: bilder/nhh.png
+    left:
+      - href: index.qmd
+        text: Course overview
+      - about.qmd
+  sidebar:
+    title: "Whatever"
+    style: "docked"
+    search: true
+    collapse-level: 1
+    contents:
+      - href: index.qmd
+        text: Course overview
+      - section: "1 R and Rstudio"
+        contents:
+          - href: 1_installingrandrstudio.qmd
+            text: "Installing R and Rstudio"
+          - href: 1_rrecap.qmd
+            text: "Recap R"
+      - section: "2 Time series graphics"
+        contents:
+          - 2_timeseriesgraphics.qmd
+      - section: "3 Adjustments and decomposition"
+        contents:
+          - 3_decomposition_intro.qmd
+          - 3_adjustments.qmd
+          - 3_timeseriesdecomposition.qmd
+          - 3_exercises.qmd
+      - section: "4 Time series features"
+        contents:
+          - 4_timeseriesfeatures.qmd
+      - section: "5 Forecasters toolbox"
+        contents:
+          - 5_forecasterstoolbox.qmd
+      - section: "6 Judgemental forecast"
+        contents:
+          - 6_judgementalforecast.qmd
+      - section: "7 Regression models"
+        contents:
+          - 7_regressionmodels.qmd
+      - section: "8 ARIMA models"
+        contents:
+          - 8_ARIMAmodels.qmd
+      - section: "9 Volatility forecasting"
+        contents:
+          - 9_Volatitiliy_forecasting.qmd
+      - section: "10 Practical forecasting issues"
+        contents:
+          - 10_Practicle_forecasting_issues.qmd
+      - href: references.qmd
+        text: "References"
+
+editor: visual
 
 
-bibliography: references.bib
-
-sidebar:
-  style: "docked"
-  alignment: "left"
-  border: true
-  number-depth: 3
-
-
-
-
+          
 format:
   html:
-    toc: true
-    alignment: left
-    toc-depth: 2
-    toc-title: Chapter contents
-    toc-location: left
-    page-layout: full
     theme: 
-    - cosmo
-    - custom.scss
+        - cosmo
+        - custom.scss
     css: style.css
     fontsize: 1.1em
     linestretch: 1.7
     html-math-method: katex
-  pdf:
-    documentclass: scrreprt
-execute:
-  echo: true
-  eval: true
-editor: visual
-server: shiny
-
-
-body-footer: | 
-  Sondre Hølleland
-
-

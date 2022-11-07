@@ -30,7 +30,7 @@ In the example in the video above, we are not interested in a proxy for working 
 #| eval: false
 #| code-fold: true
 #| code-overflow: wrap
-#| code-summary: "Code for generating examples:"
+#| code-summary: "Code:"
 library(lubridate)
 library(tidyverse)
 library(fpp3)
@@ -90,7 +90,7 @@ Adjusting for population size is usually a good idea when studying a quantity th
 #| eval: false
 #| code-fold: true
 #| code-overflow: wrap
-#| code-summary: "Code for generating examples in the video"
+#| code-summary: "Code:"
 
 # --- Setting up the data --
 scandinaviaUSA <- global_economy %>% 
@@ -136,7 +136,7 @@ The inflation adjusted series is then measured in the unit "year $t^\star$-money
 #| eval: false
 #| code-fold: true
 #| code-overflow: wrap
-#| code-summary: "Code for generating examples:"
+#| code-summary: "Code:"
 # --- Inflation adjusted GDP per capita by country ---
 scandinaviaUSA %>%
   autoplot(GDP/Population *100 / CPI) +
@@ -215,7 +215,7 @@ r_t &= \frac{y_t-y_{t-1}}{y_{t-1}},\\
 
 <details>
 
-<summary>Code on mathematical transformations</summary>
+<summary>Code</summary>
 
 ```{r}
 #| message: false
@@ -279,7 +279,7 @@ close.price %>%
 
 <details>
 
-<summary>Code on mathematical transformations</summary>
+<summary>Code</summary>
 
 ```{r}
 #| echo: true
