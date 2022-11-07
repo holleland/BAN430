@@ -27,4 +27,4 @@ We will use the textbook by @hyndman2018, i.e. the online version which can be a
 
 ## Curriculum
 
-Textbook (@hyndman2018) chapters 1-9 and 13. Additional notes by lecturer on volatility forecasting. All the material on this website.  
+Textbook (@hyndman2018) chapters 1-9 and 13. Additional notes by lecturer on volatility forecasting. All the material on this website.

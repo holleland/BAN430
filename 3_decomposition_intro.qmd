@@ -1,0 +1,2 @@
+# Decomposition
+In this chapter we will consider different adjusments and transformations one can do prior to a model task. Then we move on to techniques for decomposing a time series into a trend-cycle, season and remainder component.

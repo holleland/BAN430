@@ -22,6 +22,7 @@ In this course, we will be using R and Rstudio to e.g. visualize time series, es
     -   In Rstudio, select Tools -\> Install packages -\> write "fpp3" and make sure install dependencies is marked. Press Install. You can also run the following code in the console
 
 ```{r, eval = FALSE}
+#| echo: true
 install.packages("fpp3", dependencies = TRUE)
 ```
 

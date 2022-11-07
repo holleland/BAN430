@@ -1,12 +1,20 @@
-# Time series graphics
+# Time series basics
 
-This is a book created from markdown and executable code.
 
-## Exercises
-Is 1+1 the same as 2?
+## What is a time series
 
-<details><summary>Løsning</summary>
-```{r eval = FALSE}
-1+1 == 2
-```
-</details>
+## Time series notation
+
+## Stationarity
+
+
+## Autocorrelation
+
+
+## White noise
+
+
+## Time series graphics
+
+
+

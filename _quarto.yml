@@ -40,7 +40,7 @@ format:
   html:
     toc: true
     alignment: left
-    toc-depth: 4
+    toc-depth: 2
     toc-title: Chapter contents
     toc-location: left
     page-layout: full
@@ -53,7 +53,9 @@ format:
     html-math-method: katex
   pdf:
     documentclass: scrreprt
-
+execute:
+  echo: true
+  eval: true
 editor: visual
 server: shiny
 

@@ -1,3 +1,161 @@
-# Time series decomposition
+# Moving averages and Decomposition
+
+## Moving averages {.unnumbered}
 
 
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+#| eval: true
+library(lubridate)
+library(tidyverse)
+library(fpp3)
+theme_set(
+  theme_bw() + 
+    theme(panel.grid.minor = element_blank(),
+          panel.grid.major = element_blank(),
+          strip.background = element_rect(fill = "white", color = "transparent"))
+)
+
+```
+<!-- Her kommer det en video som kanskje er mer laget i onenote enn som presentasjon -->
+
+<iframe src="https://player.vimeo.com/video/767237684?h=ead0e1cf78" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
+
+</iframe>
+
+<details>
+
+<summary>Code</summary>
+
+```{r}
+#| echo: true
+#| eval: true
+#| warnings: false
+#| message: false
+library(fpp3)
+library(tidyverse)
+
+# ggplot theme: 
+theme_set(theme_bw() + 
+            theme(panel.grid.major = element_blank(),
+                  panel.grid.minor = element_blank()))
+
+# -- Read in data: --
+dat <- readxl::read_excel(
+  "data/NorwayEmployment_15-74years_bySex.xlsx") %>%
+  as_tibble() %>%
+  mutate(Quarter = str_replace(Quarter, "K","Q"),
+         Quarter = yearquarter(Quarter)) 
+names(dat)[3] <- "Employed"
+
+# -- Aggregating from Employed by sex to total --
+dat <- dat %>% 
+  group_by(Quarter) %>% 
+  summarize(Employed = sum(Employed)) %>%
+  as_tsibble(index = Quarter) # Time series table
+dat %>% 
+  autoplot(Employed, lwd = 1, colour = "blue")
+dat <- dat %>%
+  mutate(
+    `12-MA` = slider::slide_dbl(Employed, mean,
+                                .before = 5, .after = 6, .complete = TRUE),
+    `2x12-MA` = slider::slide_dbl(`12-MA`, mean,
+                                  .before = 1, .after = 0, .complete = TRUE)
+  )
+dat %>%
+  ggplot(aes(x=Quarter, y =Employed))+
+  geom_line(colour = "gray") +
+  geom_line(aes(y = `2x12-MA`), colour = "#D55E00") +
+  theme_bw()+
+  labs(y = "Persons (thousands)",
+       title = "Total employment in US retail")
+```
+
+</details>
+
+## Classical decomposition {.unnumbered}
+
+<iframe src="https://player.vimeo.com/video/767238976?h=ead0e1cf78" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
+
+</iframe>
+
+<details>
+
+<summary>Code</summary>
+
+```{r}
+#| echo: true
+#| eval: true
+#| warnings: false
+#| message: false
+dat %>% 
+  model(
+    classical_decomposition(Employed, type = "additive")
+  ) %>%
+  components() %>%
+  autoplot()
+```
+
+</details>
+
+## Statistics agencies: X11 and SEATS
+
+<iframe src="https://player.vimeo.com/video/767240975?h=ead0e1cf78" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
+
+</iframe>
+
+<details>
+
+<summary>Code</summary>
+
+```{r}
+#| echo: true
+#| eval: true
+#| warnings: false
+#| message: false
+
+dat %>% 
+  model(
+    classical = classical_decomposition(Employed, 
+                                        type = "multiplicative"),
+    x11 = X_13ARIMA_SEATS(Employed ~ x11()),
+    seats = X_13ARIMA_SEATS(Employed ~ seats())
+  ) %>%
+  components() %>% 
+  mutate(random = ifelse(.model == "classical", 
+                         random, 
+                         irregular)) %>%
+  autoplot(lwd = 1)
+```
+
+</details>
+
+## STL: Seasonal and Trend decomposition using Loess {.unnumbered}
+
+<iframe src="https://player.vimeo.com/video/767233402?h=ead0e1cf78" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
+
+</iframe>
+
+<details>
+
+<summary>Code</summary>
+
+```{r}
+#| echo: true
+#| eval: true
+#| warnings: false
+#| message: false
+dat %>%
+  model(
+    STL0 = STL(Employed),
+    STL1 = STL(Employed ~ trend(window = 5) + # default 7
+                 season(window = 19),         # default 11
+               robust = FALSE)
+  ) %>%
+  components() %>%
+  autoplot()
+```
+
+</details>
