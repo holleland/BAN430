@@ -155,7 +155,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page">Course overview</a>
+    <a class="nav-link active" href="./index.html" aria-current="page">Home</a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html">About</a>
@@ -227,17 +227,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">3 Adjustments and decomposition</a>
+            <a href="./3_decomposition_intro.html" class="sidebar-item-text sidebar-link">3 Adjustments and decomposition</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./3_decomposition_intro.html" class="sidebar-item-text sidebar-link">Decomposition</a>
-  </div>
-</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./3_adjustments.html" class="sidebar-item-text sidebar-link">Transformations and adjustments</a>
@@ -381,6 +376,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </div>
 <ol type="1">
+<li>Use the simulated data from <a href="https://holleland.github.io/BAN430/3_adjustments.html#time-series-components-and-seasonal-adjustment">here</a>. Compare the different methods with the truth from the simulation. Are there large differences?</li>
+</ol>
+<details>
+<summary>
+Solution
+</summary>
+</details>
+<ol start="2" type="1">
 <li>Use the global_economy data, select a country (e.g.&nbsp;Austria). Plot GDP, GDP per capita and GDP per capita inflation adjusted, GDP inflation adjusted.</li>
 </ol>
 <details>
@@ -410,7 +413,7 @@ Solution
 </div>
 </div>
 </details>
-<ol start="2" type="1">
+<ol start="3" type="1">
 <li>In the global_economy data set, the CPI has a reference year of 2010. Do the necessary changes to inflation adjust GDP per capita with 1990 as reference year.</li>
 </ol>
 <details>
@@ -452,7 +455,7 @@ Solution
 </div>
 </div>
 </details>
-<ol start="3" type="1">
+<ol start="4" type="1">
 <li><p>Use the quantmod package to download data for another stock. Will a log transformation do a good job for this as well?</p></li>
 <li><p>Use the guerrero feature to select a <span class="math inline">\lambda</span> for the Box-Cox transformation on the data from the previous exercise.</p></li>
 </ol>

@@ -17,7 +17,16 @@ theme_set(
 
 ```
 
-1. Use the global\_economy data, select a country (e.g. Austria). Plot GDP, GDP per capita and GDP per capita inflation adjusted, GDP inflation adjusted.
+
+1. Use the simulated data from [here](https://holleland.github.io/BAN430/3_adjustments.html#time-series-components-and-seasonal-adjustment). Compare the different methods with the truth from the simulation. Are there large differences?
+
+<details>
+<summary>Solution</summary>
+
+</details>
+
+
+2. Use the global\_economy data, select a country (e.g. Austria). Plot GDP, GDP per capita and GDP per capita inflation adjusted, GDP inflation adjusted.
 
 <details>
 
@@ -37,7 +46,7 @@ dat %>% autoplot(GDP * 100/CPI)
 ```
 </details>
 
-2. In the global\_economy data set, the CPI has a reference year of 2010. Do the necessary changes to inflation adjust GDP per capita with 1990 as reference year. 
+3. In the global\_economy data set, the CPI has a reference year of 2010. Do the necessary changes to inflation adjust GDP per capita with 1990 as reference year. 
 
 <details>
 
@@ -75,9 +84,9 @@ dat %>%
 ```
 </details>
 
-3. Use the quantmod package to download data for another stock. Will a log transformation do a good job for this as well? 
+4. Use the quantmod package to download data for another stock. Will a log transformation do a good job for this as well? 
 
-4. Use the guerrero feature to select a $\lambda$ for the Box-Cox transformation on the data from the previous exercise. 
+5. Use the guerrero feature to select a $\lambda$ for the Box-Cox transformation on the data from the previous exercise. 
 
 
 
