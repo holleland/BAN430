@@ -1,0 +1,7 @@
+# Exploring Australian tourism example
+
+You find the example in the textbook here: [Chapter 4.5](https://otexts.com/fpp3/exploring-australian-tourism-data.html). This is a somewhat complicated example to follow perhaps, and in the video below we go through the code line by line (almost) and explain what is going on. You may watch the video or simply study it in the book. The code is not added here, since it is the same as in the book (more or less).
+
+<iframe src="https://player.vimeo.com/video/770666303?h=ead0e1cf78" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
+
+</iframe>

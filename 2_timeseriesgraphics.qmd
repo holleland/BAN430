@@ -1,20 +1,15 @@
 # Time series basics
 
-
 ## What is a time series
 
 ## Time series notation
 
-## Stationarity
+## tsibble
 
+## Stationarity
 
 ## Autocorrelation
 
-
 ## White noise
 
-
 ## Time series graphics
-
-
-

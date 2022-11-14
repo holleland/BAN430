@@ -38,6 +38,9 @@ website:
       - section: "4 Time series features"
         contents:
           - 4_timeseriesfeatures.qmd
+          - 4_features.qmd
+          - 4_tourismexample.qmd
+          - 4_exercises.qmd
       - section: "5 Forecasters toolbox"
         contents:
           - 5_forecasterstoolbox.qmd

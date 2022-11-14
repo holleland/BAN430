@@ -1,0 +1,66 @@
+# Features
+
+Here we will go through how to calculate features in R and show some examples of features you can calculate for time series using the feasts package. You find more details in [Chapter 4.1-4.3 of Hyndman and Athanasopoulos(2021)](https://otexts.com/fpp3/some-simple-statistics.html). The code used in this lecture is an adaptation of what you find in these sections. 
+
+<iframe src="https://player.vimeo.com/video/770666062?h=ead0e1cf78" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
+
+</iframe>
+
+<details>
+<summary>Code used in video</summary>
+
+```{r, message = FALSE, warning =FALSE}
+#| echo: true
+#| eval: true
+# --- Time series features ---
+library(fpp3)
+library(tidyverse)
+theme_set(theme_bw() +
+            theme(panel.grid.minor = element_blank(),
+                  panel.grid.major = element_blank(),
+                  strip.background = element_rect(fill ="white",
+                                                  color = "transparent")))
+ 
+# -- Features: mean --
+tourism %>% 
+  features(Trips, list(mean = mean)) %>%
+  arrange(mean)
+
+# -- Features: mean, sd, 2.5 and 97.5 percentiles --
+tourism %>% 
+  features(Trips, list(mean = mean,
+                       sd   = sd,
+                       p    = ~quantile(., probs = c(0.025, 0.975)))) %>%
+  arrange(desc(sd))
+
+# -- dplyr equivalent: --
+tourism  %>% 
+  as_tibble() %>% 
+  group_by(Region,State,Purpose) %>%
+  summarize(mean = mean(Trips)) %>%
+  arrange(mean)
+
+# -- ACF features --
+tourism %>% 
+  features(Trips, feat_acf) 
+
+# -- STL features --
+tourism %>%
+  features(Trips, feat_stl) %>%
+  ggplot(aes(x = trend_strength, y=seasonal_strength_year,
+             color = Purpose)) + 
+  geom_point() + 
+  facet_wrap(vars(State))
+
+# -- Time series with strongest seasonal component: --
+tourism %>%
+  features(Trips, feat_stl) %>%
+  filter(
+    seasonal_strength_year == max(seasonal_strength_year)
+  ) %>%
+  left_join(tourism, by = c("Region","State","Purpose")) %>%
+  ggplot(aes(x=Quarter, y = Trips)) + geom_line() + 
+  facet_grid(vars(Region,State,Purpose))
+```
+
+</details>

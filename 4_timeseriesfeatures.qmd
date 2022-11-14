@@ -1,3 +1,4 @@
 # Time series features
 
+This chapter is maybe mostly about learning how to use features in time series analysis. It has mostly a technical side that you should learn to master. Calculating features such a means, standard deviation or quantiles is maybe not new to you, but the ACF and STL features I would imagine are. Using features to detect outlyers among many time series is a nice application of the material you should learn in this chapter. 
 

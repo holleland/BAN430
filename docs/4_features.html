@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BAN430 Forecasting – installingrandrstudio</title>
+<title>BAN430 Forecasting – features</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -88,8 +88,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./1_rrecap.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./4_tourismexample.html" rel="next">
+<link href="./4_timeseriesfeatures.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -176,15 +176,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">1 R and Rstudio</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">1 R and Rstudio</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./1_installingrandrstudio.html" class="sidebar-item-text sidebar-link active">Installing R and Rstudio</a>
+  <a href="./1_installingrandrstudio.html" class="sidebar-item-text sidebar-link">Installing R and Rstudio</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -236,12 +236,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">4 Time series features</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">4 Time series features</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./4_timeseriesfeatures.html" class="sidebar-item-text sidebar-link">Time series features</a>
@@ -249,7 +249,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./4_features.html" class="sidebar-item-text sidebar-link">Features</a>
+  <a href="./4_features.html" class="sidebar-item-text sidebar-link active">Features</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -369,50 +369,136 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<section id="r-and-rstudio" class="level1">
-<h1>R and Rstudio</h1>
-<p>In this course, we will be using R and Rstudio to e.g.&nbsp;visualize time series, estimate model parameters, forecast, etc. It is therefore essential to have some basic knowledge of how to write an R script and how to read in data and do some simple data manipulation for preparing the data for different time series analysis. Hopefully, most of you have some experience with R and Rstudio before. If you have, this will be a short recap, if not this will be a very short introduction covering the most basic operations.</p>
-<section id="installing-r-and-rstudio" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="installing-r-and-rstudio">Installing R and Rstudio</h3>
-<ol type="1">
-<li>Install R:
-<ul>
-<li>Go to: <a href="https://cran.uib.no/">cran.uib.no</a></li>
-<li>Press download R for Linux/MacOS/Windows</li>
-<li>Press base</li>
-<li>Download R-4.x.x for Linux/MacOS/Windows</li>
-<li>Run the installation using default options</li>
-</ul></li>
-<li>Install Rstudio
-<ul>
-<li>Go to: <a href="https://www.rstudio.com/products/rstudio/">rstudio.com</a></li>
-<li>Select Rstudio desktop</li>
-<li>Press Download Rstudio desktop</li>
-<li>Select the Rstudio desktop with open source licence, which is free<br>
-</li>
-<li>Select the version for your operating system</li>
-<li>Run the installation using default settings</li>
-</ul></li>
-<li>Open Rstudio and check that it works (it should start without any error messages).</li>
-<li>Install the R-package of the book “fpp3”.
-<ul>
-<li>In Rstudio, select Tools -&gt; Install packages -&gt; write “fpp3” and make sure install dependencies is marked. Press Install. You can also run the following code in the console</li>
-</ul></li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"fpp3"</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<iframe src="https://player.vimeo.com/video/745712614?h=ead0e1cf78" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen="">
+<section id="features" class="level1">
+<h1>Features</h1>
+<p>Here we will go through and show some examples of features you can calculate for time series using the feasts package. You find more details in <a href="https://otexts.com/fpp3/features.html">Chapter 4.1-4.3 of Hyndman and Athanasopoulos(2021)</a>.</p>
+<iframe src="https://player.vimeo.com/video/770666062?h=ead0e1cf78" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen="">
 </iframe>
-<p>Other useful packages to install are</p>
+<details>
+<summary>
+Code used in video
+</summary>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"readxl"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Time series features ---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fpp3)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>            <span class="fu">theme</span>(<span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span><span class="st">"white"</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                                                  <span class="at">color =</span> <span class="st">"transparent"</span>)))</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># -- Features: mean --</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>tourism <span class="sc">%&gt;%</span> </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(Trips, <span class="fu">list</span>(<span class="at">mean =</span> mean)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 304 × 4
+   Region          State              Purpose   mean
+   &lt;chr&gt;           &lt;chr&gt;              &lt;chr&gt;    &lt;dbl&gt;
+ 1 Kangaroo Island South Australia    Other    0.340
+ 2 MacDonnell      Northern Territory Other    0.449
+ 3 Wilderness West Tasmania           Other    0.478
+ 4 Barkly          Northern Territory Other    0.632
+ 5 Clare Valley    South Australia    Other    0.898
+ 6 Barossa         South Australia    Other    1.02 
+ 7 Kakadu Arnhem   Northern Territory Other    1.04 
+ 8 Lasseter        Northern Territory Other    1.14 
+ 9 Wimmera         Victoria           Other    1.15 
+10 MacDonnell      Northern Territory Visiting 1.18 
+# … with 294 more rows</code></pre>
 </div>
-<p>(will add other packages as we go)</p>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># -- Features: mean, sd, 2.5 and 97.5 percentiles --</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>tourism <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(Trips, <span class="fu">list</span>(<span class="at">mean =</span> mean,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">sd   =</span> sd,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">p    =</span> <span class="sc">~</span><span class="fu">quantile</span>(., <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>)))) <span class="sc">%&gt;%</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(sd))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 304 × 7
+   Region                 State             Purpose   mean    sd p_2.5…¹ p_97.…²
+   &lt;chr&gt;                  &lt;chr&gt;             &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1 South Coast            New South Wales   Holiday   495. 170.    285.     812.
+ 2 North Coast NSW        New South Wales   Holiday   588. 117.    404.     815.
+ 3 Sydney                 New South Wales   Business  602. 117.    402.     884.
+ 4 Great Ocean Road       Victoria          Holiday   281. 116.    135.     545.
+ 5 Melbourne              Victoria          Holiday   507. 103.    354.     736.
+ 6 Peninsula              Victoria          Holiday   185.  96.7    70.8    458.
+ 7 Australia's South West Western Australia Holiday   309.  95.3   179.     541.
+ 8 Melbourne              Victoria          Visiting  619.  93.6   472.     807.
+ 9 Brisbane               Queensland        Visiting  493.  90.6   344.     663.
+10 Sydney                 New South Wales   Visiting  747.  89.6   564.     916.
+# … with 294 more rows, and abbreviated variable names ¹​`p_2.5%`, ²​`p_97.5%`</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># -- dplyr equivalent: --</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>tourism  <span class="sc">%&gt;%</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Region,State,Purpose) <span class="sc">%&gt;%</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(Trips)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 304 × 4
+# Groups:   Region, State [76]
+   Region          State              Purpose   mean
+   &lt;chr&gt;           &lt;chr&gt;              &lt;chr&gt;    &lt;dbl&gt;
+ 1 Kangaroo Island South Australia    Other    0.340
+ 2 MacDonnell      Northern Territory Other    0.449
+ 3 Wilderness West Tasmania           Other    0.478
+ 4 Barkly          Northern Territory Other    0.632
+ 5 Clare Valley    South Australia    Other    0.898
+ 6 Barossa         South Australia    Other    1.02 
+ 7 Kakadu Arnhem   Northern Territory Other    1.04 
+ 8 Lasseter        Northern Territory Other    1.14 
+ 9 Wimmera         Victoria           Other    1.15 
+10 MacDonnell      Northern Territory Visiting 1.18 
+# … with 294 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># -- ACF features --</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>tourism <span class="sc">%&gt;%</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(Trips, feat_acf) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 304 × 10
+   Region   State Purpose     acf1 acf10 diff1…¹ diff1…² diff2…³ diff2…⁴ seaso…⁵
+   &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1 Adelaide Sout… Busine…  0.0333  0.131  -0.520   0.463  -0.676   0.741  0.201 
+ 2 Adelaide Sout… Holiday  0.0456  0.372  -0.343   0.614  -0.487   0.558  0.351 
+ 3 Adelaide Sout… Other    0.517   1.15   -0.409   0.383  -0.675   0.792  0.342 
+ 4 Adelaide Sout… Visiti…  0.0684  0.294  -0.394   0.452  -0.518   0.447  0.345 
+ 5 Adelaid… Sout… Busine…  0.0709  0.134  -0.580   0.415  -0.750   0.746 -0.0628
+ 6 Adelaid… Sout… Holiday  0.131   0.313  -0.536   0.500  -0.716   0.906  0.208 
+ 7 Adelaid… Sout… Other    0.261   0.330  -0.253   0.317  -0.457   0.392  0.0745
+ 8 Adelaid… Sout… Visiti…  0.139   0.117  -0.472   0.239  -0.626   0.408  0.170 
+ 9 Alice S… Nort… Busine…  0.217   0.367  -0.500   0.381  -0.658   0.587  0.315 
+10 Alice S… Nort… Holiday -0.00660 2.11   -0.153   2.11   -0.274   1.55   0.729 
+# … with 294 more rows, and abbreviated variable names ¹​diff1_acf1,
+#   ²​diff1_acf10, ³​diff2_acf1, ⁴​diff2_acf10, ⁵​season_acf1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># -- STL features --</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>tourism <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(Trips, feat_stl) <span class="sc">%&gt;%</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> trend_strength, <span class="at">y=</span>seasonal_strength_year,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> Purpose)) <span class="sc">+</span> </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(State))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="4_features_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># -- Time series with strongest seasonal component: --</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>tourism <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(Trips, feat_stl) <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    seasonal_strength_year <span class="sc">==</span> <span class="fu">max</span>(seasonal_strength_year)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(tourism, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Region"</span>,<span class="st">"State"</span>,<span class="st">"Purpose"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Quarter, <span class="at">y =</span> Trips)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="fu">vars</span>(Region,State,Purpose))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="4_features_files/figure-html/unnamed-chunk-1-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</details>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -515,13 +601,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Course overview</span>
+      <a href="./4_timeseriesfeatures.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Time series features</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./1_rrecap.html" class="pagination-link">
-        <span class="nav-page-text">Recap R</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./4_tourismexample.html" class="pagination-link">
+        <span class="nav-page-text">Exploring Australian tourism example</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

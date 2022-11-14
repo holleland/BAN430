@@ -1,8 +1,8 @@
 ## Recap R {.unnumbered}
 
-If R and Rstudio are completely new tools for you, this section will probably not be detailed enough to get you started, but fear not. There are lots of good and useful online material for learning basic R. One possibility is to work through the first section of (chapter 1-8) of the book [R for data science](https://r4ds.had.co.nz/) by @wickham2016r available online. There is also a free Coursera course on [R programming](https://www.coursera.org/learn/r-programming), recommended by the textbook authors.
+If R and Rstudio are completely new tools for you, this section will probably not be detailed enough to get you started, but fear not. There are lots of good and useful online material for learning basic R. One possibility is to work through the first section of (chapter 1-8) of the book [R for data science by Wickham and Grolemund](https://r4ds.had.co.nz/)  available online. There is also a free Coursera course on [R programming](https://www.coursera.org/learn/r-programming), recommended by the textbook authors.
 
-We will mostly be using the tidyverse approach to doing data manipulation. This is in line with what you learn in courses like BAN400 R programming for Data Science or BAN420 Introduction to R and also with what the authors of the textbook does (@hyndman2018).
+We will mostly be using the tidyverse approach to doing data manipulation. This is in line with what you learn in courses like BAN400 R programming for Data Science or BAN420 Introduction to R and also with what the authors of the textbook does [(Hyndman and Athanasopoulos,2021)](https://otexts.com/fpp3/).
 
 Say you are given an .xlsx file (MS excel format) of daily prices of an US 10 year Treasury bond. The excel file contains several sheets with the
 
