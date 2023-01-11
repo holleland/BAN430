@@ -60,6 +60,9 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -318,149 +321,139 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="introduction" class="level1 unnumbered">
 <h1 class="unnumbered">Introduction</h1>
-<p>In this course you will learn about forecasting methods.</p>
-<section id="progress-plan" class="level2">
-<h2 class="anchored" data-anchor-id="progress-plan">Progress plan</h2>
+<p>Welcome to the website for BAN430 Forecasting. We will use this website as a supplement to lectures. The website is an ongoing development, so not all subjects will have content yet. Below you will find a detailed (preliminary) lecture plan, link to the textbook and curriculum.</p>
+<section id="lecture-plan" class="level2">
+<h2 class="anchored" data-anchor-id="lecture-plan">Lecture plan</h2>
 <div class="cell">
 <div class="cell-output-display">
-<table class="table table-sm table-striped">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Monday 14:15-16:00</th>
-<th style="text-align: left;">Thursday 12:15-14:00</th>
-</tr>
-</thead>
+
+<table class="table table-condensed table-hover" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Monday 14:15-16:00 </th>
+   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Thursday 12:15-14:00 </th>
+  </tr>
+ </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;">16.01.2023</td>
-<td style="text-align: left;">19.01.2023</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Introduction lecture / Time series</td>
-<td style="text-align: left;">Basic R / R recap</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">23.01.2023</td>
-<td style="text-align: left;">26.01.2023</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Time series graphics</td>
-<td style="text-align: left;">Time series decomposition (summary)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">30.01.2023</td>
-<td style="text-align: left;">02.02.2023</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Forecasters toolbox</td>
-<td style="text-align: left;">Forecasters toolbox</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">06.02.2023</td>
-<td style="text-align: left;">09.02.2023</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Regression models</td>
-<td style="text-align: left;">Regression models</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">13.02.2023</td>
-<td style="text-align: left;">16.02.2023</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Exponential smoothing</td>
-<td style="text-align: left;">Exponential smoothing</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">20.02.2023</td>
-<td style="text-align: left;">23.02.2023</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">No lecture: Selfstudy time series features (website)</td>
-<td style="text-align: left;">No lecture: Selfstudy time series features (website)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">27.02.2023</td>
-<td style="text-align: left;">02.03.2023</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ARIMA</td>
-<td style="text-align: left;">ARIMA</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">06.03.2023</td>
-<td style="text-align: left;">09.03.2023</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ARIMA</td>
-<td style="text-align: left;">No lecture / selfstudy</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">13.03.2023</td>
-<td style="text-align: left;">16.03.2023</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ARIMA</td>
-<td style="text-align: left;">Dynamic regresion models</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">20.03.2023</td>
-<td style="text-align: left;">23.02.2023</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Judgemental forecasts</td>
-<td style="text-align: left;">No lecture / selfstudy</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">27.03.2023</td>
-<td style="text-align: left;">30.03.2023</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Volatility forecasting</td>
-<td style="text-align: left;">Volatility forecasting</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">03.04.2023</td>
-<td style="text-align: left;">06.04.2023</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Easter holiday</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">10.04.2023</td>
-<td style="text-align: left;">13.04.2023</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Easter holiday</td>
-<td style="text-align: left;">Summary lecture</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Study period prior to exam</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">08.05.2023</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">8 hour home exam</td>
-<td style="text-align: left;"></td>
-</tr>
+  <tr>
+   <td style="text-align:left;background-color: rgba(46, 139, 87, 0.31) !important;"> 16.01.2023 </td>
+   <td style="text-align:left;background-color: rgba(46, 139, 87, 0.31) !important;"> 19.01.2023 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Introduction lecture / Time series </td>
+   <td style="text-align:left;"> Basic R / R recap </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;background-color: rgba(46, 139, 87, 0.31) !important;"> 23.01.2023 </td>
+   <td style="text-align:left;background-color: rgba(46, 139, 87, 0.31) !important;"> 26.01.2023 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Time series graphics </td>
+   <td style="text-align:left;"> Time series decomposition (summary) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;background-color: rgba(46, 139, 87, 0.31) !important;"> 30.01.2023 </td>
+   <td style="text-align:left;background-color: rgba(46, 139, 87, 0.31) !important;"> 02.02.2023 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Forecasters toolbox </td>
+   <td style="text-align:left;"> Forecasters toolbox </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;background-color: rgba(46, 139, 87, 0.31) !important;"> 06.02.2023 </td>
+   <td style="text-align:left;background-color: rgba(46, 139, 87, 0.31) !important;"> 09.02.2023 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Regression models </td>
+   <td style="text-align:left;"> Regression models </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;background-color: rgba(46, 139, 87, 0.31) !important;"> 13.02.2023 </td>
+   <td style="text-align:left;background-color: rgba(46, 139, 87, 0.31) !important;"> 16.02.2023 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Exponential smoothing </td>
+   <td style="text-align:left;"> Exponential smoothing </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;background-color: rgba(46, 139, 87, 0.31) !important;"> 20.02.2023 </td>
+   <td style="text-align:left;background-color: rgba(46, 139, 87, 0.31) !important;"> 23.02.2023 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> No lecture: Selfstudy time series features (website) </td>
+   <td style="text-align:left;"> No lecture: Selfstudy time series features (website) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;background-color: rgba(46, 139, 87, 0.31) !important;"> 27.02.2023 </td>
+   <td style="text-align:left;background-color: rgba(46, 139, 87, 0.31) !important;"> 02.03.2023 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> ARIMA </td>
+   <td style="text-align:left;"> ARIMA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;background-color: rgba(46, 139, 87, 0.31) !important;"> 06.03.2023 </td>
+   <td style="text-align:left;background-color: rgba(46, 139, 87, 0.31) !important;"> 09.03.2023 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> ARIMA </td>
+   <td style="text-align:left;"> No lecture / selfstudy </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;background-color: rgba(46, 139, 87, 0.31) !important;"> 13.03.2023 </td>
+   <td style="text-align:left;background-color: rgba(46, 139, 87, 0.31) !important;"> 16.03.2023 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> ARIMA </td>
+   <td style="text-align:left;"> Dynamic regresion models </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;background-color: rgba(46, 139, 87, 0.31) !important;"> 20.03.2023 </td>
+   <td style="text-align:left;background-color: rgba(46, 139, 87, 0.31) !important;"> 23.02.2023 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Judgemental forecasts </td>
+   <td style="text-align:left;"> No lecture / selfstudy </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;background-color: rgba(46, 139, 87, 0.31) !important;"> 27.03.2023 </td>
+   <td style="text-align:left;background-color: rgba(46, 139, 87, 0.31) !important;"> 30.03.2023 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Volatility forecasting </td>
+   <td style="text-align:left;"> Volatility forecasting </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;background-color: rgba(46, 139, 87, 0.31) !important;"> 03.04.2023 </td>
+   <td style="text-align:left;background-color: rgba(46, 139, 87, 0.31) !important;"> 06.04.2023 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> Easter holiday </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;background-color: rgba(46, 139, 87, 0.31) !important;"> 10.04.2023 </td>
+   <td style="text-align:left;background-color: rgba(46, 139, 87, 0.31) !important;"> 13.04.2023 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Easter holiday </td>
+   <td style="text-align:left;"> Summary lecture </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Study period prior to exam </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;color: white !important;background-color: DarkRed !important;"> 08.05.2023 </td>
+   <td style="text-align:left;font-weight: bold;color: white !important;background-color: DarkRed !important;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 8 hour home exam </td>
+   <td style="text-align:left;">  </td>
+  </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </section>
@@ -472,11 +465,11 @@ ul.task-list li input[type="checkbox"] {
 FPP Third edition
 </figcaption>
 </figure>
-<p>We will use the textbook by <span class="citation" data-cites="hyndman2018">@hyndman2018</span>, i.e.&nbsp;the online version which can be accessed at <a href="https://otexts.com/fpp3/" class="uri">https://otexts.com/fpp3/</a>.</p>
+<p>We will use the textbook <em>Forecasting: Principles and Practice</em>, 3rd edition, by Hyndman and Athanasopoulos, i.e.&nbsp;the online version which can be accessed at <a href="https://otexts.com/fpp3/" class="uri">https://otexts.com/fpp3/</a>.</p>
 </section>
 <section id="curriculum" class="level2">
 <h2 class="anchored" data-anchor-id="curriculum">Curriculum</h2>
-<p>Textbook (<span class="citation" data-cites="hyndman2018">@hyndman2018</span>) chapters 1-10 and 13. Additional notes by lecturer on volatility forecasting. All the material on this website.</p>
+<p>Textbook Hyndman and Athanasopoulos(2021) chapters 1-10 and 13. Additional notes by lecturer on volatility forecasting. All the material on this website.</p>
 
 
 </section>
