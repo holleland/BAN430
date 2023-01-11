@@ -382,7 +382,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="recap-r" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="recap-r">Recap R</h2>
-<p>If R and Rstudio are completely new tools for you, this section will probably not be detailed enough to get you started, but fear not. There are lots of good and useful online material for learning basic R. One possibility is to work through the first section (chapter 1-8) of the book <a href="https://r4ds.had.co.nz/">R for data science by Wickham and Grolemund</a> available online. There is also a free Coursera course on <a href="https://www.coursera.org/learn/r-programming">R programming</a>, recommended by the textbook authors. The course BAN420 is recommended for taking this course. If you have not completed that course, you will find the material as videos on <a href="https://hotneim.github.io/ban420">the BAN420 website</a>.</p>
+<p>If R and Rstudio are completely new tools for you, this section will probably not be detailed enough to get you started, but fear not. There are lots of good and useful online material for learning basic R. One possibility is to work through the first section (chapter 1-8) of the book <a href="https://r4ds.had.co.nz/">R for data science by Wickham and Grolemund</a> available online. There is also a free Coursera course on <a href="https://www.coursera.org/learn/r-programming">R programming</a>, recommended by the textbook authors. The course BAN420 is recommended for taking this course. If you have not completed that course, you will find the material as videos on <a href="https://hotneim.github.io/ban420">the BAN420 website</a>. I recommend going through this material if you do not know it already. What follows below is a (very) short version of parts of Tuesday-Wednesday.</p>
 <p>We will be using the tidyverse approach to doing data manipulation. This is in line with what you learn in courses like BAN400 R programming for Data Science or BAN420 Introduction to R and also with what the authors of the textbook does <a href="https://otexts.com/fpp3/">(Hyndman and Athanasopoulos,2021)</a>.</p>
 <p>On canvas, you will find an excel file called <em>US10YTRR.xlsx</em> in the R recap folder. If you have experience with R, try to solve the following exercise without looking at the suggested solution.</p>
 <section id="exercises" class="level3 unnumbered">
@@ -408,7 +408,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Add a column for which year the observation is from.</li>
 <li>Filter away observations prior to 2010 and prior to 2022.</li>
 <li>Remove columns except date and price.</li>
-<li>Summarize data to monthly mean prices (hint: use tsibble::yearmonth function).</li>
+<li>Summarize data to monthly mean prices (hint: use tsibble::yearmonth function - this might be new to you!).</li>
 <li>Make a plot with months on x-axis and monthly means on y-axis.</li>
 <li>Save the figure to file.</li>
 </ol>
@@ -416,9 +416,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <summary>
 Show suggested solutions
 </summary>
-<ol type="1">
-<li>First, you need to set your working directory to the folder where you have saved the downloaded file and where you want to save the final figure. This can be done using the user interface in RStudio (“Session” -&gt; “Set working director” -&gt; …) or using the command</li>
-</ol>
+<p>First, you need to set your working directory to the folder where you have saved the downloaded file and where you want to save the final figure. This can be done using the user interface in RStudio (“Session” -&gt; “Set working directory” -&gt; …) or using the command</p>
 <div class="cell">
 <pre class="eval cell-code"><code>setwd("../path/to/the/folder/")</code></pre>
 </div>

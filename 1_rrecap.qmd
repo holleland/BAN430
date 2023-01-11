@@ -1,6 +1,6 @@
 ## Recap R {.unnumbered}
 
-If R and Rstudio are completely new tools for you, this section will probably not be detailed enough to get you started, but fear not. There are lots of good and useful online material for learning basic R. One possibility is to work through the first section (chapter 1-8) of the book [R for data science by Wickham and Grolemund](https://r4ds.had.co.nz/) available online. There is also a free Coursera course on [R programming](https://www.coursera.org/learn/r-programming), recommended by the textbook authors. The course BAN420 is recommended for taking this course. If you have not completed that course, you will find the material as videos on [the BAN420 website](https://hotneim.github.io/ban420).
+If R and Rstudio are completely new tools for you, this section will probably not be detailed enough to get you started, but fear not. There are lots of good and useful online material for learning basic R. One possibility is to work through the first section (chapter 1-8) of the book [R for data science by Wickham and Grolemund](https://r4ds.had.co.nz/) available online. There is also a free Coursera course on [R programming](https://www.coursera.org/learn/r-programming), recommended by the textbook authors. The course BAN420 is recommended for taking this course. If you have not completed that course, you will find the material as videos on [the BAN420 website](https://hotneim.github.io/ban420). I recommend going through this material if you do not know it already. What follows below is a (very) short version of parts of Tuesday-Wednesday.
 
 We will be using the tidyverse approach to doing data manipulation. This is in line with what you learn in courses like BAN400 R programming for Data Science or BAN420 Introduction to R and also with what the authors of the textbook does [(Hyndman and Athanasopoulos,2021)](https://otexts.com/fpp3/). 
 
@@ -28,14 +28,14 @@ Do the following:
 4.  Add a column for which year the observation is from.
 3.  Filter away observations prior to 2010 and prior to 2022.
 4.  Remove columns except date and price.
-5.  Summarize data to monthly mean prices (hint: use tsibble::yearmonth function).
+5.  Summarize data to monthly mean prices (hint: use tsibble::yearmonth function - this might be new to you!).
 6.  Make a plot with months on x-axis and monthly means on y-axis.
 7.  Save the figure to file.
 
 <details>
 <summary>Show suggested solutions</summary>
 
-1. First, you need to set your working directory to the folder where you have saved the downloaded file and where you want to save the final figure. This can be done using the user interface in RStudio ("Session" -> "Set working director" -> ...) or using the command
+First, you need to set your working directory to the folder where you have saved the downloaded file and where you want to save the final figure. This can be done using the user interface in RStudio ("Session" -> "Set working directory" -> ...) or using the command
 ```{eval = FALSE}
 setwd("../path/to/the/folder/")
 ```
