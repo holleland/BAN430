@@ -1,8 +1,9 @@
 ## Recap R {.unnumbered}
 
-If R and Rstudio are completely new tools for you, this section will probably not be detailed enough to get you started, but fear not. There are lots of good and useful online material for learning basic R. One possibility is to work through the first section of (chapter 1-8) of the book [R for data science by Wickham and Grolemund](https://r4ds.had.co.nz/) available online. There is also a free Coursera course on [R programming](https://www.coursera.org/learn/r-programming), recommended by the textbook authors.
+If R and Rstudio are completely new tools for you, this section will probably not be detailed enough to get you started, but fear not. There are lots of good and useful online material for learning basic R. One possibility is to work through the first section (chapter 1-8) of the book [R for data science by Wickham and Grolemund](https://r4ds.had.co.nz/) available online. There is also a free Coursera course on [R programming](https://www.coursera.org/learn/r-programming), recommended by the textbook authors. The course BAN420 is recommended for taking this course. If you have not completed that course, you will find the material as videos on [the BAN420 website](https://hotneim.github.io/ban420).
 
-We will mostly be using the tidyverse approach to doing data manipulation. This is in line with what you learn in courses like BAN400 R programming for Data Science or BAN420 Introduction to R and also with what the authors of the textbook does [(Hyndman and Athanasopoulos,2021)](https://otexts.com/fpp3/).
+We will be using the tidyverse approach to doing data manipulation. This is in line with what you learn in courses like BAN400 R programming for Data Science or BAN420 Introduction to R and also with what the authors of the textbook does [(Hyndman and Athanasopoulos,2021)](https://otexts.com/fpp3/). 
+
 
 On canvas, you will find an excel file called *US10YTRR.xlsx* in the R recap folder. If you have experience with R, try to solve the following exercise without looking at the suggested solution. 
 
