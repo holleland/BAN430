@@ -1,10 +1,15 @@
 ## Recap R {.unnumbered}
 
-If R and Rstudio are completely new tools for you, this section will probably not be detailed enough to get you started, but fear not. There are lots of good and useful online material for learning basic R. One possibility is to work through the first section of (chapter 1-8) of the book [R for data science by Wickham and Grolemund](https://r4ds.had.co.nz/)  available online. There is also a free Coursera course on [R programming](https://www.coursera.org/learn/r-programming), recommended by the textbook authors.
+If R and Rstudio are completely new tools for you, this section will probably not be detailed enough to get you started, but fear not. There are lots of good and useful online material for learning basic R. One possibility is to work through the first section of (chapter 1-8) of the book [R for data science by Wickham and Grolemund](https://r4ds.had.co.nz/) available online. There is also a free Coursera course on [R programming](https://www.coursera.org/learn/r-programming), recommended by the textbook authors.
 
 We will mostly be using the tidyverse approach to doing data manipulation. This is in line with what you learn in courses like BAN400 R programming for Data Science or BAN420 Introduction to R and also with what the authors of the textbook does [(Hyndman and Athanasopoulos,2021)](https://otexts.com/fpp3/).
 
-Say you are given an .xlsx file (MS excel format) of daily prices of an US 10 year Treasury bond. The excel file contains several sheets with the
+On canvas, you will find an excel file called *US10YTRR.xlsx* in the R recap folder. If you have experience with R, try to solve the following exercise without looking at the suggested solution. 
+
+
+### Exercises {.unnumbered}
+
+You are given an .xlsx file (MS excel format) of daily prices of an US 10 year Treasury bond. The excel file contains several sheets with the
 
 1.  Closing ask price ("Ask")
 2.  Closing bid price ("Bid")
@@ -14,7 +19,28 @@ Each contains two columns: date and price. In the figure below we have taken a s
 
 ![US 10-year Treasury bonds index collected from the Refinitiv Eikon data base.](bilder/US10YT_screenshot.png)
 
-You are interesting in reading in the closing mid price. To read in this data, you may use the following code.
+Do the following:
+
+1.  Set working directory.
+2.  Load the data for the Mid price.
+3.  Format the date column in Date format.
+4.  Add a column for which year the observation is from.
+3.  Filter away observations prior to 2010 and prior to 2022.
+4.  Remove columns except date and price.
+5.  Summarize data to monthly mean prices (hint: use tsibble::yearmonth function).
+6.  Make a plot with months on x-axis and monthly means on y-axis.
+7.  Save the figure to file.
+
+<details>
+<summary>Show suggested solutions</summary>
+
+1. First, you need to set your working directory to the folder where you have saved the downloaded file and where you want to save the final figure. This can be done using the user interface in RStudio ("Session" -> "Set working director" -> ...) or using the command
+```{eval = FALSE}
+setwd("../path/to/the/folder/")
+```
+
+
+You are interested in reading in the closing mid price. To read in this data, you may use the following code.
 
 ```{r readExcel, message = FALSE, warning = FALSE}
 library(fpp3)   # loading textbook package
@@ -31,7 +57,7 @@ dat %>%
   mutate(date = as.Date(date))
 ```
 
-Here I have used the mutate function. This is a function we use to either mutate an existing column or create a new one. In this case we mutated the date column transforming it to a "Date" object. We could also be intersted in adding a column for which year the observation is from.
+Here I have used the mutate function. This is a function we use to either mutate (change) an existing column or create a new one. In this case we mutated the date column transforming it to a "Date" object/format. We could also be interested in adding a column for which year the observation is from.
 
 ```{r addYear}
 dat %>% 
@@ -50,7 +76,7 @@ dat %>% glimpse()
 
 The glimpse function summarizes the tibble/data frame.
 
-### filter and select {.unnumbered}
+**filter and select {.unnumbered}**
 
 Now, the data ranges from/to
 
@@ -58,14 +84,14 @@ Now, the data ranges from/to
 range(dat$date)
 ```
 
-but say you only want to use data from 2010 onwards. To do this, we use the filter function. This function is useful for selecting rows that fulfil some condition, in this case year \>= 2010. Let us make a pipeline for this
+but you only want to use data from 2010 onwards. To do this, we use the filter function. This function is useful for selecting rows that fulfill some condition, in this case year \>= 2010. Let us make a pipeline for this
 
 ```{r filterFunction}
 dat %>% 
   filter(year >= 2010)
 ```
 
-Since 2022 is not a complete year (in the data), you also don't want observations after 2021. Then you can add this as an extra condition.
+Since 2022 is not a complete year (in the data), you also do not want observations after 2021. Then you can add this as an extra condition.
 
 ```{r filterFunction2}
 dat %>% 
@@ -95,42 +121,43 @@ dat %>%
   select(-year)
 ```
 
-### group_by and summarize {.unnumbered}
+**group_by and summarize**
 
-Say we are interested in calculating the yearly mean price. In the tidyverse pipeline this means we want to group our observations according to year and summarize by year the mean of the observations. We will filter to avoid having the first and last years that are incomplete.
+We are interested in calculating the monthly mean price. In the tidyverse pipeline this means we want to group our observations according to month and year and summarize by month and year the mean of the observations. 
 
 ```{r groupBySummarize}
-dat %>% 
-  filter(between(year, 1988, 2021)) %>%
-  group_by(year) %>%
-  summarize(meanPrice = mean(price))
+(monthlyMeans <- dat %>% 
+  filter(between(year,2010,2021)) %>%
+  mutate(monthyear = tsibble::yearmonth(date)) %>%
+  group_by(monthyear) %>%
+  summarize(meanPrice = mean(price)))
 ```
 
 This pipeline could be read as first we take out observations prior to 1988 and after 2021, then we group the observations according to year and summarize the mean price by year. Note that this operation will delete any columns that are not in the group_by or being calculated in the summarize.
 
-### ggplot {.unnumbered}
+**ggplot**
 
 Plotting a data frame is convenient to do using the ggplot2 package. This will (when used appropriately) produce beautiful figures. Let us plot the time series at hand. The ggplot2 follows the same logic with a pipeline, but instead of the %\>% operator, we add elements to the figure using +. We need to specify the data object and the name of the x and y columns to be plotted. Everything in the figure that is to vary based on values in the data frame needs to be wrapped in a aes (aesthetic) function (here the x and y arguments). By adding the geom_line() we insert a line.
 
 ```{r ggplot1}
-ggplot(data = dat, 
-       aes(x=date, y = price)) +
+ggplot(data = monthlyMeans, 
+       aes(x=monthyear, y = meanPrice)) +
   geom_line()
 ```
 
 We could instead add geom_point()
 
 ```{r ggplot2}
- ggplot(data = dat,
-        aes(x=date, y = price)) +
+ ggplot(data = monthlyMeans, 
+       aes(x=monthyear, y = meanPrice)) +
    geom_point()
 ```
 
 or do both
 
 ```{r ggplot3}
- ggplot(data = dat,
-        aes(x=date, y = price)) +
+ ggplot(data = monthlyMeans, 
+       aes(x=monthyear, y = meanPrice)) +
    geom_line() +
    geom_point()
 ```
@@ -138,8 +165,8 @@ or do both
 We can change the colors and decrease the size of the points:
 
 ```{r ggplot4}
- ggplot(data = dat,
-        aes(x=date, y = price)) +
+ ggplot(data =monthlyMeans, 
+       aes(x=monthyear, y = meanPrice)) +
    geom_line(color = "blue") +
    geom_point(color = "green", size = .2)
 ```
@@ -147,8 +174,8 @@ We can change the colors and decrease the size of the points:
 Or maybe we do not want to use the default theme: --\>
 
 ```{r ggplot5}
- ggplot(data = dat,
-        aes(x=date, y = price)) +
+ ggplot(data = monthlyMeans, 
+       aes(x=monthyear, y = meanPrice)) +
    geom_line(color = "blue") +
    geom_point(color = "green", size = .2) +
    theme_bw()
@@ -168,16 +195,9 @@ dat %>%
   theme_bw()
 ```
 
+</details>
+
 ### Epilogue {.unnumbered}
 
 We cannot illustrate all aspects here, but you will learn new elements by studying examples throughout the course. This recap is mostly for remembering the basics of data manipulation in R and simple plotting. As you will see in the continuation, the coding is not much more complex then what you have seen here and the fpp3 package uses the same type of logic and syntax as the tidyverse. There will however be some new functions specific for time series analysis that you will need to learn.
 
-### Exercises {.unnumbered}
-
-1.  Set working directory.
-2.  Load the data.
-3.  Filter away observations prior to 2010.
-4.  Remove columns except .. and time
-5.  Summarize data to monthly means
-6.  Make a plot with time on x-axis and monthly means on y-axis
-7.  Save the figure to file.

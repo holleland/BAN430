@@ -18,7 +18,7 @@ theme_set(
 ```
 
 
-In this chapter, we will cover some key concepts of time series that you need to know. You should build up an intuition of what a stationary time series is, and what autocorrelation is. White noise is a simplest time series process you can think of and the building block of ARIMA models. Here we try to give a short introduction to these concepts. 
+In this chapter, we will cover some key concepts of time series that you need to know. You should build up an intuition of what a stationary time series is, and what autocorrelation is. White noise is a simplest time series process you can think of and the building block of ARIMA models. Here we try to give a short introduction to these concepts. Some of these have already been introduced in MET4 at NHH. So if you have taken that course, this may serve as a short repetition.
 
 ## What is time series data
 
@@ -54,7 +54,6 @@ In the video, Labarr shows some examples of non-stationary time series which can
 
 
 ## Autocorrelation
-
 You can also read about autocorrelation in the [textbook](https://otexts.com/fpp3/acf.html).
 
 
@@ -87,6 +86,11 @@ As you can see, all the correlations fall within the confidence bands. The serie
 
 ## Time series graphics
 
+Maybe we should make this a separate chapter. 
 
 
 ## Exercises
+
+1. 
+
+

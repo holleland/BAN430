@@ -6,10 +6,11 @@ In this course you will learn about forecasting methods.
 
 ```{r lecturePlan, echo = FALSE, message = FALSE, warning = FALSE}
 library(tidyverse)
-plan <- readxl::read_excel("lecturePlan.xlsx")
+plan <- readxl::read_excel("lecturePlan.xlsx", sheet = "Sheet3",
+                           col_types= rep("text",3))[,-1]
 plan[is.na(plan)] <- " "
-plan <- plan %>% 
-  select(-Comments)
+#plan <- plan %>% 
+ # select(-Comments)
 knitr::kable(plan)
 ```
 
@@ -27,4 +28,4 @@ We will use the textbook by @hyndman2018, i.e. the online version which can be a
 
 ## Curriculum
 
-Textbook (@hyndman2018) chapters 1-9 and 13. Additional notes by lecturer on volatility forecasting. All the material on this website.
+Textbook (@hyndman2018) chapters 1-10 and 13. Additional notes by lecturer on volatility forecasting. All the material on this website.

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.38">
+<meta name="generator" content="quarto-1.2.269">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 </style>
 
 
@@ -65,20 +70,26 @@ ul.task-list{list-style: none;}
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="./index.html">
-    <img src="./bilder/nhh.png" alt="">
+      <div class="navbar-brand-container">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./bilder/nhh.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">BAN430 Forecasting</span>
-  </a>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page">Home</a>
+    <a class="nav-link active" href="./index.html" aria-current="page">
+ <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html">About</a>
+    <a class="nav-link" href="./about.html">
+ <span class="menu-text">About</span></a>
   </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
@@ -87,7 +98,7 @@ ul.task-list{list-style: none;}
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">(Untitled)</h1>
+      <h1 class="quarto-secondary-nav-title"></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -314,111 +325,138 @@ ul.task-list{list-style: none;}
 <div class="cell-output-display">
 <table class="table table-sm table-striped">
 <colgroup>
-<col style="width: 10%">
-<col style="width: 29%">
-<col style="width: 14%">
-<col style="width: 31%">
-<col style="width: 13%">
+<col style="width: 50%">
+<col style="width: 50%">
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: right;">Week number</th>
-<th style="text-align: left;">Subject</th>
-<th style="text-align: left;">Reading material</th>
-<th style="text-align: left;">First lecture</th>
-<th style="text-align: left;">Second lecture</th>
+<th style="text-align: left;">Monday 14:15-16:00</th>
+<th style="text-align: left;">Thursday 12:15-14:00</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">Introduction and R</td>
-<td style="text-align: left;">Chapter 1</td>
-<td style="text-align: left;">Introduction lecture BAN430</td>
-<td style="text-align: left;">Basic R / recap</td>
+<td style="text-align: left;">16.01.2023</td>
+<td style="text-align: left;">19.01.2023</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">4</td>
+<td style="text-align: left;">Introduction lecture / Time series</td>
+<td style="text-align: left;">Basic R / R recap</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">23.01.2023</td>
+<td style="text-align: left;">26.01.2023</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">Time series graphics</td>
-<td style="text-align: left;">Chapter 2</td>
-<td style="text-align: left;">Time series graphics</td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">Time series decomposition (summary)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">5</td>
-<td style="text-align: left;">Time series decomposition</td>
-<td style="text-align: left;">Chapter 3</td>
-<td style="text-align: left;">Time series decomposition</td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">30.01.2023</td>
+<td style="text-align: left;">02.02.2023</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">6</td>
 <td style="text-align: left;">Forecasters toolbox</td>
-<td style="text-align: left;">Chapter 5</td>
 <td style="text-align: left;">Forecasters toolbox</td>
-<td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">7</td>
-<td style="text-align: left;">Time series features</td>
-<td style="text-align: left;">Chapter 4</td>
-<td style="text-align: left;">Time series features</td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">06.02.2023</td>
+<td style="text-align: left;">09.02.2023</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">8</td>
 <td style="text-align: left;">Regression models</td>
-<td style="text-align: left;">Chapter 7</td>
 <td style="text-align: left;">Regression models</td>
-<td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">9</td>
-<td style="text-align: left;">ARIMA models</td>
-<td style="text-align: left;">Chapter 9</td>
-<td style="text-align: left;">ARIMA models</td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">13.02.2023</td>
+<td style="text-align: left;">16.02.2023</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">10</td>
-<td style="text-align: left;">ARIMA models</td>
-<td style="text-align: left;">Chapter 9</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">Exponential smoothing</td>
+<td style="text-align: left;">Exponential smoothing</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">11</td>
-<td style="text-align: left;">Judgmental forecasts</td>
-<td style="text-align: left;">Chapter 6</td>
-<td style="text-align: left;">Judgmental forecasts</td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">20.02.2023</td>
+<td style="text-align: left;">23.02.2023</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">12</td>
+<td style="text-align: left;">No lecture: Selfstudy time series features (website)</td>
+<td style="text-align: left;">No lecture: Selfstudy time series features (website)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">27.02.2023</td>
+<td style="text-align: left;">02.03.2023</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ARIMA</td>
+<td style="text-align: left;">ARIMA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">06.03.2023</td>
+<td style="text-align: left;">09.03.2023</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ARIMA</td>
+<td style="text-align: left;">No lecture / selfstudy</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">13.03.2023</td>
+<td style="text-align: left;">16.03.2023</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ARIMA</td>
+<td style="text-align: left;">Dynamic regresion models</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">20.03.2023</td>
+<td style="text-align: left;">23.02.2023</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Judgemental forecasts</td>
+<td style="text-align: left;">No lecture / selfstudy</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">27.03.2023</td>
+<td style="text-align: left;">30.03.2023</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">Volatility forecasting</td>
-<td style="text-align: left;">Course website</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">XXXXXXXX</td>
+<td style="text-align: left;">Volatility forecasting</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">13</td>
-<td style="text-align: left;">Some practicle forecasting issues</td>
-<td style="text-align: left;">Chapter 13</td>
-<td style="text-align: left;">Discussion lecture/exercise seminar</td>
+<td style="text-align: left;">03.04.2023</td>
+<td style="text-align: left;">06.04.2023</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Easter holiday</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">10.04.2023</td>
+<td style="text-align: left;">13.04.2023</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Easter holiday</td>
+<td style="text-align: left;">Summary lecture</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Study period prior to exam</td>
 <td style="text-align: left;"></td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">14</td>
-<td style="text-align: left;">Preparations for the exam</td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">XXXXXXXX</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">15</td>
-<td style="text-align: left;">Home exam</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">XXXXXXXXXX</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">08.05.2023</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">8 hour home exam</td>
 <td style="text-align: left;"></td>
 </tr>
 </tbody>
@@ -438,7 +476,7 @@ FPP Third edition
 </section>
 <section id="curriculum" class="level2">
 <h2 class="anchored" data-anchor-id="curriculum">Curriculum</h2>
-<p>Textbook (<span class="citation" data-cites="hyndman2018">@hyndman2018</span>) chapters 1-9 and 13. Additional notes by lecturer on volatility forecasting. All the material on this website.</p>
+<p>Textbook (<span class="citation" data-cites="hyndman2018">@hyndman2018</span>) chapters 1-10 and 13. Additional notes by lecturer on volatility forecasting. All the material on this website.</p>
 
 
 </section>
@@ -486,7 +524,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -514,31 +569,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>
