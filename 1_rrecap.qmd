@@ -77,7 +77,7 @@ dat %>% glimpse()
 
 The glimpse function summarizes the tibble/data frame.
 
-**filter and select {.unnumbered}**
+**filter and select**
 
 Now, the data ranges from/to
 

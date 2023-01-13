@@ -223,7 +223,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">2 Time series graphics</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">2 Time series basics</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -411,7 +411,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="time-series-notation" class="level2">
 <h2 class="anchored" data-anchor-id="time-series-notation">Time series notation</h2>
 <p>It is quite common in statistics in general, but also in time series analysis, to distinguish between capital and non-capital letters. While <span class="math inline">Y_t</span> denotes the stochastic variable <span class="math inline">Y</span> at time <span class="math inline">t</span>, <span class="math inline">y_t</span> is the realization of said stochastic variable <span class="math inline">Y_t</span>, i.e.&nbsp;an observed value. <span class="math inline">Y_t</span> is a specific variable, while <span class="math inline">\{Y_t\}</span> is the entire time series. While a stochastic variable has for instance an expectation, a variance, a dependence structure and a distribution, an observation is just a number.</p>
-<p>Let <span class="math inline">\mu_t=\mu_Y(t)=\mathrm{E}(Y_t)</span> denote the mean function of <span class="math inline">Y_t</span>. Assuming that <span class="math inline">E(Y_t^2)&lt;\infty</span>, the covariance function of <span class="math inline">\{Y_t\}</span> is denoted <span class="math display">\gamma(r,s)=\gamma_Y(r,s)= \mathrm{Cov}(Y_r,Y_s)=\mathrm{E}(Y_r-\mu_r)(Y_s-\mu_s).</span> If the covariance function does not depend on the specific values of <span class="math inline">r</span> and <span class="math inline">s</span>, but rather the distance between them <span class="math inline">h = r-s</span>, we write <span class="math inline">\gamma(r,s)=\gamma(h)</span>. Likewise, if <span class="math inline">\mu_t</span> does not depend on <span class="math inline">t</span>, we write <span class="math inline">\mu_t=\mu</span>. This will be used in the section about stationarity below. Note that the variance of <span class="math inline">Y_t</span> is given by <span class="math inline">\gamma(t,t) = \mathrm{Cov}(Y_t,Y_t) = \mathrm{Var}(Y_t)</span> or <span class="math inline">\gamma(0)</span> in the case where the covariance does not depend on <span class="math inline">t</span>.</p>
+<p>Let <span class="math inline">\mu_t=\mu_Y(t)=\mathrm{E}(Y_t)</span> denote the mean function of <span class="math inline">Y_t</span>. Assuming that <span class="math inline">E(Y_t^2)&lt;\infty</span>, the covariance function of <span class="math inline">\{Y_t\}</span> is denoted <span class="math display">\gamma(r,s)=\gamma_Y(r,s)= \mathrm{Cov}(Y_r,Y_s)=\mathrm{E}(Y_r-\mu_r)(Y_s-\mu_s).</span> If the covariance function does not depend on the specific values of <span class="math inline">r</span> and <span class="math inline">s</span>, but rather the distance between them <span class="math inline">h = |r-s|</span>, we write <span class="math inline">\gamma(r,s)=\gamma(h)</span>. Likewise, if <span class="math inline">\mu_t</span> does not depend on <span class="math inline">t</span>, we write <span class="math inline">\mu_t=\mu</span>. This will be used in the section about stationarity below. Note that the variance of <span class="math inline">Y_t</span> is given by <span class="math inline">\gamma(t,t) = \mathrm{Cov}(Y_t,Y_t) = \mathrm{Var}(Y_t)</span> or <span class="math inline">\gamma(0)</span> in the case where the covariance does not depend on <span class="math inline">t</span>.</p>
 </section>
 <section id="tsibble" class="level2">
 <h2 class="anchored" data-anchor-id="tsibble">tsibble</h2>
@@ -419,11 +419,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="stationarity" class="level2">
 <h2 class="anchored" data-anchor-id="stationarity">Stationarity</h2>
-<p>We return to Labarr’s time series in 5 minutes series on youtube explaining stationaity. This is a key concept in time series. The video by Labarr gives a nice intuition for the concept. It separates between strong and weak stationarity. In this course, the weak stationarity condition will be the one we focus on, but it is nice to know that there are other definitions of stationarity as well. For a time series to be (weakly) stationary the mean and variance of the time series variable <span class="math inline">Y_t</span> should not depend on <span class="math inline">t</span>. More formally, a time series is weakly stationary if</p>
+<p>We return to Labarr’s time series in 5 minutes series on youtube explaining stationarity. This is a key concept in time series. The video by Labarr gives a nice intuition for the concept. It separates between strong and weak stationarity. In this course, the weak stationarity condition will be the one we focus on, but it is nice to know that there are other definitions of stationarity as well. For a time series to be (weakly) stationary the mean and variance of the time series variable <span class="math inline">Y_t</span> should not depend on <span class="math inline">t</span>. More formally, a time series is weakly stationary if</p>
 <ol type="1">
 <li>The expectation is constant: <span class="math inline">\mu_t = \mu</span></li>
 <li>The variance is constant and finite: <span class="math inline">\sigma_t^2 = \sigma^2 &lt; \infty</span></li>
-<li>The covariance between two lagged variables only depend on the lag: <span class="math inline">\gamma(r,s) = \gamma(h)</span>, where <span class="math inline">h=r-s</span>.</li>
+<li>The covariance between two lagged variables only depend on the lag: <span class="math inline">\gamma(r,s) = \gamma(h)</span>, where <span class="math inline">h=|r-s|</span>.</li>
 </ol>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/aIdTGKjQWjA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
 </iframe>
@@ -466,10 +466,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>As you can see, all the correlations fall within the confidence bands. The series is uncorrelated. You can also find a similar example in the <a href="https://otexts.com/fpp3/wn.html">textbook</a>.</p>
-</section>
-<section id="time-series-graphics" class="level2">
-<h2 class="anchored" data-anchor-id="time-series-graphics">Time series graphics</h2>
-<p>Maybe we should make this a separate chapter.</p>
 </section>
 <section id="exercises" class="level2">
 <h2 class="anchored" data-anchor-id="exercises">Exercises</h2>

@@ -1,3 +1,32 @@
 # Judgemental forecast
 
+In this chapter, we go through [chapter 6](https://otexts.com/fpp3/judgmental) of the textbook (Hyndman and Athanasopoulos, 2021). This material is mostly for you to be aware of and be able do discuss different aspects of the judgmental forecasting methods. We will through short videos describe some general aspects and specific methods. Particularly, the Delphi method and forecasting by analogy will be described in some detail, while other methods are mentioned. For more details, see the referred chapter 6 in the textbook. 
 
+<iframe src="https://player.vimeo.com/video/788950428?h=725513af95" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
+
+</iframe>
+
+
+## The delphi method
+
+<iframe src="https://player.vimeo.com/video/788950561?h=dad4ab1c1c" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
+
+</iframe>
+
+## Forecasting by analogy
+
+<iframe src="https://player.vimeo.com/video/788950653?h=230e7d92d7" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
+
+</iframe>
+
+## Other methods
+
+<iframe src="https://player.vimeo.com/video/788950721?h=ca58e65e51" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
+
+</iframe>
+
+## Judgmental adjustment
+
+<iframe src="https://player.vimeo.com/video/788950816?h=47f09bab81" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
+
+</iframe>

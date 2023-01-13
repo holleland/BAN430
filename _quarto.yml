@@ -26,7 +26,7 @@ website:
             text: "Installing R and Rstudio"
           - href: 1_rrecap.qmd
             text: "Recap R"
-      - section: "2 Time series graphics"
+      - section: "2 Time series basics"
         contents:
           - 2_timeseriesgraphics.qmd
       - section: "3 Adjustments and decomposition"

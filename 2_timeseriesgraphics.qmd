@@ -32,7 +32,7 @@ It is quite common in statistics in general, but also in time series analysis, t
 
 Let $\mu_t=\mu_Y(t)=\mathrm{E}(Y_t)$ denote the mean function of $Y_t$. Assuming that $E(Y_t^2)<\infty$, the covariance function of $\{Y_t\}$ is denoted 
 $$\gamma(r,s)=\gamma_Y(r,s)= \mathrm{Cov}(Y_r,Y_s)=\mathrm{E}(Y_r-\mu_r)(Y_s-\mu_s).$$ 
-If the covariance function does not depend on the specific values of $r$ and $s$, but rather the distance between them $h = r-s$, we write $\gamma(r,s)=\gamma(h)$. Likewise, if $\mu_t$ does not depend on $t$, we write $\mu_t=\mu$. This will be used in the section about stationarity below. Note that the variance of $Y_t$ is given by $\gamma(t,t) = \mathrm{Cov}(Y_t,Y_t) = \mathrm{Var}(Y_t)$ or $\gamma(0)$ in the case where the covariance does not depend on $t$.
+If the covariance function does not depend on the specific values of $r$ and $s$, but rather the distance between them $h = |r-s|$, we write $\gamma(r,s)=\gamma(h)$. Likewise, if $\mu_t$ does not depend on $t$, we write $\mu_t=\mu$. This will be used in the section about stationarity below. Note that the variance of $Y_t$ is given by $\gamma(t,t) = \mathrm{Cov}(Y_t,Y_t) = \mathrm{Var}(Y_t)$ or $\gamma(0)$ in the case where the covariance does not depend on $t$.
 
 
 
@@ -42,11 +42,11 @@ The tsibble object will be important in this course. Since we are working in the
 
 ## Stationarity
 
-We return to Labarr's time series in 5 minutes series on youtube explaining stationaity. This is a key concept in time series. The video by Labarr gives a nice intuition for the concept. It separates between strong and weak stationarity. In this course, the weak stationarity condition will be the one we focus on, but it is nice to know that there are other definitions of stationarity as well. For a time series to be (weakly) stationary the mean and variance of the time series variable $Y_t$ should not depend on $t$. More formally, a time series is weakly stationary if 
+We return to Labarr's time series in 5 minutes series on youtube explaining stationarity. This is a key concept in time series. The video by Labarr gives a nice intuition for the concept. It separates between strong and weak stationarity. In this course, the weak stationarity condition will be the one we focus on, but it is nice to know that there are other definitions of stationarity as well. For a time series to be (weakly) stationary the mean and variance of the time series variable $Y_t$ should not depend on $t$. More formally, a time series is weakly stationary if 
 
 1) The expectation is constant: $\mu_t = \mu$
 2) The variance is constant and finite: $\sigma_t^2 = \sigma^2 < \infty$
-3) The covariance between two lagged variables only depend on the lag: $\gamma(r,s) = \gamma(h)$, where $h=r-s$. 
+3) The covariance between two lagged variables only depend on the lag: $\gamma(r,s) = \gamma(h)$, where $h=|r-s|$. 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/aIdTGKjQWjA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -83,11 +83,6 @@ wn %>%
   labs(title="White noise ACF")
 ```
 As you can see, all the correlations fall within the confidence bands. The series is uncorrelated. You can also find a similar example in the [textbook](https://otexts.com/fpp3/wn.html).
-
-## Time series graphics
-
-Maybe we should make this a separate chapter. 
-
 
 ## Exercises
 
