@@ -53,8 +53,8 @@ We return to Labarr's time series in 5 minutes series on youtube explaining stat
 In the video, Labarr shows some examples of non-stationary time series which can be transformed to stationary time series by differencing. We will come back to this later in the course, when we talk about transformations and again when we study ARIMA models. We will also study examples of stationary time / non-stationary time series in the voluntary homework. You can also read about the stationarity in the [textbook](https://otexts.com/fpp3/stationarity.html), but for now, you may stop after the paragraph on stationarity. The book is less specific about their definition, but we will stick the weakly stationary definition above. 
 
 
-## Autocorrelation
-You can also read about autocorrelation in the [textbook](https://otexts.com/fpp3/acf.html).
+<!-- ## Autocorrelation -->
+<!-- We will cover this in c -->
 
 
 

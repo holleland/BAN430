@@ -26,11 +26,13 @@ Do the following:
 2.  Load the data for the Mid price.
 3.  Format the date column in Date format.
 4.  Add a column for which year the observation is from.
-3.  Filter away observations prior to 2010 and prior to 2022.
+3.  Filter away observations prior to 2010 and after 2022.
 4.  Remove columns except date and price.
 5.  Summarize data to monthly mean prices (hint: use tsibble::yearmonth function - this might be new to you!).
 6.  Make a plot with months on x-axis and monthly means on y-axis.
 7.  Save the figure to file.
+
+If you get stuck, check out the ("hidden") suggested solutions below.
 
 <details>
 <summary>Show suggested solutions</summary>
