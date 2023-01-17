@@ -84,8 +84,8 @@ wn %>%
 ```
 As you can see, all the correlations fall within the confidence bands. The series is uncorrelated. You can also find a similar example in the [textbook](https://otexts.com/fpp3/wn.html).
 
-## Exercises
+<!-- ## Exercises -->
 
-1. 
+<!-- 1.  -->
 
 
