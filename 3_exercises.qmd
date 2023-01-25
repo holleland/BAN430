@@ -188,41 +188,44 @@ close.price %>%
 ```
 </details>
 
-6. Implement the classical decomposition method for the [Norwegian Wholesale and Retails sales index}(https://github.com/holleland/BAN430/raw/master/data/wholesale_and_retails_index_norway.rds). 
+6. Implement the classical decomposition method for the [Norwegian Wholesale and Retails sales index](https://github.com/holleland/BAN430/raw/master/data/wholesale_and_retails_index_norway.rds). 
 
 <details>
 <summary>Solution</summary>
-```{r}
+```{r, message =FALSE, warning = FALSE}
+# Load the data: 
 wholesale  <- readRDS(file= "data/wholesale_and_retails_index_norway.rds")
 
+# Home-made classical decomposition: 
 classic_decomp <- wholesale %>% 
   rename(Index = `Wholesale and retail sales index`) %>%
   mutate(`12-MA` = slider::slide_dbl(Index, mean, .before = 5, .after = 6, .complete = TRUE),
-         trend = slider::slide_dbl(`12-MA`, mean, .before = 1, .after = 0, .complete = TRUE), #`2x12-MA`
+         trend = slider::slide_dbl(`12-MA`, mean, .before = 1, .after = 0, .complete = TRUE), #`2x12-MA` TREND ESTIMATE
          detrend = Index - trend,
          MONTH = month(yearmonth)
          )  %>% 
   group_by(MONTH) %>%
-  mutate(season = mean(detrend, na.rm=T)) %>%
+  mutate(season = mean(detrend, na.rm=T)) %>% # SEASON ESTIMATE
   ungroup()
 ```
 To adjust the seasonal component to sum-to-zero, we update it as
 $$S_t^\star = S_t - |S_t| \cdot \frac{\sum_s S_s}{\sum_s |S_s|}.$$
-```{r}
+```{r, message =FALSE, warning = FALSE}
 # Adjust season to sum-to-zero
 S <- sum(classic_decomp$season)
 A <- sum(abs(classic_decomp$season))
 classic_decomp <- classic_decomp %>% 
   mutate(seasonal = season - abs(season)*S/A) %>% 
 # Calculate remainder R = Y - T - S
-  mutate(random = Index - trend - seasonal) %>%
+  mutate(random = Index - trend - seasonal) %>% # REMAINDER
   ungroup() %>%
   select(yearmonth, Index, trend, seasonal, random) %>%
   mutate(.model = "homemade")
 # Plot results: 
 classic_decomp %>% 
   pivot_longer(cols =c(-yearmonth,-.model)) %>%
-  mutate(name = factor(name, levels = c("Index", "trend", "seasonal", "random"))) %>%
+  mutate(name = factor(name, 
+                       levels = c("Index", "trend", "seasonal", "random"))) %>%
 ggplot(aes(x= yearmonth, y = value))+geom_line()+
 facet_wrap( ~ name, ncol = 1, scales = "free_y")
 
@@ -230,12 +233,11 @@ facet_wrap( ~ name, ncol = 1, scales = "free_y")
 wholesale %>% 
   rename(Index = `Wholesale and retail sales index`) %>%
   model(
-    classical_decomposition()
+    classical_decomposition(Index)
   ) %>%
   components() %>% 
   bind_rows(classic_decomp) %>% 
   autoplot()
-
 ```
 
 Perfect match!
