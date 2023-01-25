@@ -17,20 +17,63 @@ theme_set(
 
 ```
 
-
-1. Use the simulated data from [here](https://holleland.github.io/BAN430/3_adjustments.html#time-series-components-and-seasonal-adjustment). Compare the different methods with the truth from the simulation. Are there large differences?
+1.  Use the simulated data from [here](https://holleland.github.io/BAN430/3_adjustments.html#time-series-components-and-seasonal-adjustment). Compare different methods with the truth from the simulation. Are there large differences?
 
 <details>
+
 <summary>Solution</summary>
+
+Since the simulated data is daily, we cannot use the x11 and seats methods. We will therefore only compare the STL and classical decomposition. 
+
+We start by re-running the simulation and creating a tsibble. 
+```{r, message = FALSE}
+set.seed(1344)
+library(fpp3)
+theme_set(theme_bw())
+dat <- tibble(
+  date = seq(as.Date("2015-01-01"), as.Date("2020-12-31"), by = "1 day"),
+  t = 1:length(date),
+  Tt = 100+9*t/300 + .5*((t-1000)/200)^3+(.87*cos(2*pi*t/1200)+.42*sin(2*pi*t/600))*11,
+  St = (.94*cos(2*pi*t/365) -1.2*sin(2* pi*t/365))*13,
+  Rt = rnorm(length(date), sd = 15),
+  Yt = Tt + St +  Rt
+) 
+
+dat <- as_tsibble(dat, index = date)
+```
+
+Then we do the decomposition, classical and STL:
+```{r}
+decomp <- dat %>% 
+  model(
+    classic = classical_decomposition(Yt~season(period = "1 year"), type = "additive"),
+    stl = STL(Yt~season(period = "1 year"), robust = TRUE)
+) %>% components() %>%
+  # For some reason, the classic and stl uses differnt naming conventions:
+  mutate(random = ifelse(is.na(remainder), random, remainder),
+          seasonal = ifelse(is.na(`season_1 year`), seasonal, `season_1 year`))
+# Adjusting the names of dat to fit with the decomp
+names(dat) <- c("date", "t", "trend", "seasonal", "random", "Yt")
+dat$.model = "simulation"
+# Classical decomposition: 
+decomp %>% filter(.model == "classic") %>% autoplot()+ labs(title= "Classical")
+# STL: 
+decomp %>% filter(.model == "stl") %>% autoplot() + labs(title= "STL")
+# Simulation: 
+decomp %>% bind_rows(dat) %>% filter(.model == "simulation") %>% autoplot()
+# All
+decomp %>% bind_rows(dat) %>% autoplot()
+```
+With the setting I used here, it does not seem that the decomposition methods manage to get as smooth estimate for the seasonal component as we see in the simulation, but for the trend part the fit is almost perfect. 
 
 </details>
 
-
-2. Use the global\_economy data, select a country (e.g. Austria). Plot GDP, GDP per capita and GDP per capita inflation adjusted, GDP inflation adjusted.
+2.  Use the global_economy data, select a country (e.g. Austria). Plot GDP, GDP per capita and GDP per capita inflation adjusted, GDP inflation adjusted.
 
 <details>
 
 <summary>Solution</summary>
+
 ```{r}
 #| message: false
 #| warning: false
@@ -44,9 +87,10 @@ dat %>% autoplot(GDP/Population * 100/CPI)
 dat %>% autoplot(GDP * 100/CPI)
 
 ```
+
 </details>
 
-3. In the global\_economy data set, the CPI has a reference year of 2010. Do the necessary changes to inflation adjust GDP per capita with 1990 as reference year. 
+3.  In the global_economy data set, the CPI has a reference year of 2010. Do the necessary changes to inflation adjust GDP per capita with 1990 as reference year.
 
 <details>
 
@@ -82,17 +126,59 @@ dat %>%
   theme(legend.title = element_blank())
 
 ```
+
 </details>
 
-4. Use the quantmod package to download data for another stock. Will a log transformation do a good job for this as well? 
+4.  Use the quantmod package to download data for another stock. Will a log transformation do a good job for this as well?
 
-5. Use the guerrero feature to select a $\lambda$ for the Box-Cox transformation on the data from the previous exercise. 
+<details>
+<summary> Solution</summary>
+```{r, message =FALSE}
+library(quantmod)
+# Equinor: 
+getSymbols("EQNR")
+close.price <- tibble(
+  close = as.numeric(EQNR$EQNR.Close),
+  date  = time(EQNR)
+) %>% as_tsibble(index = date) 
+
+# -- Plot closing price: --
+close.price %>% autoplot(close) +
+  labs(title = "Apple Closing price", 
+       y     = "US$")
+
+close.price <- close.price %>% 
+  mutate(logclose  = log(close), # log-transform
+         logreturn = c(NA, diff(logclose)), # log returns
+         return    = c(NA, diff(close)/close[-nrow(close.price)]) # Returns
+         ) 
+
+close.price %>% 
+  pivot_longer(-date) %>%
+  ggplot(aes(x=date, y = value))+ geom_line()+ 
+  facet_wrap(~name, scales = "free_y")
+```
+</details>
+5.  Use the guerrero feature to select a $\lambda$ for the Box-Cox transformation on the data from the previous exercise.
 
 
-
-
-
-
-
-
-
+<details>
+<summary>Solution</summary>
+```{r}
+# -- Box-cox-transform --
+lambda <- close.price %>%
+  features(close, features = guerrero) %>%
+  pull(lambda_guerrero)
+lambda
+close.price <- close.price %>%
+  mutate(boxcox = box_cox(close,lambda))
+close.price %>%
+  autoplot(boxcox) +
+  labs(y = "",
+       title = latex2exp::TeX(paste0(
+         "Transformed apple closing price with $\\lambda$ = ",
+         round(lambda,3))))+
+  # adding the blue close price
+  geom_line(aes(y=close), col = 4)
+```
+</details>

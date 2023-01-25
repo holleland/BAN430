@@ -1,4 +1,4 @@
-# Transformations and adjustments 
+# Transformations and adjustments
 
 ## Calender adjustments {.unnumbered}
 
@@ -271,7 +271,7 @@ close.price %>%
 
 </details>
 
-## Time series components and Seasonal adjustment{#sec-componentsandseasonaladjustment}
+## Time series components and Seasonal adjustment {#sec-componentsandseasonaladjustment}
 
 <iframe src="https://player.vimeo.com/video/766470965?h=ead0e1cf78" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
 
