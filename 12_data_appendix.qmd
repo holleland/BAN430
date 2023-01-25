@@ -1,0 +1,52 @@
+# Data
+
+You can find a overview of the data that is included in the textbook package *fpp3* by running the following code:
+```{r, eval = FALSE, echo = TRUE}
+data(package = "fpp3")
+```
+```{r, eval = T, echo = FALSE, message=FALSE,warning=FALSE}
+library(dplyr)
+library(fpp3)
+data(package = "fpp3")$results %>% as_tibble() %>% 
+  select(Item, Title)  
+```
+
+These are avaiable when the fpp3 package is loaded, i.e.
+
+```{r}
+library(fpp3)
+bank_calls
+```
+
+To load a specific data set explicitly in your R environment:
+
+```{r}
+data("bank_calls")
+```
+
+Other examples used in the videos and content on this website is available for download at [github.com/holleland/BAN430/tree/master/data](https://github.com/holleland/BAN430/tree/master/data). You should also be able to load them directly into R using the raw link:
+
+```{r}
+# CPI Norway
+read.csv(
+  "https://raw.githubusercontent.com/holleland/BAN430/master/data/CPI_norway.csv", sep = ";") %>% head()
+```
+
+For excel files it is a bit less convenient, because you will need to download the file. But you can let R do that for you (if you insist).
+
+```{r}
+loadExcel_url <- function(url) {
+    temp_file <- tempfile(fileext = ".xlsx")
+    download.file(url = url, destfile = temp_file, mode = "wb", quiet = TRUE)
+    readxl::read_excel(temp_file)
+}
+loadExcel_url("https://github.com/holleland/BAN430/blob/master/data/NorwayEmployment_15-74years_bySex.xlsx?raw=true")
+```
+
+The code above will save the file temporary in your computers temporary folder and load it into R from there. You could also adjust the code so that it stores the file in your working directory by adjusting the function.
+
+```{r, eval = FALSE}
+temp_file <- paste0(getwd(), "/NorwayEmployment.xlsx")
+```
+
+But the easiest will maybe be to just download the files manually from github and save them in a data folder of your own.
