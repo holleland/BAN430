@@ -522,6 +522,6 @@ dat %>%
 
 </details>
 
-3.  Use the quantmod package to download data for another stock. Will a log transformation do a good job for this as well?
+3.  Use the quantmod package to download data for another stock. What transformation would you prefer for this stock?
 
 4.  Use the guerrero feature to select a $\lambda$ for the Box-Cox transformation on the data from the previous exercise.

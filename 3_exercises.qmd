@@ -129,10 +129,13 @@ dat %>%
 
 </details>
 
-4.  Use the quantmod package to download data for another stock. Will a log transformation do a good job for this as well?
+4.  Use the quantmod package to download data for another stock (e.g. Equinor = EQNR). What kind of transformation would you prefer for your stock?
 
 <details>
 <summary> Solution</summary>
+
+I choose the Norwegian company Equinor.
+
 ```{r, message =FALSE}
 library(quantmod)
 # Equinor: 
@@ -158,6 +161,8 @@ close.price %>%
   ggplot(aes(x=date, y = value))+ geom_line()+ 
   facet_wrap(~name, scales = "free_y")
 ```
+The return series seem to be good alternatives, also for this stock! The Box-Cox transformation seem to take away some of the trend-cycles in the raw data.
+
 </details>
 5.  Use the guerrero feature to select a $\lambda$ for the Box-Cox transformation on the data from the previous exercise.
 
@@ -181,4 +186,58 @@ close.price %>%
   # adding the blue close price
   geom_line(aes(y=close), col = 4)
 ```
+</details>
+
+6. Implement the classical decomposition method for the [Norwegian Wholesale and Retails sales index}(https://github.com/holleland/BAN430/raw/master/data/wholesale_and_retails_index_norway.rds). 
+
+<details>
+<summary>Solution</summary>
+```{r}
+wholesale  <- readRDS(file= "data/wholesale_and_retails_index_norway.rds")
+
+classic_decomp <- wholesale %>% 
+  rename(Index = `Wholesale and retail sales index`) %>%
+  mutate(`12-MA` = slider::slide_dbl(Index, mean, .before = 5, .after = 6, .complete = TRUE),
+         trend = slider::slide_dbl(`12-MA`, mean, .before = 1, .after = 0, .complete = TRUE), #`2x12-MA`
+         detrend = Index - trend,
+         MONTH = month(yearmonth)
+         )  %>% 
+  group_by(MONTH) %>%
+  mutate(season = mean(detrend, na.rm=T)) %>%
+  ungroup()
+```
+To adjust the seasonal component to sum-to-zero, we update it as
+$$S_t^\star = S_t - |S_t| \cdot \frac{\sum_s S_s}{\sum_s |S_s|}.$$
+```{r}
+# Adjust season to sum-to-zero
+S <- sum(classic_decomp$season)
+A <- sum(abs(classic_decomp$season))
+classic_decomp <- classic_decomp %>% 
+  mutate(seasonal = season - abs(season)*S/A) %>% 
+# Calculate remainder R = Y - T - S
+  mutate(random = Index - trend - seasonal) %>%
+  ungroup() %>%
+  select(yearmonth, Index, trend, seasonal, random) %>%
+  mutate(.model = "homemade")
+# Plot results: 
+classic_decomp %>% 
+  pivot_longer(cols =c(-yearmonth,-.model)) %>%
+  mutate(name = factor(name, levels = c("Index", "trend", "seasonal", "random"))) %>%
+ggplot(aes(x= yearmonth, y = value))+geom_line()+
+facet_wrap( ~ name, ncol = 1, scales = "free_y")
+
+# Let's compare with the automatic one: 
+wholesale %>% 
+  rename(Index = `Wholesale and retail sales index`) %>%
+  model(
+    classical_decomposition()
+  ) %>%
+  components() %>% 
+  bind_rows(classic_decomp) %>% 
+  autoplot()
+
+```
+
+Perfect match!
+
 </details>
