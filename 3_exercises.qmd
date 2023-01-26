@@ -147,7 +147,7 @@ close.price <- tibble(
 
 # -- Plot closing price: --
 close.price %>% autoplot(close) +
-  labs(title = "Apple Closing price", 
+  labs(title = "Equinor Closing price", 
        y     = "US$")
 
 close.price <- close.price %>% 
@@ -181,14 +181,16 @@ close.price %>%
   autoplot(boxcox) +
   labs(y = "",
        title = latex2exp::TeX(paste0(
-         "Transformed apple closing price with $\\lambda$ = ",
+         "Transformed Equinor closing price with $\\lambda$ = ",
          round(lambda,3))))+
   # adding the blue close price
   geom_line(aes(y=close), col = 4)
 ```
 </details>
 
-6. Implement the classical decomposition method for the [Norwegian Wholesale and Retails sales index](https://github.com/holleland/BAN430/raw/master/data/wholesale_and_retails_index_norway.rds). 
+6. Implement the [additive classical decomposition method](https://otexts.com/fpp3/classical-decomposition.html#additive-decomposition) for the [Norwegian Wholesale and Retails sales index](https://github.com/holleland/BAN430/raw/master/data/wholesale_and_retails_index_norway.rds). To adjust the seasonal component to sum to zero, use the following transformation
+$$S_t^\star = S_t - |S_t| \cdot \frac{\sum_s S_s}{\sum_s |S_s|}$$
+where $S_t$ is the seasonal component before the adjustment and $S_t^\star$ is the adjusted such that $\sum_{t}S_t^\star = 0$. Compare your results to the output from the function *classical_decomposition()*.
 
 <details>
 <summary>Solution</summary>
@@ -233,7 +235,7 @@ facet_wrap( ~ name, ncol = 1, scales = "free_y")
 wholesale %>% 
   rename(Index = `Wholesale and retail sales index`) %>%
   model(
-    classical_decomposition(Index)
+    classic = classical_decomposition(Index)
   ) %>%
   components() %>% 
   bind_rows(classic_decomp) %>% 
