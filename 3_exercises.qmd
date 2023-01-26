@@ -17,6 +17,9 @@ theme_set(
 
 ```
 
+In addition to the exercises in [Chapter 3.7 of the textbook](https://otexts.com/fpp3/decomposition-exercises), here are some additional ones with solution. Try to solve them yourself before looking at the solution. The textbook exercise solutions are published on canvas. 
+
+
 1.  Use the simulated data from [here](https://holleland.github.io/BAN430/3_adjustments.html#time-series-components-and-seasonal-adjustment). Compare different methods with the truth from the simulation. Are there large differences?
 
 <details>
@@ -189,7 +192,7 @@ close.price %>%
 </details>
 
 6. Implement the [additive classical decomposition method](https://otexts.com/fpp3/classical-decomposition.html#additive-decomposition) for the [Norwegian Wholesale and Retails sales index](https://github.com/holleland/BAN430/raw/master/data/wholesale_and_retails_index_norway.rds). To adjust the seasonal component to sum to zero, use the following transformation
-$$S_t^\star = S_t - |S_t| \cdot \frac{\sum_s S_s}{\sum_s |S_s|}$$
+$$S_t^\star = S_t - |S_t| \cdot \frac{\sum_r S_r}{\sum_r |S_r|}$$
 where $S_t$ is the seasonal component before the adjustment and $S_t^\star$ is the adjusted such that $\sum_{t}S_t^\star = 0$. Compare your results to the output from the function *classical_decomposition()*.
 
 <details>
@@ -211,7 +214,7 @@ classic_decomp <- wholesale %>%
   ungroup()
 ```
 To adjust the seasonal component to sum-to-zero, we update it as
-$$S_t^\star = S_t - |S_t| \cdot \frac{\sum_s S_s}{\sum_s |S_s|}.$$
+$$S_t^\star = S_t - |S_t| \cdot \frac{\sum_r S_r}{\sum_r |S_r|}.$$
 ```{r, message =FALSE, warning = FALSE}
 # Adjust season to sum-to-zero
 S <- sum(classic_decomp$season)

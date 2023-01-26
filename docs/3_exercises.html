@@ -416,6 +416,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 
 </div>
+<p>In addition to the exercises in <a href="https://otexts.com/fpp3/decomposition-exercises">Chapter 3.7 of the textbook</a>, here are some additional ones with solution. Try to solve them yourself before looking at the solution. The textbook exercise solutions are published on canvas.</p>
 <ol type="1">
 <li>Use the simulated data from <a href="https://holleland.github.io/BAN430/3_adjustments.html#time-series-components-and-seasonal-adjustment">here</a>. Compare different methods with the truth from the simulation. Are there large differences?</li>
 </ol>
@@ -629,7 +630,7 @@ Solution
 </div>
 </details>
 <ol start="6" type="1">
-<li>Implement the <a href="https://otexts.com/fpp3/classical-decomposition.html#additive-decomposition">additive classical decomposition method</a> for the <a href="https://github.com/holleland/BAN430/raw/master/data/wholesale_and_retails_index_norway.rds">Norwegian Wholesale and Retails sales index</a>. To adjust the seasonal component to sum to zero, use the following transformation <span class="math display">S_t^\star = S_t - |S_t| \cdot \frac{\sum_s S_s}{\sum_s |S_s|}</span> where <span class="math inline">S_t</span> is the seasonal component before the adjustment and <span class="math inline">S_t^\star</span> is the adjusted such that <span class="math inline">\sum_{t}S_t^\star = 0</span>. Compare your results to the output from the function <em>classical_decomposition()</em>.</li>
+<li>Implement the <a href="https://otexts.com/fpp3/classical-decomposition.html#additive-decomposition">additive classical decomposition method</a> for the <a href="https://github.com/holleland/BAN430/raw/master/data/wholesale_and_retails_index_norway.rds">Norwegian Wholesale and Retails sales index</a>. To adjust the seasonal component to sum to zero, use the following transformation <span class="math display">S_t^\star = S_t - |S_t| \cdot \frac{\sum_r S_r}{\sum_r |S_r|}</span> where <span class="math inline">S_t</span> is the seasonal component before the adjustment and <span class="math inline">S_t^\star</span> is the adjusted such that <span class="math inline">\sum_{t}S_t^\star = 0</span>. Compare your results to the output from the function <em>classical_decomposition()</em>.</li>
 </ol>
 <details>
 <summary>
@@ -651,7 +652,7 @@ Solution
 <span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">season =</span> <span class="fu">mean</span>(detrend, <span class="at">na.rm=</span>T)) <span class="sc">%&gt;%</span> <span class="co"># SEASON ESTIMATE</span></span>
 <span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>To adjust the seasonal component to sum-to-zero, we update it as <span class="math display">S_t^\star = S_t - |S_t| \cdot \frac{\sum_s S_s}{\sum_s |S_s|}.</span></p>
+<p>To adjust the seasonal component to sum-to-zero, we update it as <span class="math display">S_t^\star = S_t - |S_t| \cdot \frac{\sum_r S_r}{\sum_r |S_r|}.</span></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjust season to sum-to-zero</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>S <span class="ot">&lt;-</span> <span class="fu">sum</span>(classic_decomp<span class="sc">$</span>season)</span>
