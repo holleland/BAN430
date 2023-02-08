@@ -39,8 +39,6 @@ The observations are hourly and start from January 2018 to February 1st 2023 and
 
 1.  Load the data into your working environment. Make sure the columns are correctly formatted.
 ```{r, echo = TRUE, eval = FALSE}
-#| code-fold: true
-#| code-summary: "Link to data:"
 danmarksplass <- readr::read_csv(
   "https://raw.githubusercontent.com/holleland/BAN430/master/data/traffic_danmarksplass.csv")
 ```
@@ -61,17 +59,19 @@ danmarksplass <- danmarksplass %>% as_tsibble(index = datetime)
 
 3.  Create a training data set. We will use January 2023 as our test set. Make a time plot with one panel per year for the training data. Can you detect any particular patterns or deviations from the patterns?
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = TRUE, eval = TRUE}
+#| code-fold: true
+#| code-summary: "Code hint:"
 train <- danmarksplass %>% filter(year(datetime) < 2023)
 ```
 
 3.  Using different graphics, visualize the training data. Look for trends and seasons on multiple scales.
 
-4.  In particular, create this graphic.
+4.  In particular, create this graphic. What do you detect here?
 
-```{r, echo = FALSE, eval = TRUE}
+```{r, echo = TRUE, eval = TRUE}
 #| code-fold: true
-#| code-summary: "Code hint:"
+#| code-summary: "Code solution:"
 train %>% mutate(wday = wday(datetime, label =T, abbr = FALSE, week_start=1), 
                  hour = hour(datetime),
                  date=date(datetime)) %>%
@@ -110,8 +110,6 @@ vehicles ~ fourier(K = 65, period = "week")
 
 9.  One issue you might see is that the model over-estimates the traffic on January 1st (which in 2023 is a Sunday, but it is also a public holiday). Could there be a public holiday effect? By loading the csv linked below, you will have a list of Norwegian holidays from 2008-Jan 2023. Add a dummy variable to your model of choice for public holiday (1 if holiday, 0 otherwise). Does this improve the model fit measures (AIC)?
 ```{r, eval = FALSE, echo = T}
-#| code-fold: true
-#| code-summary: "Link to data:"
 holiday <- read_csv(
   "https://raw.githubusercontent.com/holleland/BAN430/master/data/NorwegianHolidays_2008-jan2023.csv")$x
 ```
@@ -144,8 +142,6 @@ accuracy(fit)
 12. One hypothesis is that some of the traffic at Danmarkplass can be explained by the arrival of ferries at Halhjem, creating a peak in the number of cars arriving. This will only contribute to the traffic heading North, but let us test by adding a predictor for traffic at Moberg v/Lekven (a station on the E39 immediately after the ferry). We will only use traffic towards Bergen here. The traffic heading North at Moberg can be found in *traffic_moberg.csv* (link below). Join it with the danmarksplass data (one tsibble with both columns). At Moberg there are some zero measurement. It may be useful to use log(1+moberg). Since it takes some time to drive from Moberg to Danmarksplass it may also be useful to use lagged observations at Moberg (hint: Use *lag()* function). Evaluate whether adding Moberg improves AIC. 
 
 ```{r, eval = FALSE, echo = T}
-#| code-fold: true
-#| code-summary: "Link to data:"
 moberg <- readr::read_csv("https://raw.githubusercontent.com/holleland/BAN430/master/data/traffic_moberg.csv") 
 ```
 ```{r, echo =T, eval = F}
