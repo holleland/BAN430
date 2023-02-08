@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BAN430 Forecasting – practicle_forecasting_issues</title>
+<title>BAN430 Forecasting – w1_traffic</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -93,8 +93,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./W1_traffic.html" rel="next">
-<link href="./9_Volatitiliy_forecasting.html" rel="prev">
+<link href="./12_data_appendix.html" rel="next">
+<link href="./10_Practicle_forecasting_issues.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -124,6 +124,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -352,30 +368,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true">10 Practical forecasting issues</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false">10 Practical forecasting issues</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10_Practicle_forecasting_issues.html" class="sidebar-item-text sidebar-link active">Practicle forecasting issues</a>
+  <a href="./10_Practicle_forecasting_issues.html" class="sidebar-item-text sidebar-link">Practicle forecasting issues</a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="false">Workshops</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="true">Workshops</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./W1_traffic.html" class="sidebar-item-text sidebar-link">WS1: Bergen traffic forecast</a>
+  <a href="./W1_traffic.html" class="sidebar-item-text sidebar-link active">WS1: Bergen traffic forecast</a>
   </div>
 </li>
       </ul>
@@ -410,14 +426,98 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<section id="practicle-forecasting-issues" class="level1">
-<h1>Practicle forecasting issues</h1>
+<section id="ws1-bergen-traffic-forecast" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="ws1-bergen-traffic-forecast">WS1: Bergen traffic forecast</h2>
+<p><img src="bilder/traffic2.PNG" class="img-fluid" style="width:50.0%"></p>
+<p>In this workshop we will build a model for forecasting traffic in Bergen’s most busy intersection <em>Danmarksplass</em>. The data is publicly available at <a href="https://www.vegvesen.no/trafikkdata">vegvesen.no/trafikkdata</a> and published by The Norwegian Public Roads Administration. Forecasting traffic amount could be useful for anyone wanting to avoid traffic jams, but also important for government agencies with responsibilities related to road planning or public transport.</p>
+<p>As you may imagine the amount of traffic varies depending on things such as time of day, which day of the week it is and public holidays. The peak hours are mostly associated with people traveling to or home from work, while the least busy hours will be in the middle of the night. In this exercise you will use raw observations from The Norwegian Public Roads Administration to forecast traffic passing through one of Bergen’s traffic bottlenecks.</p>
+<p>The data you will be using consists of the two columns</p>
+<ul>
+<li>datetime: date and hour of observation</li>
+<li>vehicles: the number of vehicles that has passed a sensor in the road the previous hour</li>
+</ul>
+<p>The observations are hourly and start from January 2018 to February 1st 2023 and are all from <em>Danmarksplass</em> (near the charging station). We add another location as predictor for Danmarksplass later in the case study to see if this may inform our forecasting model.</p>
+<ol type="1">
+<li>Load the data into your working environment. Make sure the columns are correctly formatted.</li>
+</ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">+</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 3</code></pre>
+<details>
+<summary>Link to data:</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>danmarksplass <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://raw.githubusercontent.com/holleland/BAN430/master/data/traffic_danmarksplass.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+
+</div>
+<ol start="2" type="1">
+<li>Convert the data to a tsibble and make a time plot.</li>
+</ol>
+<div class="cell">
+
+</div>
+<ol start="3" type="1">
+<li>Create a training data set. We will use January 2023 as our test set. Make a time plot with one panel per year for the training data. Can you detect any particular patterns or deviations from the patterns?</li>
+</ol>
+<div class="cell">
+
+</div>
+<ol start="3" type="1">
+<li><p>Using different graphics, visualize the training data. Look for trends and seasons on multiple scales.</p></li>
+<li><p>In particular, create this graphic.</p></li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="W1_traffic_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<ol start="5" type="1">
+<li><p>Aggregate the data to total traffic by year-week and do a STL decomposition. Do you have an plausible explanation for the estimated trend? Try reducing the trend window (default is 91).</p></li>
+<li><p>Fit a TSLM with weekly season as predictor (dummy variables for every hour of the week). Fit one model without transforming and one where you log-transform the forecast variable. Forecast for the first week of 2023 and plot it for the two models. Would you prefer to use the log-transform or no transform? Explain why.</p></li>
+</ol>
+<div class="cell">
+<details>
+<summary>Link to data:</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(vehicle) <span class="sc">~</span> <span class="fu">season</span>(<span class="at">period =</span> <span class="st">"week"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="7" type="1">
+<li>In the model above, we used <span class="math inline">24\cdot 7= 168</span> predictors. We can do this, because we have so many data points. However, could we achieve something similar by using a fourier series? If <span class="math inline">K&lt;168/2 = 84</span>, this will reduce the number of parameters. Use the same transformation as you favored above and compare the model with a model using fourier predictors for the weekly season. Try different values of K and forecast for the first week of 2023. Evaluate the accuracy of the two models with AIC, AICc and CV.</li>
+</ol>
+<div class="cell">
+<details>
+<summary>Hint:</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>vehicles <span class="sc">~</span> <span class="fu">fourier</span>(<span class="at">K =</span> <span class="dv">65</span>, <span class="at">period =</span> <span class="st">"week"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="8" type="1">
+<li><p>Based on the number of observations here (<span class="math inline">T\approx 45\,000</span>), which of AIC, AICc or CV would you prefer to use and why?</p></li>
+<li><p>One issue you might see is that the model over-estimates the traffic on January 1st (which in 2023 is a Sunday, but it is also a public holiday). Could there be a public holiday effect? By loading the csv linked below, you will have a list of Norwegian holidays from 2008-Jan 2023. Add a dummy variable to your model of choice for public holiday (1 if holiday, 0 otherwise). Does this improve the model fit measures (AIC)?</p></li>
+</ol>
+<div class="cell">
+<details>
+<summary>Link to data:</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>holiday <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://raw.githubusercontent.com/holleland/BAN430/master/data/NorwegianHolidays_2008-jan2023.csv"</span>)<span class="sc">$</span>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="10" type="1">
+<li><p>Are there other dummies you could think of adding? Special events that might impact the traffic on a certain day or during a period (spike dummy) or permanently changing it from a certain point in time (step dummy)?</p></li>
+<li><p>Fit a seasonal naive as benchmark model and compare it to the best model so far using RMSE, MAE, MAPE and MASE on the test set.</p></li>
+<li><p>One hypothesis is that some of the traffic at Danmarkplass can be explained by the arrival of ferries at Halhjem, creating a peak in the number of cars arriving. This will only contribute to the traffic heading North, but let us test by adding a predictor for traffic at Moberg v/Lekven (a station on the E39 immediately after the ferry). We will only use traffic towards Bergen here. The traffic heading North at Moberg can be found in <em>traffic_moberg.csv</em> (link below).</p></li>
+</ol>
+<div class="cell">
+<details>
+<summary>Link to data:</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>moberg <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://github.com/holleland/BAN430/blob/master/data/traffic_moberg.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="13" type="1">
+<li><p>The way you have implemented the Moberg traffic in your forecast model, is it an <em>ex ante</em> or <em>ex post</em> forecast?</p></li>
+<li><p>Let us have a look at the residuals. Comment on potential issues.</p></li>
+<li><p>Increase the forecast interval to include all of January 2023. Does this change any of the conclusions about the models? How does the forecast look?</p></li>
+<li><p>Can you think of other predictors to add to the model. Can you improve the model performance further?</p></li>
+</ol>
 
 
 </section>
@@ -558,13 +658,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./9_Volatitiliy_forecasting.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Volatility forecasting</span>
+      <a href="./10_Practicle_forecasting_issues.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Practicle forecasting issues</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./W1_traffic.html" class="pagination-link">
-        <span class="nav-page-text">WS1: Bergen traffic forecast</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./12_data_appendix.html" class="pagination-link">
+        <span class="nav-page-text">Data</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

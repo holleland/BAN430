@@ -59,6 +59,9 @@ website:
       - section: "10 Practical forecasting issues"
         contents:
           - 10_Practicle_forecasting_issues.qmd
+      - section: "Workshops"
+        contents: 
+          - W1_traffic.qmd
       - section: "Appendix"
         contents:
           - 12_data_appendix.qmd
