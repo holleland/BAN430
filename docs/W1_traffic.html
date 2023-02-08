@@ -428,15 +428,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="ws1-bergen-traffic-forecast" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="ws1-bergen-traffic-forecast">WS1: Bergen traffic forecast</h2>
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
 <p><img src="bilder/traffic2.PNG" class="img-fluid" style="width:50.0%"></p>
-<p>In this workshop we will build a model for forecasting traffic in Bergen’s most busy intersection <em>Danmarksplass</em>. The data is publicly available at <a href="https://www.vegvesen.no/trafikkdata">vegvesen.no/trafikkdata</a> and published by The Norwegian Public Roads Administration. Forecasting traffic amount could be useful for anyone wanting to avoid traffic jams, but also important for government agencies with responsibilities related to road planning or public transport.</p>
+<p>In this workshop we will build a model for forecasting traffic in Bergen’s busiest intersection <em>Danmarksplass</em>. The data is publicly available at <a href="https://www.vegvesen.no/trafikkdata">vegvesen.no/trafikkdata</a> and published by The Norwegian Public Roads Administration. Forecasting traffic amount could be useful for anyone wanting to avoid traffic jams, but also important for government agencies with responsibilities related to road planning or public transport.</p>
 <p>As you may imagine the amount of traffic varies depending on things such as time of day, which day of the week it is and public holidays. The peak hours are mostly associated with people traveling to or home from work, while the least busy hours will be in the middle of the night. In this exercise you will use raw observations from The Norwegian Public Roads Administration to forecast traffic passing through one of Bergen’s traffic bottlenecks.</p>
+<p>Hopefully you will learn about</p>
+<ul>
+<li>Graphical presentation of a time series</li>
+<li>Building a linear time series regression model</li>
+<li>Useful transformations</li>
+<li>Using dummy variables for seasonality</li>
+<li>Using fourier sequences for seasonality</li>
+<li>External predictor variables</li>
+</ul>
+</section>
+<section id="data-description" class="level3">
+<h3 class="anchored" data-anchor-id="data-description">Data description</h3>
 <p>The data you will be using consists of the two columns</p>
 <ul>
 <li>datetime: date and hour of observation</li>
 <li>vehicles: the number of vehicles that has passed a sensor in the road the previous hour</li>
 </ul>
-<p>The observations are hourly and start from January 2018 to February 1st 2023 and are all from <em>Danmarksplass</em> (near the charging station). We add another location as predictor for Danmarksplass later in the case study to see if this may inform our forecasting model.</p>
+<p>The observations are hourly and start from January 2018 to February 1st 2023 and are all from <em>Danmarksplass</em> (near the charging station). We add another location as predictor for Danmarksplass later in the case study to see if this may inform our forecasting model, but this data has the same structure (except that the vehicle column has a different name).</p>
+</section>
+<section id="exercises" class="level3">
+<h3 class="anchored" data-anchor-id="exercises">Exercises</h3>
 <ol type="1">
 <li>Load the data into your working environment. Make sure the columns are correctly formatted.</li>
 </ol>
@@ -472,13 +489,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <ol start="5" type="1">
-<li><p>Aggregate the data to total traffic by year-week and do a STL decomposition. Do you have an plausible explanation for the estimated trend? Try reducing the trend window (default is 91).</p></li>
-<li><p>Fit a TSLM with weekly season as predictor (dummy variables for every hour of the week). Fit one model without transforming and one where you log-transform the forecast variable. Forecast for the first week of 2023 and plot it for the two models. Would you prefer to use the log-transform or no transform? Explain why.</p></li>
+<li>Aggregate the data to total traffic by year-week and do a STL decomposition. Do you have an plausible explanation for the estimated trend? Try reducing the trend window (default is 91).</li>
 </ol>
 <div class="cell">
 <details>
-<summary>Link to data:</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(vehicle) <span class="sc">~</span> <span class="fu">season</span>(<span class="at">period =</span> <span class="st">"week"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<summary>Code hint:</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>train <span class="sc">%&gt;%</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">index_by</span>(<span class="at">date =</span> <span class="sc">~</span><span class="fu">yearweek</span>(.)) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">vehicles =</span> <span class="fu">sum</span>(vehicles,<span class="at">na.rm=</span>T))<span class="sc">%&gt;%</span> </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="at">stl =</span> <span class="fu">STL</span>(vehicles <span class="sc">~</span> <span class="fu">trend</span>(<span class="at">window =</span><span class="dv">91</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="6" type="1">
+<li>Fit a TSLM with weekly season as predictor (dummy variables for every hour of the week). Fit one model without transforming and one where you log-transform the forecast variable. Forecast for the first week of 2023 and plot it for the two models. Would you prefer to use the log-transform or no transform? Explain why.</li>
+</ol>
+<div class="cell">
+<details>
+<summary>Code hint</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(vehicle) <span class="sc">~</span> <span class="fu">season</span>(<span class="at">period =</span> <span class="st">"week"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <ol start="7" type="1">
@@ -486,8 +514,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <div class="cell">
 <details>
-<summary>Hint:</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>vehicles <span class="sc">~</span> <span class="fu">fourier</span>(<span class="at">K =</span> <span class="dv">65</span>, <span class="at">period =</span> <span class="st">"week"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<summary>Code hint:</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>vehicles <span class="sc">~</span> <span class="fu">fourier</span>(<span class="at">K =</span> <span class="dv">65</span>, <span class="at">period =</span> <span class="st">"week"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <ol start="8" type="1">
@@ -497,19 +525,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details>
 <summary>Link to data:</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>holiday <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://raw.githubusercontent.com/holleland/BAN430/master/data/NorwegianHolidays_2008-jan2023.csv"</span>)<span class="sc">$</span>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>holiday <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://raw.githubusercontent.com/holleland/BAN430/master/data/NorwegianHolidays_2008-jan2023.csv"</span>)<span class="sc">$</span>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code hint:</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>holiday <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://raw.githubusercontent.com/holleland/BAN430/master/data/NorwegianHolidays_2008-jan2023.csv"</span>)<span class="sc">$</span>x</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>danmarksplass <span class="ot">&lt;-</span> danmarksplass <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">holiday =</span> <span class="fu">factor</span>(<span class="fu">ifelse</span>(<span class="fu">date</span>(datetime) <span class="sc">%in%</span> holiday, <span class="dv">1</span>, <span class="dv">0</span>))</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> danmarksplass <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">year</span>(datetime) <span class="sc">&lt;</span> <span class="dv">2023</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>train <span class="sc">%&gt;%</span> </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="at">holiday =</span> <span class="fu">TSLM</span>(<span class="fu">log</span>(vehicle) <span class="sc">~</span> <span class="fu">factor</span>(holiday) <span class="sc">+</span> ...))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <ol start="10" type="1">
-<li><p>Are there other dummies you could think of adding? Special events that might impact the traffic on a certain day or during a period (spike dummy) or permanently changing it from a certain point in time (step dummy)?</p></li>
+<li><p>Are there other dummies you could think of adding? Special events that might impact the traffic on a certain day or during a period (spike dummy) or permanently changing it from a certain point in time (step dummy)? Discuss.</p></li>
 <li><p>Fit a seasonal naive as benchmark model and compare it to the best model so far using RMSE, MAE, MAPE and MASE on the test set.</p></li>
-<li><p>One hypothesis is that some of the traffic at Danmarkplass can be explained by the arrival of ferries at Halhjem, creating a peak in the number of cars arriving. This will only contribute to the traffic heading North, but let us test by adding a predictor for traffic at Moberg v/Lekven (a station on the E39 immediately after the ferry). We will only use traffic towards Bergen here. The traffic heading North at Moberg can be found in <em>traffic_moberg.csv</em> (link below).</p></li>
+</ol>
+<div class="cell">
+<details>
+<summary>Code hint:</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">model</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">m1 =</span> ...,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">snaive =</span> <span class="fu">SNAIVE</span>(...)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">accuracy</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="12" type="1">
+<li>One hypothesis is that some of the traffic at Danmarkplass can be explained by the arrival of ferries at Halhjem, creating a peak in the number of cars arriving. This will only contribute to the traffic heading North, but let us test by adding a predictor for traffic at Moberg v/Lekven (a station on the E39 immediately after the ferry). We will only use traffic towards Bergen here. The traffic heading North at Moberg can be found in <em>traffic_moberg.csv</em> (link below). Join it with the danmarksplass data (one tsibble with both columns). At Moberg there are some zero measurement. It may be useful to use log(1+moberg). Since it takes some time to drive from Moberg to Danmarksplass it may also be useful to use lagged observations at Moberg (hint: Use <em>lag()</em> function). Evaluate whether adding Moberg improves AIC.</li>
 </ol>
 <div class="cell">
 <details>
 <summary>Link to data:</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>moberg <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://github.com/holleland/BAN430/blob/master/data/traffic_moberg.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>moberg <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/holleland/BAN430/master/data/traffic_moberg.csv"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code hint:</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>danmarksplass <span class="ot">&lt;-</span> <span class="fu">left_join</span>(danmarksplass,</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                           moberg, </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">by =</span> <span class="st">"datetime"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> danmarksplass <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">year</span>(datetime) <span class="sc">&lt;</span> <span class="dv">2023</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>train <span class="sc">%&gt;%</span> </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="at">holiday =</span> <span class="fu">TSLM</span>(<span class="fu">log</span>(vehicle) <span class="sc">~</span> <span class="fu">lag</span>(<span class="fu">log</span>(<span class="dv">1</span><span class="sc">+</span>moberg)) <span class="sc">+</span> <span class="fu">factor</span>(holiday) <span class="sc">+</span> ...))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <ol start="13" type="1">
@@ -520,6 +584,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
