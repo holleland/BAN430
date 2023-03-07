@@ -110,7 +110,7 @@ vehicles ~ fourier(K = 65, period = "week")
 
 9.  One issue you might see is that the model over-estimates the traffic on January 1st (which in 2023 is a Sunday, but it is also a public holiday). Could there be a public holiday effect? By loading the csv linked below, you will have a list of Norwegian holidays from 2008-Jan 2023. Add a dummy variable to your model of choice for public holiday (1 if holiday, 0 otherwise). Does this improve the model fit measures (AIC)?
 ```{r, eval = FALSE, echo = T}
-holiday <- read_csv(
+holidays <- read_csv(
   "https://raw.githubusercontent.com/holleland/BAN430/master/data/NorwegianHolidays_2008-jan2023.csv")$x
 ```
 ```{r, eval = FALSE, echo = T}
@@ -119,7 +119,7 @@ holiday <- read_csv(
 holiday <- readr::read_csv(
   "https://raw.githubusercontent.com/holleland/BAN430/master/data/NorwegianHolidays_2008-jan2023.csv")$x
 danmarksplass <- danmarksplass %>% mutate(
-  holiday = factor(ifelse(date(datetime) %in% holiday, 1, 0))
+  holiday = factor(ifelse(date(datetime) %in% holidays, 1, 0))
 )
 train <- danmarksplass %>% filter(year(datetime) < 2023)
 train %>% 

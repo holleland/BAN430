@@ -62,6 +62,7 @@ website:
       - section: "Workshops"
         contents: 
           - W1_traffic.qmd
+          - W2_electricityprices.qmd
       - section: "Appendix"
         contents:
           - 12_data_appendix.qmd

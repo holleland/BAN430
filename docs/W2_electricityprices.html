@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BAN430 Forecasting – data_appendix</title>
+<title>BAN430 Forecasting – w2_electricityprices</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -93,8 +93,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
-<link href="./W2_electricityprices.html" rel="prev">
+<link href="./12_data_appendix.html" rel="next">
+<link href="./W1_traffic.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -124,6 +124,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -367,12 +383,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="false">Workshops</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="true">Workshops</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./W1_traffic.html" class="sidebar-item-text sidebar-link">WS1: Bergen traffic forecast</a>
@@ -380,22 +396,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./W2_electricityprices.html" class="sidebar-item-text sidebar-link">WS2: Electricity prices</a>
+  <a href="./W2_electricityprices.html" class="sidebar-item-text sidebar-link active">WS2: Electricity prices</a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="true">Appendix</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="false">Appendix</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12_data_appendix.html" class="sidebar-item-text sidebar-link active">Data</a>
+  <a href="./12_data_appendix.html" class="sidebar-item-text sidebar-link">Data</a>
   </div>
 </li>
       </ul>
@@ -415,111 +431,104 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<section id="data" class="level1">
-<h1>Data</h1>
-<p>You can find a overview of the data that is included in the textbook package <em>fpp3</em> by running the following code:</p>
+<section id="ws2-electricity-prices" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="ws2-electricity-prices">WS2: Electricity prices</h2>
+<p><img src="bilder/fireplace.png" class="img-fluid" style="width:40.0%"></p>
+<section id="electricity-prices-in-western-norway" class="level3">
+<h3 class="anchored" data-anchor-id="electricity-prices-in-western-norway">Electricity prices in Western Norway</h3>
+<p>Traditionally, Norwegian electricity consumers have been blessed with low electricity prices due to the vast access to hydro power from the many Norwegian waterfalls. This has been a competitive advantage for Norwegian industry. But some time ago this changed and we have seen a large increase in electricity prices. This has led the Norwegian government to implement a monetary support scheme for Norwegian private households. The scheme is based on the monthly average price and covers 90% above 0.70 NOK/kWh excluding taxes (mva). The problem with this scheme is that the monthly average price is not known before the month has ended, so at the time of consumption, the consumers of electricity do not know how much governmental support will be and there how expensive the power is. Since the scheme does not take into account the spot price there can be times with negative prices after taking into account the governmental support. Say the monthly average is 2.7 NOK, then the support will be <span class="math inline">0.90\cdot (2.7-0.7) = 1.80</span> NOK/kWh.</p>
+<p>It can therefore be useful to have a forecast model to have an idea of what the governmental support will be. Towards the end of the month we will have a quite good idea of what the average price will be, but at the beginning of the month it will be quite uncertain.</p>
+<p>Media houses such as <a href="https://www.vg.no/stromprisen/">VG</a> and <a href="https://www.aftenposten.no/emne/strømprisene">Aftenposten</a> present estimates of the support by simple moving averages (so far in the month), but <a href="https://nr.no/ansatte/martin-jullum/">Martin Jullum</a>, a statistician at the <a href="https://nr.no/">Norwegian Computing Center</a>, has developed a more sophisticated forecasting model presented at <a href="http://dinstrompris.no/">dinstrompris.no</a> (only in Norwegian). The approach he is using is based on dynamic regression model with ARIMA errors that simulates the rest of the month 10 000 times and calculates an average based on that. In this exercise, we will end up with a version of his model.</p>
+<p>Although we may have negative electricity prices (free electricity!) for a few hours in a day, this is highly unlikely to happen on the daily average price and has not happened in the data we will be using. You may therefore assume non-negative daily electricity price if you find that necessary.</p>
+</section>
+<section id="exploratory-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="exploratory-analysis">Exploratory analysis</h3>
+<p>We download the data from Martin Jullum’s github repository using the following code</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="at">package =</span> <span class="st">"fpp3"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>elprices <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://raw.githubusercontent.com/martinju/stromstotte/master/data/database_nordpool_daily.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Note that the data is <strong>updated daily</strong>. The data contains three columns:</p>
+<ul>
+<li>area: Nordpool price region (NO1, NO2, NO3, NO4 or NO5)</li>
+<li>date: date in %Y-%m-%d format</li>
+<li>price: Average daily price in NOK per kWh</li>
+</ul>
+<p>Western Norway is pricing region <em>NO5</em>.</p>
+<p>The goal of this workshop is to build a model that can forecast the monthly average electricity price for February 2023 using daily observations. From that, we can also give an estimate of the Governmental support scheme. We will use January 2023 as our test set (for comparing different model classes) and February 2023 is the month we will apply our forecast model on.</p>
+<ol type="1">
+<li>Load the data and select only pricing area NO5. Create a training set containing observations up to and including Dec 31st 2022 and a test set with observations in January 2023. Also create a set called <em>feb23</em> containing February 2023. All these data sets should be <em>tsibble</em> objects.</li>
+</ol>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 13 × 2
-   Item              Title                                               
-   &lt;chr&gt;             &lt;chr&gt;                                               
- 1 aus_accommodation Australian accommodation data                       
- 2 aus_airpassengers Air Transport Passengers Australia                  
- 3 aus_arrivals      International Arrivals to Australia                 
- 4 bank_calls        Call volume for a large North American bank         
- 5 boston_marathon   Boston marathon winning times since 1897            
- 6 canadian_gas      Monthly Canadian gas production                     
- 7 guinea_rice       Rice production (Guinea)                            
- 8 insurance         Insurance quotations and advertising expenditure    
- 9 prices            Price series for various commodities                
-10 souvenirs         Sales for a souvenir shop                           
-11 us_change         Percentage changes in economic variables in the USA.
-12 us_employment     US monthly employment data                          
-13 us_gasoline       US finished motor gasoline product supplied.        </code></pre>
+
 </div>
-</div>
-<p>These are avaiable when the fpp3 package is loaded, i.e.</p>
+<ol start="2" type="1">
+<li><p>Explore the data using suitable graphics. Look for trends and season and comment on what you find.</p></li>
+<li><p>Do a decomposition using a suitable decomposition method with weekly seasonality. Compare different options for the decomposition method. Comment on the trend and seasonal component. Are they reasonable? Why? Or why not?</p></li>
+</ol>
+<p>We know that electricity demand is correlated with temperature. On colder days we need more heating which increase demand. Increased demand should also increase the price of electricity.</p>
+<ol start="4" type="1">
+<li>Could daily average temperature in Bergen (at Florida) be a potential predictor candidate for the electricity price? Below is a scatterplot with price on the y-axis and Bergen average temperature on the x-axis. Comment on the relationship. Would forecasting with temperature as predictor be an ex ante or ex post forecast? Elaborate.</li>
+</ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fpp3)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>bank_calls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tsibble: 27,716 x 2 [5m] &lt;UTC&gt;
-   DateTime            Calls
-   &lt;dttm&gt;              &lt;dbl&gt;
- 1 2003-03-03 07:00:00   111
- 2 2003-03-03 07:05:00   113
- 3 2003-03-03 07:10:00    76
- 4 2003-03-03 07:15:00    82
- 5 2003-03-03 07:20:00    91
- 6 2003-03-03 07:25:00    87
- 7 2003-03-03 07:30:00    75
- 8 2003-03-03 07:35:00    89
- 9 2003-03-03 07:40:00    99
-10 2003-03-03 07:45:00   125
-# … with 27,706 more rows</code></pre>
+<div class="cell-output-display">
+<p><img src="W2_electricityprices_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>To load a specific data set explicitly in your R environment:</p>
+</section>
+<section id="model-selection" class="level3">
+<h3 class="anchored" data-anchor-id="model-selection">Model selection</h3>
+<p>In this exercise we focus on ETS and ARIMA models and use AICc as our model selection criteria within each model family. We first seek to find the best ETS model and do ARIMA afterwards.</p>
+<section id="ets" class="level4">
+<h4 class="anchored" data-anchor-id="ets">ETS</h4>
+<ol start="5" type="1">
+<li><p>Use the automated ETS model selection in the <em>fable</em> package and print the report. Write up the model equations with estimated values.</p></li>
+<li><p>Plot the residuals ACF and histogram. Are there any problems with these residuals? Do a portmanteau test including lags up to 10.</p></li>
+</ol>
+</section>
+<section id="arima" class="level4">
+<h4 class="anchored" data-anchor-id="arima">ARIMA</h4>
+<ol start="7" type="1">
+<li>Estimate the optimal <span class="math inline">\lambda</span> parameter using <a href="https://otexts.com/fpp3/transformations.html#mathematical-transformations">the Guerero method</a>. Based on the estimated <span class="math inline">\lambda</span> parameter, is the box-cox transformation far from a log-transform? Make a plot including the box-cox transformed and log transformed. Include also the log(1+price) transformation.</li>
+</ol>
+<p>We could have compared the different transformations by evaluating their performance on a test set, but for simplicity we stick to the log(1+price) transform. What is the main consequence for the forecasting model based on this assumption?</p>
+<ol start="8" type="1">
+<li><p>We have decided on a suitable transformation. Is the transformed time series stationary? Is differencing necessary? Use the <em>unitroot_nsdiffs</em> and <em>unitroot_ndiffs</em> to select the number of differences. Plot the differenced series and visually confirm that the differenced and transformed series is stationary using <em>gg_tsdisplay()</em> with <em>plot_type = “partial”</em>.</p></li>
+<li><p>Suggest some model candidates based on the ACF and PACF plots in the previous exercise. Fit the model candidates along with three automatically selected models:</p></li>
+</ol>
+<ul>
+<li>Stepwise = TRUE and approx = TRUE</li>
+<li>Stepwise = FALSE and approx = TRUE</li>
+<li>Stepwise = FALSE and approx = FALSE</li>
+</ul>
+<p>Compare the methods using AICc as criteria. Which model would you choose? Create a fit object with only this model and call it <em>fit</em>.</p>
+<ol start="10" type="1">
+<li><p>Check the model assumptions using the <em>gg_tsresiduals()</em> function on the <em>fit</em> object from the selected model. Perform a Ljung-Box test and conclude. Are the assumptions fulfilled? What are the required and “nice-to-have” assumptions? Would you assume normality for producing prediction intervals in this case?</p></li>
+<li><p>Print the report for your selected model. Based on the report, set up the model equation using the backshift notation.</p></li>
+<li><p>Based on the equation in the previous exercise, find an expression for the first point forecast (<span class="math inline">\widehat y_{T+1|T}</span>).</p></li>
+<li><p>Martin Jullumn’s model on <a href="https://dinstrompris.no">dinstrompris.no</a> is a dynamic regression model with a categorical weekday dummy and ARIMA errors. Fit such a model a compare it with the ARIMA model of choice so far using an accuracy measure of choice (e.g.&nbsp;RMSE). Use a 4 weeks forecast horizon (same as length of February). Jullum do not use any transformations in his model (as far as I can see) so our model will be different. See code hint below for how this model can be implemented. Check the residual plots for the best model.</p></li>
+</ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"bank_calls"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>Code hint:</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">model</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">jullum =</span> <span class="fu">ARIMA</span>(<span class="fu">log</span>(<span class="dv">1</span><span class="sc">+</span>price) <span class="sc">~</span> <span class="fu">wday</span>(date, <span class="at">label =</span> <span class="cn">TRUE</span>), <span class="at">approx =</span> <span class="cn">FALSE</span>, <span class="at">stepwise =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
-<p>Other examples used in the videos and content on this website is available for download at <a href="https://github.com/holleland/BAN430/tree/master/data">github.com/holleland/BAN430/tree/master/data</a>. You should also be able to load them directly into R using the raw link:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># CPI Norway</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://raw.githubusercontent.com/holleland/BAN430/master/data/CPI_norway.csv"</span>, <span class="at">sep =</span> <span class="st">";"</span>) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>     X Y.avg2   Jan   Feb   Mar   Apr   May   Jun   Jul   Aug   Sep   Oct   Nov
-1 2022      . 117.8 119.1 119.8 121.2 121.5 122.6 124.2 123.9 125.6     .     .
-2 2021  116.1 114.1 114.9 114.6 115.0 114.9 115.3 116.3 116.3 117.5 117.2 118.1
-3 2020  112.2 111.3 111.2 111.2 111.7 111.9 112.1 112.9 112.5 112.9 113.2 112.4
-4 2019  110.8 109.3 110.2 110.4 110.8 110.5 110.6 111.4 110.6 111.1 111.3 111.6
-5 2018  108.4 106.0 107.0 107.3 107.7 107.8 108.5 109.3 108.9 109.5 109.3 109.8
-6 2017  105.5 104.3 104.7 105.0 105.2 105.4 105.8 106.1 105.3 105.9 106.0 106.1
-    Dec
-1     .
-2 118.9
-3 112.9
-4 111.3
-5 109.8
-6 106.1</code></pre>
-</div>
-</div>
-<p>For excel files it is a bit less convenient, because you will need to download the file. But you can let R do that for you (if you insist).</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>loadExcel_url <span class="ot">&lt;-</span> <span class="cf">function</span>(url) {</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    temp_file <span class="ot">&lt;-</span> <span class="fu">tempfile</span>(<span class="at">fileext =</span> <span class="st">".xlsx"</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">download.file</span>(<span class="at">url =</span> url, <span class="at">destfile =</span> temp_file, <span class="at">mode =</span> <span class="st">"wb"</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    readxl<span class="sc">::</span><span class="fu">read_excel</span>(temp_file)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">loadExcel_url</span>(<span class="st">"https://github.com/holleland/BAN430/blob/master/data/NorwayEmployment_15-74years_bySex.xlsx?raw=true"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 214 × 3
-   Sex   Quarter `Employed persons (1 000 persons)`
-   &lt;chr&gt; &lt;chr&gt;                                &lt;dbl&gt;
- 1 Male  1996K1                                1133
- 2 Male  1996K2                                1152
- 3 Male  1996K3                                1171
- 4 Male  1996K4                                1161
- 5 Male  1997K1                                1164
- 6 Male  1997K2                                1189
- 7 Male  1997K3                                1200
- 8 Male  1997K4                                1189
- 9 Male  1998K1                                1195
-10 Male  1998K2                                1214
-# … with 204 more rows</code></pre>
-</div>
-</div>
-<p>The code above will save the file temporary in your computers temporary folder and load it into R from there. You could also adjust the code so that it stores the file in your working directory by adjusting the function.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>temp_file <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">getwd</span>(), <span class="st">"/NorwayEmployment.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>But the easiest will maybe be to just download the files manually from github and save them in a data folder of your own.</p>
+</section>
+<section id="forecasting-average-monthly-price" class="level4">
+<h4 class="anchored" data-anchor-id="forecasting-average-monthly-price">Forecasting average monthly price</h4>
+<ol start="14" type="1">
+<li><p>We continue with the best model based on the test set performance above. We have found our forecasting model, now it is time to set it into action. Imagine that it is January <span class="math inline">31^{\text{st}}</span> 2023 today, and we want to forecast the monthly average electricity price for February 2023. We will complicate this further in the next question, but start refitting the selected model using observation including Jan 31st 2023 and generate 5,000 potential February prices from the fitted model. Calculate the average price for each of the simulations (should give 5000 average February prices). Present the mean, standard deviation and 95% prediction interval for the monthly average price.</p></li>
+<li><p>In this final exercise, we pretend that the we are doing the same thing as dinstrompris.no. We start from Jan 31st of 2023 with the mean, standard deviation and 95% prediction interval for the forecast of the average price for February. Then a day goes by, it is now Feb 1st, and we update our model with the new information and produce a new forecast for the remaining 27 days of the month and produce a mean, sd, prediction interval for the average price of the full month. Continue adding days and updating the forecast until all days of February are observed. Create a nice graphic similar to the one below. Explain the behavior of the forecast we see in the figure.</p></li>
+</ol>
+<p>PS: The last exercise is extra challenging from a programming point of view. If you don’t know how to attack this, you may just comment on the figure. I might also put out a <em>code hint</em> for this one.</p>
+<p><img src="bilder/monthly_forecast_for_february_Average_price.png" class="img-fluid"></p>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -658,13 +667,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./W2_electricityprices.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">WS2: Electricity prices</span>
+      <a href="./W1_traffic.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">WS1: Bergen traffic forecast</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./12_data_appendix.html" class="pagination-link">
+        <span class="nav-page-text">Data</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

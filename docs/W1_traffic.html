@@ -93,7 +93,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./12_data_appendix.html" rel="next">
+<link href="./W2_electricityprices.html" rel="next">
 <link href="./10_Practicle_forecasting_issues.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -394,6 +394,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./W1_traffic.html" class="sidebar-item-text sidebar-link active">WS1: Bergen traffic forecast</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./W2_electricityprices.html" class="sidebar-item-text sidebar-link">WS2: Electricity prices</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -531,7 +536,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>One issue you might see is that the model over-estimates the traffic on January 1st (which in 2023 is a Sunday, but it is also a public holiday). Could there be a public holiday effect? By loading the csv linked below, you will have a list of Norwegian holidays from 2008-Jan 2023. Add a dummy variable to your model of choice for public holiday (1 if holiday, 0 otherwise). Does this improve the model fit measures (AIC)?</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>holiday <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>holidays <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://raw.githubusercontent.com/holleland/BAN430/master/data/NorwegianHolidays_2008-jan2023.csv"</span>)<span class="sc">$</span>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
@@ -540,7 +545,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>holiday <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://raw.githubusercontent.com/holleland/BAN430/master/data/NorwegianHolidays_2008-jan2023.csv"</span>)<span class="sc">$</span>x</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>danmarksplass <span class="ot">&lt;-</span> danmarksplass <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">holiday =</span> <span class="fu">factor</span>(<span class="fu">ifelse</span>(<span class="fu">date</span>(datetime) <span class="sc">%in%</span> holiday, <span class="dv">1</span>, <span class="dv">0</span>))</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">holiday =</span> <span class="fu">factor</span>(<span class="fu">ifelse</span>(<span class="fu">date</span>(datetime) <span class="sc">%in%</span> holidays, <span class="dv">1</span>, <span class="dv">0</span>))</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> danmarksplass <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">year</span>(datetime) <span class="sc">&lt;</span> <span class="dv">2023</span>)</span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>train <span class="sc">%&gt;%</span> </span>
@@ -730,8 +735,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./12_data_appendix.html" class="pagination-link">
-        <span class="nav-page-text">Data</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./W2_electricityprices.html" class="pagination-link">
+        <span class="nav-page-text">WS2: Electricity prices</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
