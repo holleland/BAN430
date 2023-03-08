@@ -483,7 +483,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4 class="anchored" data-anchor-id="ets">ETS</h4>
 <ol start="5" type="1">
 <li><p>Use the automated ETS model selection in the <em>fable</em> package and print the report. Write up the model equations with estimated values.</p></li>
-<li><p>Plot the residuals ACF and histogram. Are there any problems with these residuals? Do a portmanteau test including lags up to 10.</p></li>
+<li><p>Plot the residuals ACF and histogram. Are there any problems with these residuals? Do a Ljung-Box test including lags up to 10.</p></li>
 </ol>
 </section>
 <section id="arima" class="level4">
@@ -523,7 +523,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>We continue with the best model based on the test set performance above. We have found our forecasting model, now it is time to set it into action. Imagine that it is January <span class="math inline">31^{\text{st}}</span> 2023 today, and we want to forecast the monthly average electricity price for February 2023. We will complicate this further in the next question, but start refitting the selected model using observation including Jan 31st 2023 and generate 500 potential February prices from the fitted model. Calculate the average price for each of the simulations (should give 500 average February prices). Present the mean, standard deviation and 95% prediction interval for the monthly average price.</p></li>
 <li><p>In this final exercise, we pretend that the we are doing the same thing as dinstrompris.no. We start from Jan 31st of 2023 with the mean, standard deviation and 95% prediction interval from exercise 14 (i.e.&nbsp;the forecast of the average price for February). Then a day goes by, it is now Feb 1st and we know the daily average price of Feb 1st, so we update our model with the new information and produce a new forecast for the remaining 27 days of the month and produce a mean, sd, prediction interval for the average price of the full month, where 1 day is observed and the rest is simulated. Continue adding days and updating the forecast until all days of February are observed. Create a nice graphic similar to the one below. Explain the behavior of the forecast we see in the figure.</p></li>
 </ol>
-<p>PS: The last exercise is extra challenging from a programming point of view and meant to challenge those who are enjoy challenging coding exercises. If you don’t know how to attack this, you may just comment on the figure.</p>
+<p>PS: The last exercise is extra challenging from a programming point of view. If you don’t know how to attack this, you may just comment on the figure.</p>
 <p><img src="bilder/monthly_forecast_for_february_Average_price.png" class="img-fluid"> The red dashed line is the actual average price of February and the date on the x-axis is the first day of the forecasting horizon (Feb 1st means data up to Jan 31st is used).</p>
 
 
