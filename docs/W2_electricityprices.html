@@ -519,14 +519,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="forecasting-average-monthly-price" class="level4">
 <h4 class="anchored" data-anchor-id="forecasting-average-monthly-price">Forecasting average monthly price</h4>
+<p>We will now set up a Monte Carlo simulation for forecasting the average monthly electricity price for February. We simulate daily February prices from the best model and caluclate the monthly average price. This gives us a simulated sample of monthly average price of February and we can estimate the forecast distribution of that variable.</p>
 <ol start="14" type="1">
-<li>We continue with the best model based on the test set performance above. We have found our forecasting model, now it is time to set it into action. Imagine that it is January <span class="math inline">31^{\text{st}}</span> 2023 today, and we want to forecast the monthly average electricity price for February 2023. We will complicate this further in the next question, but start refitting the selected model using observation including Jan 31st 2023 and generate 500 potential February prices from the fitted model. Create a plot showing the 500 simulations. Calculate the average price for each of the simulations (should give 500 average February prices). Present the mean, standard deviation and 95% prediction interval for the monthly average price.</li>
+<li>We continue with the best model based on the test set performance above. We have found our forecasting model, now it is time to set it into action. Imagine that it is January <span class="math inline">31^{\text{st}}</span> 2023 today, and we want to forecast the monthly average electricity price for February 2023. We will complicate this further in the next question, but start refitting the selected model using observations including Jan 31st 2023. Plot a forecast for daily prices in February. Does the forecast behave as you expect? Generate 500 potential February prices from the fitted model. Calculate the monthly average price for each of the simulations (should give 500 average February prices). Present the mean, standard deviation and 95% prediction interval for the monthly average price.</li>
 </ol>
 <div class="cell">
 <details>
 <summary>Code hint:</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sims <span class="ot">&lt;-</span> fit <span class="sc">%&gt;%</span>  <span class="fu">generate</span>(<span class="at">h =</span> <span class="dv">28</span>, <span class="at">times =</span> <span class="dv">500</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(sims) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fit <span class="sc">%&gt;%</span> <span class="fu">forecast</span>(<span class="at">h =</span> <span class="dv">28</span>) <span class="sc">%&gt;%</span> <span class="fu">autoplot</span>()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate: </span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>sims <span class="ot">&lt;-</span> fit <span class="sc">%&gt;%</span>  <span class="fu">generate</span>(<span class="at">h =</span> <span class="dv">28</span>, <span class="at">times =</span> <span class="dv">500</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>sims <span class="sc">%&gt;%</span> </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">index_by</span>(<span class="at">month =</span> <span class="sc">~</span><span class="fu">yearmonth</span>(.)) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(.rep) <span class="sc">%&gt;%</span>  </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate monthly average price for the simulations</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">average =</span> <span class="fu">mean</span>(.sim)) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Monte Carlo estimates of the distribution: </span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(average),</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd   =</span> <span class="fu">sd</span>(average),</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">lwr  =</span> <span class="fu">quantile</span>(average, <span class="at">prob =</span> <span class="fl">0.025</span>),</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">upr  =</span> <span class="fu">quantile</span>(average, <span class="at">prob =</span> <span class="fl">0.975</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <ol start="15" type="1">
