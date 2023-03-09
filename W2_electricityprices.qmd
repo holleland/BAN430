@@ -129,7 +129,7 @@ sims %>%
   # Calculate monthly average price for the simulations
   summarize(average = mean(.sim)) %>% 
   ungroup() %>% 
-  # Monte Carlo estimates of the distribution: 
+  # Monte Carlo estimates: 
   summarize(
     mean = mean(average),
     sd   = sd(average),
