@@ -102,7 +102,7 @@ Compare the methods using AICc as criteria. Which model would you choose? Create
 
 12. Based on the equation in the previous exercise, find an expression for the first point forecast ($\widehat y_{T+1|T}$).
 
-13. Martin Jullumn's model on [dinstrompris.no](https://dinstrompris.no) is a dynamic regression model with a categorical weekday dummy and ARIMA errors. Fit such a model a compare it with the ARIMA model of choice so far using an accuracy measure of choice (e.g. RMSE). Use a 4 weeks forecast horizon (same as length of February). Jullum do not use any transformations in his model (as far as I can see) so our model will be different. See code hint below for how this model can be implemented. Check the residual plots for the best model.
+13. Martin Jullumn's model on [dinstrompris.no](https://dinstrompris.no) is a dynamic regression model with a categorical weekday dummy and ARIMA errors. Fit such a model a compare it with the ARIMA model of choice so far using an accuracy measure of choice (e.g. RMSE). Use a 4 weeks forecast horizon (same as length of February). Jullum do not use any transformations in his model so our model will be different. See code hint below for how this model can be implemented. Check the residual plots for the best model.
 
 ```{r, echo = TRUE, eval =FALSE}
 #| code-fold: true
