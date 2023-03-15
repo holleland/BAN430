@@ -54,8 +54,12 @@ website:
         contents:
           - 8_ARIMAmodels.qmd
       - section: "9 Volatility forecasting"
+        href: 9_Volatitiliy_forecasting.qmd
         contents:
-          - 9_Volatitiliy_forecasting.qmd
+          - 9_arch.qmd
+          - 9_garch.qmd
+          - 9_forecast_garch.qmd
+          - 9_forecasting_garch_R.qmd
       - section: "10 Practical forecasting issues"
         contents:
           - 10_Practicle_forecasting_issues.qmd

@@ -20,6 +20,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -30,7 +93,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./10_Practicle_forecasting_issues.html" rel="next">
+<link href="./9_arch.html" rel="next">
 <link href="./8_ARIMAmodels.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -61,6 +124,22 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -274,7 +353,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">9 Volatility forecasting</a>
+            <a href="./9_Volatitiliy_forecasting.html" class="sidebar-item-text sidebar-link active">9 Volatility forecasting</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -282,7 +361,17 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./9_Volatitiliy_forecasting.html" class="sidebar-item-text sidebar-link active">Volatility forecasting</a>
+  <a href="./9_arch.html" class="sidebar-item-text sidebar-link">ARCH models</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./9_garch.html" class="sidebar-item-text sidebar-link">GARCH models</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./9_forecast_garch.html" class="sidebar-item-text sidebar-link">Forecasting with GARCH</a>
   </div>
 </li>
       </ul>
@@ -354,8 +443,104 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="volatility-forecasting" class="level1">
 <h1>Volatility forecasting</h1>
+<div class="cell">
+
+</div>
+<p>All models considered so far have had a constant residual variance, i.e.<span class="math inline">\sigma^2</span> in <span class="math inline">\varepsilon\sim\text{WN}(0,\sigma^2)</span>. This is also true for the models we will consider in this chapter, but we allow the conditional variance, or the volatility, to vary. That is the variance conditioned on the past of the time series of interest. We will define it more closely below.</p>
+<p>Volatility can be an important concept for investment, security valuation, risk management and monetary policy making. When it is interpreted as uncertainty, it becomes a key to many investments decisions and portfolio creations (Poon and Granger, 2003). The models we consider is used a lot for financial time series, such as stock returns, currency exchange rates, etc.</p>
+<section id="stylized-facts-about-financial-return-series" class="level2">
+<h2 class="anchored" data-anchor-id="stylized-facts-about-financial-return-series">Stylized facts about financial return series</h2>
+<p>McNeil et al (2005) list stylized facts about financial times series:</p>
+<ul>
+<li>SF1: Return series are not independent and identically distributed although they show little autocorrelation.</li>
+<li>SF2: Series of absolute or squared returns show profound autocorrelation.</li>
+<li>SF3: Conditional expected returns are close to zero.</li>
+<li>SF4: Volatility appear to vary over time.</li>
+<li>SF5: Return series are leptokurtic or heavy-tailed.</li>
+<li>SF6: Extreme returns appear in clusters.</li>
+</ul>
+<p>Let us consider a financial time series and see if these stylized facts hold for that. We will look closer at the Microsoft stock and use the <em>tidyquant</em> package for downloading the data starting from 2005 until the newest available data point. Since the stock exchange is closed on some days, we index the time series by trading day (i.e.&nbsp;the row number).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyquant) <span class="co"># Package getting stock data</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fpp3)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>MSFT <span class="ot">&lt;-</span> <span class="fu">tq_get</span>(<span class="st">"MSFT"</span>, </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">get =</span> <span class="st">"stock.prices"</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">from =</span> <span class="fu">as.Date</span>(<span class="st">"2005-01-01"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(date, close) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">tradingday =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> tradingday) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">return =</span> <span class="fu">difference</span>(close)<span class="sc">/</span>close)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>MSFT <span class="sc">%&gt;%</span> <span class="fu">autoplot</span>(return) <span class="sc">+</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Daily returns"</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Microsoft closing return series"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="9_Volatitiliy_forecasting_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Let us also include autocorrelation plots of the returns and the squared returns.</p>
+<div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>MSFT <span class="sc">%&gt;%</span> <span class="fu">ACF</span>(return) <span class="sc">%&gt;%</span> <span class="fu">autoplot</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"ACF of returns"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>MSFT <span class="sc">%&gt;%</span> <span class="fu">ACF</span>(return<span class="sc">^</span><span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">autoplot</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"ACF of squared returns"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>MSFT <span class="sc">%&gt;%</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">sample =</span> return)) <span class="sc">+</span> <span class="fu">geom_qq</span>() <span class="sc">+</span><span class="fu">geom_qq_line</span>()</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>MSFT <span class="sc">%&gt;%</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> return)) <span class="sc">+</span> <span class="fu">stat_density</span>(<span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">alpha =</span> .<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="9_Volatitiliy_forecasting_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="9_Volatitiliy_forecasting_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="9_Volatitiliy_forecasting_files/figure-html/unnamed-chunk-3-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="9_Volatitiliy_forecasting_files/figure-html/unnamed-chunk-3-4.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+</div>
+<p>Here we clearly see that the returns have little autocorrelation (SF1), but the squared returns have a lot (SF2). Conditional returns is maybe not so easy to quantify, but the mean return of MSFT is <span class="math inline">0.034\% \approx 0</span> (SF3). We can clearly see from the time plot of the returns that the volatility varies across time (SF4) and that the extreme returns tend to cluster together (SF6). Since we are using trading days for the time index, it is a bit hard to tell when these events occured, but the first big cluster (<span class="math inline">t\approx 1000</span>) is around the financial crisis in 2008-09 and the second big one is around 2020 (<span class="math inline">t\approx 3900</span>) when covid-19 went pandemic. Leptokurtic means that the kurtosis is positive (here it is 9.8). We can see from the qq-plot that the distribution is heavy tailed in both ends compared to a Gaussian distribution (SF5). It is also very concentrated around zero except for the extreme observations.</p>
+<p>These stylized facts are dynamics we want a good model of financial returns to be able to capture.</p>
+</section>
+<section id="defining-volatility-mathematically" class="level2">
+<h2 class="anchored" data-anchor-id="defining-volatility-mathematically">Defining volatility mathematically</h2>
+<p>Let <span class="math inline">Y_t</span> be a time series stochastic variable associated with time <span class="math inline">t</span> and let <span class="math inline">\mathcal F_t</span> denote all the past history of the time series up to and including time <span class="math inline">t</span>, i.e.&nbsp;<span class="math inline">\mathcal F_t = \{\ldots, Y_{t-2},Y_{t-1}, Y_t\}</span>. Then <span class="math inline">Y_t|\mathcal F_t</span> is a constant (not stochastic). If the time series is stationary, the expectation is <span class="math inline">\mu = \mathbb E Y_t</span> and the variance is defined as <span class="math display">\sigma^2 = \mathbb E (Y_t-\mu)^2= \mathbb E Y_t^2 - \mu^2.</span> We define the volatility as the conditional standard deviation of the times series, conditioned on its history. Thus, the squared volatility is the conditional variance, given by <span class="math display">\sigma_t^2 = \sigma_{t+1|t}^2 = \mathbb E\big[ (Y_{t+1}-\mu)^2|\mathcal F_{t}\big].</span></p>
+<p>The <span class="math inline">\mathcal F_t</span> is called a sigma algebra, which is a quite complex mathematical structure, but you can think of it as simply the infinite history of the time series.</p>
+</section>
+<section id="scratching-the-surface-of-garch" class="level2">
+<h2 class="anchored" data-anchor-id="scratching-the-surface-of-garch">Scratching the surface of GARCH</h2>
+<p>We will here exclusively focus on the most basic volatility models in the GARCH family. The list of different model specifications available in the <a href="https://cran.r-project.org/web/packages/rugarch/rugarch.pdf">rugarch</a> package is</p>
+<ul>
+<li><strong>Standard GARCH (sGARCH)</strong></li>
+<li>Integrated GARCH (iGARCH)</li>
+<li>Exponential GARCH (EGARCH)</li>
+<li>GJR-GARCH (gjrGARCH)</li>
+<li>asymmetric power ARCH (apARCH)</li>
+<li>Family GARCH (fGARCH)</li>
+<li>Component sGARCH (csGARCH)</li>
+<li>Multiplicative Component sGARCH (mcsGARCH)</li>
+<li>Realized GARCH (realGARCH)</li>
+<li>Fractionally integrated GARCH (fiGARCH)</li>
+</ul>
+<p>We will focus on the so-called standard (G)ARCH. If you are interested in digging deeper into some of the other models, see e.g.&nbsp;<a href="https://cran.r-project.org/web/packages/rugarch/vignettes/Introduction_to_the_rugarch_package.pdf">the package documention</a>. This list is just scratching the surface of available GARCH-type models. The <em>father</em> of the original GARCH model, Tim Bollerslev, has published a <a href="https://dx.doi.org/10.2139/ssrn.1263250"><em>Glossary of ARCH-GARCH models</em></a> (Bollerslev, 2008) to give an overview of all the acronyms and abbreviations used for these type of models, but this has not been updated since 2008 (as far as I know). Bollerslev(2023) recently published a paper entitled the Story of GARCH which also discuss the many specialized GARCH models.</p>
+<p>The volatility <span class="math inline">\sigma_t</span> is the quantity of interest in this chapter. In the next section we will introduce the first volatility model; ARCH models before turning the generalized ARCH models (or standard GARCH).</p>
+</section>
+<section id="references" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
+<ul>
+<li><a href="https://dx.doi.org/10.2139/ssrn.1263250">Bollerslev, T. (2008)</a>. Glossary to arch (garch). CREATES Research paper, 49.</li>
+<li><a href="https://doi.org/10.1016/j.jeconom.2023.01.015">Bollerslev, T. (2023)</a>. The story of GARCH: A personal odyssey. Journal of Econometrics.</li>
+<li>McNeil, A. J., Frey, R., &amp; Embrechts, P. (2005). Quantitative risk management: concepts, techniques and tools-revised edition. Princeton university press.</li>
+<li>Poon, S. H., &amp; Granger, C. W. J. (2003). Forecasting volatility in financial markets: A review. Journal of economic literature, 41(2), 478-539.</li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -499,8 +684,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./10_Practicle_forecasting_issues.html" class="pagination-link">
-        <span class="nav-page-text">Practicle forecasting issues</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./9_arch.html" class="pagination-link">
+        <span class="nav-page-text">ARCH models</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

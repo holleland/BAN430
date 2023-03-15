@@ -1,0 +1,47 @@
+## Forecasting volatility in R
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+library(ggplot2)
+theme_set(theme_bw() + theme(panel.grid.minor = element_blank(), 
+                             panel.grid.major = element_blank(),
+                             strip.placement = "outside",
+                             strip.background = element_rect(fill = "white", 
+                                                             color = "transparent")))
+library(rugarch)
+library(tidyquant) # Package getting stock data
+library(tidyverse)
+library(fpp3)
+MSFT <- tq_get("MSFT", 
+               get = "stock.prices",
+               from = as.Date("2015-01-01")) %>% 
+  select(date, close) %>% 
+  mutate(tradingday = row_number()) %>% 
+  as_tsibble(index = tradingday) %>% 
+  mutate(return = difference(close)/close)
+```
+
+The fable package that we are using for everything else does not cover volatility modeling. We could maybe trick it, by using the ARMA representation of a GARCH model and back-transforming the estimates to the GARCH parameters, but this is not very convenient. It is also useful for you as students to see something other than the tidy packages. 
+
+We use a package called [rugarch](https://cran.r-project.org/web/packages/rugarch/rugarch.pdf) for fitting and forecasting GARCH models. You find the vignette *Introduction to the rugarch package* [here](https://cran.r-project.org/web/packages/rugarch/vignettes/Introduction_to_the_rugarch_package.pdf). Install and load the package.
+```{r, eval = FALSE, echo = T}
+install.packages("rugarch")
+library(rugarch)
+``` 
+
+We continue with the Microsoft closing price returns as example. We start by specifying the model. 
+```{r, echo = T}
+model <- ugarchspec(variance.model = list(model = "sGARCH", 
+                                          garchOrder = c(3,1)),
+                    mean.model = list(armaOrder = c(0,0), include.mean = FALSE),
+                    distribution.model = "norm")
+fit <- ugarchfit(model, 
+                 data = MSFT %>% filter(!is.na(return)) %>% pull(return)
+)
+sigma(fit)
+plot(ugarchforecast(fit, n.ahead = 200))
+```
+
+## References {.unnumbered}
+
+- Engle, R. F. (1982). Autoregressive conditional heteroscedasticity with estimates of the variance of United Kingdom inflation. Econometrica: Journal of the econometric society, 987-1007.
+- McNeil, A. J., Frey, R., & Embrechts, P. (2005). Quantitative risk management: concepts, techniques and tools-revised edition. Princeton university press.
