@@ -40,8 +40,9 @@ fit <- ugarchfit(model,
 # sigma(fit)
 spec = getspec(fit);
 setfixed(spec) <- as.list(coef(fit));
-fc <- ugarchforecast(spec, data = MSFT %>% filter(!is.na(return)) %>% pull(return),
-                    n.ahead = 1, out.sample = 100, n.roll =100)
+fc <- ugarchforecast(spec, 
+                     data = MSFT %>% filter(!is.na(return)) %>% pull(return),
+                     n.ahead = 1, out.sample = 100, n.roll =100)
 plot(fc, which = 2)
 ```
 
