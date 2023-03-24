@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.2.335">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -374,6 +374,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./9_forecast_garch.html" class="sidebar-item-text sidebar-link">Forecasting with GARCH</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./9_forecasting_garch_R.html" class="sidebar-item-text sidebar-link">Forecasting volatility in R</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -469,7 +474,7 @@ y_t &amp;= \sigma_t\,\varepsilon_t,\\
 </section>
 <section id="garch-vs-arma" class="level3">
 <h3 class="anchored" data-anchor-id="garch-vs-arma">GARCH vs ARMA</h3>
-<p>As we have seen, for an ARCH(r) model there is an AR(r) representation. Similarly, where is an ARMA(r,s) representation for a GARCH(r,s) model. Using the same approach as for the ARCH case (with <span class="math inline">r=s=1</span>), we have that <span class="math display">y_t^2= \sigma_t^2 +v_t,\quad v_t = \sigma_t^2(\varepsilon_t^2-1).</span> Note that this also means that <span class="math inline">\sigma_t^2 = y_t^2 -v_t</span>. Inserting the definition of <span class="math inline">\sigma_t^2</span> according to a GARCH(1,1) we get that <span class="math display">y_t^2 = \alpha_0+\alpha_1y_{t-1}^2 +\beta_1\underbrace{\sigma_{t-1}^2}_{y_{t-1}^2-v_{t-1}} +v_t = \alpha_0+(\alpha_1+\beta_1)y_{t-1}^2-\beta_1v_{t-1}+ v_t.</span> We can write this as <span class="math display">(1-(\alpha_1+\beta_1)\,B)\,y_t^2 = \alpha_0+(1-\beta_1\,B)v_t,</span> which we can recognize as an ARMA(1,1) with intercept <span class="math inline">c=\alpha_0</span>, <span class="math inline">\phi_1 = \alpha_1+\beta_1</span>, <span class="math inline">\theta_1 = -\beta_1</span> and <span class="math inline">v_t</span> is the white noise process (assuming <span class="math inline">\mathbb E\,y_t^4&lt;\infty</span>)</p>
+<p>As we have seen, for an ARCH(r) model there is an AR(r) representation. Similarly, where is an ARMA(r,s) representation for a GARCH(r,s) model. Using the same approach as for the ARCH case (with <span class="math inline">r=s=1</span>), we have that <span class="math display">y_t^2= \sigma_t^2 +v_t,\quad v_t = \sigma_t^2(\varepsilon_t^2-1).</span> Note that this also means that <span class="math inline">\sigma_t^2 = y_t^2 -v_t</span>. Inserting the definition of <span class="math inline">\sigma_t^2</span> according to a GARCH(1,1) we get that <span class="math display">y_t^2 = \alpha_0+\alpha_1y_{t-1}^2 +\beta_1\underbrace{\sigma_{t-1}^2}_{y_{t-1}^2-v_{t-1}} +v_t = \alpha_0+(\alpha_1+\beta_1)y_{t-1}^2-\beta_1v_{t-1}+ v_t.</span> We can write this as <span class="math display">(1-(\alpha_1+\beta_1)\,B)\,y_t^2 = \alpha_0+(1-\beta_1\,B)v_t,</span> which we can recognize as an ARMA(1,1) with intercept <span class="math inline">c=\alpha_0</span>, <span class="math inline">\phi_1 = \alpha_1+\beta_1</span>, <span class="math inline">\theta_1 = -\beta_1</span> and <span class="math inline">v_t</span> is the white noise process (assuming <span class="math inline">\mathbb E\,y_t^4&lt;\infty</span>).</p>
 </section>
 <section id="garch-simulation" class="level3">
 <h3 class="anchored" data-anchor-id="garch-simulation">GARCH simulation</h3>

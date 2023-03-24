@@ -51,7 +51,7 @@ Note that this also means that $\sigma_t^2 = y_t^2 -v_t$. Inserting the definiti
 $$y_t^2 = \alpha_0+\alpha_1y_{t-1}^2 +\beta_1\underbrace{\sigma_{t-1}^2}_{y_{t-1}^2-v_{t-1}} +v_t = \alpha_0+(\alpha_1+\beta_1)y_{t-1}^2-\beta_1v_{t-1}+ v_t.$$
 We can write this as
 $$(1-(\alpha_1+\beta_1)\,B)\,y_t^2 = \alpha_0+(1-\beta_1\,B)v_t,$$
-which we can recognize as an ARMA(1,1) with intercept $c=\alpha_0$, $\phi_1 = \alpha_1+\beta_1$, $\theta_1 = -\beta_1$ and $v_t$ is the white noise process (assuming $\mathbb E\,y_t^4<\infty$)
+which we can recognize as an ARMA(1,1) with intercept $c=\alpha_0$, $\phi_1 = \alpha_1+\beta_1$, $\theta_1 = -\beta_1$ and $v_t$ is the white noise process (assuming $\mathbb E\,y_t^4<\infty$).
 
 ### GARCH simulation
 

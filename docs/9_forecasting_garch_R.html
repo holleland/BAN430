@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.2.335">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -450,97 +450,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">ugarchfit</span>(model, </span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> MSFT <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(return)) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(return)</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>fit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-*---------------------------------*
-*          GARCH Model Fit        *
-*---------------------------------*
-
-Conditional Variance Dynamics   
------------------------------------
-GARCH Model : sGARCH(1,1)
-Mean Model  : ARFIMA(0,0,0)
-Distribution    : norm 
-
-Optimal Parameters
-------------------------------------
-        Estimate  Std. Error  t value Pr(&gt;|t|)
-omega   0.000012    0.000000   40.054        0
-alpha1  0.095915    0.005016   19.123        0
-beta1   0.863166    0.006464  133.533        0
-
-Robust Standard Errors:
-        Estimate  Std. Error  t value Pr(&gt;|t|)
-omega   0.000012    0.000001  15.3190        0
-alpha1  0.095915    0.012349   7.7673        0
-beta1   0.863166    0.019498  44.2702        0
-
-LogLikelihood : 12608.33 
-
-Information Criteria
-------------------------------------
-                    
-Akaike       -5.5069
-Bayes        -5.5027
-Shibata      -5.5069
-Hannan-Quinn -5.5054
-
-Weighted Ljung-Box Test on Standardized Residuals
-------------------------------------
-                        statistic p-value
-Lag[1]                      5.890 0.01523
-Lag[2*(p+q)+(p+q)-1][2]     6.019 0.02174
-Lag[4*(p+q)+(p+q)-1][5]     7.367 0.04222
-d.o.f=0
-H0 : No serial correlation
-
-Weighted Ljung-Box Test on Standardized Squared Residuals
-------------------------------------
-                        statistic p-value
-Lag[1]                    0.08989  0.7643
-Lag[2*(p+q)+(p+q)-1][5]   0.46920  0.9623
-Lag[4*(p+q)+(p+q)-1][9]   0.83973  0.9919
-d.o.f=2
-
-Weighted ARCH LM Tests
-------------------------------------
-            Statistic Shape Scale P-Value
-ARCH Lag[3]    0.3482 0.500 2.000  0.5552
-ARCH Lag[5]    0.6892 1.440 1.667  0.8267
-ARCH Lag[7]    0.8050 2.315 1.543  0.9431
-
-Nyblom stability test
-------------------------------------
-Joint Statistic:  33.0719
-Individual Statistics:              
-omega  2.77121
-alpha1 0.10079
-beta1  0.05793
-
-Asymptotic Critical Values (10% 5% 1%)
-Joint Statistic:         0.846 1.01 1.35
-Individual Statistic:    0.35 0.47 0.75
-
-Sign Bias Test
-------------------------------------
-                   t-value   prob sig
-Sign Bias           0.3605 0.7185    
-Negative Sign Bias  1.3303 0.1835    
-Positive Sign Bias  0.2956 0.7675    
-Joint Effect        1.8826 0.5971    
-
-
-Adjusted Pearson Goodness-of-Fit Test:
-------------------------------------
-  group statistic p-value(g-1)
-1    20     242.7    9.130e-41
-2    30     252.9    1.408e-37
-3    40     291.7    2.048e-40
-4    50     293.7    1.324e-36
-
-
-Elapsed time : 0.242749 </code></pre>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># sigma(fit)</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">=</span> <span class="fu">getspec</span>(fit);</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">setfixed</span>(spec) <span class="ot">&lt;-</span> <span class="fu">as.list</span>(<span class="fu">coef</span>(fit));</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>fc <span class="ot">&lt;-</span> <span class="fu">ugarchforecast</span>(spec, <span class="at">data =</span> MSFT <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(return)) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(return),</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>                    <span class="at">n.ahead =</span> <span class="dv">1</span>, <span class="at">out.sample =</span> <span class="dv">100</span>, <span class="at">n.roll =</span><span class="dv">100</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fc, <span class="at">which =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="9_forecasting_garch_R_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
