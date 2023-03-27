@@ -9,42 +9,27 @@ theme_set(theme_bw() + theme(panel.grid.minor = element_blank(),
                                                              color = "transparent")))
 ```
 
-Forecasting with an ARCH/GARCH model is done by continuing the iteration of the model beyond the data that we have. If we set $t=T+1$ for an GARCH(1,1) we get the equation
-$$\widehat\sigma_{T+1|T}^2 =\mathbb E\,( y_{T+1}^2|\mathcal F_T) =\widehat\alpha_0+\widehat\alpha_1\,y_{T}^2 +\widehat\beta_1\, \widehat\sigma_{T}^2$$
-where $\widehat\alpha_0,\widehat\alpha_1,\widehat\beta_1$ are estimated parameters, $y_T^2$ is observed at time $T$ and 
-$$\widehat\sigma_{T}^2  = \widehat\alpha_0\sum_{j=0}^{T-1} \widehat\beta_1^j+\widehat\alpha_1\sum_{j=1}^{T-1}\widehat\beta_1^{j-1}\,y_{T-j}^2 +\widehat\beta_1^T\, \widehat\sigma_{1}^2,$$
-and $\widehat\sigma_1^2 = \widehat\alpha_0/(1-\widehat\alpha_1-\widehat\beta_1)$. If $\widehat\beta_1$ is small and $T$ large, the initial value for $\widehat\sigma_1^2$ will not matter much.
+Forecasting with an ARCH/GARCH model is done by continuing the iteration of the model beyond the data that we have. If we set $t=T+1$ for an GARCH(1,1) we get the equation $$\widehat\sigma_{T+1|T}^2 =\mathbb E\,( y_{T+1}^2|\mathcal F_T) =\widehat\omega+\widehat\alpha_1\,y_{T}^2 +\widehat\beta_1\, \widehat\sigma_{T}^2$$ where $\widehat\omega,\widehat\alpha_1,\widehat\beta_1$ are estimated parameters, $y_T^2$ is observed at time $T$ and $$\widehat\sigma_{T}^2  = \widehat\omega\sum_{j=0}^{T-1} \widehat\beta_1^j+\widehat\alpha_1\sum_{j=1}^{T-1}\widehat\beta_1^{j-1}\,y_{T-j}^2 +\widehat\beta_1^T\, \widehat\sigma_{1}^2,$$ and $\widehat\sigma_1^2 = \widehat\omega/(1-\widehat\alpha_1-\widehat\beta_1)$. If $\widehat\beta_1$ is small and $T$ large, the initial value for $\widehat\sigma_1^2$ will not matter much.
 
-Multistep forecast is achieved by noticing that $\widehat\sigma_{T+h|T}^2= \mathbb E\,(\sigma_{T+h}^2|\mathcal F_T)=\mathbb E\,(y_{T+h}^2|\mathcal F_T)$, such that
-\begin{equation*}
+Multistep forecast is achieved by noticing that $\widehat\sigma_{T+h|T}^2= \mathbb E\,(\sigma_{T+h}^2|\mathcal F_T)=\mathbb E\,(y_{T+h}^2|\mathcal F_T)$, such that \begin{equation*}
 \begin{split}
-\widehat\sigma_{T+h|T}^2 &= \alpha_0+\alpha_1\mathbb E(X_{T+h-1}^2|\mathcal F_T) +\beta_1\mathbb E\,(\sigma_{T+h-1}|\mathcal F_T)\\&=\alpha_0+\alpha_1\,\widehat\sigma_{T+h-1|T}^2 +\beta_1\,\widehat\sigma_{T+h-1|T}^2\\
-&=\alpha_0+(\alpha_1+\beta_1)\widehat\sigma_{T+h-1|T}^2 
+\widehat\sigma_{T+h|T}^2 &= \omega+\alpha_1\mathbb E(y_{T+h-1}^2|\mathcal F_T) +\beta_1\mathbb E\,(\sigma_{T+h-1}|\mathcal F_T)\\&=\omega+\alpha_1\,\widehat\sigma_{T+h-1|T}^2 +\beta_1\,\widehat\sigma_{T+h-1|T}^2\\
+&=\omega+(\alpha_1+\beta_1)\widehat\sigma_{T+h-1|T}^2 
 \end{split}
-\end{equation*}
-If we simply iterate this formula backwards until we reach something that is known at time $T$. To simplify notation, let $\gamma = \alpha_1+\beta_1$ and we also skip the hats for the time being. 
-\begin{equation*}
+\end{equation*} If we simply iterate this formula backwards until we reach something that is known at time $T$. To simplify notation, let $\gamma = \alpha_1+\beta_1$ and we also skip the hats for the time being. \begin{equation*}
 \begin{split}
-\widehat\sigma_{T+h|T}^2 &=\alpha_0+\gamma \widehat\sigma_{T+h-1|T}^2 \\
-&= \alpha_0+\gamma(\alpha_0+\gamma\, \widehat\sigma_{T+h-2|T}^2) \\
-&= \alpha_0+\alpha_0\gamma+\gamma^2\, \widehat\sigma_{T+h-2|T}^2 \\
-&= \alpha_0+\alpha_0\gamma+\alpha_0\gamma^2 + \gamma^3\, \widehat\sigma_{T+h-3|T}^2 \\
+\widehat\sigma_{T+h|T}^2 &=\omega+\gamma \widehat\sigma_{T+h-1|T}^2 \\
+&= \omega+\gamma(\omega+\gamma\, \widehat\sigma_{T+h-2|T}^2) \\
+&= \omega+\omega\gamma+\gamma^2\, \widehat\sigma_{T+h-2|T}^2 \\
+&= \omega+\omega\gamma+\omega\gamma^2 + \gamma^3\, \widehat\sigma_{T+h-3|T}^2 \\
 &\quad\vdots\\
-&= \alpha_0\sum_{j=0}^{h-2}\gamma^j + \gamma^{h-1}\,\widehat\sigma_{T+1|T}^2\\
-&= \alpha_0\sum_{j=0}^{h-2}\gamma^j + \gamma^{h-1}\,(\alpha_0+\alpha_1 y_T^2+\beta_1\widehat\sigma_T^2)\\
-&= \alpha_0\sum_{j=0}^{h-1}\gamma^j + \gamma^{h-1}\,(\alpha_1 y_T^2+\beta_1\widehat\sigma_T^2)\\
+&= \omega\sum_{j=0}^{h-2}\gamma^j + \gamma^{h-1}\,\widehat\sigma_{T+1|T}^2\\
+&= \omega\sum_{j=0}^{h-2}\gamma^j + \gamma^{h-1}\,(\omega+\alpha_1 y_T^2+\beta_1\widehat\sigma_T^2)\\
+&= \omega\sum_{j=0}^{h-1}\gamma^j + \gamma^{h-1}\,(\alpha_1 y_T^2+\beta_1\widehat\sigma_T^2)\\
 \end{split}
-\end{equation*}
-Thus, inserting the $\alpha_1+\beta_1$ for $\gamma$ we have that
-$$\widehat\sigma_{T+h|T}^2 = \widehat\alpha_0\sum_{j=0}^{h-1}(\widehat\alpha_1+\widehat\beta_1)^j + (\widehat\alpha_1+\widehat\beta_1)^{h-1}\,(\widehat\alpha_1 y_T^2+\widehat\beta_1\widehat\sigma_T^2).$$
-Assuming $\widehat\alpha_1+\widehat\beta_1<1$, we get that when $h\to\infty$, 
-$$\lim_{h\to\infty}\widehat\sigma_{T+h|T} = \frac{\widehat\alpha_0}{1-\widehat\alpha_1-\widehat\beta_1},$$
-i.e. the forecast will approach the unconditional variance, which intuitively makes sense. 
+\end{equation*} Thus, inserting the $\alpha_1+\beta_1$ for $\gamma$ we have that $$\widehat\sigma_{T+h|T}^2 = \widehat\omega\sum_{j=0}^{h-1}(\widehat\alpha_1+\widehat\beta_1)^j + (\widehat\alpha_1+\widehat\beta_1)^{h-1}\,(\widehat\alpha_1 y_T^2+\widehat\beta_1\widehat\sigma_T^2).$$ Assuming $\widehat\alpha_1+\widehat\beta_1<1$, we get that when $h\to\infty$, $$\lim_{h\to\infty}\widehat\sigma_{T+h|T} = \frac{\widehat\omega}{1-\widehat\alpha_1-\widehat\beta_1},$$ i.e. the forecast will approach the unconditional variance, which intuitively makes sense.
 
-For the conditional variance we are typically not so interested in creating predictions intervals for the volatility, but rather use the point forecast for the volatility to make prediction intervals for the variable of interest (i.e. the stock returns). We forecast the varying forecast variance and use that instead of the fixed one we have seen used in other settings. Since the expectation of a GARCH model is zero, a $100(1-\alpha)\%$ prediction interval (under Gaussian assumptions) is given as 
-$$\pm z_{\alpha/2}\,\widehat \sigma_{T+h|T}.$$
-We can also use volatility forecasting to calculate risk measures, such as Value At Risk (VaR) or Expected Shortfall (ES) (see McNeil et al, 2005, page 161).
-
+For the conditional variance we are typically not so interested in creating predictions intervals for the volatility, but rather use the point forecast for the volatility to make prediction intervals for the variable of interest (i.e. the stock returns). We forecast the varying forecast variance and use that instead of the fixed one we have seen used in other settings. Since the expectation of a GARCH model is zero, a $100(1-\alpha)\%$ prediction interval (under Gaussian assumptions) is given as $$\pm z_{\alpha/2}\,\widehat \sigma_{T+h|T}.$$ We can also use volatility forecasting to calculate risk measures, such as Value At Risk (VaR) or Expected Shortfall (ES) (see McNeil et al, 2005, page 161).
 
 ## References {.unnumbered}
 

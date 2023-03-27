@@ -124,6 +124,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -441,25 +457,246 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"rugarch"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rugarch)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We continue with the Microsoft closing price returns as example. We start by specifying the model.</p>
+<p>We continue with the Microsoft closing price returns as example. We cannot use the tsibble structure with the functions from this packages, so we will transform the Microsoft data to an <em>xts</em> object. This is also a time series object. We leave 200 observations for testing.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">ugarchspec</span>(<span class="at">variance.model =</span> <span class="fu">list</span>(<span class="at">model =</span> <span class="st">"sGARCH"</span>, </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">garchOrder =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>)),</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">mean.model =</span> <span class="fu">list</span>(<span class="at">armaOrder =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), <span class="at">include.mean =</span> <span class="cn">FALSE</span>),</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">distribution.model =</span> <span class="st">"norm"</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">ugarchfit</span>(model, </span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> MSFT <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(return)) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(return)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># sigma(fit)</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">=</span> <span class="fu">getspec</span>(fit);</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">setfixed</span>(spec) <span class="ot">&lt;-</span> <span class="fu">as.list</span>(<span class="fu">coef</span>(fit));</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>fc <span class="ot">&lt;-</span> <span class="fu">ugarchforecast</span>(spec, <span class="at">data =</span> MSFT <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(return)) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(return),</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>                    <span class="at">n.ahead =</span> <span class="dv">1</span>, <span class="at">out.sample =</span> <span class="dv">100</span>, <span class="at">n.roll =</span><span class="dv">100</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fc, <span class="at">which =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>MSFT <span class="ot">&lt;-</span> MSFT <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(return)) <span class="co"># Removing NAs</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>msft <span class="ot">&lt;-</span> <span class="fu">xts</span>(MSFT<span class="sc">$</span>return,          <span class="co"># values of time series</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">order.by =</span> MSFT<span class="sc">$</span>date) <span class="co"># dates of time series</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> msft[<span class="dv">1</span><span class="sc">:</span>(<span class="fu">length</span>(msft)<span class="sc">-</span><span class="dv">200</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We start by specifying the model. In this case, we want to fit a GARCH(1,1) without mean. We use a Gaussian assumption on the distribution of <span class="math inline">\varepsilon_t</span>. We do not want to use a model for the mean, and therefore explicitly state that the arma-order is (0,0).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">ugarchspec</span>(<span class="at">variance.model =</span> <span class="fu">list</span>(<span class="at">model =</span> <span class="st">"sGARCH"</span>, </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">garchOrder =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>)),</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">mean.model =</span> <span class="fu">list</span>(<span class="at">armaOrder =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), <span class="at">include.mean =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">distribution.model =</span> <span class="st">"norm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Once we have the specification ready, we can fit the model, using the <em>ugarchfit</em> function. This need a model spec and the data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">ugarchfit</span>(<span class="at">spec =</span> model, </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s look at the model output:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+*---------------------------------*
+*          GARCH Model Fit        *
+*---------------------------------*
+
+Conditional Variance Dynamics   
+-----------------------------------
+GARCH Model : sGARCH(1,1)
+Mean Model  : ARFIMA(0,0,0)
+Distribution    : norm 
+
+Optimal Parameters
+------------------------------------
+        Estimate  Std. Error  t value Pr(&gt;|t|)
+omega   0.000024    0.000004   5.6205        0
+alpha1  0.192305    0.029017   6.6273        0
+beta1   0.733335    0.033104  22.1526        0
+
+Robust Standard Errors:
+        Estimate  Std. Error  t value Pr(&gt;|t|)
+omega   0.000024    0.000008   2.8792 0.003987
+alpha1  0.192305    0.048982   3.9260 0.000086
+beta1   0.733335    0.054924  13.3519 0.000000
+
+LogLikelihood : 5177.554 
+
+Information Criteria
+------------------------------------
+                    
+Akaike       -5.5343
+Bayes        -5.5254
+Shibata      -5.5343
+Hannan-Quinn -5.5310
+
+Weighted Ljung-Box Test on Standardized Residuals
+------------------------------------
+                        statistic  p-value
+Lag[1]                      7.953 0.004800
+Lag[2*(p+q)+(p+q)-1][2]     7.978 0.006556
+Lag[4*(p+q)+(p+q)-1][5]     8.647 0.020309
+d.o.f=0
+H0 : No serial correlation
+
+Weighted Ljung-Box Test on Standardized Squared Residuals
+------------------------------------
+                        statistic p-value
+Lag[1]                     0.3519  0.5530
+Lag[2*(p+q)+(p+q)-1][5]    0.8785  0.8865
+Lag[4*(p+q)+(p+q)-1][9]    1.6848  0.9391
+d.o.f=2
+
+Weighted ARCH LM Tests
+------------------------------------
+            Statistic Shape Scale P-Value
+ARCH Lag[3]   0.08401 0.500 2.000  0.7719
+ARCH Lag[5]   0.32313 1.440 1.667  0.9340
+ARCH Lag[7]   0.66864 2.315 1.543  0.9607
+
+Nyblom stability test
+------------------------------------
+Joint Statistic:  0.7621
+Individual Statistics:             
+omega  0.2437
+alpha1 0.1213
+beta1  0.1726
+
+Asymptotic Critical Values (10% 5% 1%)
+Joint Statistic:         0.846 1.01 1.35
+Individual Statistic:    0.35 0.47 0.75
+
+Sign Bias Test
+------------------------------------
+                   t-value   prob sig
+Sign Bias           0.2343 0.8148    
+Negative Sign Bias  0.8717 0.3835    
+Positive Sign Bias  0.5900 0.5553    
+Joint Effect        1.4856 0.6856    
+
+
+Adjusted Pearson Goodness-of-Fit Test:
+------------------------------------
+  group statistic p-value(g-1)
+1    20     134.2    2.337e-19
+2    30     151.1    1.867e-18
+3    40     149.8    6.698e-15
+4    50     173.5    8.176e-16
+
+
+Elapsed time : 0.122704 </code></pre>
+</div>
+</div>
+<p>It is very long with a lot of test results, but the main infromation is the parameter estimates. In this case, we estimate a model with <span class="math inline">\omega = 0.000019</span>, <span class="math inline">\alpha_1 = 0.162506</span> and <span class="math inline">\beta_1 = 0.783419</span>. Note that <span class="math inline">\alpha_1+\beta_1 = 0.946 &lt;1</span>, indicating that we have a stationary GARCH(1,1) model (given other model assumptions are fulfilled).</p>
+<p>Let’s plot the time series with the fitted <span class="math inline">\sigma_t</span> as a confidence interval.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="9_forecasting_garch_R_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<p><img src="9_forecasting_garch_R_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>The plotting function has many plots, which can be specified using the <em>which</em> argument. You can also run <em>plot(fit)</em> and select from a list of 12 plots in the console, many of which can be used to assess the residuals. The list of plots are given below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Make a plot <span class="fu">selection</span> (or <span class="dv">0</span> to exit)<span class="sc">:</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a> <span class="dv">1</span><span class="sc">:</span>   Series with <span class="dv">2</span> Conditional SD Superimposed</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a> <span class="dv">2</span><span class="sc">:</span>   Series with <span class="dv">1</span>% VaR Limits</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a> <span class="dv">3</span><span class="sc">:</span>   Conditional <span class="fu">SD</span> (vs <span class="sc">|</span>returns<span class="sc">|</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a> <span class="dv">4</span><span class="sc">:</span>   ACF of Observations</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a> <span class="dv">5</span><span class="sc">:</span>   ACF of Squared Observations</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a> <span class="dv">6</span><span class="sc">:</span>   ACF of Absolute Observations</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a> <span class="dv">7</span><span class="sc">:</span>   Cross Correlation</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a> <span class="dv">8</span><span class="sc">:</span>   Empirical Density of Standardized Residuals</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a> <span class="dv">9</span><span class="sc">:</span>   QQ<span class="sc">-</span>Plot of Standardized Residuals</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span><span class="sc">:</span>   ACF of Standardized Residuals</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="dv">11</span><span class="sc">:</span>   ACF of Squared Standardized Residuals</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="dv">12</span><span class="sc">:</span>   News<span class="sc">-</span>Impact Curve</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s look the residual related plots:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit, <span class="at">which =</span> <span class="dv">8</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit, <span class="at">which =</span> <span class="dv">9</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit, <span class="at">which =</span> <span class="dv">10</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit, <span class="at">which =</span> <span class="dv">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="9_forecasting_garch_R_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We can see some heavy tail behavor. Maybe we should try a t-distribution instead.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">ugarchspec</span>(<span class="at">variance.model =</span> <span class="fu">list</span>(<span class="at">model =</span> <span class="st">"sGARCH"</span>, </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">garchOrder =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>)),</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">mean.model =</span> <span class="fu">list</span>(<span class="at">armaOrder =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), <span class="at">include.mean =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">distribution.model =</span> <span class="st">"std"</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">ugarchfit</span>(<span class="at">spec =</span> model2, </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> train)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit2, <span class="at">which =</span> <span class="dv">8</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit2, <span class="at">which =</span> <span class="dv">9</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit2, <span class="at">which =</span> <span class="dv">10</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit2, <span class="at">which =</span> <span class="dv">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="9_forecasting_garch_R_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This looks much better. Let us use this as our model and forecast 10 steps ahead.</p>
+<div class="cell">
+
+</div>
+<p>In this case, width of the prediction interval is slowly increasing. We can have a look at the long term forecast, increasing the n.ahead to 500.</p>
+<div class="cell">
+
+</div>
+<p>The ugarchforecast function also has a rolling forecast option, which is more relevant in this context. The point is to do a short term forecast, but add information as time goes by. The argument n.roll controlls how many rolling forecast should be performed and needs to be run with the out.sample argument, which holds out observations for the forecast. We need to set out.sample <span class="math inline">\ge</span> n.roll.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">=</span> <span class="fu">getspec</span>(fit2);</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setfixed</span>(spec) <span class="ot">&lt;-</span> <span class="fu">as.list</span>(<span class="fu">coef</span>(fit2));</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>fc <span class="ot">&lt;-</span> <span class="fu">ugarchforecast</span>(spec, </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> msft,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">n.ahead =</span> <span class="dv">1</span>, </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">n.roll =</span> <span class="dv">200</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">out.sample =</span><span class="dv">200</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fc, <span class="at">which =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="9_forecasting_garch_R_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Clearly, you get more dynamics by doing a rolling forecast, than forecasting 100 steps ahead. This is also the typical application. How will the return distribution of a stock look like tomorrow?</p>
+<p>We can also calculate accuracy measures on forecast. This is more relevant for ARMA-GARCH models.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fpm</span>(fc) <span class="co"># forecast performance measures</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           MSE        MAE DAC
+1 0.0004709056 0.01644535   0</code></pre>
+</div>
+</div>
+</section>
+<section id="arma-garch" class="level2">
+<h2 class="anchored" data-anchor-id="arma-garch">ARMA-GARCH</h2>
+<p>We can also fit a ARMA-GARCH model to the data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>model3 <span class="ot">&lt;-</span> <span class="fu">ugarchspec</span>(<span class="at">variance.model =</span> <span class="fu">list</span>(<span class="at">model =</span> <span class="st">"sGARCH"</span>, </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">garchOrder =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>)),</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">mean.model =</span> <span class="fu">list</span>(<span class="at">armaOrder =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="at">include.mean =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">distribution.model =</span> <span class="st">"std"</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>fit3 <span class="ot">&lt;-</span> <span class="fu">ugarchfit</span>(<span class="at">spec =</span> model3, </span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You should of course, check model assumption by considering the residuals. Let’s just check out the forecast.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">=</span> <span class="fu">getspec</span>(fit3);</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setfixed</span>(spec) <span class="ot">&lt;-</span> <span class="fu">as.list</span>(<span class="fu">coef</span>(fit3));</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>fc3 <span class="ot">&lt;-</span> <span class="fu">ugarchforecast</span>(spec, </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> msft,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">n.ahead =</span> <span class="dv">1</span>, </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">n.roll =</span> <span class="dv">200</span>,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">out.sample =</span><span class="dv">200</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fc3, <span class="at">which =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="9_forecasting_garch_R_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rbind</span>(<span class="st">"GARCH"</span><span class="ot">=</span><span class="fu">fpm</span>(fc),</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>      <span class="st">"ARMA-GARCH"</span><span class="ot">=</span><span class="fu">fpm</span>(fc3))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                    MSE        MAE   DAC
+GARCH      0.0004709056 0.01644535 0.000
+ARMA-GARCH 0.0004741512 0.01663903 0.505</code></pre>
+</div>
+</div>
+<p>It seems the pure GARCH model is better, except for the directional accuracy. Accurately predicting the return of tomorrows is difficult. But there may be other contexts where a ARMA-GARCH model is more suited.</p>
+</section>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
+<ol type="1">
+<li><p>Fit a ARCH(r), with <span class="math inline">r=1,2,3</span> model to Microsoft data and compare AIC with the GARCH(1,1).</p></li>
+<li><p>Choose another stock and fit an ARCH(1) and a GARCH(1,1) model to that. Consider using a t-distribution instead of normal for the residuals.</p></li>
+</ol>
 </section>
 <section id="references" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
