@@ -139,6 +139,8 @@ We can also calculate accuracy measures on forecast. This is more relevant for A
 fpm(fc) # forecast performance measures
 ```
 
+We can simulate from a fitted model using the *ugarchsim* function. Check out the help file. 
+
 ## ARMA-GARCH
 We can also fit a ARMA-GARCH model to the data. 
 ```{r, echo = T}

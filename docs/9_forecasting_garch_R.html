@@ -569,7 +569,7 @@ Adjusted Pearson Goodness-of-Fit Test:
 4    50     173.5    8.176e-16
 
 
-Elapsed time : 0.122704 </code></pre>
+Elapsed time : 0.135313 </code></pre>
 </div>
 </div>
 <p>It is very long with a lot of test results, but the main infromation is the parameter estimates. In this case, we estimate a model with <span class="math inline">\omega = 0.000019</span>, <span class="math inline">\alpha_1 = 0.162506</span> and <span class="math inline">\beta_1 = 0.783419</span>. Note that <span class="math inline">\alpha_1+\beta_1 = 0.946 &lt;1</span>, indicating that we have a stationary GARCH(1,1) model (given other model assumptions are fulfilled).</p>
@@ -656,6 +656,7 @@ Elapsed time : 0.122704 </code></pre>
 1 0.0004709056 0.01644535   0</code></pre>
 </div>
 </div>
+<p>We can simulate from a fitted model using the <em>ugarchsim</em> function. Check out the help file.</p>
 </section>
 <section id="arma-garch" class="level2">
 <h2 class="anchored" data-anchor-id="arma-garch">ARMA-GARCH</h2>
@@ -689,12 +690,12 @@ GARCH      0.0004709056 0.01644535 0.000
 ARMA-GARCH 0.0004741512 0.01663903 0.505</code></pre>
 </div>
 </div>
-<p>It seems the pure GARCH model is better, except for the directional accuracy. Accurately predicting the return of tomorrows is difficult. But there may be other contexts where a ARMA-GARCH model is more suited.</p>
+<p>It seems the pure GARCH model is better, except for the directional accuracy. Accurately predicting the return of tomorrows is difficult. But there may be other contexts where an ARMA-GARCH model is more suited.</p>
 </section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
 <ol type="1">
-<li><p>Fit a ARCH(r), with <span class="math inline">r=1,2,3</span> model to Microsoft data and compare AIC with the GARCH(1,1).</p></li>
+<li><p>Fit a ARCH(r), with <span class="math inline">r=1,2,3</span> model to Microsoft data and compare AIC with the GARCH(1,1). Would this any of these models be an improvement in terms of AIC?</p></li>
 <li><p>Choose another stock and fit an ARCH(1) and a GARCH(1,1) model to that. Consider using a t-distribution instead of normal for the residuals.</p></li>
 </ol>
 </section>
