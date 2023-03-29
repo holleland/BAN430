@@ -485,15 +485,15 @@ y_t &amp;= \sigma_t\,\varepsilon_t,\\
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting seed for reproduciblity</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>nT <span class="ot">=</span> <span class="dv">1000</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>a0 <span class="ot">=</span> <span class="fl">1.</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>omg <span class="ot">=</span> <span class="fl">1.2</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>a1 <span class="ot">=</span> <span class="fl">0.4</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">=</span> <span class="fl">0.5</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Initiating y and sigma</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> sig <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">sqrt</span>(a0<span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>a1<span class="sc">-</span>b1)),</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> sig <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">sqrt</span>(omg<span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>a1<span class="sc">-</span>b1)),</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                nT)</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation: </span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(t <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>nT){</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  sig[t] <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(a0<span class="sc">+</span>a1<span class="sc">*</span>y[t<span class="dv">-1</span>]<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>b1<span class="sc">*</span>sig[t<span class="dv">-1</span>]<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  sig[t] <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(omg<span class="sc">+</span>a1<span class="sc">*</span>y[t<span class="dv">-1</span>]<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>b1<span class="sc">*</span>sig[t<span class="dv">-1</span>]<span class="sc">^</span><span class="dv">2</span>)</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  y[t]   <span class="ot">&lt;-</span> sig[t]<span class="sc">*</span><span class="fu">rnorm</span>(<span class="dv">1</span>)</span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># tsibble object: </span></span>

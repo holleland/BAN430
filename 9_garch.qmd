@@ -62,15 +62,15 @@ library(tidyverse)
 # Setting seed for reproduciblity
 set.seed(12345)
 nT = 1000
-a0 = 1.
+omg = 1.2
 a1 = 0.4
 b1 = 0.5
 # Initiating y and sigma
-y <- sig <- rep(sqrt(a0/(1-a1-b1)),
+y <- sig <- rep(sqrt(omg/(1-a1-b1)),
                 nT)
 # Simulation: 
 for(t in 2:nT){
-  sig[t] <- sqrt(a0+a1*y[t-1]^2+b1*sig[t-1]^2)
+  sig[t] <- sqrt(omg+a1*y[t-1]^2+b1*sig[t-1]^2)
   y[t]   <- sig[t]*rnorm(1)
 }
 # tsibble object: 
