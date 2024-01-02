@@ -10,7 +10,7 @@ options(knitr.kable.NA = '')
 library(dplyr)
 library(kableExtra)
 readxl::read_excel("lecturePlan.xlsx", sheet = "Sheet3",
-                           col_types= rep("text",3))[,-1] %>%
+                           col_types= rep("text",3))[,-1] %>% 
   kbl() %>%
   kable_styling(bootstrap_options = c("condensed", "hover"),
                 fixed_thead = T) %>%

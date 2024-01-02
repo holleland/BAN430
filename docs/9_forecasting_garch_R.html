@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.3.433">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,9 +17,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -46,43 +47,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -120,7 +91,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -158,29 +130,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <span class="navbar-title">BAN430 Forecasting</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page">
+    <a class="nav-link active" href="./index.html" rel="" target="" aria-current="page">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html">
+    <a class="nav-link" href="./about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./9_Volatitiliy_forecasting.html">9 Volatility forecasting</a></li><li class="breadcrumb-item"><a href="./9_forecasting_garch_R.html">Forecasting volatility in R</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -188,257 +167,294 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
-      <div class="mt-2 flex-shrink-0 align-items-center">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Course overview</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course overview</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">1 R and Rstudio</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+ <span class="menu-text">1 R and Rstudio</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./1_installingrandrstudio.html" class="sidebar-item-text sidebar-link">Installing R and Rstudio</a>
+  <a href="./1_installingrandrstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Installing R and Rstudio</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./1_rrecap.html" class="sidebar-item-text sidebar-link">Recap R</a>
+  <a href="./1_rrecap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recap R</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">2 Time series basics</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">2 Time series basics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./2_timeseriesgraphics.html" class="sidebar-item-text sidebar-link">Time series basics</a>
+  <a href="./2_timeseriesgraphics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Time series basics</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./3_decomposition_intro.html" class="sidebar-item-text sidebar-link">3 Adjustments and decomposition</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <a href="./3_decomposition_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 Adjustments and decomposition</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./3_adjustments.html" class="sidebar-item-text sidebar-link">Transformations and adjustments</a>
+  <a href="./3_adjustments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Transformations and adjustments</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./3_timeseriesdecomposition.html" class="sidebar-item-text sidebar-link">Moving averages and Decomposition</a>
+  <a href="./3_timeseriesdecomposition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Moving averages and Decomposition</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./3_exercises.html" class="sidebar-item-text sidebar-link">Exercises</a>
+  <a href="./3_exercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">4 Time series features</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+ <span class="menu-text">4 Time series features</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./4_timeseriesfeatures.html" class="sidebar-item-text sidebar-link">Time series features</a>
+  <a href="./4_timeseriesfeatures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Time series features</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./4_features.html" class="sidebar-item-text sidebar-link">Features</a>
+  <a href="./4_features.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Features</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./4_tourismexample.html" class="sidebar-item-text sidebar-link">Exploring Australian tourism example</a>
+  <a href="./4_tourismexample.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exploring Australian tourism example</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./4_exercises.html" class="sidebar-item-text sidebar-link">Exercises</a>
+  <a href="./4_exercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">5 Forecasters toolbox</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+ <span class="menu-text">5 Forecasters toolbox</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./5_forecasterstoolbox.html" class="sidebar-item-text sidebar-link">Forecasters toolbox</a>
+  <a href="./5_forecasterstoolbox.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Forecasters toolbox</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">6 Judgemental forecast</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+ <span class="menu-text">6 Judgemental forecast</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./6_judgementalforecast.html" class="sidebar-item-text sidebar-link">Judgemental forecast</a>
+  <a href="./6_judgementalforecast.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Judgemental forecast</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">7 Regression models</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+ <span class="menu-text">7 Regression models</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./7_regressionmodels.html" class="sidebar-item-text sidebar-link">Regression models</a>
+  <a href="./7_regressionmodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regression models</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">8 ARIMA models</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">
+ <span class="menu-text">8 ARIMA models</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./8_ARIMAmodels.html" class="sidebar-item-text sidebar-link">ARIMA models</a>
+  <a href="./8_ARIMAmodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ARIMA models</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./9_Volatitiliy_forecasting.html" class="sidebar-item-text sidebar-link">9 Volatility forecasting</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">
+            <a href="./9_Volatitiliy_forecasting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9 Volatility forecasting</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./9_arch.html" class="sidebar-item-text sidebar-link">ARCH models</a>
+  <a href="./9_arch.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ARCH models</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./9_garch.html" class="sidebar-item-text sidebar-link">GARCH models</a>
+  <a href="./9_garch.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GARCH models</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./9_forecast_garch.html" class="sidebar-item-text sidebar-link">Forecasting with GARCH</a>
+  <a href="./9_forecast_garch.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Forecasting with GARCH</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./9_forecasting_garch_R.html" class="sidebar-item-text sidebar-link active">Forecasting volatility in R</a>
+  <a href="./9_forecasting_garch_R.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Forecasting volatility in R</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false">10 Practical forecasting issues</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false">
+ <span class="menu-text">10 Practical forecasting issues</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10_Practicle_forecasting_issues.html" class="sidebar-item-text sidebar-link">Practicle forecasting issues</a>
+  <a href="./10_Practicle_forecasting_issues.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Practicle forecasting issues</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="false">Workshops</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="false">
+ <span class="menu-text">Workshops</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./W1_traffic.html" class="sidebar-item-text sidebar-link">WS1: Bergen traffic forecast</a>
+  <a href="./W1_traffic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">WS1: Bergen traffic forecast</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./W2_electricityprices.html" class="sidebar-item-text sidebar-link">WS2: Electricity prices</a>
+  <a href="./W2_electricityprices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">WS2: Electricity prices</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="false">Appendix</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="false">
+ <span class="menu-text">Appendix</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12_data_appendix.html" class="sidebar-item-text sidebar-link">Data</a>
+  <a href="./12_data_appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     
 <!-- main -->
@@ -448,9 +464,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="forecasting-volatility-in-r" class="level2">
 <h2 class="anchored" data-anchor-id="forecasting-volatility-in-r">Forecasting volatility in R</h2>
-<div class="cell">
-
-</div>
 <p>The fable package that we are using for everything else does not cover volatility modeling. We could maybe trick it, by using the ARMA representation of a GARCH model and back-transforming the estimates to the GARCH parameters, but this is not very convenient. It is also useful for you as students to see something other than the tidy packages.</p>
 <p>We use a package called <a href="https://cran.r-project.org/web/packages/rugarch/rugarch.pdf">rugarch</a> for fitting and forecasting GARCH models. You find the vignette <em>Introduction to the rugarch package</em> <a href="https://cran.r-project.org/web/packages/rugarch/vignettes/Introduction_to_the_rugarch_package.pdf">here</a>. Install and load the package.</p>
 <div class="cell">
@@ -495,57 +508,57 @@ Distribution    : norm
 Optimal Parameters
 ------------------------------------
         Estimate  Std. Error  t value Pr(&gt;|t|)
-omega   0.000024    0.000004   5.6082        0
-alpha1  0.192000    0.029017   6.6167        0
-beta1   0.733769    0.033129  22.1490        0
+omega   0.000019    0.000004   4.4035  1.1e-05
+alpha1  0.161345    0.029815   5.4116  0.0e+00
+beta1   0.784892    0.035819  21.9129  0.0e+00
 
 Robust Standard Errors:
         Estimate  Std. Error  t value Pr(&gt;|t|)
-omega   0.000024    0.000008   2.8702 0.004102
-alpha1  0.192000    0.049013   3.9173 0.000090
-beta1   0.733769    0.055023  13.3356 0.000000
+omega   0.000019    0.000010   1.9200 0.054852
+alpha1  0.161345    0.061390   2.6282 0.008583
+beta1   0.784892    0.077009  10.1922 0.000000
 
-LogLikelihood : 5182.908 
+LogLikelihood : 5628.1 
 
 Information Criteria
 ------------------------------------
                     
-Akaike       -5.5341
-Bayes        -5.5252
-Shibata      -5.5341
-Hannan-Quinn -5.5308
+Akaike       -5.4533
+Bayes        -5.4451
+Shibata      -5.4533
+Hannan-Quinn -5.4503
 
 Weighted Ljung-Box Test on Standardized Residuals
 ------------------------------------
-                        statistic  p-value
-Lag[1]                      7.889 0.004973
-Lag[2*(p+q)+(p+q)-1][2]     7.920 0.006791
-Lag[4*(p+q)+(p+q)-1][5]     8.621 0.020627
+                        statistic p-value
+Lag[1]                      4.409 0.03576
+Lag[2*(p+q)+(p+q)-1][2]     4.797 0.04608
+Lag[4*(p+q)+(p+q)-1][5]     5.417 0.12299
 d.o.f=0
 H0 : No serial correlation
 
 Weighted Ljung-Box Test on Standardized Squared Residuals
 ------------------------------------
                         statistic p-value
-Lag[1]                     0.3520  0.5530
-Lag[2*(p+q)+(p+q)-1][5]    0.8768  0.8869
-Lag[4*(p+q)+(p+q)-1][9]    1.6839  0.9392
+Lag[1]                     0.1962  0.6578
+Lag[2*(p+q)+(p+q)-1][5]    0.7448  0.9142
+Lag[4*(p+q)+(p+q)-1][9]    2.0135  0.9034
 d.o.f=2
 
 Weighted ARCH LM Tests
 ------------------------------------
             Statistic Shape Scale P-Value
-ARCH Lag[3]   0.08574 0.500 2.000  0.7697
-ARCH Lag[5]   0.32698 1.440 1.667  0.9330
-ARCH Lag[7]   0.67531 2.315 1.543  0.9599
+ARCH Lag[3]    0.1215 0.500 2.000  0.7274
+ARCH Lag[5]    0.4727 1.440 1.667  0.8916
+ARCH Lag[7]    1.2052 2.315 1.543  0.8781
 
 Nyblom stability test
 ------------------------------------
-Joint Statistic:  0.7671
+Joint Statistic:  1.3931
 Individual Statistics:             
-omega  0.2431
-alpha1 0.1213
-beta1  0.1731
+omega  0.2307
+alpha1 0.1970
+beta1  0.3054
 
 Asymptotic Critical Values (10% 5% 1%)
 Joint Statistic:         0.846 1.01 1.35
@@ -554,22 +567,22 @@ Individual Statistic:    0.35 0.47 0.75
 Sign Bias Test
 ------------------------------------
                    t-value   prob sig
-Sign Bias           0.2200 0.8259    
-Negative Sign Bias  0.8706 0.3841    
-Positive Sign Bias  0.5887 0.5561    
-Joint Effect        1.5046 0.6812    
+Sign Bias          0.09702 0.9227    
+Negative Sign Bias 1.10050 0.2712    
+Positive Sign Bias 0.54481 0.5859    
+Joint Effect       2.38429 0.4966    
 
 
 Adjusted Pearson Goodness-of-Fit Test:
 ------------------------------------
   group statistic p-value(g-1)
-1    20     132.5    4.926e-19
-2    30     148.2    6.096e-18
-3    40     148.2    1.243e-14
-4    50     171.9    1.450e-15
+1    20     138.1    4.219e-20
+2    30     147.1    9.552e-18
+3    40     158.3    2.666e-16
+4    50     176.5    2.660e-16
 
 
-Elapsed time : 0.1032512 </code></pre>
+Elapsed time : 0.103456 </code></pre>
 </div>
 </div>
 <p>It is very long with a lot of test results, but the main infromation is the parameter estimates. In this case, we estimate a model with <span class="math inline">\omega = 0.000019</span>, <span class="math inline">\alpha_1 = 0.162506</span> and <span class="math inline">\beta_1 = 0.783419</span>. Note that <span class="math inline">\alpha_1+\beta_1 = 0.946 &lt;1</span>, indicating that we have a stationary GARCH(1,1) model (given other model assumptions are fulfilled).</p>
@@ -626,13 +639,7 @@ Elapsed time : 0.1032512 </code></pre>
 </div>
 </div>
 <p>This looks much better. Let us use this as our model and forecast 10 steps ahead.</p>
-<div class="cell">
-
-</div>
 <p>In this case, width of the prediction interval is slowly increasing. We can have a look at the long term forecast, increasing the n.ahead to 500.</p>
-<div class="cell">
-
-</div>
 <p>The ugarchforecast function also has a rolling forecast option, which is more relevant in this context. The point is to do a short term forecast, but add information as time goes by. The argument n.roll controlls how many rolling forecast should be performed and needs to be run with the out.sample argument, which holds out observations for the forecast. We need to set out.sample <span class="math inline">\ge</span> n.roll.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">=</span> <span class="fu">getspec</span>(fit2);</span>
@@ -652,8 +659,8 @@ Elapsed time : 0.1032512 </code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fpm</span>(fc) <span class="co"># forecast performance measures</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>          MSE        MAE DAC
-1 0.000469591 0.01639728   0</code></pre>
+<pre><code>           MSE        MAE DAC
+1 0.0002153313 0.01117621   0</code></pre>
 </div>
 </div>
 <p>We can simulate from a fitted model using the <em>ugarchsim</em> function. Check out the help file.</p>
@@ -685,9 +692,9 @@ Elapsed time : 0.1032512 </code></pre>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rbind</span>(<span class="st">"GARCH"</span><span class="ot">=</span><span class="fu">fpm</span>(fc),</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>      <span class="st">"ARMA-GARCH"</span><span class="ot">=</span><span class="fu">fpm</span>(fc3))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                   MSE        MAE  DAC
-GARCH      0.000469591 0.01639728 0.00
-ARMA-GARCH 0.000472206 0.01657505 0.51</code></pre>
+<pre><code>                    MSE        MAE   DAC
+GARCH      0.0002153313 0.01117621 0.000
+ARMA-GARCH 0.0002115338 0.01099786 0.595</code></pre>
 </div>
 </div>
 <p>It seems the pure GARCH model is better, except for the directional accuracy. Accurately predicting the return of tomorrows is difficult. But there may be other contexts where an ARMA-GARCH model is more suited.</p>
@@ -737,9 +744,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -804,6 +825,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
