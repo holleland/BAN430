@@ -1,0 +1,94 @@
+## WS0: fpp3 and tsibble {.unnumbered}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message= FALSE)
+library(ggplot2)
+theme_set(theme_bw() + theme(strip.background = element_rect(fill = "white", color = "transparent"),
+                             panel.grid.minor = element_blank(), 
+                             panel.grid.major = element_blank()))
+```
+
+### Introduction
+
+<!-- ![](bilder/traffic2.PNG){width="50%"} -->
+
+The point of this workshop is to get you familiarized with the *fpp3* package and especially the *tsibble* object. This is the most important R structure of this course and we will therefore spend some time getting to know it better. The *tsibble* is the time series equivalent of a *tibble* object in the tidyverse. It is a data frame which is indexed by a time variable. To create a *tsibble*, we need to specify which column in the data is the time variable (the index variable). Here is an example, creating a tibble object from data on the temperature in Bergen: 
+
+```{r}
+library(fpp3) 
+library(tidyverse)
+# read the data: 
+temp <- read_csv2(
+  "https://raw.githubusercontent.com/holleland/BAN430/master/data/bergen_temp.csv")
+temp
+
+# Convert date column from character to date and temp to numeric:
+temp <- temp %>% 
+  mutate(date = as.Date(date, format = "%d.%m.%Y"),
+         temp = as.numeric(temp))
+temp
+
+# Creating a tsibble
+temp.ts <- temp %>% as_tsibble(index = date)
+temp.ts
+```
+
+Once we have made our *tsibble* object, the *fpp3* package (or really the tsibble package) has many useful functions we can apply to that object, such as plotting functions. For instance, we can create a timeplot of the Bergen temperatures, by the following code: 
+```{r}
+temp.ts %>% autoplot(temp)
+```
+
+
+This is a simple time series with only one variable (the daily mean temperature in Bergen). Often the data we study will consist of multiple time series. Then we need to provide information on which columns the identify the individual time series. This is called the *key* variable of the *tsibble* object. Let us consider an example with temperature in Bergen, Oslo, Trondheim and Stavanger. 
+
+```{r}
+citytemp <- read_csv2(
+  "https://raw.githubusercontent.com/holleland/BAN430/master/data//citytemp.csv")
+citytemp.ts <- citytemp %>% 
+  mutate(date = as.Date(date, format = "%d.%m.%Y")) %>% 
+  filter(!is.na(date)) %>%  # Remove NA-values
+  # Create tsibble object
+  as_tsibble(index = date, 
+             key = c("name","station"))
+citytemp.ts
+citytemp.ts %>% autoplot()
+```
+
+
+### Exercises
+
+1. Run the code above on your own. We will use the same data sets later, but for now, just check that you get the same figures. 
+
+2. Do [Exercise 3](https://otexts.com/fpp3/graphics-exercises.html). All the code you need is given in the exercise. Note, you do not need to download the csv-file, but can load it directly to R using this link (replacing the first line of code): 
+```{r, eval = FALSE}
+tute1 <- readr::read_csv("https://bit.ly/fpptute1")
+```
+
+3. Do [Exercise 4](https://otexts.com/fpp3/graphics-exercises.html).
+```{r}
+# install.packages("USgas")
+library(USgas)
+head(us_total)
+```
+
+4. Continue with the temperature data from the largest cities in Norway. Create a 
+
+a) timeplot
+b) seasonal plot 
+c) seasonal subseries plot
+
+5. Create a autocorrelation plot of the temperature data for Bergen using default settings. Increase the maximum number of lags to 400. Interpret the latter plot.  
+
+6. Create a tsibble consisting of white noise (uncorrelated variables) of length 100. Create an autocorrelation plot for the time series you have simulated. Interpret the plot. 
+
+7. Aggregate the temperature time series for the 4 largest cities in Norway from daily to weekly and monthly average temperatures. Create two illustrative figures for each. 
+
+8. Temperatures in the Norwegian cities all follow the same seasonality (cold in winter - warm in summer). Create a graphic illustrating the correlation between these time series. Hint: [*GGally::ggpairs()*](https://otexts.com/fpp3/scatterplots.html#scatterplot-matrices).
+
+9. Using the offshore wind power data (available on Canvas), create illustrative figures for Utsira Nord and Sørlige Nordsjø 2 for different time scale aggregates (hourly, daily, weekly, monthly?). Can you a detect trend/cycle/season based on your figures? What about the relationship between the two locations? Is the dependence linear? Does this depend on the time scale you use? If you where to decide where to build the first wind farm solely based on the data you have, which would you choose and why? Discuss with your neighbors.
+
+Additional exercises: Recommend  exercises [5, 7, 9 and 10](https://otexts.com/fpp3/graphics-exercises.html)
+
+
+
+

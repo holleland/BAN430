@@ -65,6 +65,7 @@ website:
           - 10_Practicle_forecasting_issues.qmd
       - section: "Workshops"
         contents: 
+          - W0_tsibble.qmd
           - W1_traffic.qmd
           - W2_electricityprices.qmd
       - section: "Appendix"

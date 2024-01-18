@@ -382,6 +382,12 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./W0_tsibble.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">WS0: fpp3 and tsibble</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./W1_traffic.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">WS1: Bergen traffic forecast</span></a>
   </div>
@@ -430,6 +436,11 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="forecasting-with-garch" class="level2">
 <h2 class="anchored" data-anchor-id="forecasting-with-garch">Forecasting with GARCH</h2>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggplot2' was built under R version 4.3.2</code></pre>
+</div>
+</div>
 <p>Forecasting with an ARCH/GARCH model is done by continuing the iteration of the model beyond the data that we have. If we set <span class="math inline">t=T+1</span> for an GARCH(1,1) we get the equation <span class="math display">\widehat\sigma_{T+1|T}^2 =\mathbb E\,( y_{T+1}^2|\mathcal F_T) =\widehat\omega+\widehat\alpha_1\,y_{T}^2 +\widehat\beta_1\, \widehat\sigma_{T}^2</span> where <span class="math inline">\widehat\omega,\widehat\alpha_1,\widehat\beta_1</span> are estimated parameters, <span class="math inline">y_T^2</span> is observed at time <span class="math inline">T</span> and <span class="math display">\widehat\sigma_{T}^2  = \widehat\omega\sum_{j=0}^{T-1} \widehat\beta_1^j+\widehat\alpha_1\sum_{j=1}^{T-1}\widehat\beta_1^{j-1}\,y_{T-j}^2 +\widehat\beta_1^T\, \widehat\sigma_{1}^2,</span> and <span class="math inline">\widehat\sigma_1^2 = \widehat\omega/(1-\widehat\alpha_1-\widehat\beta_1)</span>. If <span class="math inline">\widehat\beta_1</span> is small and <span class="math inline">T</span> large, the initial value for <span class="math inline">\widehat\sigma_1^2</span> will not matter much.</p>
 <p>Multistep forecast is achieved by noticing that <span class="math inline">\widehat\sigma_{T+h|T}^2= \mathbb E\,(\sigma_{T+h}^2|\mathcal F_T)=\mathbb E\,(y_{T+h}^2|\mathcal F_T)</span>, such that <span class="math display">\begin{equation*}
 \begin{split}
