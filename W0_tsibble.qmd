@@ -77,15 +77,20 @@ a) timeplot
 b) seasonal plot 
 c) seasonal subseries plot
 
-5. Create a autocorrelation plot of the temperature data for Bergen using default settings. Increase the maximum number of lags to 400. Interpret the latter plot.  
+5. Aggregate the temperature time series for the 4 largest cities in Norway from daily to weekly and monthly average temperatures. Create two illustrative figures for each. 
 
-6. Create a tsibble consisting of white noise (uncorrelated variables) of length 100. Create an autocorrelation plot for the time series you have simulated. Interpret the plot. 
+6. Temperatures in the Norwegian cities all follow the same seasonality (cold in winter - warm in summer). Create a graphic illustrating the correlation between these time series. Hint: [*GGally::ggpairs()*](https://otexts.com/fpp3/scatterplots.html#scatterplot-matrices).
 
-7. Aggregate the temperature time series for the 4 largest cities in Norway from daily to weekly and monthly average temperatures. Create two illustrative figures for each. 
+7. Create a autocorrelation plot of the temperature data for Bergen using default settings. Increase the maximum number of lags to 400. Interpret the latter plot.  
 
-8. Temperatures in the Norwegian cities all follow the same seasonality (cold in winter - warm in summer). Create a graphic illustrating the correlation between these time series. Hint: [*GGally::ggpairs()*](https://otexts.com/fpp3/scatterplots.html#scatterplot-matrices).
+8. Create a tsibble consisting of white noise (uncorrelated variables) of length 100. Create an autocorrelation plot for the time series you have simulated. Interpret the plot. 
 
 9. Using the offshore wind power data (available on Canvas), create illustrative figures for Utsira Nord and Sørlige Nordsjø 2 for different time scale aggregates (hourly, daily, weekly, monthly?). Can you a detect trend/cycle/season based on your figures? What about the relationship between the two locations? Is the dependence linear? Does this depend on the time scale you use? If you where to decide where to build the first wind farm solely based on the data you have, which would you choose and why? Discuss with your neighbors.
+
+```{r, eval = FALSE}
+# Hint: 
+wind <- readRDS("OffshoreWindtwoLocationsFiveYears")
+```
 
 Additional exercises: Recommend  exercises [5, 7, 9 and 10](https://otexts.com/fpp3/graphics-exercises.html)
 
