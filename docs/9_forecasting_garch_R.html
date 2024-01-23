@@ -417,7 +417,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./W0_tsibble.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">WS0: fpp3 and tsibble</span></a>
+ <span class="menu-text">WS0: tsibble, graphics and decomposition</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -514,57 +514,57 @@ Distribution    : norm
 Optimal Parameters
 ------------------------------------
         Estimate  Std. Error  t value Pr(&gt;|t|)
-omega   0.000019    0.000004   4.4171    1e-05
-alpha1  0.162420    0.029880   5.4357    0e+00
-beta1   0.783119    0.035986  21.7619    0e+00
+omega   0.000019    0.000004   4.4448    9e-06
+alpha1  0.162835    0.029830   5.4589    0e+00
+beta1   0.782288    0.035899  21.7916    0e+00
 
 Robust Standard Errors:
         Estimate  Std. Error  t value Pr(&gt;|t|)
-omega   0.000019    0.000010   1.9242 0.054324
-alpha1  0.162420    0.061372   2.6465 0.008133
-beta1   0.783119    0.077335  10.1263 0.000000
+omega   0.000019    0.000010   1.9425 0.052077
+alpha1  0.162835    0.061056   2.6670 0.007654
+beta1   0.782288    0.076845  10.1801 0.000000
 
-LogLikelihood : 5656.269 
+LogLikelihood : 5665.526 
 
 Information Criteria
 ------------------------------------
                     
-Akaike       -5.4516
-Bayes        -5.4434
-Shibata      -5.4516
-Hannan-Quinn -5.4486
+Akaike       -5.4526
+Bayes        -5.4445
+Shibata      -5.4526
+Hannan-Quinn -5.4496
 
 Weighted Ljung-Box Test on Standardized Residuals
 ------------------------------------
                         statistic p-value
-Lag[1]                      4.159 0.04142
-Lag[2*(p+q)+(p+q)-1][2]     4.559 0.05337
-Lag[4*(p+q)+(p+q)-1][5]     5.165 0.14048
+Lag[1]                      4.124 0.04228
+Lag[2*(p+q)+(p+q)-1][2]     4.511 0.05497
+Lag[4*(p+q)+(p+q)-1][5]     5.109 0.14465
 d.o.f=0
 H0 : No serial correlation
 
 Weighted Ljung-Box Test on Standardized Squared Residuals
 ------------------------------------
                         statistic p-value
-Lag[1]                     0.2153  0.6426
-Lag[2*(p+q)+(p+q)-1][5]    0.7380  0.9155
-Lag[4*(p+q)+(p+q)-1][9]    2.0413  0.9000
+Lag[1]                     0.2175  0.6409
+Lag[2*(p+q)+(p+q)-1][5]    0.7419  0.9147
+Lag[4*(p+q)+(p+q)-1][9]    2.0367  0.9006
 d.o.f=2
 
 Weighted ARCH LM Tests
 ------------------------------------
             Statistic Shape Scale P-Value
-ARCH Lag[3]    0.1216 0.500 2.000  0.7273
-ARCH Lag[5]    0.4778 1.440 1.667  0.8902
-ARCH Lag[7]    1.2428 2.315 1.543  0.8711
+ARCH Lag[3]    0.1229 0.500 2.000  0.7259
+ARCH Lag[5]    0.4751 1.440 1.667  0.8910
+ARCH Lag[7]    1.2350 2.315 1.543  0.8726
 
 Nyblom stability test
 ------------------------------------
-Joint Statistic:  1.358
+Joint Statistic:  1.3344
 Individual Statistics:             
-omega  0.2317
-alpha1 0.1956
-beta1  0.3045
+omega  0.2293
+alpha1 0.1894
+beta1  0.2962
 
 Asymptotic Critical Values (10% 5% 1%)
 Joint Statistic:         0.846 1.01 1.35
@@ -573,22 +573,22 @@ Individual Statistic:    0.35 0.47 0.75
 Sign Bias Test
 ------------------------------------
                    t-value   prob sig
-Sign Bias           0.1039 0.9172    
-Negative Sign Bias  1.0763 0.2819    
-Positive Sign Bias  0.5509 0.5817    
-Joint Effect        2.3035 0.5118    
+Sign Bias           0.1084 0.9137    
+Negative Sign Bias  1.0791 0.2807    
+Positive Sign Bias  0.5583 0.5767    
+Joint Effect        2.3192 0.5089    
 
 
 Adjusted Pearson Goodness-of-Fit Test:
 ------------------------------------
   group statistic p-value(g-1)
-1    20     135.9    1.109e-19
-2    30     145.4    1.941e-17
-3    40     154.4    1.155e-15
-4    50     172.1    1.332e-15
+1    20     136.4    8.829e-20
+2    30     146.6    1.186e-17
+3    40     156.1    6.123e-16
+4    50     173.3    8.756e-16
 
 
-Elapsed time : 0.1333411 </code></pre>
+Elapsed time : 0.09329891 </code></pre>
 </div>
 </div>
 <p>It is very long with a lot of test results, but the main infromation is the parameter estimates. In this case, we estimate a model with <span class="math inline">\omega = 0.000019</span>, <span class="math inline">\alpha_1 = 0.162506</span> and <span class="math inline">\beta_1 = 0.783419</span>. Note that <span class="math inline">\alpha_1+\beta_1 = 0.946 &lt;1</span>, indicating that we have a stationary GARCH(1,1) model (given other model assumptions are fulfilled).</p>
@@ -666,7 +666,7 @@ Elapsed time : 0.1333411 </code></pre>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fpm</span>(fc) <span class="co"># forecast performance measures</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           MSE        MAE DAC
-1 0.0002024655 0.01075147   0</code></pre>
+1 0.0002028066 0.01080156   0</code></pre>
 </div>
 </div>
 <p>We can simulate from a fitted model using the <em>ugarchsim</em> function. Check out the help file.</p>
@@ -699,8 +699,8 @@ Elapsed time : 0.1333411 </code></pre>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>      <span class="st">"ARMA-GARCH"</span><span class="ot">=</span><span class="fu">fpm</span>(fc3))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                    MSE        MAE   DAC
-GARCH      0.0002024655 0.01075147 0.000
-ARMA-GARCH 0.0001986568 0.01058616 0.605</code></pre>
+GARCH      0.0002028066 0.01080156 0.000
+ARMA-GARCH 0.0001988596 0.01063341 0.605</code></pre>
 </div>
 </div>
 <p>It seems the pure GARCH model is better, except for the directional accuracy. Accurately predicting the return of tomorrows is difficult. But there may be other contexts where an ARMA-GARCH model is more suited.</p>
