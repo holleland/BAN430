@@ -107,8 +107,10 @@ wind <- readRDS("OffshoreWindtwoLocationsFiveYears.rds")
 
 
 a) Load the data using e.g. *read.csv2* indicated below. Convert the month column to a *yearmonth* type and *wholesale* as a tsibble.
-```{r, echo = TRUE, eval = FALSE}
-wholesale  <- read.csv2("https://raw.githubusercontent.com/holleland/BAN430/master/data/wholesale_and_retails_index_norway.csv", sep = ";")
+```{r, echo = TRUE, eval = TRUE}
+wholesale  <- read.csv2(
+  "https://raw.githubusercontent.com/holleland/BAN430/master/data/wholesale_and_retails_index_norway.csv", 
+  sep = ";")
 head(wholesale,3)
 ```
 b) Make a time plot.

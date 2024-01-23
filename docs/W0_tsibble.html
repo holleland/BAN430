@@ -640,8 +640,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Load the data using e.g.&nbsp;<em>read.csv2</em> indicated below. Convert the month column to a <em>yearmonth</em> type and <em>wholesale</em> as a tsibble.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>wholesale  <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"https://raw.githubusercontent.com/holleland/BAN430/master/data/wholesale_and_retails_index_norway.csv"</span>, <span class="at">sep =</span> <span class="st">";"</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(wholesale,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>wholesale  <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://raw.githubusercontent.com/holleland/BAN430/master/data/wholesale_and_retails_index_norway.csv"</span>, </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sep =</span> <span class="st">";"</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(wholesale,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    month wholesale_and_retail_sales_index
+1 2000M01                             50.5
+2 2000M02                             49.3
+3 2000M03                             53.8</code></pre>
+</div>
 </div>
 <ol start="2" type="a">
 <li>Make a time plot.</li>
