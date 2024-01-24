@@ -1,4 +1,4 @@
-## WS1: Bergen traffic forecast {.unnumbered}
+## WS3: Bergen traffic forecast {.unnumbered}
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning=FALSE, message= FALSE)
@@ -10,21 +10,20 @@ theme_set(theme_bw() + theme(strip.background = element_rect(fill = "white", col
 
 ### Introduction
 
-![](bilder/traffic2.PNG){width=50%}
+![](bilder/traffic2.PNG){width="50%"}
 
-In this workshop we will build a model for forecasting traffic in Bergen's busiest intersection *Danmarksplass*. The data is publicly available at [vegvesen.no/trafikkdata](https://www.vegvesen.no/trafikkdata) and published by The Norwegian Public Roads Administration. Forecasting traffic amount could be useful for anyone wanting to avoid traffic jams, but also important for government agencies with responsibilities related to road planning or public transport. 
+In this workshop we will build a model for forecasting traffic in Bergen's busiest intersection *Danmarksplass*. The data is publicly available at [vegvesen.no/trafikkdata](https://www.vegvesen.no/trafikkdata) and published by The Norwegian Public Roads Administration. Forecasting traffic amount could be useful for anyone wanting to avoid traffic jams, but also important for government agencies with responsibilities related to road planning or public transport.
 
-As you may imagine the amount of traffic varies depending on things such as time of day, which day of the week it is and public holidays. The peak hours are mostly associated with people traveling to or home from work, while the least busy hours will be in the middle of the night. In this exercise you will use raw observations from The Norwegian Public Roads Administration to forecast traffic passing through one of Bergen's traffic bottlenecks. 
+As you may imagine the amount of traffic varies depending on things such as time of day, which day of the week it is and public holidays. The peak hours are mostly associated with people traveling to or home from work, while the least busy hours will be in the middle of the night. In this exercise you will use raw observations from The Norwegian Public Roads Administration to forecast traffic passing through one of Bergen's traffic bottlenecks.
 
 Hopefully you will learn about
 
-- Graphical presentation of a time series
-- Building a linear time series regression model 
-- Useful transformations
-- Using dummy variables for seasonality 
-- Using fourier sequences for seasonality 
-- External predictor variables
-
+-   Graphical presentation of a time series
+-   Building a linear time series regression model
+-   Useful transformations
+-   Using dummy variables for seasonality
+-   Using fourier sequences for seasonality
+-   External predictor variables
 
 ### Data description
 
@@ -33,11 +32,12 @@ The data you will be using consists of the two columns
 -   datetime: date and hour of observation
 -   vehicles: the number of vehicles that has passed a sensor in the road the previous hour
 
-The observations are hourly and start from January 2018 to February 1st 2023 and are all from *Danmarksplass* (near the charging station). We add another location as predictor for Danmarksplass later in the case study to see if this may inform our forecasting model, but this data has the same structure (except that the vehicle column has a different name). 
+The observations are hourly and start from January 2018 to February 1st 2023 and are all from *Danmarksplass* (near the charging station). We add another location as predictor for Danmarksplass later in the case study to see if this may inform our forecasting model, but this data has the same structure (except that the vehicle column has a different name).
 
 ### Exercises
 
 1.  Load the data into your working environment. Make sure the columns are correctly formatted.
+
 ```{r, echo = TRUE, eval = FALSE}
 danmarksplass <- readr::read_csv(
   "https://raw.githubusercontent.com/holleland/BAN430/master/data/traffic_danmarksplass.csv")
@@ -100,19 +100,22 @@ log(vehicle) ~ season(period = "week")
 ```
 
 7.  In the model above, we used $24\cdot 7= 168$ predictors. We can do this, because we have so many data points. However, could we achieve something similar by using a fourier series? If $K<168/2 = 84$, this will reduce the number of parameters. Use the same transformation as you favored above and compare the model with a model using fourier predictors for the weekly season. Try different values of K and forecast for the first week of 2023. Evaluate the accuracy of the two models with AIC, AICc and CV.
+
 ```{r, echo = T, eval = FALSE}
 #| code-fold: true
 #| code-summary: "Code hint:"
 vehicles ~ fourier(K = 65, period = "week")
 ```
 
-8. Based on the number of observations here ($T\approx 45\,000$), which of AIC, AICc or CV would you prefer to use and why? 
+8.  Based on the number of observations here ($T\approx 45\,000$), which of AIC, AICc or CV would you prefer to use and why?
 
 9.  One issue you might see is that the model over-estimates the traffic on January 1st (which in 2023 is a Sunday, but it is also a public holiday). Could there be a public holiday effect? By loading the csv linked below, you will have a list of Norwegian holidays from 2008-Jan 2023. Add a dummy variable to your model of choice for public holiday (1 if holiday, 0 otherwise). Does this improve the model fit measures (AIC)?
+
 ```{r, eval = FALSE, echo = T}
 holidays <- read_csv(
   "https://raw.githubusercontent.com/holleland/BAN430/master/data/NorwegianHolidays_2008-jan2023.csv")$x
 ```
+
 ```{r, eval = FALSE, echo = T}
 #| code-fold: true
 #| code-summary: "Code hint:"
@@ -125,6 +128,7 @@ train <- danmarksplass %>% filter(year(datetime) < 2023)
 train %>% 
   model(holiday = TSLM(log(vehicle) ~ factor(holiday) + ...))
 ```
+
 10. Are there other dummies you could think of adding? Special events that might impact the traffic on a certain day or during a period (spike dummy) or permanently changing it from a certain point in time (step dummy)? Discuss.
 
 11. Fit a seasonal naive as benchmark model and compare it to the best model so far using RMSE, MAE, MAPE and MASE on the test set.
@@ -139,11 +143,12 @@ fit <- model(
 accuracy(fit)
 ```
 
-12. One hypothesis is that some of the traffic at Danmarkplass can be explained by the arrival of ferries at Halhjem, creating a peak in the number of cars arriving. This will only contribute to the traffic heading North, but let us test by adding a predictor for traffic at Moberg v/Lekven (a station on the E39 immediately after the ferry). We will only use traffic towards Bergen here. The traffic heading North at Moberg can be found in *traffic_moberg.csv* (link below). Join it with the danmarksplass data (one tsibble with both columns). At Moberg there are some zero measurement. It may be useful to use log(1+moberg). Since it takes some time to drive from Moberg to Danmarksplass it may also be useful to use lagged observations at Moberg (hint: Use *lag()* function). Evaluate whether adding Moberg improves AIC. 
+12. One hypothesis is that some of the traffic at Danmarkplass can be explained by the arrival of ferries at Halhjem, creating a peak in the number of cars arriving. This will only contribute to the traffic heading North, but let us test by adding a predictor for traffic at Moberg v/Lekven (a station on the E39 immediately after the ferry). We will only use traffic towards Bergen here. The traffic heading North at Moberg can be found in *traffic_moberg.csv* (link below). Join it with the danmarksplass data (one tsibble with both columns). At Moberg there are some zero measurement. It may be useful to use log(1+moberg). Since it takes some time to drive from Moberg to Danmarksplass it may also be useful to use lagged observations at Moberg (hint: Use *lag()* function). Evaluate whether adding Moberg improves AIC.
 
 ```{r, eval = FALSE, echo = T}
 moberg <- readr::read_csv("https://raw.githubusercontent.com/holleland/BAN430/master/data/traffic_moberg.csv") 
 ```
+
 ```{r, echo =T, eval = F}
 #| code-fold: true
 #| code-summary: "Code hint:"
@@ -155,10 +160,10 @@ train %>%
   model(holiday = TSLM(log(vehicle) ~ lag(log(1+moberg)) + factor(holiday) + ...))
 ```
 
-13. The way you have implemented the Moberg traffic in your forecast model, is it an *ex ante* or *ex post* forecast? 
+13. The way you have implemented the Moberg traffic in your forecast model, is it an *ex ante* or *ex post* forecast?
 
-14. Let us have a look at the residuals. Comment on potential issues. 
+14. Let us have a look at the residuals. Comment on potential issues.
 
-15. Increase the forecast interval to include all of January 2023. Does this change any of the conclusions about the models? How does the forecast look? 
+15. Increase the forecast interval to include all of January 2023. Does this change any of the conclusions about the models? How does the forecast look?
 
 16. Can you think of other predictors to add to the model. Can you improve the model performance further?
