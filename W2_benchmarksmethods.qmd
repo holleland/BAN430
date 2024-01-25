@@ -1,0 +1,18 @@
+## WS2: The benchmark methods {.unnumbered}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message= FALSE)
+library(ggplot2)
+theme_set(theme_bw() + theme(strip.background = element_rect(fill = "white", color = "transparent"),
+                             panel.grid.minor = element_blank(), 
+                             panel.grid.major = element_blank()))
+```
+
+### Introduction
+
+<!-- ![](bilder/traffic2.PNG){width="50%"} -->
+
+The point of this workshop is to learn the workflow of any forecasting task. It is based on the curriculum of the course up to and including "Forecasters toolbox". At this point, we have learned the naive, seasonal naive, random walk with drift methods. We refer to them as simple, basic or benchmark methods. Any "more fancy" model should outperform these simple ones (otherwise; why bother?). 
+
+Say we are predicting the temperature in Bergen tomorrow. The temperature tomorrow will most likely be very similar to today. Hence, one would expect a naive model to do very well. If we increase the forecast horizon, the temperature today will probably not be such a good forecaster. At some point, the temperature on the same day last year will probably be a better one (seasonal naive model). 
+

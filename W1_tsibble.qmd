@@ -12,7 +12,7 @@ theme_set(theme_bw() + theme(strip.background = element_rect(fill = "white", col
 
 <!-- ![](bilder/traffic2.PNG){width="50%"} -->
 
-The point of this workshop is to get you familiarized with the *fpp3* package and especially the *tsibble* object. This is the most important R structure of this course and we will therefore spend some time getting to know it better. The *tsibble* is the time series equivalent of a *tibble* object in the tidyverse. It is a data frame which is indexed by a time variable. To create a *tsibble*, we need to specify which column in the data is the time variable (the index variable). Here is an example, creating a tibble object from data on the temperature in Bergen: 
+The point of this workshop is to get you familiarized with the *fpp3* package and especially the *tsibble* object. This is the most important R structure of this course and we will therefore spend some time getting to know it better. The *tsibble* is the time series equivalent of a *tibble* object in the tidyverse. It is a data frame which is indexed by a time variable. To create a *tsibble*, we need to specify which column in the data is the time variable (the index variable). Here is an example, creating a tibble object from data on the temperature in Bergen:
 
 ```{r}
 library(fpp3) 
@@ -33,13 +33,13 @@ temp.ts <- temp %>% as_tsibble(index = date)
 temp.ts
 ```
 
-Once we have made our *tsibble* object, the *fpp3* package (or really the tsibble package) has many useful functions we can apply to that object, such as plotting functions. For instance, we can create a timeplot of the Bergen temperatures, by the following code: 
+Once we have made our *tsibble* object, the *fpp3* package (or really the tsibble package) has many useful functions we can apply to that object, such as plotting functions. For instance, we can create a timeplot of the Bergen temperatures, by the following code:
+
 ```{r}
 temp.ts %>% autoplot(temp)
 ```
 
-
-This is a simple time series with only one variable (the daily mean temperature in Bergen). Often the data we study will consist of multiple time series. Then we need to provide information on which columns the identify the individual time series. This is called the *key* variable of the *tsibble* object. Let us consider an example with temperature in Bergen, Oslo, Trondheim and Stavanger. 
+This is a simple time series with only one variable (the daily mean temperature in Bergen). Often the data we study will consist of multiple time series. Then we need to provide information on which columns the identify the individual time series. This is called the *key* variable of the *tsibble* object. Let us consider an example with temperature in Bergen, Oslo, Trondheim and Stavanger.
 
 ```{r}
 citytemp <- read_csv2(
@@ -54,73 +54,86 @@ citytemp.ts
 citytemp.ts %>% autoplot()
 ```
 
-
 ### Exercises
 
-1. Run the code above on your own. We will use the same data sets later, but for now, just check that you get the same figures. 
+1.  Run the code above on your own. We will use the same data sets later, but for now, just check that you get the same figures.
 
-2. Do [Exercise 3](https://otexts.com/fpp3/graphics-exercises.html). All the code you need is given in the exercise. Note, you do not need to download the csv-file, but can load it directly to R using this link (replacing the first line of code): 
+2.  Do [Exercise 3](https://otexts.com/fpp3/graphics-exercises.html). All the code you need is given in the exercise. Note, you do not need to download the csv-file, but can load it directly to R using this link (replacing the first line of code):
+
 ```{r, eval = FALSE}
 tute1 <- readr::read_csv("https://bit.ly/fpptute1")
 ```
 
-3. Do [Exercise 4](https://otexts.com/fpp3/graphics-exercises.html).
+3.  Do [Exercise 4](https://otexts.com/fpp3/graphics-exercises.html).
+
 ```{r}
 # install.packages("USgas")
 library(USgas)
 head(us_total)
 ```
-----------------------
 
-4. Continue with the temperature data from the largest cities in Norway. Create a 
+------------------------------------------------------------------------
 
-a) Timeplot,
-b) Seasonal plot,
-c) Seasonal subseries plot.
+4.  Continue with the temperature data from the largest cities in Norway. Create a
 
-5. Aggregate the temperature time series for the 4 largest cities in Norway from daily to weekly and monthly average temperatures. Create two illustrative figures for each. 
+```{=html}
+<!-- -->
+```
+a)  Timeplot,
+b)  Seasonal plot,
+c)  Seasonal subseries plot.
 
-6. Temperatures in the Norwegian cities all follow the same seasonality (cold in winter - warm in summer). Create a graphic illustrating the correlation between these time series. Hint: [*GGally::ggpairs()*](https://otexts.com/fpp3/scatterplots.html#scatterplot-matrices).
+```{=html}
+<!-- -->
+```
+5.  Aggregate the temperature time series for the 4 largest cities in Norway from daily to weekly and monthly average temperatures. Create two illustrative figures for each.
 
-7. Create a autocorrelation plot of the temperature data for Bergen using default settings. Increase the maximum number of lags to 400. Interpret the latter plot. Is this a stationary time series?
+6.  Temperatures in the Norwegian cities all follow the same seasonality (cold in winter - warm in summer). Create a graphic illustrating the correlation between these time series. Hint: [*GGally::ggpairs()*](https://otexts.com/fpp3/scatterplots.html#scatterplot-matrices).
 
-8. Create a tsibble consisting of white noise (uncorrelated variables) of length 100. Create an autocorrelation plot for the time series you have simulated. Interpret the plot. Is this a stationary time series?
+7.  Create a autocorrelation plot of the temperature data for Bergen using default settings. Increase the maximum number of lags to 400. Interpret the latter plot. Is this a stationary time series?
 
-9. The Norwegian government has decided to work towards a goal of installing 30GW of offshore wind power. The two locations they have decided to start building the first wind parks is called Sørlige Nordsjø 2 and Utsira Nord. On Canvas, you find derived power production from modelled wind speed at  these two locations on hourly time scale for 5 years. 
+8.  Create a tsibble consisting of white noise (uncorrelated variables) of length 100. Create an autocorrelation plot for the time series you have simulated. Interpret the plot. Is this a stationary time series?
 
-a) Using the offshore wind power data, create illustrative figures for Utsira Nord and Sørlige Nordsjø 2 for different time scale aggregates (hourly, daily, weekly, monthly). 
-b) Can you a detect trend/cycle/season based on your figures? 
-c) What about the relationship between the two locations? Is the dependence linear? 
-d) Does your answer in (c) depend on the time scale you use? 
-e) If you were to decide where to build the first wind farm solely based on the data you have, which would you choose and why? Discuss with your neighbors.
+9.  The Norwegian government has decided to work towards a goal of installing 30GW of offshore wind power. The two locations they have decided to start building the first wind parks is called Sørlige Nordsjø 2 and Utsira Nord. On Canvas, you find derived power production from modelled wind speed at these two locations on hourly time scale for 5 years.
+
+```{=html}
+<!-- -->
+```
+a)  Using the offshore wind power data, create illustrative figures for Utsira Nord and Sørlige Nordsjø 2 for different time scale aggregates (hourly, daily, weekly, monthly).
+b)  Can you a detect trend/cycle/season based on your figures?
+c)  What about the relationship between the two locations? Is the dependence linear?
+d)  Does your answer in (c) depend on the time scale you use?
+e)  If you were to decide where to build the first wind farm solely based on the data you have, which would you choose and why? Discuss with your neighbors.
 
 ```{r, eval = FALSE}
 # Hint: 
 wind <- readRDS("OffshoreWindtwoLocationsFiveYears.rds")
 ```
 
+10. Create a tsibble containing the daily wind power data from Sørlige Nordsjø 2. Decompose the time series into three components; trend-cycle $T_t$, season $S_t$ and remainder $R_t$, using a suitable decomposition method. Why did you choose the method you did? Is there any seasonal/trend patterns in the data?
 
-10. Create a tsibble containing the daily wind power data from Sørlige Nordsjø 2. Decompose the time series into three components; trend-cycle $T_t$, season $S_t$ and remainder $R_t$, using a suitable decomposition method. Why did you choose the method you did? Is there any seasonal/trend patterns in the data? 
+11. The data used in this exercise is the wholesale and retail sales index from Statistics Norway. More specifically, the data is an index for [*Retail trade, except of motor vehicles and motorcycles*](https://www.ssb.no/en/varehandel-og-tjenesteyting/varehandel/statistikk/varehandelsindeksen). Data starts in Jan 2000 to what is presently available from Statistics Norway.
 
+```{=html}
+<!-- -->
+```
+a)  Load the data using e.g. *read.csv2* indicated below. Convert the month column to a *yearmonth* type and *wholesale* as a tsibble.
 
-11. The data used in this exercise is the wholesale and retail sales index from Statistics Norway. More specifically, the data is an index for [*Retail trade, except of motor vehicles and motorcycles*](https://www.ssb.no/en/varehandel-og-tjenesteyting/varehandel/statistikk/varehandelsindeksen). Data starts in Jan 2000 to what is presently available from Statistics Norway. 
-
-
-a) Load the data using e.g. *read.csv2* indicated below. Convert the month column to a *yearmonth* type and *wholesale* as a tsibble.
 ```{r, echo = TRUE, eval = TRUE}
 wholesale  <- read.csv2(
   "https://raw.githubusercontent.com/holleland/BAN430/master/data/wholesale_and_retails_index_norway.csv", 
   sep = ";")
 head(wholesale,3)
 ```
-b) Make a time plot.
-c) Decompose the time series using the classical, x11, seats and STL methods. Can you detect any prominent differences between the methods?
-d) Try adjusting the trend and season windows of the STL. What happens? (default values are respectively 21 and 11).
-e) Using your method of choice, plot the seasonally-adjusted time series.
-f) Using your method of choice, plot the detrended series.
-g) *Optional*: Implement your own additive classical decomposition on this example (solution: see [exercise 6](https://holleland.github.io/BAN430/3_exercises.html)).
 
+b)  Make a time plot.
+c)  Decompose the time series using the classical, x11, seats and STL methods. Can you detect any prominent differences between the methods?
+d)  Try adjusting the trend and season windows of the STL. What happens? (default values are respectively 21 and 11).
+e)  Using your method of choice, plot the seasonally-adjusted time series.
+f)  Using your method of choice, plot the detrended series.
+g)  *Optional*: Implement your own additive classical decomposition on this example (solution: see [exercise 6](https://holleland.github.io/BAN430/3_exercises.html)).
 
-Additional recommended exercises from chapter 2: [5, 7, 9 and 10](https://otexts.com/fpp3/graphics-exercises.html)    
+12. Exercises from [chapter 3](https://otexts.com/fpp3/decomposition-exercises.html): 1-3 
 
+Additional recommended exercises from chapter 2: [5, 7, 9 and 10](https://otexts.com/fpp3/graphics-exercises.html)
 
