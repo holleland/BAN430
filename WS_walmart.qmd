@@ -95,10 +95,14 @@ In the following exercises 4-7, we will focus on Walmart Store number 3.
 
     Select the best model in terms of RMSE on the test set. Assess whether the model assumptions are reasonable (address both the required- and "nice-to-have" assumptions). You *may* also add other candidate models as you see fit.
 
-7.  The dynamic ARIMA model uses predictor variables. Discuss briefly whether this is an ex-ante or ex-post forecast model? Would your conclusion change if also the price of fuel was included as a predictor?
+7.  The dynamic regression model uses a predictor variable. Discuss briefly whether this is an ex-ante or ex-post forecast model? Would your conclusion change if also the price of fuel was included as a predictor?
 
-8. Fit the same candidate models (as in ex 6) for all stores using only automatic selection procedures. For each store, choose the model that has the lowest RMSE on the test set. Based on the best models, generate a forecast for the total weekly sales in the test set, for all stores combined. You may focus on the point forecasts. Extra challenge: Get the prediction intervals right (optional; not possible with standard functions).
+8. Fit the same candidate models (as in ex 6) for all stores using only automatic selection procedures. For each store, choose the model that has the lowest RMSE on the test set. Plot the forecasts for the test data, focusing on a selection of the Stores (e.g. Stores 15-20).
 
-9.  This is what we would call a bottoms-up approach, since we forecast the individual stores weekly sales, and then aggregate to the total sales of the stores. Another approach would be to build a model for the total sales of all the stores. Aggregate the training and test data to total sales, and build a (non-benchmark) model of your choosing. Compare this model to the bottom-up forecast of exercise 7. Which approach do you prefer?
+9. Based on the best models in exercise 8, generate a forecast for the total weekly sales in the test set, for all stores combined. You may focus on the point forecasts. Extra challenge: Get the prediction intervals right (optional; not possible with standard functions).
 
-10. Plot the final forecast for total sales with the test data with a short comment. Note: If you did not manage to do exercise 8 or 9, plot the forecast using the best model in exercise 6.
+10.  This is what we would call a bottoms-up approach, since we forecast the individual stores weekly sales, and then aggregate to the total sales of the stores. Another approach would be to build a model for the total sales of all the stores. Aggregate the training and test data to total sales, and build a (non-benchmark) model of your choosing. Compare this model to the bottom-up forecast of exercise 9. Which approach do you prefer?
+
+11. Plot the final forecast for total sales with the test data with a short comment. Note: If you did not manage to do exercise 9 or 10, plot another forecast. 
+
+
