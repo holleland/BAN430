@@ -80,7 +80,7 @@ The data set starts in week 5, 2010 and ends in week 43, 2012. The Holiday Event
 
 3.  Create a train-test split of the data. We will use the last 20 weeks as test set.
 
-In the following exercises 4-7, we will focus on Walmart Store 20 (the one with the largest total sales).
+In the following exercises 4-7, we will focus on Walmart Store number 3.
 
 4.  Consider seasonal- or first lag difference of the logarithmic weekly sales. Do a KPSS test for this particular setup (you may also use the *unitroot_ndiffs*/*unitroot_nsdiff* functions). Discuss potential downside of applying a seasonal differcing in this partciualar situation? Plotting the seasonally differenced time series may help.
 
