@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BAN430 Forecasting – w3_traffic</title>
+<title>BAN430 Forecasting – ws_electricityprices</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./W4_electricityprices.html" rel="next">
-<link href="./W1_tsibble.html" rel="prev">
+<link href="./WS_walmart.html" rel="next">
+<link href="./WS_traffic.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -155,7 +155,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./W1_tsibble.html">Workshops</a></li><li class="breadcrumb-item"><a href="./W3_traffic.html">WS3: Bergen traffic forecast</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./WS_tsibble.html">Workshops</a></li><li class="breadcrumb-item"><a href="./WS_electricityprices.html">Electricity prices</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -416,20 +416,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./W1_tsibble.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">WS1: tsibble, graphics and decomposition</span></a>
+  <a href="./WS_tsibble.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">tsibble, graphics and decomposition</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./W3_traffic.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">WS3: Bergen traffic forecast</span></a>
+  <a href="./WS_traffic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bergen traffic forecast</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./W4_electricityprices.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">WS4: Electricity prices</span></a>
+  <a href="./WS_electricityprices.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Electricity prices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./WS_walmart.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Walmart’s Weekly Sales</span></a>
   </div>
 </li>
       </ul>
@@ -468,160 +474,124 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="ws3-bergen-traffic-forecast" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="ws3-bergen-traffic-forecast">WS3: Bergen traffic forecast</h2>
-<section id="introduction" class="level3">
-<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
-<p><img src="bilder/traffic2.PNG" class="img-fluid" style="width:50.0%"></p>
-<p>In this workshop we will build a model for forecasting traffic in Bergen’s busiest intersection <em>Danmarksplass</em>. The data is publicly available at <a href="https://www.vegvesen.no/trafikkdata">vegvesen.no/trafikkdata</a> and published by The Norwegian Public Roads Administration. Forecasting traffic amount could be useful for anyone wanting to avoid traffic jams, but also important for government agencies with responsibilities related to road planning or public transport.</p>
-<p>As you may imagine the amount of traffic varies depending on things such as time of day, which day of the week it is and public holidays. The peak hours are mostly associated with people traveling to or home from work, while the least busy hours will be in the middle of the night. In this exercise you will use raw observations from The Norwegian Public Roads Administration to forecast traffic passing through one of Bergen’s traffic bottlenecks.</p>
-<p>Hopefully you will learn about</p>
-<ul>
-<li>Graphical presentation of a time series</li>
-<li>Building a linear time series regression model</li>
-<li>Useful transformations</li>
-<li>Using dummy variables for seasonality</li>
-<li>Using fourier sequences for seasonality</li>
-<li>External predictor variables</li>
-</ul>
+<section id="electricity-prices" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="electricity-prices">Electricity prices</h2>
+<p><img src="bilder/fireplace.png" class="img-fluid" style="width:70.0%"></p>
+<section id="electricity-prices-in-western-norway" class="level3">
+<h3 class="anchored" data-anchor-id="electricity-prices-in-western-norway">Electricity prices in Western Norway</h3>
+<p>Traditionally, Norwegian electricity consumers have been blessed with low electricity prices due to the vast access to hydro power from the many Norwegian waterfalls. This has been a competitive advantage for Norwegian industry. But some time ago this changed and we have seen a large increase in electricity prices. This has led the Norwegian government to implement a monetary support scheme for Norwegian private households. The scheme is based on the monthly average price and covers 90% above 0.70 NOK/kWh excluding taxes (mva). The problem with this scheme is that the monthly average price is not known before the month has ended, so at the time of consumption, the consumers of electricity do not know how much governmental support will be and there how expensive the power is. Since the scheme does not take into account the spot price there can be times with negative prices after taking into account the governmental support. Say the monthly average is 2.7 NOK, then the support will be <span class="math inline">0.90\cdot (2.7-0.7) = 1.80</span> NOK/kWh.</p>
+<p>It can therefore be useful to have a forecast model to have an idea of what the governmental support will be. Towards the end of the month we will have a quite good idea of what the average price will be, but at the beginning of the month it will be quite uncertain.</p>
+<p>Media houses such as <a href="https://www.vg.no/stromprisen/">VG</a> and <a href="https://www.aftenposten.no/emne/strømprisene">Aftenposten</a> present estimates of the support by simple moving averages (so far in the month), but <a href="https://nr.no/ansatte/martin-jullum/">Martin Jullum</a>, a statistician at the <a href="https://nr.no/">Norwegian Computing Center</a>, has developed a more sophisticated forecasting model presented at <a href="http://dinstrompris.no/">dinstrompris.no</a> (only in Norwegian). The approach he is using is based on dynamic regression model with ARIMA errors that simulates the rest of the month 10 000 times and calculates an average based on that. In this exercise, we will end up with a version of his model.</p>
+<p>Although we may have negative electricity prices (free electricity!) for a few hours in a day, this is highly unlikely to happen on the daily average price and has not happened in the data we will be using. You may therefore assume non-negative daily electricity price if you find that necessary.</p>
 </section>
-<section id="data-description" class="level3">
-<h3 class="anchored" data-anchor-id="data-description">Data description</h3>
-<p>The data you will be using consists of the two columns</p>
+<section id="exploratory-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="exploratory-analysis">Exploratory analysis</h3>
+<p>We download the data from Martin Jullum’s github repository using the following code</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>elprices <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://raw.githubusercontent.com/martinju/stromstotte/master/data/database_nordpool_daily.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note that the data is <strong>updated daily</strong>. The data contains three columns:</p>
 <ul>
-<li>datetime: date and hour of observation</li>
-<li>vehicles: the number of vehicles that has passed a sensor in the road the previous hour</li>
+<li>area: Nordpool price region (NO1, NO2, NO3, NO4 or NO5)</li>
+<li>date: date in %Y-%m-%d format</li>
+<li>price: Average daily price in NOK per kWh</li>
 </ul>
-<p>The observations are hourly and start from January 2018 to February 1st 2023 and are all from <em>Danmarksplass</em> (near the charging station). We add another location as predictor for Danmarksplass later in the case study to see if this may inform our forecasting model, but this data has the same structure (except that the vehicle column has a different name).</p>
-</section>
-<section id="exercises" class="level3">
-<h3 class="anchored" data-anchor-id="exercises">Exercises</h3>
+<p>Western Norway is pricing region <em>NO5</em>.</p>
+<p>The goal of this workshop is to build a model that can forecast the monthly average electricity price for February 2023 using daily observations. From that, we can also give an estimate of the Governmental support scheme. We will use January 2023 as our test set (for comparing different model classes) and February 2023 is the month we will apply our forecast model on.</p>
 <ol type="1">
-<li>Load the data into your working environment. Make sure the columns are correctly formatted.</li>
+<li>Load the data and select only pricing area NO5. Create a training set containing observations up to and including Dec 31st 2022 and a test set with observations in January 2023. Also create a set called <em>feb23</em> containing February 2023. All these data sets should be <em>tsibble</em> objects.</li>
 </ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>danmarksplass <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://raw.githubusercontent.com/holleland/BAN430/master/data/traffic_danmarksplass.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <ol start="2" type="1">
-<li>Convert the data to a tsibble and make a time plot.</li>
+<li><p>Explore the data using suitable graphics. Look for trends and season and comment on what you find.</p></li>
+<li><p>Do a decomposition using a suitable decomposition method with weekly seasonality. Compare different options for the decomposition method. Comment on the trend and seasonal component. Are they reasonable? Why? Or why not?</p></li>
 </ol>
-<ol start="3" type="1">
-<li>Create a training data set. We will use January 2023 as our test set. Make a time plot with one panel per year for the training data. Can you detect any particular patterns or deviations from the patterns?</li>
-</ol>
-<div class="cell">
-<details>
-<summary>Code hint:</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> danmarksplass <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">year</span>(datetime) <span class="sc">&lt;</span> <span class="dv">2023</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<ol start="3" type="1">
-<li><p>Using different graphics, visualize the training data. Look for trends and seasons on multiple scales.</p></li>
-<li><p>In particular, create this graphic. What do you detect here?</p></li>
+<p>We know that electricity demand is correlated with temperature. On colder days we need more heating which increase demand. Increased demand should also increase the price of electricity.</p>
+<ol start="4" type="1">
+<li>Could daily average temperature in Bergen (at Florida) be a potential predictor candidate for the electricity price? Below is a scatterplot with price on the y-axis and Bergen average temperature on the x-axis. Comment on the relationship. Would forecasting with temperature as predictor be an ex ante or ex post forecast? Elaborate.</li>
 </ol>
 <div class="cell">
-<details>
-<summary>Code solution:</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>train <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">wday =</span> <span class="fu">wday</span>(datetime, <span class="at">label =</span>T, <span class="at">abbr =</span> <span class="cn">FALSE</span>, <span class="at">week_start=</span><span class="dv">1</span>), </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">hour =</span> <span class="fu">hour</span>(datetime),</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">date=</span><span class="fu">date</span>(datetime)) <span class="sc">%&gt;%</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> hour, <span class="at">y =</span> vehicles, <span class="at">col =</span> date, <span class="at">group =</span> date)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( <span class="sc">~</span> wday)<span class="sc">+</span> <span class="fu">scale_color_date</span>(<span class="at">low =</span> <span class="st">"blue"</span>, <span class="at">high =</span> <span class="st">"magenta"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
-<p><img src="W3_traffic_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<p><img src="WS_electricityprices_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+</section>
+<section id="model-selection" class="level3">
+<h3 class="anchored" data-anchor-id="model-selection">Model selection</h3>
+<p>In this exercise we focus on ETS and ARIMA models and use AICc as our model selection criteria within each model family. We first seek to find the best ETS model and do ARIMA afterwards.</p>
+<section id="ets" class="level4">
+<h4 class="anchored" data-anchor-id="ets">ETS</h4>
 <ol start="5" type="1">
-<li>Aggregate the data to total traffic by year-week and do a STL decomposition. Do you have an plausible explanation for the estimated trend? Try reducing the trend window (default is 91).</li>
+<li><p>Use the automated ETS model selection in the <em>fable</em> package and print the report. Write up the model equations with estimated values.</p></li>
+<li><p>Plot the residuals ACF and histogram. Are there any problems with these residuals? Do a Ljung-Box test including lags up to 10.</p></li>
 </ol>
-<div class="cell">
-<details>
-<summary>Code hint:</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>train <span class="sc">%&gt;%</span> </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">index_by</span>(<span class="at">date =</span> <span class="sc">~</span><span class="fu">yearweek</span>(.)) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">vehicles =</span> <span class="fu">sum</span>(vehicles,<span class="at">na.rm=</span>T))<span class="sc">%&gt;%</span> </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="at">stl =</span> <span class="fu">STL</span>(vehicles <span class="sc">~</span> <span class="fu">trend</span>(<span class="at">window =</span><span class="dv">91</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<ol start="6" type="1">
-<li>Fit a TSLM with weekly season as predictor (dummy variables for every hour of the week). Fit one model without transforming and one where you log-transform the forecast variable. Forecast for the first week of 2023 and plot it for the two models. Would you prefer to use the log-transform or no transform? Explain why.</li>
-</ol>
-<div class="cell">
-<details>
-<summary>Code hint</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(vehicle) <span class="sc">~</span> <span class="fu">season</span>(<span class="at">period =</span> <span class="st">"week"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
+</section>
+<section id="arima" class="level4">
+<h4 class="anchored" data-anchor-id="arima">ARIMA</h4>
 <ol start="7" type="1">
-<li>In the model above, we used <span class="math inline">24\cdot 7= 168</span> predictors. We can do this, because we have so many data points. However, could we achieve something similar by using a fourier series? If <span class="math inline">K&lt;168/2 = 84</span>, this will reduce the number of parameters. Use the same transformation as you favored above and compare the model with a model using fourier predictors for the weekly season. Try different values of K and forecast for the first week of 2023. Evaluate the accuracy of the two models with AIC, AICc and CV.</li>
+<li>Estimate the optimal <span class="math inline">\lambda</span> parameter using <a href="https://otexts.com/fpp3/transformations.html#mathematical-transformations">the Guerero method</a>. Based on the estimated <span class="math inline">\lambda</span> parameter, is the box-cox transformation far from a log-transform? Make a plot including the box-cox transformed and log transformed. Include also the log(1+price) transformation.</li>
 </ol>
-<div class="cell">
-<details>
-<summary>Code hint:</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>vehicles <span class="sc">~</span> <span class="fu">fourier</span>(<span class="at">K =</span> <span class="dv">65</span>, <span class="at">period =</span> <span class="st">"week"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
+<p>We could have compared the different transformations by evaluating their performance on a test set, but for simplicity we stick to the log(1+price) transform. What is the main consequence for the forecasting model based on this assumption?</p>
 <ol start="8" type="1">
-<li><p>Based on the number of observations here (<span class="math inline">T\approx 45\,000</span>), which of AIC, AICc or CV would you prefer to use and why?</p></li>
-<li><p>One issue you might see is that the model over-estimates the traffic on January 1st (which in 2023 is a Sunday, but it is also a public holiday). Could there be a public holiday effect? By loading the csv linked below, you will have a list of Norwegian holidays from 2008-Jan 2023. Add a dummy variable to your model of choice for public holiday (1 if holiday, 0 otherwise). Does this improve the model fit measures (AIC)?</p></li>
+<li><p>We have decided on a suitable transformation. Is the transformed time series stationary? Is differencing necessary? Use the <em>unitroot_nsdiffs</em> and <em>unitroot_ndiffs</em> to select the number of differences. Plot the differenced series and visually confirm that the differenced and transformed series is stationary using <em>gg_tsdisplay()</em> with <em>plot_type = “partial”</em>.</p></li>
+<li><p>Suggest some model candidates based on the ACF and PACF plots in the previous exercise. Fit the model candidates along with three automatically selected models:</p></li>
 </ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>holidays <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://raw.githubusercontent.com/holleland/BAN430/master/data/NorwegianHolidays_2008-jan2023.csv"</span>)<span class="sc">$</span>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<details>
-<summary>Code hint:</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>holiday <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://raw.githubusercontent.com/holleland/BAN430/master/data/NorwegianHolidays_2008-jan2023.csv"</span>)<span class="sc">$</span>x</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>danmarksplass <span class="ot">&lt;-</span> danmarksplass <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">holiday =</span> <span class="fu">factor</span>(<span class="fu">ifelse</span>(<span class="fu">date</span>(datetime) <span class="sc">%in%</span> holidays, <span class="dv">1</span>, <span class="dv">0</span>))</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> danmarksplass <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">year</span>(datetime) <span class="sc">&lt;</span> <span class="dv">2023</span>)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>train <span class="sc">%&gt;%</span> </span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="at">holiday =</span> <span class="fu">TSLM</span>(<span class="fu">log</span>(vehicle) <span class="sc">~</span> <span class="fu">factor</span>(holiday) <span class="sc">+</span> ...))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
+<ul>
+<li>Stepwise = TRUE and approx = TRUE</li>
+<li>Stepwise = FALSE and approx = TRUE</li>
+<li>Stepwise = FALSE and approx = FALSE</li>
+</ul>
+<p>Compare the methods using AICc as criteria. Which model would you choose? Create a fit object with only this model and call it <em>fit</em>.</p>
 <ol start="10" type="1">
-<li><p>Are there other dummies you could think of adding? Special events that might impact the traffic on a certain day or during a period (spike dummy) or permanently changing it from a certain point in time (step dummy)? Discuss.</p></li>
-<li><p>Fit a seasonal naive as benchmark model and compare it to the best model so far using RMSE, MAE, MAPE and MASE on the test set.</p></li>
+<li><p>Check the model assumptions using the <em>gg_tsresiduals()</em> function on the <em>fit</em> object from the selected model. Perform a Ljung-Box test and conclude. Are the assumptions fulfilled? What are the required and “nice-to-have” assumptions? Would you assume normality for producing prediction intervals in this case?</p></li>
+<li><p>Print the report for your selected model. Based on the report, set up the model equation using the backshift notation.</p></li>
+<li><p>Based on the equation in the previous exercise, find an expression for the first point forecast (<span class="math inline">\widehat y_{T+1|T}</span>).</p></li>
+<li><p>Martin Jullumn’s model on <a href="https://dinstrompris.no">dinstrompris.no</a> is a dynamic regression model with a categorical weekday dummy and ARIMA errors. Fit such a model a compare it with the ARIMA model of choice so far using an accuracy measure of choice (e.g.&nbsp;RMSE). Use a 4 weeks forecast horizon (same as length of February). Jullum do not use any transformations in his model so our model will be different. See code hint below for how this model can be implemented. Check the residual plots for the best model.</p></li>
 </ol>
 <div class="cell">
 <details>
 <summary>Code hint:</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">model</span>(</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">m1 =</span> ...,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">snaive =</span> <span class="fu">SNAIVE</span>(...)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">accuracy</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">model</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">jullum =</span> <span class="fu">ARIMA</span>(<span class="fu">log</span>(<span class="dv">1</span><span class="sc">+</span>price) <span class="sc">~</span> <span class="fu">wday</span>(date, <span class="at">label =</span> <span class="cn">TRUE</span>), <span class="at">approx =</span> <span class="cn">FALSE</span>, <span class="at">stepwise =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<ol start="12" type="1">
-<li>One hypothesis is that some of the traffic at Danmarkplass can be explained by the arrival of ferries at Halhjem, creating a peak in the number of cars arriving. This will only contribute to the traffic heading North, but let us test by adding a predictor for traffic at Moberg v/Lekven (a station on the E39 immediately after the ferry). We will only use traffic towards Bergen here. The traffic heading North at Moberg can be found in <em>traffic_moberg.csv</em> (link below). Join it with the danmarksplass data (one tsibble with both columns). At Moberg there are some zero measurement. It may be useful to use log(1+moberg). Since it takes some time to drive from Moberg to Danmarksplass it may also be useful to use lagged observations at Moberg (hint: Use <em>lag()</em> function). Evaluate whether adding Moberg improves AIC.</li>
+</section>
+<section id="forecasting-average-monthly-price" class="level4">
+<h4 class="anchored" data-anchor-id="forecasting-average-monthly-price">Forecasting average monthly price</h4>
+<p>We will now set up a Monte Carlo simulation for forecasting the average monthly electricity price for February. We simulate daily February prices from the best model and caluclate the monthly average price. This gives us a simulated sample of monthly average price of February and we can estimate the forecast distribution of that variable.</p>
+<ol start="14" type="1">
+<li>We continue with the best model based on the test set performance above. We have found our forecasting model, now it is time to set it into action. Imagine that it is January <span class="math inline">31^{\text{st}}</span> 2023 today, and we want to forecast the monthly average electricity price for February 2023. We will complicate this further in the next question, but start refitting the selected model using observations including Jan 31st 2023. Plot a forecast for daily prices in February. Does the forecast behave as you expect? Generate 500 potential February prices from the fitted model. Calculate the monthly average price for each of the simulations (should give 500 average February prices). Present the mean, standard deviation and 95% prediction interval for the monthly average price.</li>
 </ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>moberg <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/holleland/BAN430/master/data/traffic_moberg.csv"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <div class="cell">
 <details>
 <summary>Code hint:</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>danmarksplass <span class="ot">&lt;-</span> <span class="fu">left_join</span>(danmarksplass,</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                           moberg, </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">by =</span> <span class="st">"datetime"</span>)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> danmarksplass <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">year</span>(datetime) <span class="sc">&lt;</span> <span class="dv">2023</span>)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>train <span class="sc">%&gt;%</span> </span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="at">holiday =</span> <span class="fu">TSLM</span>(<span class="fu">log</span>(vehicle) <span class="sc">~</span> <span class="fu">lag</span>(<span class="fu">log</span>(<span class="dv">1</span><span class="sc">+</span>moberg)) <span class="sc">+</span> <span class="fu">factor</span>(holiday) <span class="sc">+</span> ...))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fit <span class="sc">%&gt;%</span> <span class="fu">forecast</span>(<span class="at">h =</span> <span class="dv">28</span>) <span class="sc">%&gt;%</span> <span class="fu">autoplot</span>()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate: </span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>sims <span class="ot">&lt;-</span> fit <span class="sc">%&gt;%</span>  <span class="fu">generate</span>(<span class="at">h =</span> <span class="dv">28</span>, <span class="at">times =</span> <span class="dv">500</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>sims <span class="sc">%&gt;%</span> </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">index_by</span>(<span class="at">month =</span> <span class="sc">~</span><span class="fu">yearmonth</span>(.)) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(.rep) <span class="sc">%&gt;%</span>  </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate monthly average price for the simulations</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">average =</span> <span class="fu">mean</span>(.sim)) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Monte Carlo estimates: </span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(average),</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd   =</span> <span class="fu">sd</span>(average),</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">lwr  =</span> <span class="fu">quantile</span>(average, <span class="at">prob =</span> <span class="fl">0.025</span>),</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">upr  =</span> <span class="fu">quantile</span>(average, <span class="at">prob =</span> <span class="fl">0.975</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<ol start="13" type="1">
-<li><p>The way you have implemented the Moberg traffic in your forecast model, is it an <em>ex ante</em> or <em>ex post</em> forecast?</p></li>
-<li><p>Let us have a look at the residuals. Comment on potential issues.</p></li>
-<li><p>Increase the forecast interval to include all of January 2023. Does this change any of the conclusions about the models? How does the forecast look?</p></li>
-<li><p>Can you think of other predictors to add to the model. Can you improve the model performance further?</p></li>
+<ol start="15" type="1">
+<li>In this final exercise, we pretend that the we are doing the same thing as dinstrompris.no. We start from Jan 31st of 2023 with the mean, standard deviation and 95% prediction interval from exercise 14 (i.e.&nbsp;the forecast of the average price for February). Then a day goes by, it is now Feb 1st and we know the daily average price of Feb 1st, so we update our model with the new information and produce a new forecast for the remaining 27 days of the month and produce a mean, sd, prediction interval for the average price of the full month, where 1 day is observed and the rest is simulated. Continue adding days and updating the forecast until all days of February are observed. Create a nice graphic similar to the one below. Explain the behavior of the forecast we see in the figure.</li>
 </ol>
+<p>PS: The last exercise is extra challenging from a programming point of view. If you don’t know how to attack this, you may just comment on the figure.</p>
+<p><img src="bilder/monthly_forecast_for_february_Average_price.png" class="img-fluid"> The red dashed line is the actual average price of February and the date on the x-axis is the first day of the forecasting horizon (Feb 1st means data up to Jan 31st is used).</p>
 
 
+</section>
 </section>
 </section>
 
@@ -861,13 +831,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./W1_tsibble.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">WS1: tsibble, graphics and decomposition</span>
+      <a href="./WS_traffic.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Bergen traffic forecast</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./W4_electricityprices.html" class="pagination-link">
-        <span class="nav-page-text">WS4: Electricity prices</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./WS_walmart.html" class="pagination-link">
+        <span class="nav-page-text">Walmart’s Weekly Sales</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BAN430 Forecasting – readingdata</title>
+<title>BAN430 Forecasting – ws_tsibble</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,6 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./WS_traffic.html" rel="next">
+<link href="./10_Practicle_forecasting_issues.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -94,6 +96,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -137,7 +155,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./WS_tsibble.html">Workshops</a></li><li class="breadcrumb-item"><a href="./WS_tsibble.html">tsibble, graphics and decomposition</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -389,16 +407,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="true">
  <span class="menu-text">Workshops</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./WS_tsibble.html" class="sidebar-item-text sidebar-link">
+  <a href="./WS_tsibble.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">tsibble, graphics and decomposition</span></a>
   </div>
 </li>
@@ -456,23 +474,208 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="reading-data" class="level2">
-<h2 class="anchored" data-anchor-id="reading-data">Reading data</h2>
-<p>This is a book created from markdown and executable code.</p>
-</section>
-<section id="exercises" class="level2">
-<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
-<p>Is 1+1 the same as 2?</p>
-<details>
-<summary>
-Solution
-</summary>
+<section id="tsibble-graphics-and-decomposition" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="tsibble-graphics-and-decomposition">tsibble, graphics and decomposition</h2>
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<!-- ![](bilder/traffic2.PNG){width="50%"} -->
+<p>The point of this workshop is to get you familiarized with the <em>fpp3</em> package and especially the <em>tsibble</em> object. This is the most important R structure of this course and we will therefore spend some time getting to know it better. The <em>tsibble</em> is the time series equivalent of a <em>tibble</em> object in the tidyverse. It is a data frame which is indexed by a time variable. To create a <em>tsibble</em>, we need to specify which column in the data is the time variable (the index variable). Here is an example, creating a tibble object from data on the temperature in Bergen:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">+</span><span class="dv">1</span> <span class="sc">==</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fpp3) </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># read the data: </span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://raw.githubusercontent.com/holleland/BAN430/master/data/bergen_temp.csv"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>temp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 516 × 2
+   date       temp 
+   &lt;chr&gt;      &lt;chr&gt;
+ 1 01.10.2021 12.9 
+ 2 02.10.2021 11.7 
+ 3 03.10.2021 13.6 
+ 4 04.10.2021 11.7 
+ 5 05.10.2021 11   
+ 6 06.10.2021 10   
+ 7 07.10.2021 11.1 
+ 8 08.10.2021 14.2 
+ 9 09.10.2021 13.8 
+10 10.10.2021 11.3 
+# ℹ 506 more rows</code></pre>
 </div>
-</details>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert date column from character to date and temp to numeric:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">&lt;-</span> temp <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(date, <span class="at">format =</span> <span class="st">"%d.%m.%Y"</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">temp =</span> <span class="fu">as.numeric</span>(temp))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>temp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 516 × 2
+   date        temp
+   &lt;date&gt;     &lt;dbl&gt;
+ 1 2021-10-01  12.9
+ 2 2021-10-02  11.7
+ 3 2021-10-03  13.6
+ 4 2021-10-04  11.7
+ 5 2021-10-05  11  
+ 6 2021-10-06  10  
+ 7 2021-10-07  11.1
+ 8 2021-10-08  14.2
+ 9 2021-10-09  13.8
+10 2021-10-10  11.3
+# ℹ 506 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a tsibble</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>temp.ts <span class="ot">&lt;-</span> temp <span class="sc">%&gt;%</span> <span class="fu">as_tsibble</span>(<span class="at">index =</span> date)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>temp.ts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tsibble: 516 x 2 [1D]
+   date        temp
+   &lt;date&gt;     &lt;dbl&gt;
+ 1 2021-10-01  12.9
+ 2 2021-10-02  11.7
+ 3 2021-10-03  13.6
+ 4 2021-10-04  11.7
+ 5 2021-10-05  11  
+ 6 2021-10-06  10  
+ 7 2021-10-07  11.1
+ 8 2021-10-08  14.2
+ 9 2021-10-09  13.8
+10 2021-10-10  11.3
+# ℹ 506 more rows</code></pre>
+</div>
+</div>
+<p>Once we have made our <em>tsibble</em> object, the <em>fpp3</em> package (or really the tsibble package) has many useful functions we can apply to that object, such as plotting functions. For instance, we can create a timeplot of the Bergen temperatures, by the following code:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>temp.ts <span class="sc">%&gt;%</span> <span class="fu">autoplot</span>(temp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="WS_tsibble_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This is a simple time series with only one variable (the daily mean temperature in Bergen). Often the data we study will consist of multiple time series. Then we need to provide information on which columns the identify the individual time series. This is called the <em>key</em> variable of the <em>tsibble</em> object. Let us consider an example with temperature in Bergen, Oslo, Trondheim and Stavanger.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>citytemp <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://raw.githubusercontent.com/holleland/BAN430/master/data//citytemp.csv"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>citytemp.ts <span class="ot">&lt;-</span> citytemp <span class="sc">%&gt;%</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(date, <span class="at">format =</span> <span class="st">"%d.%m.%Y"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(date)) <span class="sc">%&gt;%</span>  <span class="co"># Remove NA-values</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create tsibble object</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> date, </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">key =</span> <span class="fu">c</span>(<span class="st">"name"</span>,<span class="st">"station"</span>))</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>citytemp.ts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tsibble: 34,930 x 4 [1D]
+# Key:       name, station [4]
+   name             station date       meanTemp
+   &lt;chr&gt;            &lt;chr&gt;   &lt;date&gt;        &lt;dbl&gt;
+ 1 Bergen - Florida SN50540 2000-01-01      6.3
+ 2 Bergen - Florida SN50540 2000-01-02      6.3
+ 3 Bergen - Florida SN50540 2000-01-03      6.7
+ 4 Bergen - Florida SN50540 2000-01-04      4.6
+ 5 Bergen - Florida SN50540 2000-01-05      4.6
+ 6 Bergen - Florida SN50540 2000-01-06      6.5
+ 7 Bergen - Florida SN50540 2000-01-07      6.3
+ 8 Bergen - Florida SN50540 2000-01-08      6.4
+ 9 Bergen - Florida SN50540 2000-01-09      4.1
+10 Bergen - Florida SN50540 2000-01-10      5.3
+# ℹ 34,920 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>citytemp.ts <span class="sc">%&gt;%</span> <span class="fu">autoplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="WS_tsibble_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="exercises" class="level3">
+<h3 class="anchored" data-anchor-id="exercises">Exercises</h3>
+<ol type="1">
+<li><p>Run the code above on your own. We will use the same data sets later, but for now, just check that you get the same figures.</p></li>
+<li><p>Do <a href="https://otexts.com/fpp3/graphics-exercises.html">Exercise 3</a>. All the code you need is given in the exercise. Note, you do not need to download the csv-file, but can load it directly to R using this link (replacing the first line of code):</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>tute1 <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://bit.ly/fpptute1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="3" type="1">
+<li>Do <a href="https://otexts.com/fpp3/graphics-exercises.html">Exercise 4</a>.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("USgas")</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(USgas)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(us_total)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  year   state      y
+1 1997 Alabama 324158
+2 1998 Alabama 329134
+3 1999 Alabama 337270
+4 2000 Alabama 353614
+5 2001 Alabama 332693
+6 2002 Alabama 379343</code></pre>
+</div>
+</div>
+<hr>
+<ol start="4" type="1">
+<li>Continue with the temperature data from the largest cities in Norway. Create a</li>
+</ol>
+<!-- -->
+<ol type="a">
+<li>Timeplot,</li>
+<li>Seasonal plot,</li>
+<li>Seasonal subseries plot.</li>
+</ol>
+<!-- -->
+<ol start="5" type="1">
+<li><p>Aggregate the temperature time series for the 4 largest cities in Norway from daily to weekly and monthly average temperatures. Create two illustrative figures for each.</p></li>
+<li><p>Temperatures in the Norwegian cities all follow the same seasonality (cold in winter - warm in summer). Create a graphic illustrating the correlation between these time series. Hint: <a href="https://otexts.com/fpp3/scatterplots.html#scatterplot-matrices"><em>GGally::ggpairs()</em></a>.</p></li>
+<li><p>Create a autocorrelation plot of the temperature data for Bergen using default settings. Increase the maximum number of lags to 400. Interpret the latter plot. Is this a stationary time series?</p></li>
+<li><p>Create a tsibble consisting of white noise (uncorrelated variables) of length 100. Create an autocorrelation plot for the time series you have simulated. Interpret the plot. Is this a stationary time series?</p></li>
+<li><p>The Norwegian government has decided to work towards a goal of installing 30GW of offshore wind power. The two locations they have decided to start building the first wind parks is called Sørlige Nordsjø 2 and Utsira Nord. On Canvas, you find derived power production from modelled wind speed at these two locations on hourly time scale for 5 years.</p></li>
+</ol>
+<!-- -->
+<ol type="a">
+<li>Using the offshore wind power data, create illustrative figures for Utsira Nord and Sørlige Nordsjø 2 for different time scale aggregates (hourly, daily, weekly, monthly).</li>
+<li>Can you a detect trend/cycle/season based on your figures?</li>
+<li>What about the relationship between the two locations? Is the dependence linear?</li>
+<li>Does your answer in (c) depend on the time scale you use?</li>
+<li>If you were to decide where to build the first wind farm solely based on the data you have, which would you choose and why? Discuss with your neighbors.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hint: </span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>wind <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"OffshoreWindtwoLocationsFiveYears.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="10" type="1">
+<li><p>Create a tsibble containing the daily wind power data from Sørlige Nordsjø 2. Decompose the time series into three components; trend-cycle <span class="math inline">T_t</span>, season <span class="math inline">S_t</span> and remainder <span class="math inline">R_t</span>, using a suitable decomposition method. Why did you choose the method you did? Is there any seasonal/trend patterns in the data?</p></li>
+<li><p>The data used in this exercise is the wholesale and retail sales index from Statistics Norway. More specifically, the data is an index for <a href="https://www.ssb.no/en/varehandel-og-tjenesteyting/varehandel/statistikk/varehandelsindeksen"><em>Retail trade, except of motor vehicles and motorcycles</em></a>. Data starts in Jan 2000 to what is presently available from Statistics Norway.</p></li>
+</ol>
+<!-- -->
+<ol type="a">
+<li>Load the data using e.g.&nbsp;<em>read.csv2</em> indicated below. Convert the month column to a <em>yearmonth</em> type and <em>wholesale</em> as a tsibble.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>wholesale  <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://raw.githubusercontent.com/holleland/BAN430/master/data/wholesale_and_retails_index_norway.csv"</span>, </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sep =</span> <span class="st">";"</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(wholesale,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    month wholesale_and_retail_sales_index
+1 2000M01                             50.5
+2 2000M02                             49.3
+3 2000M03                             53.8</code></pre>
+</div>
+</div>
+<ol start="2" type="a">
+<li>Make a time plot.</li>
+<li>Decompose the time series using the classical, x11, seats and STL methods. Can you detect any prominent differences between the methods?</li>
+<li>Try adjusting the trend and season windows of the STL. What happens? (default values are respectively 21 and 11).</li>
+<li>Using your method of choice, plot the seasonally-adjusted time series.</li>
+<li>Using your method of choice, plot the detrended series.</li>
+<li><em>Optional</em>: Implement your own additive classical decomposition on this example (solution: see <a href="https://holleland.github.io/BAN430/3_exercises.html">exercise 6</a>).</li>
+</ol>
+<ol start="12" type="1">
+<li>Exercises from <a href="https://otexts.com/fpp3/decomposition-exercises.html">chapter 3</a>: 1-3</li>
+</ol>
+<p>Additional recommended exercises from chapter 2: <a href="https://otexts.com/fpp3/graphics-exercises.html">5, 7, 9 and 10</a></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -709,6 +912,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./10_Practicle_forecasting_issues.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Practicle forecasting issues</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./WS_traffic.html" class="pagination-link">
+        <span class="nav-page-text">Bergen traffic forecast</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

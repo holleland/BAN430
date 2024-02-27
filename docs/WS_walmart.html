@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BAN430 Forecasting – w1_tsibble</title>
+<title>BAN430 Forecasting – ws_walmart</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./W3_traffic.html" rel="next">
-<link href="./10_Practicle_forecasting_issues.html" rel="prev">
+<link href="./12_data_appendix.html" rel="next">
+<link href="./WS_electricityprices.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -155,7 +155,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./W1_tsibble.html">Workshops</a></li><li class="breadcrumb-item"><a href="./W1_tsibble.html">WS1: tsibble, graphics and decomposition</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./WS_tsibble.html">Workshops</a></li><li class="breadcrumb-item"><a href="./WS_walmart.html">Walmart’s Weekly Sales</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -416,20 +416,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./W1_tsibble.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">WS1: tsibble, graphics and decomposition</span></a>
+  <a href="./WS_tsibble.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">tsibble, graphics and decomposition</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./W3_traffic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">WS3: Bergen traffic forecast</span></a>
+  <a href="./WS_traffic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bergen traffic forecast</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./W4_electricityprices.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">WS4: Electricity prices</span></a>
+  <a href="./WS_electricityprices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Electricity prices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./WS_walmart.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Walmart’s Weekly Sales</span></a>
   </div>
 </li>
       </ul>
@@ -468,205 +474,103 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="ws1-tsibble-graphics-and-decomposition" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="ws1-tsibble-graphics-and-decomposition">WS1: tsibble, graphics and decomposition</h2>
-<section id="introduction" class="level3">
-<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
-<!-- ![](bilder/traffic2.PNG){width="50%"} -->
-<p>The point of this workshop is to get you familiarized with the <em>fpp3</em> package and especially the <em>tsibble</em> object. This is the most important R structure of this course and we will therefore spend some time getting to know it better. The <em>tsibble</em> is the time series equivalent of a <em>tibble</em> object in the tidyverse. It is a data frame which is indexed by a time variable. To create a <em>tsibble</em>, we need to specify which column in the data is the time variable (the index variable). Here is an example, creating a tibble object from data on the temperature in Bergen:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fpp3) </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># read the data: </span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://raw.githubusercontent.com/holleland/BAN430/master/data/bergen_temp.csv"</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>temp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 516 × 2
-   date       temp 
-   &lt;chr&gt;      &lt;chr&gt;
- 1 01.10.2021 12.9 
- 2 02.10.2021 11.7 
- 3 03.10.2021 13.6 
- 4 04.10.2021 11.7 
- 5 05.10.2021 11   
- 6 06.10.2021 10   
- 7 07.10.2021 11.1 
- 8 08.10.2021 14.2 
- 9 09.10.2021 13.8 
-10 10.10.2021 11.3 
-# ℹ 506 more rows</code></pre>
+<section id="walmarts-weekly-sales" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="walmarts-weekly-sales">Walmart’s Weekly Sales</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="bilder/walmart_dall-E.jpeg" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption class="figure-caption">Image generated by OpenAI’s DALL-E</figcaption>
+</figure>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert date column from character to date and temp to numeric:</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">&lt;-</span> temp <span class="sc">%&gt;%</span> </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(date, <span class="at">format =</span> <span class="st">"%d.%m.%Y"</span>),</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">temp =</span> <span class="fu">as.numeric</span>(temp))</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>temp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 516 × 2
-   date        temp
-   &lt;date&gt;     &lt;dbl&gt;
- 1 2021-10-01  12.9
- 2 2021-10-02  11.7
- 3 2021-10-03  13.6
- 4 2021-10-04  11.7
- 5 2021-10-05  11  
- 6 2021-10-06  10  
- 7 2021-10-07  11.1
- 8 2021-10-08  14.2
- 9 2021-10-09  13.8
-10 2021-10-10  11.3
-# ℹ 506 more rows</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a tsibble</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>temp.ts <span class="ot">&lt;-</span> temp <span class="sc">%&gt;%</span> <span class="fu">as_tsibble</span>(<span class="at">index =</span> date)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>temp.ts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tsibble: 516 x 2 [1D]
-   date        temp
-   &lt;date&gt;     &lt;dbl&gt;
- 1 2021-10-01  12.9
- 2 2021-10-02  11.7
- 3 2021-10-03  13.6
- 4 2021-10-04  11.7
- 5 2021-10-05  11  
- 6 2021-10-06  10  
- 7 2021-10-07  11.1
- 8 2021-10-08  14.2
- 9 2021-10-09  13.8
-10 2021-10-10  11.3
-# ℹ 506 more rows</code></pre>
-</div>
-</div>
-<p>Once we have made our <em>tsibble</em> object, the <em>fpp3</em> package (or really the tsibble package) has many useful functions we can apply to that object, such as plotting functions. For instance, we can create a timeplot of the Bergen temperatures, by the following code:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>temp.ts <span class="sc">%&gt;%</span> <span class="fu">autoplot</span>(temp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="W1_tsibble_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p>This is a simple time series with only one variable (the daily mean temperature in Bergen). Often the data we study will consist of multiple time series. Then we need to provide information on which columns the identify the individual time series. This is called the <em>key</em> variable of the <em>tsibble</em> object. Let us consider an example with temperature in Bergen, Oslo, Trondheim and Stavanger.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>citytemp <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://raw.githubusercontent.com/holleland/BAN430/master/data//citytemp.csv"</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>citytemp.ts <span class="ot">&lt;-</span> citytemp <span class="sc">%&gt;%</span> </span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(date, <span class="at">format =</span> <span class="st">"%d.%m.%Y"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(date)) <span class="sc">%&gt;%</span>  <span class="co"># Remove NA-values</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create tsibble object</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> date, </span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">key =</span> <span class="fu">c</span>(<span class="st">"name"</span>,<span class="st">"station"</span>))</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>citytemp.ts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tsibble: 34,930 x 4 [1D]
-# Key:       name, station [4]
-   name             station date       meanTemp
-   &lt;chr&gt;            &lt;chr&gt;   &lt;date&gt;        &lt;dbl&gt;
- 1 Bergen - Florida SN50540 2000-01-01      6.3
- 2 Bergen - Florida SN50540 2000-01-02      6.3
- 3 Bergen - Florida SN50540 2000-01-03      6.7
- 4 Bergen - Florida SN50540 2000-01-04      4.6
- 5 Bergen - Florida SN50540 2000-01-05      4.6
- 6 Bergen - Florida SN50540 2000-01-06      6.5
- 7 Bergen - Florida SN50540 2000-01-07      6.3
- 8 Bergen - Florida SN50540 2000-01-08      6.4
- 9 Bergen - Florida SN50540 2000-01-09      4.1
-10 Bergen - Florida SN50540 2000-01-10      5.3
-# ℹ 34,920 more rows</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>citytemp.ts <span class="sc">%&gt;%</span> <span class="fu">autoplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="W1_tsibble_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
+<!-- ## Introduction {.unnumbered} -->
+<p>You’ve just been hired as consultants by Walmart, the global retail giant, for a mission that is at the core of their strategic operations. Your challenge is to create a forecasting model capable of predicting weekly sales across 45 of Walmart’s diverse stores. This task is crucial; accurate forecasts drive decisions on inventory, staffing, marketing, and financial planning—essentially guiding the company’s future in a fiercely competitive market.</p>
+<p>Your role goes beyond the numbers; you’re set to navigate through vast datasets, uncovering the impact of holidays, temperature and various proxies for the state of the economy, on Walmart’s sales. Success here means providing Walmart with the insights needed to optimize operations, meet customer demands, and achieve sales targets.</p>
+<p>One methodological point of this workshop is the distinction between a <em>buttoms-up</em> approach, where you build a well-performing forecast model for the individual stores and aggregate the individual forecast to a total sales forecast, and the approach of aggregating the data to total sales (one time series) and build a forecast model for that. There are pros and cons with both approaches, and in the end of the workshop we will compare the two approaches.</p>
+<section id="objective" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="objective">Objective</h4>
+<p><em>Create a forecasting model for both the individual store’s weekly sales and total weekly sales.</em></p>
 </section>
-<section id="exercises" class="level3">
-<h3 class="anchored" data-anchor-id="exercises">Exercises</h3>
+<section id="relevant-learning-outcomes" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="relevant-learning-outcomes">Relevant learning outcomes</h4>
+<ul>
+<li>Explain the central ideas of time series analysis and forecasting.</li>
+<li>Graphically present time series.</li>
+<li>Model a real-world time series using an appropriate time series model and use it for forecasting.</li>
+<li>Evaluate forecast performance and to identify the components of forecast errors.</li>
+<li>Use R and appropriate packages.</li>
+</ul>
+</section>
+<section id="topics-from-the-curriculum" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="topics-from-the-curriculum">Topics from the curriculum</h4>
+<ul>
+<li>Time series Graphics</li>
+<li>Forecasters toolbox</li>
+<li>Exponential Smoothing</li>
+<li>Time series regression</li>
+<li>ARIMA</li>
+<li>Dynamical regression</li>
+</ul>
+</section>
+<section id="data-description" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="data-description">Data description</h4>
+<p>The dataset is publicly available under a <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 licence</a> and can be downloaded from the <a href="https://www.kaggle.com/datasets/yasserh/walmart-dataset?resource=download">Kaggle website</a>. You may also load it from this websites’ github repository:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>walmart <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/holleland/BAN430/master/data/Walmart.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The data consist of weekly sales from 45 Walmart Stores. We also have the following columns (with descriptions):</p>
+<ul>
+<li>Store - the store number</li>
+<li>Date - the week of sales</li>
+<li>Weekly_Sales - sales for the given store</li>
+<li>Holiday_Flag - whether the week is a special holiday week 1 - Holiday week 0 - Non-holiday week</li>
+<li>Temperature - Temperature on the day of sale</li>
+<li>Fuel_Price - Cost of fuel in the region</li>
+<li>CPI - Prevailing consumer price index</li>
+<li>Unemployment - Prevailing unemployment rate</li>
+</ul>
+<p>The data set starts in week 5, 2010 and ends in week 43, 2012. The Holiday Events are:</p>
+<ul>
+<li>Super Bowl: 12-Feb-10, 11-Feb-11, 10-Feb-12, 8-Feb-13</li>
+<li>Labour Day: 10-Sep-10, 9-Sep-11, 7-Sep-12, 6-Sep-13</li>
+<li>Thanksgiving: 26-Nov-10, 25-Nov-11, 23-Nov-12, 29-Nov-13</li>
+<li>Christmas: 31-Dec-10, 30-Dec-11, 28-Dec-12, 27-Dec-13</li>
+</ul>
+</section>
+<section id="exercises" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="exercises">Exercises</h4>
 <ol type="1">
-<li><p>Run the code above on your own. We will use the same data sets later, but for now, just check that you get the same figures.</p></li>
-<li><p>Do <a href="https://otexts.com/fpp3/graphics-exercises.html">Exercise 3</a>. All the code you need is given in the exercise. Note, you do not need to download the csv-file, but can load it directly to R using this link (replacing the first line of code):</p></li>
+<li><p>Load the data and convert it to a tsibble. It should have well-formatted index column of <em>yearweek</em> format and the key should be <em>Store</em>.</p></li>
+<li><p>Do a preliminary analysis of the data. You may focus on stores 1-5 for simplifying figures, as you see fit. The analysis should discuss whether</p></li>
 </ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>tute1 <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://bit.ly/fpptute1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<ul>
+<li><p>Trend or seasonality is present.</p></li>
+<li><p>Any visible effect of holidays, temperature, fuel price or unemployment is present.</p></li>
+<li><p>You would prefer to inflation adjust the time series.</p></li>
+<li><p>It is relevant to apply any mathematical transformation of the data.</p>
+<p>Use relevant graphics and justify the decisions you make.</p></li>
+</ul>
 <ol start="3" type="1">
-<li>Do <a href="https://otexts.com/fpp3/graphics-exercises.html">Exercise 4</a>.</li>
+<li>Create a train-test split of the data. We will use the last 20 weeks as test set.</li>
 </ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("USgas")</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(USgas)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(us_total)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  year   state      y
-1 1997 Alabama 324158
-2 1998 Alabama 329134
-3 1999 Alabama 337270
-4 2000 Alabama 353614
-5 2001 Alabama 332693
-6 2002 Alabama 379343</code></pre>
-</div>
-</div>
-<hr>
+<p>In the following exercises 4-7, we will focus on Walmart Store 20 (the one with the largest total sales).</p>
 <ol start="4" type="1">
-<li>Continue with the temperature data from the largest cities in Norway. Create a</li>
+<li><p>Consider seasonal- or first lag difference of the logarithmic weekly sales. Do a KPSS test for this particular setup (you may also use the <em>unitroot_ndiffs</em>/<em>unitroot_nsdiff</em> functions). Discuss potential downside of applying a seasonal differcing in this partciualar situation? Plotting the seasonally differenced time series may help.</p></li>
+<li><p>Plot the ACF and PACF of the (potensially differenced) logartimic weekly sales. Suggest <span class="math inline">p</span> and <span class="math inline">q</span> for an ARIMA(p,d,q) model based on these figures.</p></li>
+<li><p>Fit the following models:</p></li>
 </ol>
-<!-- -->
-<ol type="a">
-<li>Timeplot,</li>
-<li>Seasonal plot,</li>
-<li>Seasonal subseries plot.</li>
+<ul>
+<li><p>Benchmark methods of choice (Naive, Seasonal Naive, mean or Drift method)</p></li>
+<li><p>ETS</p></li>
+<li><p>ARIMA (from exercise 5 and automatic)</p></li>
+<li><p>Dynamic regression model with holiday effects</p>
+<p>Select the best model in terms of RMSE on the test set. Assess whether the model assumptions are reasonable (address both the required- and “nice-to-have” assumptions). You <em>may</em> also add other candidate models as you see fit.</p></li>
+</ul>
+<ol start="7" type="1">
+<li><p>The dynamic ARIMA model uses predictor variables. Discuss briefly whether this is an ex-ante or ex-post forecast model? Would your conclusion change if also the price of fuel was included as a predictor?</p></li>
+<li><p>Fit the same candidate models (as in ex 6) for all stores using only automatic selection procedures. For each store, choose the model that has the lowest RMSE on the test set. Based on the best models, generate a forecast for the total weekly sales in the test set, for all stores combined. You may focus on the point forecasts. Extra challenge: Get the prediction intervals right (optional; not possible with standard functions).</p></li>
+<li><p>This is what we would call a bottoms-up approach, since we forecast the individual stores weekly sales, and then aggregate to the total sales of the stores. Another approach would be to build a model for the total sales of all the stores. Aggregate the training and test data to total sales, and build a (non-benchmark) model of your choosing. Compare this model to the bottom-up forecast of exercise 7. Which approach do you prefer?</p></li>
+<li><p>Plot the final forecast for total sales with the test data with a short comment. Note: If you did not manage to do exercise 8 or 9, plot the forecast using the best model in exercise 6.</p></li>
 </ol>
-<!-- -->
-<ol start="5" type="1">
-<li><p>Aggregate the temperature time series for the 4 largest cities in Norway from daily to weekly and monthly average temperatures. Create two illustrative figures for each.</p></li>
-<li><p>Temperatures in the Norwegian cities all follow the same seasonality (cold in winter - warm in summer). Create a graphic illustrating the correlation between these time series. Hint: <a href="https://otexts.com/fpp3/scatterplots.html#scatterplot-matrices"><em>GGally::ggpairs()</em></a>.</p></li>
-<li><p>Create a autocorrelation plot of the temperature data for Bergen using default settings. Increase the maximum number of lags to 400. Interpret the latter plot. Is this a stationary time series?</p></li>
-<li><p>Create a tsibble consisting of white noise (uncorrelated variables) of length 100. Create an autocorrelation plot for the time series you have simulated. Interpret the plot. Is this a stationary time series?</p></li>
-<li><p>The Norwegian government has decided to work towards a goal of installing 30GW of offshore wind power. The two locations they have decided to start building the first wind parks is called Sørlige Nordsjø 2 and Utsira Nord. On Canvas, you find derived power production from modelled wind speed at these two locations on hourly time scale for 5 years.</p></li>
-</ol>
-<!-- -->
-<ol type="a">
-<li>Using the offshore wind power data, create illustrative figures for Utsira Nord and Sørlige Nordsjø 2 for different time scale aggregates (hourly, daily, weekly, monthly).</li>
-<li>Can you a detect trend/cycle/season based on your figures?</li>
-<li>What about the relationship between the two locations? Is the dependence linear?</li>
-<li>Does your answer in (c) depend on the time scale you use?</li>
-<li>If you were to decide where to build the first wind farm solely based on the data you have, which would you choose and why? Discuss with your neighbors.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hint: </span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>wind <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"OffshoreWindtwoLocationsFiveYears.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="10" type="1">
-<li><p>Create a tsibble containing the daily wind power data from Sørlige Nordsjø 2. Decompose the time series into three components; trend-cycle <span class="math inline">T_t</span>, season <span class="math inline">S_t</span> and remainder <span class="math inline">R_t</span>, using a suitable decomposition method. Why did you choose the method you did? Is there any seasonal/trend patterns in the data?</p></li>
-<li><p>The data used in this exercise is the wholesale and retail sales index from Statistics Norway. More specifically, the data is an index for <a href="https://www.ssb.no/en/varehandel-og-tjenesteyting/varehandel/statistikk/varehandelsindeksen"><em>Retail trade, except of motor vehicles and motorcycles</em></a>. Data starts in Jan 2000 to what is presently available from Statistics Norway.</p></li>
-</ol>
-<!-- -->
-<ol type="a">
-<li>Load the data using e.g.&nbsp;<em>read.csv2</em> indicated below. Convert the month column to a <em>yearmonth</em> type and <em>wholesale</em> as a tsibble.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>wholesale  <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://raw.githubusercontent.com/holleland/BAN430/master/data/wholesale_and_retails_index_norway.csv"</span>, </span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sep =</span> <span class="st">";"</span>)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(wholesale,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>    month wholesale_and_retail_sales_index
-1 2000M01                             50.5
-2 2000M02                             49.3
-3 2000M03                             53.8</code></pre>
-</div>
-</div>
-<ol start="2" type="a">
-<li>Make a time plot.</li>
-<li>Decompose the time series using the classical, x11, seats and STL methods. Can you detect any prominent differences between the methods?</li>
-<li>Try adjusting the trend and season windows of the STL. What happens? (default values are respectively 21 and 11).</li>
-<li>Using your method of choice, plot the seasonally-adjusted time series.</li>
-<li>Using your method of choice, plot the detrended series.</li>
-<li><em>Optional</em>: Implement your own additive classical decomposition on this example (solution: see <a href="https://holleland.github.io/BAN430/3_exercises.html">exercise 6</a>).</li>
-</ol>
-<ol start="12" type="1">
-<li>Exercises from <a href="https://otexts.com/fpp3/decomposition-exercises.html">chapter 3</a>: 1-3</li>
-</ol>
-<p>Additional recommended exercises from chapter 2: <a href="https://otexts.com/fpp3/graphics-exercises.html">5, 7, 9 and 10</a></p>
 
 
 </section>
@@ -908,13 +812,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./10_Practicle_forecasting_issues.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Practicle forecasting issues</span>
+      <a href="./WS_electricityprices.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Electricity prices</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./W3_traffic.html" class="pagination-link">
-        <span class="nav-page-text">WS3: Bergen traffic forecast</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./12_data_appendix.html" class="pagination-link">
+        <span class="nav-page-text">Data</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

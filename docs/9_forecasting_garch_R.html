@@ -416,20 +416,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./W1_tsibble.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">WS1: tsibble, graphics and decomposition</span></a>
+  <a href="./WS_tsibble.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">tsibble, graphics and decomposition</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./W3_traffic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">WS3: Bergen traffic forecast</span></a>
+  <a href="./WS_traffic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bergen traffic forecast</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./W4_electricityprices.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">WS4: Electricity prices</span></a>
+  <a href="./WS_electricityprices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Electricity prices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./WS_walmart.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Walmart’s Weekly Sales</span></a>
   </div>
 </li>
       </ul>
@@ -514,57 +520,57 @@ Distribution    : norm
 Optimal Parameters
 ------------------------------------
         Estimate  Std. Error  t value Pr(&gt;|t|)
-omega   0.000019    0.000004   4.4096    1e-05
-alpha1  0.161813    0.029780   5.4336    0e+00
-beta1   0.783611    0.035951  21.7969    0e+00
+omega   0.000021    0.000005   4.4548    8e-06
+alpha1  0.172147    0.031898   5.3968    0e+00
+beta1   0.769516    0.038268  20.1083    0e+00
 
 Robust Standard Errors:
         Estimate  Std. Error  t value Pr(&gt;|t|)
-omega   0.000019    0.000010   1.9194 0.054934
-alpha1  0.161813    0.061175   2.6451 0.008167
-beta1   0.783611    0.077296  10.1378 0.000000
+omega   0.000021    0.000011   1.8908 0.058651
+alpha1  0.172147    0.067312   2.5574 0.010544
+beta1   0.769516    0.085009   9.0521 0.000000
 
-LogLikelihood : 5670.344 
+LogLikelihood : 5723.277 
 
 Information Criteria
 ------------------------------------
                     
-Akaike       -5.4520
-Bayes        -5.4439
-Shibata      -5.4520
-Hannan-Quinn -5.4490
+Akaike       -5.4453
+Bayes        -5.4372
+Shibata      -5.4453
+Hannan-Quinn -5.4423
 
 Weighted Ljung-Box Test on Standardized Residuals
 ------------------------------------
                         statistic p-value
-Lag[1]                      4.241 0.03946
-Lag[2*(p+q)+(p+q)-1][2]     4.625 0.05126
-Lag[4*(p+q)+(p+q)-1][5]     5.225 0.13611
+Lag[1]                      4.371 0.03655
+Lag[2*(p+q)+(p+q)-1][2]     4.962 0.04165
+Lag[4*(p+q)+(p+q)-1][5]     5.740 0.10348
 d.o.f=0
 H0 : No serial correlation
 
 Weighted Ljung-Box Test on Standardized Squared Residuals
 ------------------------------------
                         statistic p-value
-Lag[1]                     0.2090  0.6476
-Lag[2*(p+q)+(p+q)-1][5]    0.7333  0.9164
-Lag[4*(p+q)+(p+q)-1][9]    2.0299  0.9014
+Lag[1]                     0.1795  0.6718
+Lag[2*(p+q)+(p+q)-1][5]    0.8389  0.8949
+Lag[4*(p+q)+(p+q)-1][9]    2.2839  0.8685
 d.o.f=2
 
 Weighted ARCH LM Tests
 ------------------------------------
             Statistic Shape Scale P-Value
-ARCH Lag[3]    0.1233 0.500 2.000  0.7255
-ARCH Lag[5]    0.4797 1.440 1.667  0.8896
-ARCH Lag[7]    1.2375 2.315 1.543  0.8721
+ARCH Lag[3]    0.2380 0.500 2.000  0.6256
+ARCH Lag[5]    0.6529 1.440 1.667  0.8378
+ARCH Lag[7]    1.5321 2.315 1.543  0.8149
 
 Nyblom stability test
 ------------------------------------
-Joint Statistic:  1.3577
+Joint Statistic:  1.1749
 Individual Statistics:             
-omega  0.2311
-alpha1 0.1927
-beta1  0.3022
+omega  0.2548
+alpha1 0.2154
+beta1  0.3328
 
 Asymptotic Critical Values (10% 5% 1%)
 Joint Statistic:         0.846 1.01 1.35
@@ -573,22 +579,22 @@ Individual Statistic:    0.35 0.47 0.75
 Sign Bias Test
 ------------------------------------
                    t-value   prob sig
-Sign Bias          0.09801 0.9219    
-Negative Sign Bias 1.09331 0.2744    
-Positive Sign Bias 0.54723 0.5843    
-Joint Effect       2.36637 0.4999    
+Sign Bias          0.06465 0.9485    
+Negative Sign Bias 1.19150 0.2336    
+Positive Sign Bias 0.63381 0.5263    
+Joint Effect       3.02899 0.3872    
 
 
 Adjusted Pearson Goodness-of-Fit Test:
 ------------------------------------
   group statistic p-value(g-1)
-1    20     136.4    8.800e-20
-2    30     145.3    1.981e-17
-3    40     155.3    8.321e-16
-4    50     173.1    9.328e-16
+1    20     142.5    6.134e-21
+2    30     156.6    1.899e-19
+3    40     167.5    7.467e-18
+4    50     181.9    3.582e-17
 
 
-Elapsed time : 0.1291599 </code></pre>
+Elapsed time : 0.121139 </code></pre>
 </div>
 </div>
 <p>It is very long with a lot of test results, but the main infromation is the parameter estimates. In this case, we estimate a model with <span class="math inline">\omega = 0.000019</span>, <span class="math inline">\alpha_1 = 0.162506</span> and <span class="math inline">\beta_1 = 0.783419</span>. Note that <span class="math inline">\alpha_1+\beta_1 = 0.946 &lt;1</span>, indicating that we have a stationary GARCH(1,1) model (given other model assumptions are fulfilled).</p>
@@ -666,7 +672,7 @@ Elapsed time : 0.1291599 </code></pre>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fpm</span>(fc) <span class="co"># forecast performance measures</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           MSE        MAE DAC
-1 0.0001998012 0.01070255   0</code></pre>
+1 0.0001782446 0.01048484   0</code></pre>
 </div>
 </div>
 <p>We can simulate from a fitted model using the <em>ugarchsim</em> function. Check out the help file.</p>
@@ -699,8 +705,8 @@ Elapsed time : 0.1291599 </code></pre>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>      <span class="st">"ARMA-GARCH"</span><span class="ot">=</span><span class="fu">fpm</span>(fc3))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                    MSE        MAE   DAC
-GARCH      0.0001998012 0.01070255 0.000
-ARMA-GARCH 0.0001959884 0.01053788 0.605</code></pre>
+GARCH      0.0001782446 0.01048484 0.000
+ARMA-GARCH 0.0001756361 0.01034252 0.605</code></pre>
 </div>
 </div>
 <p>It seems the pure GARCH model is better, except for the directional accuracy. Accurately predicting the return of tomorrows is difficult. But there may be other contexts where an ARMA-GARCH model is more suited.</p>

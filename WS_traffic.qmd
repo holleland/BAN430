@@ -1,4 +1,4 @@
-## WS3: Bergen traffic forecast {.unnumbered}
+## Bergen traffic forecast {.unnumbered}
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning=FALSE, message= FALSE)

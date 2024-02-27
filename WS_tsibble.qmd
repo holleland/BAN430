@@ -1,4 +1,4 @@
-## WS1: tsibble, graphics and decomposition {.unnumbered}
+## tsibble, graphics and decomposition {.unnumbered}
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message= FALSE)
