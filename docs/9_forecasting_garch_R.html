@@ -520,57 +520,57 @@ Distribution    : norm
 Optimal Parameters
 ------------------------------------
         Estimate  Std. Error  t value Pr(&gt;|t|)
-omega   0.000021    0.000005   4.4548    8e-06
-alpha1  0.172147    0.031898   5.3968    0e+00
-beta1   0.769516    0.038268  20.1083    0e+00
+omega   0.000022    0.000005   4.5641    5e-06
+alpha1  0.175217    0.031883   5.4956    0e+00
+beta1   0.764585    0.038075  20.0809    0e+00
 
 Robust Standard Errors:
         Estimate  Std. Error  t value Pr(&gt;|t|)
-omega   0.000021    0.000011   1.8908 0.058651
-alpha1  0.172147    0.067312   2.5574 0.010544
-beta1   0.769516    0.085009   9.0521 0.000000
+omega   0.000022    0.000011   1.9563 0.050433
+alpha1  0.175217    0.066251   2.6447 0.008175
+beta1   0.764585    0.083458   9.1613 0.000000
 
-LogLikelihood : 5723.277 
+LogLikelihood : 5762.193 
 
 Information Criteria
 ------------------------------------
                     
-Akaike       -5.4453
-Bayes        -5.4372
-Shibata      -5.4453
-Hannan-Quinn -5.4423
+Akaike       -5.4460
+Bayes        -5.4380
+Shibata      -5.4460
+Hannan-Quinn -5.4431
 
 Weighted Ljung-Box Test on Standardized Residuals
 ------------------------------------
                         statistic p-value
-Lag[1]                      4.371 0.03655
-Lag[2*(p+q)+(p+q)-1][2]     4.962 0.04165
-Lag[4*(p+q)+(p+q)-1][5]     5.740 0.10348
+Lag[1]                      4.257 0.03909
+Lag[2*(p+q)+(p+q)-1][2]     4.976 0.04128
+Lag[4*(p+q)+(p+q)-1][5]     5.822 0.09904
 d.o.f=0
 H0 : No serial correlation
 
 Weighted Ljung-Box Test on Standardized Squared Residuals
 ------------------------------------
                         statistic p-value
-Lag[1]                     0.1795  0.6718
-Lag[2*(p+q)+(p+q)-1][5]    0.8389  0.8949
-Lag[4*(p+q)+(p+q)-1][9]    2.2839  0.8685
+Lag[1]                     0.2174  0.6410
+Lag[2*(p+q)+(p+q)-1][5]    0.8683  0.8887
+Lag[4*(p+q)+(p+q)-1][9]    2.2835  0.8686
 d.o.f=2
 
 Weighted ARCH LM Tests
 ------------------------------------
             Statistic Shape Scale P-Value
-ARCH Lag[3]    0.2380 0.500 2.000  0.6256
-ARCH Lag[5]    0.6529 1.440 1.667  0.8378
-ARCH Lag[7]    1.5321 2.315 1.543  0.8149
+ARCH Lag[3]    0.2387 0.500 2.000  0.6251
+ARCH Lag[5]    0.6258 1.440 1.667  0.8460
+ARCH Lag[7]    1.4875 2.315 1.543  0.8239
 
 Nyblom stability test
 ------------------------------------
-Joint Statistic:  1.1749
+Joint Statistic:  1.105
 Individual Statistics:             
-omega  0.2548
-alpha1 0.2154
-beta1  0.3328
+omega  0.2626
+alpha1 0.2169
+beta1  0.3353
 
 Asymptotic Critical Values (10% 5% 1%)
 Joint Statistic:         0.846 1.01 1.35
@@ -578,23 +578,23 @@ Individual Statistic:    0.35 0.47 0.75
 
 Sign Bias Test
 ------------------------------------
-                   t-value   prob sig
-Sign Bias          0.06465 0.9485    
-Negative Sign Bias 1.19150 0.2336    
-Positive Sign Bias 0.63381 0.5263    
-Joint Effect       3.02899 0.3872    
+                    t-value   prob sig
+Sign Bias          0.009392 0.9925    
+Negative Sign Bias 1.137349 0.2555    
+Positive Sign Bias 0.657186 0.5111    
+Joint Effect       3.059903 0.3825    
 
 
 Adjusted Pearson Goodness-of-Fit Test:
 ------------------------------------
   group statistic p-value(g-1)
-1    20     142.5    6.134e-21
-2    30     156.6    1.899e-19
-3    40     167.5    7.467e-18
-4    50     181.9    3.582e-17
+1    20     144.7    2.298e-21
+2    30     157.6    1.276e-19
+3    40     168.0    5.989e-18
+4    50     182.1    3.322e-17
 
 
-Elapsed time : 0.178813 </code></pre>
+Elapsed time : 0.112149 </code></pre>
 </div>
 </div>
 <p>It is very long with a lot of test results, but the main infromation is the parameter estimates. In this case, we estimate a model with <span class="math inline">\omega = 0.000019</span>, <span class="math inline">\alpha_1 = 0.162506</span> and <span class="math inline">\beta_1 = 0.783419</span>. Note that <span class="math inline">\alpha_1+\beta_1 = 0.946 &lt;1</span>, indicating that we have a stationary GARCH(1,1) model (given other model assumptions are fulfilled).</p>
@@ -671,8 +671,8 @@ Elapsed time : 0.178813 </code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fpm</span>(fc) <span class="co"># forecast performance measures</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>           MSE        MAE DAC
-1 0.0001782446 0.01048484   0</code></pre>
+<pre><code>           MSE       MAE DAC
+1 0.0001795416 0.0104793   0</code></pre>
 </div>
 </div>
 <p>We can simulate from a fitted model using the <em>ugarchsim</em> function. Check out the help file.</p>
@@ -704,9 +704,9 @@ Elapsed time : 0.178813 </code></pre>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rbind</span>(<span class="st">"GARCH"</span><span class="ot">=</span><span class="fu">fpm</span>(fc),</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>      <span class="st">"ARMA-GARCH"</span><span class="ot">=</span><span class="fu">fpm</span>(fc3))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                    MSE        MAE   DAC
-GARCH      0.0001782446 0.01048484 0.000
-ARMA-GARCH 0.0001756361 0.01034252 0.605</code></pre>
+<pre><code>                    MSE       MAE   DAC
+GARCH      0.0001795416 0.0104793 0.000
+ARMA-GARCH 0.0001766631 0.0103730 0.585</code></pre>
 </div>
 </div>
 <p>It seems the pure GARCH model is better, except for the directional accuracy. Accurately predicting the return of tomorrows is difficult. But there may be other contexts where an ARMA-GARCH model is more suited.</p>
