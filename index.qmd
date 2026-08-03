@@ -9,13 +9,15 @@ library(tidyverse)
 options(knitr.kable.NA = '')
 library(dplyr)
 library(kableExtra)
-readxl::read_excel("lecturePlan.xlsx", sheet = "Sheet3",
-                           col_types= rep("text",3))[,-1] %>% 
-  kbl() %>%
+df <- readxl::read_excel("lecturePlan.xlsx", sheet = "h2026",
+                           col_types= rep("text",3))[,-1]
+df <- df %>% 
+  kbl() 
+df %>%
   kable_styling(bootstrap_options = c("condensed", "hover"),
                 fixed_thead = T) %>%
     row_spec(seq(1,25,2) , background = "#2E8B5750") %>% 
-    row_spec(28, bold = T, background = "DarkRed", color = "white")
+    row_spec(27, bold = T, background = "DarkRed", color = "white")
 
 ```
 
