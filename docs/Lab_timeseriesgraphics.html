@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>installingrandrstudio – BAN430 Forecasting</title>
+<title>lab_timeseriesgraphics – BAN430 Forecasting</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -71,8 +71,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./1_rrecap.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./WS_tsibble.html" rel="next">
+<link href="./10_Practicle_forecasting_issues.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -155,7 +155,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./1_installingrandrstudio.html">1 R and Rstudio</a></li><li class="breadcrumb-item"><a href="./1_installingrandrstudio.html">Installing R and Rstudio</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Lab_timeseriesgraphics.html">Labs</a></li><li class="breadcrumb-item"><a href="./Lab_timeseriesgraphics.html">Time series graphics</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -183,16 +183,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">1 R and Rstudio</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./1_installingrandrstudio.html" class="sidebar-item-text sidebar-link active">
+  <a href="./1_installingrandrstudio.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Installing R and Rstudio</span></a>
   </div>
 </li>
@@ -407,16 +407,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
  <span class="menu-text">Labs</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Lab_timeseriesgraphics.html" class="sidebar-item-text sidebar-link">
+  <a href="./Lab_timeseriesgraphics.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Time series graphics</span></a>
   </div>
 </li>
@@ -487,52 +487,285 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./1_installingrandrstudio.html">1 R and Rstudio</a></li><li class="breadcrumb-item"><a href="./1_installingrandrstudio.html">Installing R and Rstudio</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Lab_timeseriesgraphics.html">Labs</a></li><li class="breadcrumb-item"><a href="./Lab_timeseriesgraphics.html">Time series graphics</a></li></ol></nav></header>
 
 
 
 
-<section id="r-and-rstudio" class="level1">
-<h1>R and Rstudio</h1>
-<p>In this course, we will be using R and Rstudio to e.g.&nbsp;visualize time series, estimate model parameters, forecast, etc. It is therefore essential to have some basic knowledge of how to write an R script and how to read in data and do some simple data manipulation for preparing the data for different time series analysis. Hopefully, most of you have some experience with R and Rstudio before. If you have, this will be a short recap, if not this will be a very short introduction covering the most basic operations.</p>
-<section id="installing-r-and-rstudio" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="installing-r-and-rstudio">Installing R and Rstudio</h3>
-<ol type="1">
-<li>Install R:
-<ul>
-<li>Go to: <a href="https://cran.uib.no/">cran.uib.no</a></li>
-<li>Press download R for Linux/MacOS/Windows</li>
-<li>Press base</li>
-<li>Download R-4.x.x for Linux/MacOS/Windows</li>
-<li>Run the installation using default options</li>
-</ul></li>
-<li>Install Rstudio
-<ul>
-<li>Go to: <a href="https://www.rstudio.com/products/rstudio/">rstudio.com</a></li>
-<li>Select Rstudio desktop</li>
-<li>Press Download Rstudio desktop</li>
-<li>Select the Rstudio desktop with open source licence, which is free<br>
-</li>
-<li>Select the version for your operating system</li>
-<li>Run the installation using default settings</li>
-</ul></li>
-<li>Open Rstudio and check that it works (it should start without any error messages).</li>
-<li>Install the R-package of the book “fpp3”.
-<ul>
-<li>In Rstudio, select Tools -&gt; Install packages -&gt; write “fpp3” and make sure install dependencies is marked. Press Install. You can also run the following code in the console</li>
-</ul></li>
-</ol>
+<section id="time-series-graphics" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="time-series-graphics">Time series graphics</h2>
+<section id="before-you-start" class="level3">
+<h3 class="anchored" data-anchor-id="before-you-start">Before you start</h3>
+<p>This is an in-class lab: work through the material below at your own pace (in pairs or small groups is fine) — I’ll walk around to help, and we’ll stop along the way to discuss as a group.</p>
+<p>The lecture covered the <em>theory</em> — trend, seasonality, cycles, autocorrelation, white noise, stationarity. Today you apply it: load real data, produce the graphics yourself, and interpret what you see. Don’t just make the plots — for every plot, write down (in the text, or on paper) what it tells you.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"fpp3"</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fpp3)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<iframe src="https://player.vimeo.com/video/745712614?h=ead0e1cf78" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen="">
-</iframe>
-<p>Other useful packages to install are</p>
+<section id="cheat-sheet-turning-a-datetime-column-into-a-tsibble-index" class="level4">
+<h4 class="anchored" data-anchor-id="cheat-sheet-turning-a-datetime-column-into-a-tsibble-index">Cheat sheet: turning a date/time column into a tsibble index</h4>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Frequency</th>
+<th style="text-align: left;">Function</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Annual</td>
+<td style="text-align: left;"><code>start:end</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Quarterly</td>
+<td style="text-align: left;"><code>yearquarter()</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Monthly</td>
+<td style="text-align: left;"><code>yearmonth()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Weekly</td>
+<td style="text-align: left;"><code>yearweek()</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Daily</td>
+<td style="text-align: left;"><code>as_date()</code>, <code>ymd()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sub-daily</td>
+<td style="text-align: left;"><code>as_datetime()</code>, <code>ymd_hms()</code></td>
+</tr>
+</tbody>
+</table>
+<p>A tsibble is created with <code>as_tsibble(index = &lt;time column&gt;, key = &lt;grouping column(s)&gt;)</code>. To re-aggregate an <em>existing</em> tsibble to a coarser time scale, use <code>group_by_key() %&gt;% index_by(&lt;new time column&gt; = ~&lt;function of the old one&gt;) %&gt;% summarise(...)</code>.</p>
+</section>
+<section id="cheat-sheet-graphics-functions" class="level4">
+<h4 class="anchored" data-anchor-id="cheat-sheet-graphics-functions">Cheat sheet: graphics functions</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Plot</th>
+<th style="text-align: left;">Function</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Time plot</td>
+<td style="text-align: left;"><code>autoplot(data, variable)</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Seasonal plot</td>
+<td style="text-align: left;"><code>gg_season(data, variable, period = ...)</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Seasonal subseries plot</td>
+<td style="text-align: left;"><code>gg_subseries(data, variable)</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Scatter plot</td>
+<td style="text-align: left;"><code>ggplot(data, aes(x, y)) + geom_point()</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lag plot</td>
+<td style="text-align: left;"><code>gg_lag(data, variable, lags = 1:k)</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Autocorrelation plot</td>
+<td style="text-align: left;"><code>ACF(data, variable) %&gt;% autoplot()</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Distribution</td>
+<td style="text-align: left;"><code>geom_histogram()</code>, <code>geom_boxplot()</code>, <code>stat_density()</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="warm-up-city-temperatures-across-norway" class="level3">
+<h3 class="anchored" data-anchor-id="warm-up-city-temperatures-across-norway">Warm-up: city temperatures across Norway</h3>
+<p>A quick warm-up before the main case, using daily temperature data for four Norwegian cities — a first taste of the <code>key</code> argument on something familiar.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"readxl"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>citytemp <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv2</span>(<span class="st">"https://raw.githubusercontent.com/holleland/BAN430/master/data/citytemp.csv"</span>,</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ Using "','" as decimal and "'.'" as grouping mark. Use `read_delim()` for more control.</code></pre>
 </div>
-<p>(will add other packages as we go)</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>citytemp_ts <span class="ot">&lt;-</span> citytemp <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as_date</span>(date, <span class="at">format =</span> <span class="st">"%d.%m.%Y"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(date)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> date, <span class="at">key =</span> name) <span class="sc">%&gt;%</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fill_gaps</span>()</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>citytemp_ts</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tsibble: 35,068 x 4 [1D]
+# Key:       name [4]
+   name             station date       meanTemp
+   &lt;chr&gt;            &lt;chr&gt;   &lt;date&gt;        &lt;dbl&gt;
+ 1 Bergen - Florida SN50540 2000-01-01      6.3
+ 2 Bergen - Florida SN50540 2000-01-02      6.3
+ 3 Bergen - Florida SN50540 2000-01-03      6.7
+ 4 Bergen - Florida SN50540 2000-01-04      4.6
+ 5 Bergen - Florida SN50540 2000-01-05      4.6
+ 6 Bergen - Florida SN50540 2000-01-06      6.5
+ 7 Bergen - Florida SN50540 2000-01-07      6.3
+ 8 Bergen - Florida SN50540 2000-01-08      6.4
+ 9 Bergen - Florida SN50540 2000-01-09      4.1
+10 Bergen - Florida SN50540 2000-01-10      5.3
+# ℹ 35,058 more rows</code></pre>
+</div>
+</div>
+<p><strong>Q:</strong> How many series are in <code>citytemp_ts</code>? What’s the key, and what’s the index? (<code>fill_gaps()</code> is there because there are a few missing days per station; <code>gg_season()</code> below won’t run without it.)</p>
+<p>Now make these three plots:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Time plot: one line per city</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Seasonal plot (period = "year")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Seasonal subseries plot — hint: aggregate to monthly means first with</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># group_by_key() %&gt;% index_by() %&gt;% summarise(), same as wp_month later</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Now put a number on what you saw in the plots. For each city, compute the <strong>average temperature per calendar month</strong> (Jan, Feb, …, Dec, pooling across all years — not year-month), then the <strong>minimum</strong>, <strong>maximum</strong>, and <strong>range</strong> of those 12 monthly averages.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hint: mutate(month = month(date, label = TRUE)) %&gt;% group_by(name, month)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># %&gt;% summarise(...) to get the 12 monthly averages per city, then</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># group_by(name) %&gt;% summarise(min = ___, max = ___, range = ___)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Q:</strong> Do all four cities have roughly the same seasonal <em>shape</em>? Do they have the same seasonal <em>amplitude</em> (range)? Does the ranking from your table match what the seasonal plot suggested? Any guesses why the amplitudes differ, geographically?</p>
+<hr>
+</section>
+<section id="the-case-offshore-wind-power" class="level3">
+<h3 class="anchored" data-anchor-id="the-case-offshore-wind-power">The case: offshore wind power</h3>
+<p>You have five years (2015–2019) of <strong>hourly</strong> simulated power production data (in MW) for two proposed Norwegian offshore wind farm locations: <strong>Utsira Nord</strong> and <strong>Sørlig Nordsjø 2</strong>.</p>
+<blockquote class="blockquote">
+<p>You work as an analyst asked to give an initial, purely data-driven, recommendation on where to build the <strong>first</strong> offshore wind farm. You have no cost or grid-connection information — only five years of production data. What can the data alone tell you?</p>
+</blockquote>
+<p>Keep that question in mind as you work through the tasks below — you’ll return to it at the end.</p>
+<section id="task-0-load-the-data" class="level4">
+<h4 class="anchored" data-anchor-id="task-0-load-the-data">Task 0: Load the data</h4>
+<p>The data lives in the <code>ban430data</code> package as <code>windpower</code> — install it if you haven’t already.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("remotes")</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"holleland/ban430data"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ban430data)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(windpower)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>wp_hour <span class="ot">&lt;-</span> windpower</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>wp_hour</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tsibble: 87,648 x 3 [1h] &lt;?&gt;
+# Key:       Place [2]
+   Place            powerprod datetime           
+   &lt;chr&gt;                &lt;dbl&gt; &lt;dttm&gt;             
+ 1 Sørlig Nordsjø 2        15 2015-01-01 00:00:00
+ 2 Sørlig Nordsjø 2        15 2015-01-01 01:00:00
+ 3 Sørlig Nordsjø 2        15 2015-01-01 02:00:00
+ 4 Sørlig Nordsjø 2        15 2015-01-01 03:00:00
+ 5 Sørlig Nordsjø 2        15 2015-01-01 04:00:00
+ 6 Sørlig Nordsjø 2        15 2015-01-01 05:00:00
+ 7 Sørlig Nordsjø 2        15 2015-01-01 06:00:00
+ 8 Sørlig Nordsjø 2        15 2015-01-01 07:00:00
+ 9 Sørlig Nordsjø 2        15 2015-01-01 08:00:00
+10 Sørlig Nordsjø 2        15 2015-01-01 09:00:00
+# ℹ 87,638 more rows</code></pre>
+</div>
+</div>
+<p><strong>Q:</strong> What is the index variable, and what is the key? Why do we need a key here, when we didn’t for <code>citytemp</code> above?</p>
+</section>
+<section id="task-1-aggregate-to-other-time-scales" class="level4">
+<h4 class="anchored" data-anchor-id="task-1-aggregate-to-other-time-scales">Task 1: Aggregate to other time scales</h4>
+<p>Hourly data is hard to read as a time plot over five years. Create three new tsibbles — <code>wp_day</code>, <code>wp_week</code> and <code>wp_month</code> — by aggregating <code>wp_hour</code> with the mean production. The daily version is done for you; use the cheat sheet above (and the fact that a <code>datetime</code> can be turned into a date with <code>as.Date()</code>) to complete the other two.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>wp_day <span class="ot">&lt;-</span> wp_hour <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by_key</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">index_by</span>(<span class="at">date =</span> <span class="sc">~</span><span class="fu">as.Date</span>(.)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">powerprod =</span> <span class="fu">mean</span>(powerprod, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>wp_day</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tsibble: 3,654 x 3 [1D]
+# Key:       Place [2]
+   Place            date       powerprod
+   &lt;chr&gt;            &lt;date&gt;         &lt;dbl&gt;
+ 1 Sørlig Nordsjø 2 2014-12-31     15   
+ 2 Sørlig Nordsjø 2 2015-01-01     13.1 
+ 3 Sørlig Nordsjø 2 2015-01-02     12.5 
+ 4 Sørlig Nordsjø 2 2015-01-03     15   
+ 5 Sørlig Nordsjø 2 2015-01-04     14.8 
+ 6 Sørlig Nordsjø 2 2015-01-05      4.81
+ 7 Sørlig Nordsjø 2 2015-01-06     14.2 
+ 8 Sørlig Nordsjø 2 2015-01-07     14.4 
+ 9 Sørlig Nordsjø 2 2015-01-08     15   
+10 Sørlig Nordsjø 2 2015-01-09      7.26
+# ℹ 3,644 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>wp_week <span class="ot">&lt;-</span> wp_hour <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by_key</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">index_by</span>(<span class="at">yearweek =</span> ___) <span class="sc">%&gt;%</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">powerprod =</span> ___)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>wp_month <span class="ot">&lt;-</span> wp_hour <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by_key</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">index_by</span>(<span class="at">yearmonth =</span> ___) <span class="sc">%&gt;%</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">powerprod =</span> ___)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="task-2-time-plots-at-every-scale" class="level4">
+<h4 class="anchored" data-anchor-id="task-2-time-plots-at-every-scale">Task 2: Time plots at every scale</h4>
+<p>Produce <code>autoplot()</code> time plots for <code>wp_hour</code>, <code>wp_day</code>, <code>wp_week</code> and <code>wp_month</code>.</p>
+<p><strong>Q:</strong> At which scale(s) can you see a trend? A cycle? Seasonality? Does the picture change as you aggregate more?</p>
+</section>
+<section id="task-3-seasonal-plots" class="level4">
+<h4 class="anchored" data-anchor-id="task-3-seasonal-plots">Task 3: Seasonal plots</h4>
+<p>Use <code>gg_season()</code> on an appropriate aggregate (or several) to check for seasonality at different periods: within a day, within a week, within a year.</p>
+<p><strong>Q:</strong> Is there a daily pattern? A weekly pattern? An annual pattern? Is it the same at both locations?</p>
+</section>
+<section id="task-4-seasonal-subseries-plots" class="level4">
+<h4 class="anchored" data-anchor-id="task-4-seasonal-subseries-plots">Task 4: Seasonal subseries plots</h4>
+<p>Pick the time scale and period where you found the clearest seasonal pattern in Task 3, and use <code>gg_subseries()</code> to look at it more closely.</p>
+<p><strong>Q:</strong> Does <code>gg_subseries()</code> show you anything <code>gg_season()</code> didn’t — e.g.&nbsp;is the seasonal pattern stable across the five years, or changing?</p>
+</section>
+<section id="task-5-relationship-between-the-two-locations" class="level4">
+<h4 class="anchored" data-anchor-id="task-5-relationship-between-the-two-locations">Task 5: Relationship between the two locations</h4>
+<p>So far you’ve looked at each location separately. Now compare them directly.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hint: pivot_wider(names_from = Place, values_from = powerprod) first,</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># then ggplot() + geom_point() + geom_smooth()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Q:</strong> Do the two locations move together? Is the relationship linear? Does your answer change depending on which time scale (hourly/daily/weekly/monthly) you use? Why might that be?</p>
+</section>
+<section id="task-6-lag-plots-and-autocorrelation" class="level4">
+<h4 class="anchored" data-anchor-id="task-6-lag-plots-and-autocorrelation">Task 6: Lag plots and autocorrelation</h4>
+<p>Choose <strong>one</strong> location (<code>filter(Place == ...)</code>) and one time scale, and produce a lag plot and an ACF plot.</p>
+<p><strong>Q:</strong> At which lag(s) is the autocorrelation strongest? Does that match the seasonal period you found in Task 3? Would you say this series looks like white noise, or not — why?</p>
+</section>
+<section id="task-7-if-time-permits-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="task-7-if-time-permits-distribution">Task 7 (if time permits): Distribution</h4>
+<p>Use <code>geom_histogram()</code>, <code>stat_density()</code> or <code>geom_boxplot()</code> to look at the <em>distribution</em> of production values (e.g.&nbsp;split by month, or by location).</p>
+<p><strong>Q:</strong> Is the distribution symmetric? Are there a lot of hours/days at or near zero production? What might that mean physically?</p>
+<hr>
+</section>
+</section>
+<section id="wrap-up-discussion" class="level3">
+<h3 class="anchored" data-anchor-id="wrap-up-discussion">Wrap-up discussion</h3>
+<p>Come back to the opening question:</p>
+<blockquote class="blockquote">
+<p>If you were to decide where to build the <strong>first</strong> offshore wind farm based solely on the data you have explored today, which location would you choose, and why? What are you <em>not</em> able to say from this data alone? Does your recommendation depend on which time scale you looked at?</p>
+</blockquote>
+<p>Discuss with your neighbors, then we’ll compare answers across the room.</p>
 
 
 </section>
@@ -941,13 +1174,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Course overview">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Course overview</span>
+      <a href="./10_Practicle_forecasting_issues.html" class="pagination-link" aria-label="Practicle forecasting issues">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Practicle forecasting issues</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./1_rrecap.html" class="pagination-link" aria-label="Recap R">
-        <span class="nav-page-text">Recap R</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./WS_tsibble.html" class="pagination-link" aria-label="tsibble, graphics and decomposition">
+        <span class="nav-page-text">tsibble, graphics and decomposition</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -1,6 +1,6 @@
 /.quarto/
 .Rproj.user
 .Rhistory
-
+.DS_store
 
 **/*.quarto_ipynb

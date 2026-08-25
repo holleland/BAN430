@@ -63,8 +63,11 @@ website:
       - section: "10 Practical forecasting issues"
         contents:
           - 10_Practicle_forecasting_issues.qmd
+      - section: "Labs"
+        contents:
+          - Lab_timeseriesgraphics.qmd
       - section: "Workshops"
-        contents: 
+        contents:
           - WS_tsibble.qmd
           - WS_traffic.qmd
           - WS_electricityprices.qmd

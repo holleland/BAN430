@@ -1,0 +1,239 @@
+## Time series graphics {.unnumbered}
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+#| eval: true
+library(lubridate)
+library(tidyverse)
+library(fpp3)
+theme_set(
+  theme_bw() +
+    theme(panel.grid.minor = element_blank(),
+          panel.grid.major = element_blank(),
+          strip.background = element_rect(fill = "white", color = "transparent"))
+)
+```
+
+### Before you start
+
+This is an in-class lab: work through the material below at your own pace (in pairs or small groups is fine) — I'll walk around to help, and we'll stop along the way to discuss as a group.
+
+The lecture covered the *theory* — trend, seasonality, cycles, autocorrelation, white noise, stationarity. Today you apply it: load real data, produce the graphics yourself, and interpret what you see. Don't just make the plots — for every plot, write down (in the text, or on paper) what it tells you.
+
+```{r}
+library(fpp3)
+library(tidyverse)
+```
+
+#### Cheat sheet: turning a date/time column into a tsibble index
+
+| Frequency | Function |
+|:----------|:---------|
+| Annual | `start:end` |
+| Quarterly | `yearquarter()` |
+| Monthly | `yearmonth()` |
+| Weekly | `yearweek()` |
+| Daily | `as_date()`, `ymd()` |
+| Sub-daily | `as_datetime()`, `ymd_hms()` |
+
+A tsibble is created with `as_tsibble(index = <time column>, key = <grouping column(s)>)`. To re-aggregate an *existing* tsibble to a coarser time scale, use `group_by_key() %>% index_by(<new time column> = ~<function of the old one>) %>% summarise(...)`.
+
+#### Cheat sheet: graphics functions
+
+| Plot | Function |
+|:---|:---|
+| Time plot | `autoplot(data, variable)` |
+| Seasonal plot | `gg_season(data, variable, period = ...)` |
+| Seasonal subseries plot | `gg_subseries(data, variable)` |
+| Scatter plot | `ggplot(data, aes(x, y)) + geom_point()` |
+| Lag plot | `gg_lag(data, variable, lags = 1:k)` |
+| Autocorrelation plot | `ACF(data, variable) %>% autoplot()` |
+| Distribution | `geom_histogram()`, `geom_boxplot()`, `stat_density()` |
+
+------------------------------------------------------------------------
+
+### Warm-up: city temperatures across Norway
+
+A quick warm-up before the main case, using daily temperature data for four Norwegian cities — a first taste of the `key` argument on something familiar.
+
+```{r}
+citytemp <- readr::read_csv2("https://raw.githubusercontent.com/holleland/BAN430/master/data/citytemp.csv",
+                              show_col_types = FALSE)
+
+citytemp_ts <- citytemp %>%
+  mutate(date = as_date(date, format = "%d.%m.%Y")) %>%
+  filter(!is.na(date)) %>%
+  as_tsibble(index = date, key = name) %>%
+  fill_gaps()
+
+citytemp_ts
+```
+
+**Q:** How many series are in `citytemp_ts`? What's the key, and what's the index? (`fill_gaps()` is there because there are a few missing days per station; `gg_season()` below won't run without it.)
+
+Now make these three plots:
+
+```{r}
+#| eval: false
+# Time plot: one line per city
+```
+
+```{r}
+#| eval: false
+# Seasonal plot (period = "year")
+```
+
+```{r}
+#| eval: false
+# Seasonal subseries plot — hint: aggregate to monthly means first with
+# group_by_key() %>% index_by() %>% summarise(), same as wp_month later
+```
+
+Now put a number on what you saw in the plots. For each city, compute the **average temperature per calendar month** (Jan, Feb, ..., Dec, pooling across all years — not year-month), then the **minimum**, **maximum**, and **range** of those 12 monthly averages.
+
+```{r}
+#| eval: false
+# Hint: mutate(month = month(date, label = TRUE)) %>% group_by(name, month)
+# %>% summarise(...) to get the 12 monthly averages per city, then
+# group_by(name) %>% summarise(min = ___, max = ___, range = ___)
+```
+
+**Q:** Do all four cities have roughly the same seasonal *shape*? Do they have the same seasonal *amplitude* (range)? Does the ranking from your table match what the seasonal plot suggested? Any guesses why the amplitudes differ, geographically?
+
+------------------------------------------------------------------------
+
+### The case: offshore wind power
+
+You have five years (2015–2019) of **hourly** simulated power production data (in MW) for two proposed Norwegian offshore wind farm locations: **Utsira Nord** and **Sørlig Nordsjø 2**.
+
+> You work as an analyst asked to give an initial, purely data-driven, recommendation on where to build the **first** offshore wind farm. You have no cost or grid-connection information — only five years of production data. What can the data alone tell you?
+
+Keep that question in mind as you work through the tasks below — you'll return to it at the end.
+
+#### Task 0: Load the data
+
+The data lives in the `ban430data` package as `windpower` — install it if you haven't already.
+
+```{r}
+#| eval: false
+# install.packages("remotes")
+remotes::install_github("holleland/ban430data")
+```
+
+```{r}
+library(ban430data)
+data(windpower)
+
+wp_hour <- windpower
+wp_hour
+```
+
+**Q:** What is the index variable, and what is the key? Why do we need a key here, when we didn't for `citytemp` above?
+
+#### Task 1: Aggregate to other time scales
+
+Hourly data is hard to read as a time plot over five years. Create three new tsibbles — `wp_day`, `wp_week` and `wp_month` — by aggregating `wp_hour` with the mean production. The daily version is done for you; use the cheat sheet above (and the fact that a `datetime` can be turned into a date with `as.Date()`) to complete the other two.
+
+```{r}
+wp_day <- wp_hour %>%
+  group_by_key() %>%
+  index_by(date = ~as.Date(.)) %>%
+  summarise(powerprod = mean(powerprod, na.rm = TRUE))
+
+wp_day
+```
+
+```{r}
+#| eval: false
+wp_week <- wp_hour %>%
+  group_by_key() %>%
+  index_by(yearweek = ___) %>%
+  summarise(powerprod = ___)
+```
+
+```{r}
+#| eval: false
+wp_month <- wp_hour %>%
+  group_by_key() %>%
+  index_by(yearmonth = ___) %>%
+  summarise(powerprod = ___)
+```
+
+#### Task 2: Time plots at every scale
+
+Produce `autoplot()` time plots for `wp_hour`, `wp_day`, `wp_week` and `wp_month`.
+
+```{r}
+#| eval: false
+
+```
+
+**Q:** At which scale(s) can you see a trend? A cycle? Seasonality? Does the picture change as you aggregate more?
+
+#### Task 3: Seasonal plots
+
+Use `gg_season()` on an appropriate aggregate (or several) to check for seasonality at different periods: within a day, within a week, within a year.
+
+```{r}
+#| eval: false
+
+```
+
+**Q:** Is there a daily pattern? A weekly pattern? An annual pattern? Is it the same at both locations?
+
+#### Task 4: Seasonal subseries plots
+
+Pick the time scale and period where you found the clearest seasonal pattern in Task 3, and use `gg_subseries()` to look at it more closely.
+
+```{r}
+#| eval: false
+
+```
+
+**Q:** Does `gg_subseries()` show you anything `gg_season()` didn't — e.g. is the seasonal pattern stable across the five years, or changing?
+
+#### Task 5: Relationship between the two locations
+
+So far you've looked at each location separately. Now compare them directly.
+
+```{r}
+#| eval: false
+# Hint: pivot_wider(names_from = Place, values_from = powerprod) first,
+# then ggplot() + geom_point() + geom_smooth()
+```
+
+**Q:** Do the two locations move together? Is the relationship linear? Does your answer change depending on which time scale (hourly/daily/weekly/monthly) you use? Why might that be?
+
+#### Task 6: Lag plots and autocorrelation
+
+Choose **one** location (`filter(Place == ...)`) and one time scale, and produce a lag plot and an ACF plot.
+
+```{r}
+#| eval: false
+
+```
+
+**Q:** At which lag(s) is the autocorrelation strongest? Does that match the seasonal period you found in Task 3? Would you say this series looks like white noise, or not — why?
+
+#### Task 7 (if time permits): Distribution
+
+Use `geom_histogram()`, `stat_density()` or `geom_boxplot()` to look at the *distribution* of production values (e.g. split by month, or by location).
+
+```{r}
+#| eval: false
+
+```
+
+**Q:** Is the distribution symmetric? Are there a lot of hours/days at or near zero production? What might that mean physically?
+
+------------------------------------------------------------------------
+
+### Wrap-up discussion
+
+Come back to the opening question:
+
+> If you were to decide where to build the **first** offshore wind farm based solely on the data you have explored today, which location would you choose, and why? What are you *not* able to say from this data alone? Does your recommendation depend on which time scale you looked at?
+
+Discuss with your neighbors, then we'll compare answers across the room.

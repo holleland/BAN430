@@ -11,13 +11,26 @@ library(dplyr)
 library(kableExtra)
 df <- readxl::read_excel("lecturePlan.xlsx", sheet = "h2026",
                            col_types= rep("text",3))[,-1]
-df <- df %>% 
-  kbl() 
+
+n <- nrow(df)
+date_rows  <- seq(1, n - 2, by = 2)
+topic_rows <- seq(2, n - 1, by = 2)
+exam_row   <- n
+
 df %>%
-  kable_styling(bootstrap_options = c("condensed", "hover"),
-                fixed_thead = T) %>%
-    row_spec(seq(1,25,2) , background = "#2E8B5750") %>% 
-    row_spec(27, bold = T, background = "DarkRed", color = "white")
+  kbl(align = "c") %>%
+  kable_styling(bootstrap_options = c("hover", "bordered"),
+                full_width = TRUE,
+                fixed_thead = TRUE,
+                font_size = 15) %>%
+  row_spec(0, background = "#00395A", color = "white", bold = TRUE,
+           extra_css = "padding: 10px;") %>%
+  row_spec(date_rows, background = "#00395A", color = "white", bold = TRUE,
+           extra_css = "padding: 8px;") %>%
+  row_spec(topic_rows, background = "#F4F6F7", color = "#1a1a1a",
+           extra_css = "padding: 8px;") %>%
+  row_spec(exam_row, background = "#8B1E1E", color = "white", bold = TRUE,
+           extra_css = "padding: 8px;")
 
 ```
 

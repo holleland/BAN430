@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -76,10 +79,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-5696951b03fe14653db95f093ab60b72.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-b8a99b890789d49cde7ff7a297fbe3d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -448,12 +451,29 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false">
- <span class="menu-text">Workshops</span></a>
+ <span class="menu-text">Labs</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Lab_timeseriesgraphics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Time series graphics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false">
+ <span class="menu-text">Workshops</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./WS_tsibble.html" class="sidebar-item-text sidebar-link">
@@ -482,13 +502,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false">
  <span class="menu-text">Appendix</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./12_data_appendix.html" class="sidebar-item-text sidebar-link">
@@ -561,57 +581,57 @@ Distribution    : norm
 Optimal Parameters
 ------------------------------------
         Estimate  Std. Error  t value Pr(&gt;|t|)
-omega   0.000018    0.000004   4.5848    5e-06
-alpha1  0.127398    0.021851   5.8303    0e+00
-beta1   0.811200    0.030868  26.2795    0e+00
+omega   0.000018    0.000004   4.5835    5e-06
+alpha1  0.127671    0.021989   5.8062    0e+00
+beta1   0.810917    0.031025  26.1378    0e+00
 
 Robust Standard Errors:
         Estimate  Std. Error  t value Pr(&gt;|t|)
-omega   0.000018    0.000009   2.0729 0.038180
-alpha1  0.127398    0.045246   2.8157 0.004867
-beta1   0.811200    0.066040  12.2834 0.000000
+omega   0.000018    0.000009   2.0680 0.038641
+alpha1  0.127671    0.045829   2.7858 0.005339
+beta1   0.810917    0.066752  12.1482 0.000000
 
-LogLikelihood : 7460.915 
+LogLikelihood : 7510.055 
 
 Information Criteria
 ------------------------------------
                     
-Akaike       -5.5040
-Bayes        -5.4975
-Shibata      -5.5040
-Hannan-Quinn -5.5016
+Akaike       -5.5077
+Bayes        -5.5012
+Shibata      -5.5077
+Hannan-Quinn -5.5054
 
 Weighted Ljung-Box Test on Standardized Residuals
 ------------------------------------
                         statistic  p-value
-Lag[1]                      7.623 0.005761
-Lag[2*(p+q)+(p+q)-1][2]     8.661 0.004322
-Lag[4*(p+q)+(p+q)-1][5]     9.529 0.012152
+Lag[1]                      7.029 0.008020
+Lag[2*(p+q)+(p+q)-1][2]     8.114 0.006032
+Lag[4*(p+q)+(p+q)-1][5]     9.041 0.016162
 d.o.f=0
 H0 : No serial correlation
 
 Weighted Ljung-Box Test on Standardized Squared Residuals
 ------------------------------------
                         statistic p-value
-Lag[1]                     0.2025  0.6527
+Lag[1]                     0.2036  0.6518
 Lag[2*(p+q)+(p+q)-1][5]    0.6679  0.9290
-Lag[4*(p+q)+(p+q)-1][9]    1.7290  0.9348
+Lag[4*(p+q)+(p+q)-1][9]    1.7575  0.9319
 d.o.f=2
 
 Weighted ARCH LM Tests
 ------------------------------------
             Statistic Shape Scale P-Value
-ARCH Lag[3]   0.03804 0.500 2.000  0.8454
-ARCH Lag[5]   0.45005 1.440 1.667  0.8983
-ARCH Lag[7]   0.99990 2.315 1.543  0.9136
+ARCH Lag[3]   0.03718 0.500 2.000  0.8471
+ARCH Lag[5]   0.46280 1.440 1.667  0.8946
+ARCH Lag[7]   1.03154 2.315 1.543  0.9084
 
 Nyblom stability test
 ------------------------------------
-Joint Statistic:  1.1539
+Joint Statistic:  1.1354
 Individual Statistics:              
-omega  0.15660
-alpha1 0.08991
-beta1  0.16086
+omega  0.15274
+alpha1 0.09043
+beta1  0.15498
 
 Asymptotic Critical Values (10% 5% 1%)
 Joint Statistic:         0.846 1.01 1.35
@@ -620,22 +640,22 @@ Individual Statistic:    0.35 0.47 0.75
 Sign Bias Test
 ------------------------------------
                    t-value   prob sig
-Sign Bias          0.07785 0.9380    
-Negative Sign Bias 1.33434 0.1822    
-Positive Sign Bias 0.72825 0.4665    
-Joint Effect       3.88759 0.2739    
+Sign Bias          0.04666 0.9628    
+Negative Sign Bias 1.31291 0.1893    
+Positive Sign Bias 0.71427 0.4751    
+Joint Effect       3.85627 0.2774    
 
 
 Adjusted Pearson Goodness-of-Fit Test:
 ------------------------------------
   group statistic p-value(g-1)
-1    20     173.1    7.020e-27
-2    30     189.0    2.102e-25
-3    40     195.9    8.879e-23
-4    50     209.2    1.103e-21
+1    20     176.1    1.799e-27
+2    30     193.8    2.769e-26
+3    40     200.4    1.396e-23
+4    50     213.9    1.745e-22
 
 
-Elapsed time : 0.03008604 </code></pre>
+Elapsed time : 0.03331089 </code></pre>
 </div>
 </div>
 <p>It is very long with a lot of test results, but the main infromation is the parameter estimates. In this case, we estimate a model with <span class="math inline">\omega = 0.000019</span>, <span class="math inline">\alpha_1 = 0.162506</span> and <span class="math inline">\beta_1 = 0.783419</span>. Note that <span class="math inline">\alpha_1+\beta_1 = 0.946 &lt;1</span>, indicating that we have a stationary GARCH(1,1) model (given other model assumptions are fulfilled).</p>
@@ -728,8 +748,8 @@ Elapsed time : 0.03008604 </code></pre>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fpm</span>(fc) <span class="co"># forecast performance measures</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>           MSE        MAE DAC
-1 0.0004552003 0.01449807   0</code></pre>
+<pre><code>          MSE        MAE DAC
+1 0.000470658 0.01494046   0</code></pre>
 </div>
 </div>
 <p>We can simulate from a fitted model using the <em>ugarchsim</em> function. Check out the help file.</p>
@@ -765,9 +785,9 @@ Elapsed time : 0.03008604 </code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rbind</span>(<span class="st">"GARCH"</span><span class="ot">=</span><span class="fu">fpm</span>(fc),</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>      <span class="st">"ARMA-GARCH"</span><span class="ot">=</span><span class="fu">fpm</span>(fc3))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                    MSE        MAE   DAC
-GARCH      0.0004552003 0.01449807 0.000
-ARMA-GARCH 0.0004693709 0.01486848 0.445</code></pre>
+<pre><code>                    MSE        MAE  DAC
+GARCH      0.0004706580 0.01494046 0.00
+ARMA-GARCH 0.0004883192 0.01529612 0.46</code></pre>
 </div>
 </div>
 <p>It seems the pure GARCH model is better, except for the directional accuracy. Accurately predicting the return of tomorrows is difficult. But there may be other contexts where an ARMA-GARCH model is more suited.</p>

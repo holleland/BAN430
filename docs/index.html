@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -40,10 +43,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-5696951b03fe14653db95f093ab60b72.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-b8a99b890789d49cde7ff7a297fbe3d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -371,12 +374,29 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false">
- <span class="menu-text">Workshops</span></a>
+ <span class="menu-text">Labs</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Lab_timeseriesgraphics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Time series graphics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false">
+ <span class="menu-text">Workshops</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./WS_tsibble.html" class="sidebar-item-text sidebar-link">
@@ -405,13 +425,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false">
  <span class="menu-text">Appendix</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./12_data_appendix.html" class="sidebar-item-text sidebar-link">
@@ -445,121 +465,121 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="lecture-plan">Lecture plan</h2>
 <div class="cell">
 <div class="cell-output-display">
-<table class="table table-condensed table-hover caption-top table-sm table-striped small">
+<table class="table table-hover table-bordered caption-top table-sm table-striped small">
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">Monday 12:15-14:00</th>
-<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">Wednesday 14:15-16:00</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; position: sticky; top: 0; background-color: #FFFFFF; font-weight: bold; color: white !important; background-color: rgba(0, 57, 90, 255) !important; padding: 10px;">Monday 12:15-14:00</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; position: sticky; top: 0; background-color: #FFFFFF; font-weight: bold; color: white !important; background-color: rgba(0, 57, 90, 255) !important; padding: 10px;">Wednesday 14:15-16:00</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left; background-color: rgba(46, 139, 87, 80) !important;">17.08.2026</td>
-<td style="text-align: left; background-color: rgba(46, 139, 87, 80) !important;">19.08.2026</td>
+<td style="text-align: center; font-weight: bold; color: white !important; background-color: rgba(0, 57, 90, 255) !important; padding: 8px;">17.08.2026</td>
+<td style="text-align: center; font-weight: bold; color: white !important; background-color: rgba(0, 57, 90, 255) !important; padding: 8px;">19.08.2026</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Introduction lecture</td>
-<td style="text-align: left;">No lecture</td>
+<td style="text-align: center; color: rgba(26, 26, 26, 255) !important; background-color: rgba(244, 246, 247, 255) !important; padding: 8px;">Introduction lecture</td>
+<td style="text-align: center; color: rgba(26, 26, 26, 255) !important; background-color: rgba(244, 246, 247, 255) !important; padding: 8px;">No lecture</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left; background-color: rgba(46, 139, 87, 80) !important;">24.08.2026</td>
-<td style="text-align: left; background-color: rgba(46, 139, 87, 80) !important;">26.08.2026</td>
+<td style="text-align: center; font-weight: bold; color: white !important; background-color: rgba(0, 57, 90, 255) !important; padding: 8px;">24.08.2026</td>
+<td style="text-align: center; font-weight: bold; color: white !important; background-color: rgba(0, 57, 90, 255) !important; padding: 8px;">26.08.2026</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Time series graphics</td>
-<td style="text-align: left;">Time series decomposition</td>
+<td style="text-align: center; color: rgba(26, 26, 26, 255) !important; background-color: rgba(244, 246, 247, 255) !important; padding: 8px;">Time series graphics</td>
+<td style="text-align: center; color: rgba(26, 26, 26, 255) !important; background-color: rgba(244, 246, 247, 255) !important; padding: 8px;">Time series graphics</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left; background-color: rgba(46, 139, 87, 80) !important;">31.08.2026</td>
-<td style="text-align: left; background-color: rgba(46, 139, 87, 80) !important;">02.09.2026</td>
+<td style="text-align: center; font-weight: bold; color: white !important; background-color: rgba(0, 57, 90, 255) !important; padding: 8px;">31.08.2026</td>
+<td style="text-align: center; font-weight: bold; color: white !important; background-color: rgba(0, 57, 90, 255) !important; padding: 8px;">02.09.2026</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Time series decomposition</td>
-<td style="text-align: left;">Forecasters toolbox</td>
+<td style="text-align: center; color: rgba(26, 26, 26, 255) !important; background-color: rgba(244, 246, 247, 255) !important; padding: 8px;">Time series decomposition</td>
+<td style="text-align: center; color: rgba(26, 26, 26, 255) !important; background-color: rgba(244, 246, 247, 255) !important; padding: 8px;">Time series decomoposition</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left; background-color: rgba(46, 139, 87, 80) !important;">07.09.2026</td>
-<td style="text-align: left; background-color: rgba(46, 139, 87, 80) !important;">09.09.2026</td>
+<td style="text-align: center; font-weight: bold; color: white !important; background-color: rgba(0, 57, 90, 255) !important; padding: 8px;">07.09.2026</td>
+<td style="text-align: center; font-weight: bold; color: white !important; background-color: rgba(0, 57, 90, 255) !important; padding: 8px;">09.09.2026</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Forecasters toolbox</td>
-<td style="text-align: left;">Regression models</td>
+<td style="text-align: center; color: rgba(26, 26, 26, 255) !important; background-color: rgba(244, 246, 247, 255) !important; padding: 8px;">Forecasters toolbox</td>
+<td style="text-align: center; color: rgba(26, 26, 26, 255) !important; background-color: rgba(244, 246, 247, 255) !important; padding: 8px;">Forecasters toolbox</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left; background-color: rgba(46, 139, 87, 80) !important;">14.09.2026</td>
-<td style="text-align: left; background-color: rgba(46, 139, 87, 80) !important;">16.09.2026</td>
+<td style="text-align: center; font-weight: bold; color: white !important; background-color: rgba(0, 57, 90, 255) !important; padding: 8px;">14.09.2026</td>
+<td style="text-align: center; font-weight: bold; color: white !important; background-color: rgba(0, 57, 90, 255) !important; padding: 8px;">16.09.2026</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Regression models</td>
-<td style="text-align: left;">Exponential smoothing</td>
+<td style="text-align: center; color: rgba(26, 26, 26, 255) !important; background-color: rgba(244, 246, 247, 255) !important; padding: 8px;">Regression models</td>
+<td style="text-align: center; color: rgba(26, 26, 26, 255) !important; background-color: rgba(244, 246, 247, 255) !important; padding: 8px;">Regression models</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left; background-color: rgba(46, 139, 87, 80) !important;">21.09.2026</td>
-<td style="text-align: left; background-color: rgba(46, 139, 87, 80) !important;">23.09.2026</td>
+<td style="text-align: center; font-weight: bold; color: white !important; background-color: rgba(0, 57, 90, 255) !important; padding: 8px;">21.09.2026</td>
+<td style="text-align: center; font-weight: bold; color: white !important; background-color: rgba(0, 57, 90, 255) !important; padding: 8px;">23.09.2026</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Exponential smoothing</td>
-<td style="text-align: left;">ARIMA</td>
+<td style="text-align: center; color: rgba(26, 26, 26, 255) !important; background-color: rgba(244, 246, 247, 255) !important; padding: 8px;">Exponential smoothing</td>
+<td style="text-align: center; color: rgba(26, 26, 26, 255) !important; background-color: rgba(244, 246, 247, 255) !important; padding: 8px;">Exponential smoothing</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left; background-color: rgba(46, 139, 87, 80) !important;">28.09.2026</td>
-<td style="text-align: left; background-color: rgba(46, 139, 87, 80) !important;">30.09.2026</td>
+<td style="text-align: center; font-weight: bold; color: white !important; background-color: rgba(0, 57, 90, 255) !important; padding: 8px;">28.09.2026</td>
+<td style="text-align: center; font-weight: bold; color: white !important; background-color: rgba(0, 57, 90, 255) !important; padding: 8px;">30.09.2026</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">ARIMA</td>
-<td style="text-align: left;">ARIMA</td>
+<td style="text-align: center; color: rgba(26, 26, 26, 255) !important; background-color: rgba(244, 246, 247, 255) !important; padding: 8px;">Judgemental forecasts</td>
+<td style="text-align: center; color: rgba(26, 26, 26, 255) !important; background-color: rgba(244, 246, 247, 255) !important; padding: 8px;">Judgemental forecasts</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left; background-color: rgba(46, 139, 87, 80) !important;">05.10.2026</td>
-<td style="text-align: left; background-color: rgba(46, 139, 87, 80) !important;">07.10.2026</td>
+<td style="text-align: center; font-weight: bold; color: white !important; background-color: rgba(0, 57, 90, 255) !important; padding: 8px;">05.10.2026</td>
+<td style="text-align: center; font-weight: bold; color: white !important; background-color: rgba(0, 57, 90, 255) !important; padding: 8px;">07.10.2026</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">ARIMA</td>
-<td style="text-align: left;">ARIMA + Dynamic regression models</td>
+<td style="text-align: center; color: rgba(26, 26, 26, 255) !important; background-color: rgba(244, 246, 247, 255) !important; padding: 8px;">ARIMA</td>
+<td style="text-align: center; color: rgba(26, 26, 26, 255) !important; background-color: rgba(244, 246, 247, 255) !important; padding: 8px;">ARIMA</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left; background-color: rgba(46, 139, 87, 80) !important;">12.10.2026</td>
-<td style="text-align: left; background-color: rgba(46, 139, 87, 80) !important;">14.10.2026</td>
+<td style="text-align: center; font-weight: bold; color: white !important; background-color: rgba(0, 57, 90, 255) !important; padding: 8px;">12.10.2026</td>
+<td style="text-align: center; font-weight: bold; color: white !important; background-color: rgba(0, 57, 90, 255) !important; padding: 8px;">14.10.2026</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Practical issues</td>
-<td style="text-align: left;">Walmart workshop</td>
+<td style="text-align: center; color: rgba(26, 26, 26, 255) !important; background-color: rgba(244, 246, 247, 255) !important; padding: 8px;">Dynamic regression models</td>
+<td style="text-align: center; color: rgba(26, 26, 26, 255) !important; background-color: rgba(244, 246, 247, 255) !important; padding: 8px;">Dynamic regression models</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left; background-color: rgba(46, 139, 87, 80) !important;">19.10.2026</td>
-<td style="text-align: left; background-color: rgba(46, 139, 87, 80) !important;">21.10.2026</td>
+<td style="text-align: center; font-weight: bold; color: white !important; background-color: rgba(0, 57, 90, 255) !important; padding: 8px;">19.10.2026</td>
+<td style="text-align: center; font-weight: bold; color: white !important; background-color: rgba(0, 57, 90, 255) !important; padding: 8px;">21.10.2026</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Practical issues</td>
-<td style="text-align: left;">Volatility forecasting</td>
+<td style="text-align: center; color: rgba(26, 26, 26, 255) !important; background-color: rgba(244, 246, 247, 255) !important; padding: 8px;">Practical issues</td>
+<td style="text-align: center; color: rgba(26, 26, 26, 255) !important; background-color: rgba(244, 246, 247, 255) !important; padding: 8px;">Practical issues</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left; background-color: rgba(46, 139, 87, 80) !important;">26.10.2026</td>
-<td style="text-align: left; background-color: rgba(46, 139, 87, 80) !important;">28.10.2026</td>
+<td style="text-align: center; font-weight: bold; color: white !important; background-color: rgba(0, 57, 90, 255) !important; padding: 8px;">26.10.2026</td>
+<td style="text-align: center; font-weight: bold; color: white !important; background-color: rgba(0, 57, 90, 255) !important; padding: 8px;">28.10.2026</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Volatility forecasting</td>
-<td style="text-align: left;">Volatility forecasting</td>
+<td style="text-align: center; color: rgba(26, 26, 26, 255) !important; background-color: rgba(244, 246, 247, 255) !important; padding: 8px;">Volatility forecasting</td>
+<td style="text-align: center; color: rgba(26, 26, 26, 255) !important; background-color: rgba(244, 246, 247, 255) !important; padding: 8px;">Volatility forecasting</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left; background-color: rgba(46, 139, 87, 80) !important;">02.11.2026</td>
-<td style="text-align: left; background-color: rgba(46, 139, 87, 80) !important;"></td>
+<td style="text-align: center; font-weight: bold; color: white !important; background-color: rgba(0, 57, 90, 255) !important; padding: 8px;">02.11.2026</td>
+<td style="text-align: center; font-weight: bold; color: white !important; background-color: rgba(0, 57, 90, 255) !important; padding: 8px;"></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Summary lecture / old exam</td>
-<td style="text-align: left;"></td>
+<td style="text-align: center; color: rgba(26, 26, 26, 255) !important; background-color: rgba(244, 246, 247, 255) !important; padding: 8px;">Summary lecture / old exam</td>
+<td style="text-align: center; color: rgba(26, 26, 26, 255) !important; background-color: rgba(244, 246, 247, 255) !important; padding: 8px;"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left; background-color: rgba(46, 139, 87, 80) !important;">Study period prior to exam</td>
-<td style="text-align: left; background-color: rgba(46, 139, 87, 80) !important;"></td>
+<td style="text-align: center; font-weight: bold; color: white !important; background-color: rgba(0, 57, 90, 255) !important; padding: 8px;">Study period prior to exam</td>
+<td style="text-align: center; font-weight: bold; color: white !important; background-color: rgba(0, 57, 90, 255) !important; padding: 8px;"></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">24.11.2026</td>
-<td style="text-align: left;"></td>
+<td style="text-align: center; color: rgba(26, 26, 26, 255) !important; background-color: rgba(244, 246, 247, 255) !important; padding: 8px;"></td>
+<td style="text-align: center; color: rgba(26, 26, 26, 255) !important; background-color: rgba(244, 246, 247, 255) !important; padding: 8px;"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left; font-weight: bold; color: white !important; background-color: DarkRed !important;">5-hour digital school exam</td>
-<td style="text-align: left; font-weight: bold; color: white !important; background-color: DarkRed !important;"></td>
+<td style="text-align: center; font-weight: bold; color: white !important; background-color: rgba(139, 30, 30, 255) !important; padding: 8px;">5-hour digital school exam</td>
+<td style="text-align: center; font-weight: bold; color: white !important; background-color: rgba(139, 30, 30, 255) !important; padding: 8px;"></td>
 </tr>
 </tbody>
 </table>
