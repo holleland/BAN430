@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>lab_timeseriesgraphics – BAN430 Forecasting</title>
+<title>lab_decomposition – BAN430 Forecasting</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -71,8 +71,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./Lab_decomposition.html" rel="next">
-<link href="./10_Practicle_forecasting_issues.html" rel="prev">
+<link href="./WS_tsibble.html" rel="next">
+<link href="./Lab_timeseriesgraphics.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -111,6 +111,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -155,7 +198,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Lab_timeseriesgraphics.html">Labs</a></li><li class="breadcrumb-item"><a href="./Lab_timeseriesgraphics.html">Time series graphics</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Lab_timeseriesgraphics.html">Labs</a></li><li class="breadcrumb-item"><a href="./Lab_decomposition.html">Time series decomposition</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -416,13 +459,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Lab_timeseriesgraphics.html" class="sidebar-item-text sidebar-link active">
+  <a href="./Lab_timeseriesgraphics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Time series graphics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Lab_decomposition.html" class="sidebar-item-text sidebar-link">
+  <a href="./Lab_decomposition.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Time series decomposition</span></a>
   </div>
 </li>
@@ -493,62 +536,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Lab_timeseriesgraphics.html">Labs</a></li><li class="breadcrumb-item"><a href="./Lab_timeseriesgraphics.html">Time series graphics</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Lab_timeseriesgraphics.html">Labs</a></li><li class="breadcrumb-item"><a href="./Lab_decomposition.html">Time series decomposition</a></li></ol></nav></header>
 
 
 
 
-<section id="time-series-graphics" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="time-series-graphics">Time series graphics</h2>
-<p>📄 <a href="Lab_timeseriesgraphics.pdf">Print-friendly PDF version</a></p>
+<section id="time-series-decomposition" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="time-series-decomposition">Time series decomposition</h2>
+<p>📄 <a href="Lab_decomposition.pdf">Print-friendly PDF version</a></p>
 <section id="before-you-start" class="level3">
 <h3 class="anchored" data-anchor-id="before-you-start">Before you start</h3>
 <p>This is an in-class lab: work through the material below at your own pace (in pairs or small groups is fine) — I’ll walk around to help, and we’ll stop along the way to discuss as a group.</p>
-<p>The lecture covered the <em>theory</em> — trend, seasonality, cycles, autocorrelation, white noise, stationarity. Today you apply it: load real data, produce the graphics yourself, and interpret what you see. Don’t just make the plots — for every plot, write down (in the text, or on paper) what it tells you.</p>
+<p>This builds on the moving averages, classical decomposition, X11/SEATS and STL material from the <a href="./3_timeseriesdecomposition.html">decomposition chapter</a>. Today you apply it: decompose real series into trend-cycle, seasonal and remainder components, compare methods, and interpret what you get.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fpp3)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="cheat-sheet-turning-a-datetime-column-into-a-tsibble-index" class="level4">
-<h4 class="anchored" data-anchor-id="cheat-sheet-turning-a-datetime-column-into-a-tsibble-index">Cheat sheet: turning a date/time column into a tsibble index</h4>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Frequency</th>
-<th style="text-align: left;">Function</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Annual</td>
-<td style="text-align: left;"><code>start:end</code></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Quarterly</td>
-<td style="text-align: left;"><code>yearquarter()</code></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Monthly</td>
-<td style="text-align: left;"><code>yearmonth()</code></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Weekly</td>
-<td style="text-align: left;"><code>yearweek()</code></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Daily</td>
-<td style="text-align: left;"><code>as_date()</code>, <code>ymd()</code></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Sub-daily</td>
-<td style="text-align: left;"><code>as_datetime()</code>, <code>ymd_hms()</code></td>
-</tr>
-</tbody>
-</table>
-<p>A tsibble is created with <code>as_tsibble(index = &lt;time column&gt;, key = &lt;grouping column(s)&gt;)</code>. To re-aggregate an <em>existing</em> tsibble to a coarser time scale, use <code>group_by_key() %&gt;% index_by(&lt;new time column&gt; = ~&lt;function of the old one&gt;) %&gt;% summarise(...)</code>.</p>
-</section>
-<section id="cheat-sheet-graphics-functions" class="level4">
-<h4 class="anchored" data-anchor-id="cheat-sheet-graphics-functions">Cheat sheet: graphics functions</h4>
+<section id="cheat-sheet-decomposition-methods" class="level4">
+<h4 class="anchored" data-anchor-id="cheat-sheet-decomposition-methods">Cheat sheet: decomposition methods</h4>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -556,223 +561,78 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Plot</th>
-<th style="text-align: left;">Function</th>
+<th style="text-align: left;">Method</th>
+<th style="text-align: left;">Syntax</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Time plot</td>
-<td style="text-align: left;"><code>autoplot(data, variable)</code></td>
+<td style="text-align: left;">Classical</td>
+<td style="text-align: left;"><code>model(classical_decomposition(variable, type = "additive"))</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Seasonal plot</td>
-<td style="text-align: left;"><code>gg_season(data, variable, period = ...)</code></td>
+<td style="text-align: left;">X11</td>
+<td style="text-align: left;"><code>model(X_13ARIMA_SEATS(variable ~ x11()))</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Seasonal subseries plot</td>
-<td style="text-align: left;"><code>gg_subseries(data, variable)</code></td>
+<td style="text-align: left;">SEATS</td>
+<td style="text-align: left;"><code>model(X_13ARIMA_SEATS(variable ~ seats()))</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Scatter plot</td>
-<td style="text-align: left;"><code>ggplot(data, aes(x, y)) + geom_point()</code></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Lag plot</td>
-<td style="text-align: left;"><code>gg_lag(data, variable, lags = 1:k)</code></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Autocorrelation plot</td>
-<td style="text-align: left;"><code>ACF(data, variable) %&gt;% autoplot()</code></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Distribution</td>
-<td style="text-align: left;"><code>geom_histogram()</code>, <code>geom_boxplot()</code>, <code>stat_density()</code></td>
+<td style="text-align: left;">STL</td>
+<td style="text-align: left;"><code>model(STL(variable ~ trend(window = ...) + season(window = ...), robust = ...))</code></td>
 </tr>
 </tbody>
 </table>
+<p>After fitting, use <code>components()</code> to extract the trend-cycle/seasonal/remainder columns, then <code>autoplot()</code> to plot them.</p>
 <hr>
 </section>
 </section>
-<section id="warm-up-city-temperatures-across-norway" class="level3">
-<h3 class="anchored" data-anchor-id="warm-up-city-temperatures-across-norway">Warm-up: city temperatures across Norway</h3>
-<p>A quick warm-up before the main case, using daily temperature data for four Norwegian cities — a first taste of the <code>key</code> argument on something familiar.</p>
+<section id="task-1-offshore-wind-power" class="level3">
+<h3 class="anchored" data-anchor-id="task-1-offshore-wind-power">Task 1: Offshore wind power</h3>
+<p>Use the <code>windpower</code> data from <code>ban430data</code> (the same one from the <a href="./Lab_timeseriesgraphics.html">Time series graphics lab</a>) again — this time for decomposition.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>citytemp <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv2</span>(<span class="st">"https://raw.githubusercontent.com/holleland/BAN430/master/data/citytemp.csv"</span>,</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>ℹ Using "','" as decimal and "'.'" as grouping mark. Use `read_delim()` for more control.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("remotes")</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"holleland/ban430data"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ban430data)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(windpower)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>citytemp_ts <span class="ot">&lt;-</span> citytemp <span class="sc">%&gt;%</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as_date</span>(date, <span class="at">format =</span> <span class="st">"%d.%m.%Y"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(date)) <span class="sc">%&gt;%</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> date, <span class="at">key =</span> name) <span class="sc">%&gt;%</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fill_gaps</span>()</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>citytemp_ts</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tsibble: 35,068 x 4 [1D]
-# Key:       name [4]
-   name             station date       meanTemp
-   &lt;chr&gt;            &lt;chr&gt;   &lt;date&gt;        &lt;dbl&gt;
- 1 Bergen - Florida SN50540 2000-01-01      6.3
- 2 Bergen - Florida SN50540 2000-01-02      6.3
- 3 Bergen - Florida SN50540 2000-01-03      6.7
- 4 Bergen - Florida SN50540 2000-01-04      4.6
- 5 Bergen - Florida SN50540 2000-01-05      4.6
- 6 Bergen - Florida SN50540 2000-01-06      6.5
- 7 Bergen - Florida SN50540 2000-01-07      6.3
- 8 Bergen - Florida SN50540 2000-01-08      6.4
- 9 Bergen - Florida SN50540 2000-01-09      4.1
-10 Bergen - Florida SN50540 2000-01-10      5.3
-# ℹ 35,058 more rows</code></pre>
-</div>
-</div>
-<p><strong>Q:</strong> How many series are in <code>citytemp_ts</code>? What’s the key, and what’s the index? (<code>fill_gaps()</code> is there because there are a few missing days per station; <code>gg_season()</code> below won’t run without it.)</p>
-<p>Now make these three plots:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Time plot: one line per city</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Seasonal plot (period = "year")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Seasonal subseries plot — hint: aggregate to monthly means first with</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># group_by_key() %&gt;% index_by() %&gt;% summarise(), same as wp_month later</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>Now put a number on what you saw in the plots. For each city, compute the <strong>average temperature per calendar month</strong> (Jan, Feb, …, Dec, pooling across all years — not year-month), then the <strong>minimum</strong>, <strong>maximum</strong>, and <strong>range</strong> of those 12 monthly averages.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hint: mutate(month = month(date, label = TRUE)) %&gt;% group_by(name, month)</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># %&gt;% summarise(...) to get the 12 monthly averages per city, then</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># group_by(name) %&gt;% summarise(min = ___, max = ___, range = ___)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p><strong>Q:</strong> Do all four cities have roughly the same seasonal <em>shape</em>? Do they have the same seasonal <em>amplitude</em> (range)? Does the ranking from your table match what the seasonal plot suggested? Any guesses why the amplitudes differ, geographically?</p>
+<ol type="a">
+<li>Create a tsibble containing the <strong>daily</strong> wind power data from <strong>Sørlig Nordsjø 2</strong> only (aggregate <code>windpower</code> from hourly to daily with the mean, same as in the graphics lab).</li>
+<li>Decompose the series into trend-cycle <span class="math inline">T_t</span>, season <span class="math inline">S_t</span> and remainder <span class="math inline">R_t</span>, using a suitable decomposition method. Which method(s) from the cheat sheet above are <em>not</em> usable here, and why? Why did you choose the method you did?</li>
+<li>Is there a visible seasonal pattern? A trend? How does this compare to what you found with <code>gg_season()</code>/<code>gg_subseries()</code> in the graphics lab?</li>
+</ol>
 <hr>
 </section>
-<section id="the-case-offshore-wind-power" class="level3">
-<h3 class="anchored" data-anchor-id="the-case-offshore-wind-power">The case: offshore wind power</h3>
-<p>You have five years (2015–2019) of <strong>hourly</strong> simulated power production data (in MW) for two proposed Norwegian offshore wind farm locations: <strong>Utsira Nord</strong> and <strong>Sørlig Nordsjø 2</strong>.</p>
-<blockquote class="blockquote">
-<p>You work as an analyst asked to give an initial, purely data-driven, recommendation on where to build the <strong>first</strong> offshore wind farm. You have no cost or grid-connection information — only five years of production data. What can the data alone tell you?</p>
-</blockquote>
-<p>Keep that question in mind as you work through the tasks below — you’ll return to it at the end.</p>
-<section id="task-0-load-the-data" class="level4">
-<h4 class="anchored" data-anchor-id="task-0-load-the-data">Task 0: Load the data</h4>
-<p>The data lives in the <code>ban430data</code> package as <code>windpower</code> — install it if you haven’t already.</p>
+<section id="task-2-norwegian-wholesale-and-retail-sales-index" class="level3">
+<h3 class="anchored" data-anchor-id="task-2-norwegian-wholesale-and-retail-sales-index">Task 2: Norwegian wholesale and retail sales index</h3>
+<p>The data is a monthly index for <em>Retail trade, except of motor vehicles and motorcycles</em>, from Statistics Norway (Jan 2000 onwards).</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("remotes")</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"holleland/ban430data"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ban430data)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(windpower)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>wp_hour <span class="ot">&lt;-</span> windpower</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>wp_hour</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>wholesale <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://raw.githubusercontent.com/holleland/BAN430/master/data/wholesale_and_retails_index_norway.csv"</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sep =</span> <span class="st">";"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(wholesale, <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tsibble: 87,648 x 3 [1h] &lt;?&gt;
-# Key:       Place [2]
-   Place            powerprod datetime           
-   &lt;chr&gt;                &lt;dbl&gt; &lt;dttm&gt;             
- 1 Sørlig Nordsjø 2        15 2015-01-01 00:00:00
- 2 Sørlig Nordsjø 2        15 2015-01-01 01:00:00
- 3 Sørlig Nordsjø 2        15 2015-01-01 02:00:00
- 4 Sørlig Nordsjø 2        15 2015-01-01 03:00:00
- 5 Sørlig Nordsjø 2        15 2015-01-01 04:00:00
- 6 Sørlig Nordsjø 2        15 2015-01-01 05:00:00
- 7 Sørlig Nordsjø 2        15 2015-01-01 06:00:00
- 8 Sørlig Nordsjø 2        15 2015-01-01 07:00:00
- 9 Sørlig Nordsjø 2        15 2015-01-01 08:00:00
-10 Sørlig Nordsjø 2        15 2015-01-01 09:00:00
-# ℹ 87,638 more rows</code></pre>
+<pre><code>    month wholesale_and_retail_sales_index
+1 2000M01                             50.5
+2 2000M02                             49.3
+3 2000M03                             53.8</code></pre>
 </div>
 </div>
-<p><strong>Q:</strong> What is the index variable, and what is the key? Why do we need a key here — for the same reason <code>citytemp</code> needed one above?</p>
-</section>
-<section id="task-1-aggregate-to-other-time-scales" class="level4">
-<h4 class="anchored" data-anchor-id="task-1-aggregate-to-other-time-scales">Task 1: Aggregate to other time scales</h4>
-<p>Hourly data is hard to read as a time plot over five years. Create three new tsibbles — <code>wp_day</code>, <code>wp_week</code> and <code>wp_month</code> — by aggregating <code>wp_hour</code> with the mean production. The daily version is done for you; use the cheat sheet above (and the fact that a <code>datetime</code> can be turned into a date with <code>as.Date()</code>) to complete the other two.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>wp_day <span class="ot">&lt;-</span> wp_hour <span class="sc">%&gt;%</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by_key</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">index_by</span>(<span class="at">date =</span> <span class="sc">~</span><span class="fu">as.Date</span>(.)) <span class="sc">%&gt;%</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">powerprod =</span> <span class="fu">mean</span>(powerprod, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>wp_day</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tsibble: 3,654 x 3 [1D]
-# Key:       Place [2]
-   Place            date       powerprod
-   &lt;chr&gt;            &lt;date&gt;         &lt;dbl&gt;
- 1 Sørlig Nordsjø 2 2014-12-31     15   
- 2 Sørlig Nordsjø 2 2015-01-01     13.1 
- 3 Sørlig Nordsjø 2 2015-01-02     12.5 
- 4 Sørlig Nordsjø 2 2015-01-03     15   
- 5 Sørlig Nordsjø 2 2015-01-04     14.8 
- 6 Sørlig Nordsjø 2 2015-01-05      4.81
- 7 Sørlig Nordsjø 2 2015-01-06     14.2 
- 8 Sørlig Nordsjø 2 2015-01-07     14.4 
- 9 Sørlig Nordsjø 2 2015-01-08     15   
-10 Sørlig Nordsjø 2 2015-01-09      7.26
-# ℹ 3,644 more rows</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>wp_week <span class="ot">&lt;-</span> wp_hour <span class="sc">%&gt;%</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by_key</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">index_by</span>(<span class="at">yearweek =</span> ___) <span class="sc">%&gt;%</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">powerprod =</span> ___)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>wp_month <span class="ot">&lt;-</span> wp_hour <span class="sc">%&gt;%</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by_key</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">index_by</span>(<span class="at">yearmonth =</span> ___) <span class="sc">%&gt;%</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">powerprod =</span> ___)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="task-2-time-plots-at-every-scale" class="level4">
-<h4 class="anchored" data-anchor-id="task-2-time-plots-at-every-scale">Task 2: Time plots at every scale</h4>
-<p>Produce <code>autoplot()</code> time plots for <code>wp_hour</code>, <code>wp_day</code>, <code>wp_week</code> and <code>wp_month</code>.</p>
-<p><strong>Q:</strong> At which scale(s) can you see a trend? A cycle? Seasonality? Does the picture change as you aggregate more?</p>
-</section>
-<section id="task-3-seasonal-plots" class="level4">
-<h4 class="anchored" data-anchor-id="task-3-seasonal-plots">Task 3: Seasonal plots</h4>
-<p>Use <code>gg_season()</code> on an appropriate aggregate (or several) to check for seasonality at different periods: within a day, within a week, within a year.</p>
-<p><strong>Q:</strong> Is there a daily pattern? A weekly pattern? An annual pattern? Is it the same at both locations?</p>
-</section>
-<section id="task-4-seasonal-subseries-plots" class="level4">
-<h4 class="anchored" data-anchor-id="task-4-seasonal-subseries-plots">Task 4: Seasonal subseries plots</h4>
-<p>Pick the time scale and period where you found the clearest seasonal pattern in Task 3, and use <code>gg_subseries()</code> to look at it more closely.</p>
-<p><strong>Q:</strong> Does <code>gg_subseries()</code> show you anything <code>gg_season()</code> didn’t — e.g.&nbsp;is the seasonal pattern stable across the five years, or changing?</p>
-</section>
-<section id="task-5-relationship-between-the-two-locations" class="level4">
-<h4 class="anchored" data-anchor-id="task-5-relationship-between-the-two-locations">Task 5: Relationship between the two locations</h4>
-<p>So far you’ve looked at each location separately. Now compare them directly.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hint: pivot_wider(names_from = Place, values_from = powerprod) first,</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># then ggplot() + geom_point() + geom_smooth()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p><strong>Q:</strong> Do the two locations move together? Is the relationship linear? Does your answer change depending on which time scale (hourly/daily/weekly/monthly) you use? Why might that be?</p>
-</section>
-<section id="task-6-lag-plots-and-autocorrelation" class="level4">
-<h4 class="anchored" data-anchor-id="task-6-lag-plots-and-autocorrelation">Task 6: Lag plots and autocorrelation</h4>
-<p>Choose <strong>one</strong> location (<code>filter(Place == ...)</code>) and one time scale, and produce a lag plot and an ACF plot.</p>
-<p><strong>Q:</strong> At which lag(s) is the autocorrelation strongest? Does that match the seasonal period you found in Task 3? Would you say this series looks like white noise, or not — why?</p>
-</section>
-<section id="task-7-if-time-permits-distribution" class="level4">
-<h4 class="anchored" data-anchor-id="task-7-if-time-permits-distribution">Task 7 (if time permits): Distribution</h4>
-<p>Use <code>geom_histogram()</code>, <code>stat_density()</code> or <code>geom_boxplot()</code> to look at the <em>distribution</em> of production values (e.g.&nbsp;split by month, or by location).</p>
-<p><strong>Q:</strong> Is the distribution symmetric? Are there a lot of hours/days at or near zero production? What might that mean physically?</p>
+<ol type="a">
+<li>Convert the <code>month</code> column to a <code>yearmonth</code> type and turn <code>wholesale</code> into a tsibble.</li>
+<li>Make a time plot.</li>
+<li>Decompose the series using the classical, X11, SEATS and STL methods. Can you detect any prominent differences between the methods?</li>
+<li>Try adjusting the trend and season windows of the STL (default values are 21 and 11 respectively). What happens?</li>
+<li>Using your method of choice, plot the seasonally-adjusted time series.</li>
+<li>Using your method of choice, plot the detrended series.</li>
+<li><em>Optional</em>: Implement your own additive classical decomposition by hand (moving averages + seasonal averaging), and compare to <code>classical_decomposition()</code>. (See <a href="./3_exercises.html">Chapter 3 exercises, exercise 6</a> if you want to check your approach against a worked solution.)</li>
+</ol>
 <hr>
-</section>
 </section>
 <section id="wrap-up-discussion" class="level3">
 <h3 class="anchored" data-anchor-id="wrap-up-discussion">Wrap-up discussion</h3>
-<p>Come back to the opening question:</p>
-<blockquote class="blockquote">
-<p>If you were to decide where to build the <strong>first</strong> offshore wind farm based solely on the data you have explored today, which location would you choose, and why? What are you <em>not</em> able to say from this data alone? Does your recommendation depend on which time scale you looked at?</p>
-</blockquote>
-<p>Discuss with your neighbors, then we’ll compare answers across the room.</p>
+<p>For both series today: did the different decomposition methods roughly agree, or did they tell noticeably different stories? When might you prefer STL over classical decomposition, or vice versa? What made X11/SEATS unsuitable for the daily wind power data?</p>
 
 
 </section>
@@ -1181,13 +1041,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./10_Practicle_forecasting_issues.html" class="pagination-link" aria-label="Practicle forecasting issues">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Practicle forecasting issues</span>
+      <a href="./Lab_timeseriesgraphics.html" class="pagination-link" aria-label="Time series graphics">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Time series graphics</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./Lab_decomposition.html" class="pagination-link" aria-label="Time series decomposition">
-        <span class="nav-page-text">Time series decomposition</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./WS_tsibble.html" class="pagination-link" aria-label="tsibble, graphics and decomposition">
+        <span class="nav-page-text">tsibble, graphics and decomposition</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

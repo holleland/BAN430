@@ -16,6 +16,8 @@ theme_set(
 )
 ```
 
+📄 [Print-friendly PDF version](Lab_timeseriesgraphics.pdf)
+
 ### Before you start
 
 This is an in-class lab: work through the material below at your own pace (in pairs or small groups is fine) — I'll walk around to help, and we'll stop along the way to discuss as a group.
