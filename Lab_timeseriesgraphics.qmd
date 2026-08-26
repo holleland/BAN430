@@ -130,7 +130,7 @@ wp_hour <- windpower
 wp_hour
 ```
 
-**Q:** What is the index variable, and what is the key? Why do we need a key here, when we didn't for `citytemp` above?
+**Q:** What is the index variable, and what is the key? Why do we need a key here — for the same reason `citytemp` needed one above?
 
 #### Task 1: Aggregate to other time scales
 

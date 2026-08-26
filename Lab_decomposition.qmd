@@ -1,0 +1,84 @@
+## Time series decomposition {.unnumbered}
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+#| eval: true
+library(lubridate)
+library(tidyverse)
+library(fpp3)
+theme_set(
+  theme_bw() +
+    theme(panel.grid.minor = element_blank(),
+          panel.grid.major = element_blank(),
+          strip.background = element_rect(fill = "white", color = "transparent"))
+)
+```
+
+### Before you start
+
+This is an in-class lab: work through the material below at your own pace (in pairs or small groups is fine) — I'll walk around to help, and we'll stop along the way to discuss as a group.
+
+This builds on the moving averages, classical decomposition, X11/SEATS and STL material from the [decomposition chapter](3_timeseriesdecomposition.qmd). Today you apply it: decompose real series into trend-cycle, seasonal and remainder components, compare methods, and interpret what you get.
+
+```{r}
+library(fpp3)
+library(tidyverse)
+```
+
+#### Cheat sheet: decomposition methods
+
+| Method | Syntax |
+|:---|:---|
+| Classical | `model(classical_decomposition(variable, type = "additive"))` |
+| X11 | `model(X_13ARIMA_SEATS(variable ~ x11()))` |
+| SEATS | `model(X_13ARIMA_SEATS(variable ~ seats()))` |
+| STL | `model(STL(variable ~ trend(window = ...) + season(window = ...), robust = ...))` |
+
+After fitting, use `components()` to extract the trend-cycle/seasonal/remainder columns, then `autoplot()` to plot them.
+
+------------------------------------------------------------------------
+
+### Task 1: Offshore wind power
+
+Use the `windpower` data from `ban430data` (the same one from the [Time series graphics lab](Lab_timeseriesgraphics.qmd)) again — this time for decomposition.
+
+```{r}
+#| eval: false
+# install.packages("remotes")
+remotes::install_github("holleland/ban430data")
+library(ban430data)
+data(windpower)
+```
+
+a)  Create a tsibble containing the **daily** wind power data from **Sørlig Nordsjø 2** only (aggregate `windpower` from hourly to daily with the mean, same as in the graphics lab).
+b)  Decompose the series into trend-cycle $T_t$, season $S_t$ and remainder $R_t$, using a suitable decomposition method. Which method(s) from the cheat sheet above are *not* usable here, and why? Why did you choose the method you did?
+c)  Is there a visible seasonal pattern? A trend? How does this compare to what you found with `gg_season()`/`gg_subseries()` in the graphics lab?
+
+------------------------------------------------------------------------
+
+### Task 2: Norwegian wholesale and retail sales index
+
+The data is a monthly index for *Retail trade, except of motor vehicles and motorcycles*, from Statistics Norway (Jan 2000 onwards).
+
+```{r}
+wholesale <- read.csv2(
+  "https://raw.githubusercontent.com/holleland/BAN430/master/data/wholesale_and_retails_index_norway.csv",
+  sep = ";")
+head(wholesale, 3)
+```
+
+a)  Convert the `month` column to a `yearmonth` type and turn `wholesale` into a tsibble.
+b)  Make a time plot.
+c)  Decompose the series using the classical, X11, SEATS and STL methods. Can you detect any prominent differences between the methods?
+d)  Try adjusting the trend and season windows of the STL (default values are 21 and 11 respectively). What happens?
+e)  Using your method of choice, plot the seasonally-adjusted time series.
+f)  Using your method of choice, plot the detrended series.
+g)  *Optional*: Implement your own additive classical decomposition by hand (moving averages + seasonal averaging), and compare to `classical_decomposition()`. (See [Chapter 3 exercises, exercise 6](3_exercises.qmd) if you want to check your approach against a worked solution.)
+
+------------------------------------------------------------------------
+
+### Wrap-up discussion
+
+For both series today: did the different decomposition methods roughly agree, or did they tell noticeably different stories? When might you prefer STL over classical decomposition, or vice versa? What made X11/SEATS unsuitable for the daily wind power data?

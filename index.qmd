@@ -9,6 +9,10 @@ library(tidyverse)
 options(knitr.kable.NA = '')
 library(dplyr)
 library(kableExtra)
+# kableExtra's kePrint.js dependency needs jQuery, which Quarto's Bootstrap 5
+# template doesn't load by default - without this, kePrint.js throws
+# "$ is not defined" in the browser console on this page.
+htmltools::tagList(rmarkdown::html_dependency_jquery())
 df <- readxl::read_excel("lecturePlan.xlsx", sheet = "h2026",
                            col_types= rep("text",3))[,-1]
 

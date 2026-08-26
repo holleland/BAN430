@@ -66,6 +66,7 @@ website:
       - section: "Labs"
         contents:
           - Lab_timeseriesgraphics.qmd
+          - Lab_decomposition.qmd
       - section: "Workshops"
         contents:
           - WS_tsibble.qmd
