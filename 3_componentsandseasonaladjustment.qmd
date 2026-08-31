@@ -1,0 +1,59 @@
+## Time series components and Seasonal adjustment {#sec-componentsandseasonaladjustment}
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+#| eval: true
+library(lubridate)
+library(tidyverse)
+library(fpp3)
+theme_set(
+  theme_bw() +
+    theme(panel.grid.minor = element_blank(),
+          panel.grid.major = element_blank(),
+          strip.background = element_rect(fill = "white", color = "transparent"))
+)
+
+```
+
+<iframe src="https://player.vimeo.com/video/766470965?h=ead0e1cf78" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
+
+</iframe>
+
+<details>
+
+<summary>Code</summary>
+
+```{r}
+#| echo: true
+#| eval: true
+#| warnings: false
+#| message: false
+set.seed(1344)
+library(tidyverse)
+library(fpp3)
+dat <- tibble(
+  date = seq(as.Date("2015-01-01"), as.Date("2020-12-31"), by = "1 day"),
+  t = 1:length(date),
+  Tt = 100+9*t/300 + .5*((t-1000)/200)^3+(.87*cos(2*pi*t/1200)+.42*sin(2*pi*t/600))*11,
+  St = (.94*cos(2*pi*t/365) -1.2*sin(2* pi*t/365))*13,
+  Rt = rnorm(length(date), sd = 15),
+  Yt = Tt + St +  Rt
+)
+
+# -- Plotting Y and its components --
+dat %>%
+  pivot_longer(cols = -c(date,t)) %>%
+  mutate(name = factor(name, levels = c("Yt", "Tt", "St", "Rt"))) %>% # to order the panels
+  ggplot(aes(x=date, y = value, col = name)) +
+  geom_line() + facet_wrap(~name, ncol = 1, scales = "free_y", strip.position = "left") +
+  theme(strip.placement = "outside", axis.title = element_blank(), legend.position = "none")
+
+# -- Plotting seasonally adjusted Y --
+ggplot(dat, aes(x = date, y = Yt-St)) +
+  geom_line() +
+  labs(title = "Seasonally adjusted", x = "")
+```
+
+</details>

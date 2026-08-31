@@ -1,0 +1,19 @@
+## What is time series data
+
+Below is a video from Aric LaBarr's youtube series explaing time series concepts in less than 5 minutes. In the video below he explains what time series data is - as opposed to cross sectional data. As he points out, we also some times have a combination which we can e.g. aggregate to cross sectional data or time series data.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FsroWpkUuYI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Time series notation
+
+It is quite common in statistics in general, but also in time series analysis, to distinguish between capital and non-capital letters. While $Y_t$ denotes the stochastic variable $Y$ at time $t$, $y_t$ is the realization of said stochastic variable $Y_t$, i.e. an observed value. $Y_t$ is a specific variable, while $\{Y_t\}$ is the entire time series. While a stochastic variable has for instance an expectation, a variance, a dependence structure and a distribution, an observation is just a number.
+
+Let $\mu_t=\mu_Y(t)=\mathrm{E}(Y_t)$ denote the mean function of $Y_t$. Assuming that $E(Y_t^2)<\infty$, the covariance function of $\{Y_t\}$ is denoted
+$$\gamma(r,s)=\gamma_Y(r,s)= \mathrm{Cov}(Y_r,Y_s)=\mathrm{E}(Y_r-\mu_r)(Y_s-\mu_s).$$
+If the covariance function does not depend on the specific values of $r$ and $s$, but rather the distance between them $h = |r-s|$, we write $\gamma(r,s)=\gamma(h)$. Likewise, if $\mu_t$ does not depend on $t$, we write $\mu_t=\mu$. This will be used in the section about stationarity below. Note that the variance of $Y_t$ is given by $\gamma(t,t) = \mathrm{Cov}(Y_t,Y_t) = \mathrm{Var}(Y_t)$ or $\gamma(0)$ in the case where the covariance does not depend on $t$.
+
+
+
+## tsibble
+
+The tsibble object will be important in this course. Since we are working in the tidyverse, things will be easier if we commit to it. Converting your data to a time series tibble (tsibble) is essential. The tsibble extends the tidy tibble data frame by introducing temporal structure. Read the chapter 2.1 about [tsibble objects in the textbook](https://otexts.com/fpp3/tsibbles.html). Here you find several coding examples.

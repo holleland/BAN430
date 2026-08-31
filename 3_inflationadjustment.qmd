@@ -1,0 +1,82 @@
+## Inflation adjustment {.unnumbered}
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+#| eval: true
+library(lubridate)
+library(tidyverse)
+library(fpp3)
+theme_set(
+  theme_bw() +
+    theme(panel.grid.minor = element_blank(),
+          panel.grid.major = element_blank(),
+          strip.background = element_rect(fill = "white", color = "transparent"))
+)
+
+```
+
+Adjusting for inflation is a simple way of taking into account that 5\$ in 1950 would get you much more than 5\$ would today. This compensation is usually done by a consumer price index, which is standardized to a specific year (in the video below we show examples with 2010 and 2015 as reference years).
+
+Let $Y_t$ denote the raw time series and $Y_t^\star$ the inflation adjusted. Let $\text{CPI}_t$ denote a relevant consumer price index defined to be 100 in the reference year $t^\star$. Then $$Y_t^\star = Y_t \cdot \frac{100}{\text{CPI}_t}.$$ More generally, we can choose the reference year $t^\star$ and write this as $$Y_t^\star = Y_t \cdot \frac{\text{CPI}_{t^\star}}{\text{CPI}_t}.$$
+
+The inflation adjusted series is then measured in the unit "year $t^\star$-money".
+
+<iframe src="https://player.vimeo.com/video/765737839?h=ead0e1cf78" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
+
+</iframe>
+
+```{r, message = FALSE, warning =FALSE}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-overflow: wrap
+#| code-summary: "Code:"
+# --- Inflation adjusted GDP per capita by country ---
+scandinaviaUSA %>%
+  autoplot(GDP/Population *100 / CPI) +
+  labs(title= "GDP per capita = GDP / Population", y = "$US")
+
+# --- CPI FOR NORWAY (data from Statistics Norway)---
+CPI <- read.csv("data/CPI_norway.csv", sep = ";") %>% as_tibble() %>%
+  select(1:2) %>%
+  rename(Year = X,CPI = Y.avg2) %>%
+  mutate(Year = as.numeric(Year), CPI = as.numeric(CPI))%>%
+  filter(Year < 2022) %>%
+  as_tsibble(index = Year)
+
+# --- CPI figure ---
+CPI %>%
+  autoplot(CPI, color = "blue", lwd = 1.2) +
+  labs(title= "Consumer Price Index", y = "NOK",
+       subtitle = "Data source: Statistics Norway")+
+  geom_hline(yintercept = 100, lty = 2) + geom_vline(xintercept = 2015, lty = 2)+
+  scale_x_continuous(breaks = seq(1925,2025,10))+
+  scale_y_continuous(breaks = seq(0,120,10))
+
+# --- BIG MAC price index ---
+bigMac <- read_csv("https://raw.githubusercontent.com/TheEconomist/big-mac-data/master/output-data/big-mac-raw-index.csv")
+norBigMac <- bigMac %>%
+  filter(name %in% c("Norway")) %>%
+  mutate(Year = lubridate::year(date)) %>%
+  as_tsibble(index = "date")%>%
+  filter(Year <2022) %>%
+  left_join(CPI, by = "Year")
+
+# --- BIG MAC price index figure ---
+norBigMac %>%
+  autoplot(local_price) +
+  labs(title= "Big Mac price in Norway", y = "NOK",
+       subtitle = "Data source: The Economist") +
+  geom_smooth(method = "lm", se=FALSE)
+
+#--- Inflation adjusted BIG MAC price index figure ---
+norBigMac %>%
+  mutate(cpiAdjusted =local_price / CPI * 100)  %>%
+  as_tsibble(index = date) %>%
+  autoplot(cpiAdjusted)+
+  labs(title= "Inflation adjusted Big Mac price in Norway", y = "NOK (2015)",
+       subtitle = "Data sources: The Economist (big mac index), Statistics Norway (CPI)") +
+  geom_smooth(method = "lm", se=FALSE)
+```

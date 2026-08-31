@@ -1,0 +1,58 @@
+## Population adjustment {.unnumbered}
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+#| eval: true
+library(lubridate)
+library(tidyverse)
+library(fpp3)
+theme_set(
+  theme_bw() +
+    theme(panel.grid.minor = element_blank(),
+          panel.grid.major = element_blank(),
+          strip.background = element_rect(fill = "white", color = "transparent"))
+)
+
+```
+
+Adjusting for population size is usually a good idea when studying a quantity that is affected by it. The most obvious example is to study GDP (Gross Domestic Product) per capita instead of GDP.
+
+<iframe src="https://player.vimeo.com/video/765733100?h=ead0e1cf78" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
+
+</iframe>
+
+```{r, message = FALSE, warning =FALSE}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-overflow: wrap
+#| code-summary: "Code:"
+
+# --- Setting up the data --
+scandinaviaUSA <- global_economy %>%
+  filter(Country %in% c("Norway","Sweden","Denmark", "United States"))
+scandinaviaUSA %>% head()
+
+# --- GDP by country in $US --
+scandinaviaUSA %>%
+  autoplot(GDP)+
+  labs(title= "GDP", y = "$US")
+
+# --- Population by country  --
+scandinaviaUSA %>%
+  autoplot(Population)+
+  labs(title= "Population", y = "Number of people")
+
+# --- Population by country  (log-scale on y-axis) --
+scandinaviaUSA %>%
+  autoplot(Population)+
+  scale_y_log10()+
+  labs(title= "Population (log-scale)",y = "Number of people")
+
+# --- GDP per capita by country ---
+scandinaviaUSA %>%
+  autoplot(GDP/Population) +
+  labs(title= "GDP per capita = GDP / Population", y = "$US")
+```

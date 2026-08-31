@@ -1,0 +1,76 @@
+## Calender adjustments {.unnumbered}
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+#| eval: true
+library(lubridate)
+library(tidyverse)
+library(fpp3)
+theme_set(
+  theme_bw() +
+    theme(panel.grid.minor = element_blank(),
+          panel.grid.major = element_blank(),
+          strip.background = element_rect(fill = "white", color = "transparent"))
+)
+
+```
+
+<iframe src="https://player.vimeo.com/video/765626935?h=ead0e1cf78" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
+
+</iframe>
+
+In the example in the video above, we are not interested in a proxy for working days per month, and to avoid the effect of this we use the mean (average) production per working day within each month instead of total production per month. The code to generate the example can be found below:
+
+```{r, message = FALSE, warning =FALSE}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-overflow: wrap
+#| code-summary: "Code:"
+library(lubridate)
+library(tidyverse)
+library(fpp3)
+
+# ggplot theme:
+theme_set(
+  theme_bw() +
+    theme(panel.grid.minor = element_blank(),
+          panel.grid.major = element_blank())
+)
+
+# Daily production:
+dat <- tibble(
+  date = seq(as.Date("2015-01-01"), as.Date("2019-12-31"), by = "1 day"),
+  price = pi
+) %>%
+  #Removing the weekends:
+  filter(wday(date, week_start = 1) %in% 1:5) %>%
+  #Note: We do not remove public holidays, and the worker never takes a day off
+  mutate(YearMonth = yearmonth(date))
+
+# -- TOTAL PRODUCTION FIGURE --
+dat %>%
+  group_by(YearMonth) %>%
+  summarize(`Total production` = sum(price)) %>%
+  as_tsibble(index = "YearMonth") %>%
+  ggplot(aes(x = YearMonth,
+             y = `Total production`)) +
+  geom_point(color = "skyblue") +
+  geom_line(color = "skyblue") +
+  scale_y_continuous(breaks = seq(60, 100, 5),
+                     labels = paste0("$",seq(60, 100, 5),"k"),
+                     limits = c(60,75))
+# -- MEAN PRODUCTION FIGURE --
+dat %>% group_by(YearMonth) %>%
+  summarize(`Mean production` = mean(price)) %>%
+  as_tsibble(index = "YearMonth") %>%
+  ggplot(aes(x = YearMonth,
+             y = `Mean production`)) +
+  geom_point(color = "skyblue") +
+  geom_line(color="skyblue")+
+  scale_y_continuous(breaks = seq(3, 4, .02),
+                     labels = paste0("$",seq(3, 4, .02),"k"))
+
+```

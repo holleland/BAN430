@@ -20,7 +20,7 @@ theme_set(
 In addition to the exercises in [Chapter 3.7 of the textbook](https://otexts.com/fpp3/decomposition-exercises), here are some additional ones with solution. Try to solve them yourself before looking at the solution. The textbook exercise solutions are published on canvas. 
 
 
-1.  Use the simulated data from [here](https://holleland.github.io/BAN430/3_adjustments.html#time-series-components-and-seasonal-adjustment). Compare different methods with the truth from the simulation. Are there large differences?
+1.  Use the simulated data from [here](https://holleland.github.io/BAN430/3_componentsandseasonaladjustment.html#sec-componentsandseasonaladjustment). Compare different methods with the truth from the simulation. Are there large differences?
 
 <details>
 

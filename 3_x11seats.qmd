@@ -1,0 +1,59 @@
+## Statistics agencies: X11 and SEATS
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+#| eval: true
+library(lubridate)
+library(tidyverse)
+library(fpp3)
+theme_set(
+  theme_bw() +
+    theme(panel.grid.minor = element_blank(),
+          panel.grid.major = element_blank(),
+          strip.background = element_rect(fill = "white", color = "transparent"))
+)
+
+```
+
+<iframe src="https://player.vimeo.com/video/767240975?h=ead0e1cf78" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
+
+</iframe>
+
+<details>
+
+<summary>Code</summary>
+
+```{r}
+#| echo: true
+#| eval: true
+#| warnings: false
+#| message: false
+# -- Read in data (see the Moving averages page for details): --
+dat <- readxl::read_excel(
+  "data/NorwayEmployment_15-74years_bySex.xlsx") %>%
+  as_tibble() %>%
+  mutate(Quarter = str_replace(Quarter, "K","Q"),
+         Quarter = yearquarter(Quarter))
+names(dat)[3] <- "Employed"
+dat <- dat %>%
+  group_by(Quarter) %>%
+  summarize(Employed = sum(Employed)) %>%
+  as_tsibble(index = Quarter)
+
+dat %>%
+  model(
+    classical = classical_decomposition(Employed,
+                                        type = "multiplicative"),
+    x11 = X_13ARIMA_SEATS(Employed ~ x11()),
+    seats = X_13ARIMA_SEATS(Employed ~ seats())
+  ) %>%
+  components() %>%
+  mutate(random = ifelse(.model == "classical",
+                         random,
+                         irregular)) %>%
+  autoplot()
+```
+
+</details>

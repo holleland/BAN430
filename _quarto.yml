@@ -27,13 +27,28 @@ website:
           - href: 1_rrecap.qmd
             text: "Recap R"
       - section: "2 Time series basics"
+        href: 2_timeseriesgraphics.qmd
         contents:
-          - 2_timeseriesgraphics.qmd
+          - 2_whatistimeseriesdata.qmd
+          - 2_stationarity.qmd
       - section: "3 Adjustments and decomposition"
-        href: 3_decomposition_intro.qmd 
+        href: 3_decomposition_intro.qmd
         contents:
-          - 3_adjustments.qmd
-          - 3_timeseriesdecomposition.qmd
+          - section: "Adjustments and transformations"
+            href: 3_adjustments.qmd
+            contents:
+              - 3_calendaradjustments.qmd
+              - 3_populationadjustment.qmd
+              - 3_inflationadjustment.qmd
+              - 3_mathematicaltransformations.qmd
+              - 3_componentsandseasonaladjustment.qmd
+          - section: "Moving averages and Decomposition"
+            href: 3_timeseriesdecomposition.qmd
+            contents:
+              - 3_movingaverages.qmd
+              - 3_classicaldecomposition.qmd
+              - 3_x11seats.qmd
+              - 3_stl.qmd
           - 3_exercises.qmd
       - section: "4 Time series features"
         contents:
@@ -45,8 +60,12 @@ website:
         contents:
           - 5_forecasterstoolbox.qmd
       - section: "6 Judgemental forecast"
+        href: 6_judgementalforecast.qmd
         contents:
-          - 6_judgementalforecast.qmd
+          - 6_delphimethod.qmd
+          - 6_forecastingbyanalogy.qmd
+          - 6_othermethods.qmd
+          - 6_judgmentaladjustment.qmd
       - section: "7 Regression models"
         contents:
           - 7_regressionmodels.qmd
