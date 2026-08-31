@@ -606,17 +606,20 @@ window.Quarto = {
 </section>
 <section id="task-2-norwegian-wholesale-and-retail-sales-index" class="level3">
 <h3 class="anchored" data-anchor-id="task-2-norwegian-wholesale-and-retail-sales-index">Task 2: Norwegian wholesale and retail sales index</h3>
-<p>The data is a monthly index for <em>Retail trade, except of motor vehicles and motorcycles</em>, from Statistics Norway (Jan 2000 onwards).</p>
+<p>The data is a monthly index for <em>Retail trade, except of motor vehicles and motorcycles</em>, from Statistics Norway (Jan 2000 onwards). It’s the <code>wholesale_raw_lab</code> object from <code>ban430data</code> (same package as <code>windpower</code> above).</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>wholesale <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://raw.githubusercontent.com/holleland/BAN430/master/data/wholesale_and_retails_index_norway.csv"</span>,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sep =</span> <span class="st">";"</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(wholesale, <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ban430data)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(decomposition)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>wholesale <span class="ot">&lt;-</span> wholesale_raw_lab</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(wholesale, <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    month wholesale_and_retail_sales_index
-1 2000M01                             50.5
-2 2000M02                             49.3
-3 2000M03                             53.8</code></pre>
+<pre><code># A tibble: 3 × 2
+  month   `wholesale and retail sales index`
+  &lt;chr&gt;                                &lt;dbl&gt;
+1 2000M01                               39.9
+2 2000M02                               38.9
+3 2000M03                               42.4</code></pre>
 </div>
 </div>
 <ol type="a">

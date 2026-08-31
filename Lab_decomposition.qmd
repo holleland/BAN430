@@ -62,12 +62,13 @@ c)  Is there a visible seasonal pattern? A trend? How does this compare to what 
 
 ### Task 2: Norwegian wholesale and retail sales index
 
-The data is a monthly index for *Retail trade, except of motor vehicles and motorcycles*, from Statistics Norway (Jan 2000 onwards).
+The data is a monthly index for *Retail trade, except of motor vehicles and motorcycles*, from Statistics Norway (Jan 2000 onwards). It's the `wholesale_raw_lab` object from `ban430data` (same package as `windpower` above).
 
 ```{r}
-wholesale <- read.csv2(
-  "https://raw.githubusercontent.com/holleland/BAN430/master/data/wholesale_and_retails_index_norway.csv",
-  sep = ";")
+library(ban430data)
+data(decomposition)
+
+wholesale <- wholesale_raw_lab
 head(wholesale, 3)
 ```
 
