@@ -689,7 +689,7 @@ window.Quarto = {
 <li><p>Create a tsibble containing the <strong>daily</strong> wind power data from <strong>Sørlig Nordsjø 2</strong> only (aggregate <code>windpower</code> from hourly to daily with the mean, same as in the graphics lab).</p>
 <details>
 <summary>
-<p>💡 Hint</p>
+<p>💡 Code hint</p>
 </summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>wp_day <span class="ot">&lt;-</span> windpower <span class="sc">%&gt;%</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Place <span class="sc">==</span> <span class="st">"Sørlig Nordsjø 2"</span>) <span class="sc">%&gt;%</span></span>
@@ -699,7 +699,7 @@ window.Quarto = {
 <li><p>Decompose the series into trend-cycle <span class="math inline">T_t</span>, season <span class="math inline">S_t</span> and remainder <span class="math inline">R_t</span>, using a suitable decomposition method. Which method(s) from the cheat sheet above are <em>not</em> usable here, and why? Why did you choose the method you did?</p>
 <details>
 <summary>
-<p>💡 Hint</p>
+<p>💡 Code hint</p>
 </summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>wp_day <span class="sc">%&gt;%</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">STL</span>(powerprod)) <span class="sc">%&gt;%</span></span>
@@ -738,7 +738,7 @@ window.Quarto = {
 <li><p>Convert the <code>month</code> column to a <code>yearmonth</code> type and turn <code>wholesale</code> into a tsibble.</p>
 <details>
 <summary>
-<p>💡 Hint</p>
+<p>💡 Code hint</p>
 </summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>wholesale <span class="ot">&lt;-</span> wholesale_raw_lab <span class="sc">%&gt;%</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">index =</span> <span class="st">`</span><span class="at">wholesale and retail sales index</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
@@ -748,14 +748,14 @@ window.Quarto = {
 <li><p>Make a time plot.</p>
 <details>
 <summary>
-<p>💡 Hint</p>
+<p>💡 Code hint</p>
 </summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>wholesale <span class="sc">%&gt;%</span> <span class="fu">autoplot</span>(index)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details></li>
 <li><p>Decompose the series using the classical, X11, SEATS and STL methods. Can you detect any prominent differences between the methods?</p>
 <details>
 <summary>
-<p>💡 Hint</p>
+<p>💡 Code hint</p>
 </summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>wholesale <span class="sc">%&gt;%</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
@@ -770,7 +770,7 @@ window.Quarto = {
 <li><p>Try adjusting the trend and season windows of the STL (default values are 21 and 11 respectively). What happens?</p>
 <details>
 <summary>
-<p>💡 Hint</p>
+<p>💡 Code hint</p>
 </summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>wholesale <span class="sc">%&gt;%</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">STL</span>(index <span class="sc">~</span> <span class="fu">trend</span>(<span class="at">window =</span> ...) <span class="sc">+</span> <span class="fu">season</span>(<span class="at">window =</span> ...))) <span class="sc">%&gt;%</span></span>
@@ -780,17 +780,17 @@ window.Quarto = {
 <li><p>Using X11 or SEATS - the “statistics agency methods” from the cheat sheet - plot your seasonally-adjusted time series.</p>
 <details>
 <summary>
-<p>💡 Hint</p>
+<p>💡 Code hint</p>
 </summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>wholesale <span class="sc">%&gt;%</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="at">seats =</span> <span class="fu">X_13ARIMA_SEATS</span>(index <span class="sc">~</span> <span class="fu">seats</span>())) <span class="sc">%&gt;%</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">components</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(season_adjust)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details></li>
-<li><p>Statistics Norway publishes its own official seasonally-adjusted version of this exact series - it’s the <code>wholesale_sa</code> object in <code>ban430data</code> (column <code>index_sa</code>; same table, same industry filter, official <code>VerdiinSesong</code> content code). Plot it alongside your series from (e). Do they agree?</p>
+<li><p>Statistics Norway publishes its own official seasonally-adjusted version of this exact series - it’s the <code>wholesale_sa</code> object in <code>ban430data</code> (column <code>index_sa</code>). Plot it alongside your series from (e). Do they agree?</p>
 <details>
 <summary>
-<p>💡 Hint</p>
+<p>💡 Code hint</p>
 </summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>own_sa <span class="ot">&lt;-</span> wholesale <span class="sc">%&gt;%</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="at">seats =</span> <span class="fu">X_13ARIMA_SEATS</span>(index <span class="sc">~</span> <span class="fu">seats</span>())) <span class="sc">%&gt;%</span></span>
@@ -810,7 +810,7 @@ window.Quarto = {
 <li><p>Using your method of choice, plot the detrended series.</p>
 <details>
 <summary>
-<p>💡 Hint</p>
+<p>💡 Code hint</p>
 </summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>wholesale <span class="sc">%&gt;%</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">STL</span>(index)) <span class="sc">%&gt;%</span></span>
