@@ -40,6 +40,15 @@ library(tidyverse)
 
 After fitting, use `components()` to extract the trend-cycle/seasonal/remainder columns, then `autoplot()` to plot them.
 
+#### Cheat sheet: features
+
+``` r
+data %>%
+  features(variable, feat_stl)
+```
+
+Gives one row per series with columns like `trend_strength` and `seasonal_strength_year` - see [Section 4.3 of the textbook](https://otexts.com/fpp3/stlfeatures.html) for the full list.
+
 ------------------------------------------------------------------------
 
 ### Task 1: Offshore wind power
