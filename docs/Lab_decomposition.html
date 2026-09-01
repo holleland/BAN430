@@ -688,19 +688,19 @@ window.Quarto = {
 <ol type="a">
 <li><p>Create a tsibble containing the <strong>daily</strong> wind power data from <strong>Sørlig Nordsjø 2</strong> only (aggregate <code>windpower</code> from hourly to daily with the mean, same as in the graphics lab).</p></li>
 <li><p>Decompose the series into trend-cycle <span class="math inline">T_t</span>, season <span class="math inline">S_t</span> and remainder <span class="math inline">R_t</span>, using a suitable decomposition method. Which method(s) from the cheat sheet above are <em>not</em> usable here, and why? Why did you choose the method you did?</p></li>
-<li><p>Statistics agencies and researchers often quantify <em>how</em> seasonal or trending a series is with <strong>STL features</strong>, rather than just eyeballing a decomposition (a preview of Chapter 4 - see <a href="https://otexts.com/fpp3/stlfeatures.html">Section 4.3 of the textbook</a> for the details). Aggregate <code>windpower</code> to <strong>monthly</strong> data for <strong>both</strong> locations (like <code>wp_month</code> in the graphics lab), then run:</p>
+<li><p>We can also use <strong>STL features</strong> to assess and compare h<em>ow</em> seasonal or trending a series is rather than just eyeballing a decomposition (see <a href="#0">Section 4.3 of the textbook</a>). Aggregate <code>windpower</code> to <strong>monthly</strong> data for <strong>both</strong> locations (like <code>wp_month</code> in the graphics lab), then run:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>windpower <span class="sc">%&gt;%</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by_key</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">index_by</span>(<span class="at">yearmonth =</span> <span class="fu">yearmonth</span>(datetime)) <span class="sc">%&gt;%</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">powerprod =</span> <span class="fu">mean</span>(powerprod, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(powerprod, feat_stl)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Which location has the stronger <code>seasonal_strength_year</code>? Does that match what <code>gg_season()</code>/<code>gg_subseries()</code> suggested in the graphics lab? Does <code>trend_strength</code> agree with what you found in (b)?</p></li>
+<p>Which location has the stronger <code>seasonal_strength_year</code>? What about <code>trend_strength</code>?</p></li>
 </ol>
 <hr>
 </section>
 <section id="task-2-norwegian-wholesale-and-retail-sales-index" class="level3">
 <h3 class="anchored" data-anchor-id="task-2-norwegian-wholesale-and-retail-sales-index">Task 2: Norwegian wholesale and retail sales index</h3>
-<p>The data is a monthly index for <em>Retail trade, except of motor vehicles and motorcycles</em>, from Statistics Norway (Jan 2000 onwards). It’s the <code>wholesale_raw_lab</code> object from <code>ban430data</code> (same package as <code>windpower</code> above).</p>
+<p>The data is a monthly index for <em>Retail trade, except of motor vehicles and motorcycles</em>, from Statistics Norway (Jan 2000 onwards). It’s the <code>wholesale_raw_lab</code> object from <code>ban430data</code>.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ban430data)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(decomposition)</span>
@@ -721,8 +721,8 @@ window.Quarto = {
 <li>Make a time plot.</li>
 <li>Decompose the series using the classical, X11, SEATS and STL methods. Can you detect any prominent differences between the methods?</li>
 <li>Try adjusting the trend and season windows of the STL (default values are 21 and 11 respectively). What happens?</li>
-<li>Using your method of choice, plot the seasonally-adjusted time series.</li>
-<li>Statistics Norway publishes its own seasonally-adjusted version of this exact series - it’s the <code>wholesale_sa</code> object in <code>ban430data</code> (same table, same industry filter, official <code>VerdiinSesong</code> content code). Plot it alongside your own seasonally-adjusted series from (e). Do they agree?</li>
+<li>Using X11 or SEATS - the “statistics agency methods” from the cheat sheet, and what Statistics Norway itself actually uses - plot your seasonally-adjusted time series.</li>
+<li>Statistics Norway publishes its own official seasonally-adjusted version of this exact series - it’s the <code>wholesale_sa</code> object in <code>ban430data</code> (column <code>index_sa</code>; same table, same industry filter, official <code>VerdiinSesong</code> content code). Plot it alongside your series from (e). Do they agree?</li>
 <li>Using your method of choice, plot the detrended series.</li>
 <li><em>Optional</em>: Implement your own additive classical decomposition by hand (moving averages + seasonal averaging), and compare to <code>classical_decomposition()</code>. (See <a href="./3_exercises.html">Chapter 3 exercises, exercise 6</a> if you want to check your approach against a worked solution.)</li>
 </ol>
