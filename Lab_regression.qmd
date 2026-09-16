@@ -290,7 +290,11 @@ A small helper that scores a forecast the same way `accuracy()` does throughout 
 ``` r
 leaderboard_score <- function(fc, team, type = c("ex-ante", "ex-post")) {
   type <- match.arg(type)
-  acc <- fc %>% accuracy(traffic_ts) %>% slice(1)
+  acc <- fc %>% accuracy(traffic_ts)
+  if (nrow(acc) != 1) {
+    stop("fc has ", nrow(acc), " models (", paste(acc$.model, collapse = ", "),
+         ") - filter to one with filter(.model == \"...\") first.")
+  }
   cat("================================\n")
   cat(" LEADERBOARD SUBMISSION\n")
   cat("================================\n")
