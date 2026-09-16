@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>classicaldecomposition – BAN430 Forecasting</title>
+<title>lab_regression – BAN430 Forecasting</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -71,8 +71,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./3_x11seats.html" rel="next">
-<link href="./3_movingaverages.html" rel="prev">
+<link href="./WS_tsibble.html" rel="next">
+<link href="./Lab_decomposition.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -155,7 +155,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./3_decomposition_intro.html">3 Adjustments and decomposition</a></li><li class="breadcrumb-item"><a href="./3_timeseriesdecomposition.html">Moving averages and Decomposition</a></li><li class="breadcrumb-item"><a href="./3_classicaldecomposition.html">Classical decomposition</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Lab_timeseriesgraphics.html">Labs</a></li><li class="breadcrumb-item"><a href="./Lab_regression.html">Time series regression: Bergen traffic (lab)</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -231,11 +231,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./3_decomposition_intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">3 Adjustments and decomposition</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./3_adjustments.html" class="sidebar-item-text sidebar-link">
@@ -281,11 +281,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./3_timeseriesdecomposition.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Moving averages and Decomposition</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./3_movingaverages.html" class="sidebar-item-text sidebar-link">
@@ -294,7 +294,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./3_classicaldecomposition.html" class="sidebar-item-text sidebar-link active">
+  <a href="./3_classicaldecomposition.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Classical decomposition</span></a>
   </div>
 </li>
@@ -495,13 +495,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true">
  <span class="menu-text">Labs</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Lab_timeseriesgraphics.html" class="sidebar-item-text sidebar-link">
@@ -516,7 +516,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Lab_regression.html" class="sidebar-item-text sidebar-link">
+  <a href="./Lab_regression.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Time series regression: Bergen traffic (lab)</span></a>
   </div>
 </li>
@@ -587,53 +587,501 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./3_decomposition_intro.html">3 Adjustments and decomposition</a></li><li class="breadcrumb-item"><a href="./3_timeseriesdecomposition.html">Moving averages and Decomposition</a></li><li class="breadcrumb-item"><a href="./3_classicaldecomposition.html">Classical decomposition</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Lab_timeseriesgraphics.html">Labs</a></li><li class="breadcrumb-item"><a href="./Lab_regression.html">Time series regression: Bergen traffic (lab)</a></li></ol></nav></header>
 
 
 
 
-<section id="classical-decomposition" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="classical-decomposition">Classical decomposition</h2>
-<iframe src="https://player.vimeo.com/video/767238976?h=ead0e1cf78" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen="">
-</iframe>
+<section id="time-series-regression-bergen-traffic-lab" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="time-series-regression-bergen-traffic-lab">Time series regression: Bergen traffic (lab)</h2>
+<p>📄 <a href="Lab_regression.pdf">Print-friendly PDF version</a></p>
+<p><img src="bilder/traffic2.PNG" class="img-fluid" style="width:50.0%"></p>
+<section id="the-data" class="level3">
+<h3 class="anchored" data-anchor-id="the-data">The data</h3>
+<p>Forecast hourly traffic through Bergen’s <em>Danmarksplass</em> intersection — a real, live-updating case with a primary series, an external predictor, and a calendar effect all in one place. The traffic counts come from two sensors run by Statens vegvesen’s <a href="https://www.vegvesen.no/trafikkdata/">Trafikkdata</a> API, extended all the way through today, plus a Norwegian public holiday calendar that’s <em>computed</em> rather than downloaded (so it never goes stale either).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"holleland/ban430data"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fpp3)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ban430data)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(regressionlab)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Two objects come in. The two traffic sensors arrive <strong>pre-merged</strong> into one table — you’ll spend today’s time on modelling and evaluation, not on rejoining raw series by datetime.</p>
+<p><strong><code>traffic_danmarksplass</code></strong> — one row per hour, 2018 → today</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Column</th>
+<th style="text-align: left;">Contains</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>datetime</code></td>
+<td style="text-align: left;">date-time of the hour (Europe/Oslo)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>vehicles</code></td>
+<td style="text-align: left;">vehicles counted at Danmarksplass (“ved ladestasjon”) in that hour</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>moberg</code></td>
+<td style="text-align: left;">vehicles counted at Moberg v/Lekven — Halhjem ferry-arrival traffic, a candidate external predictor — in that hour</td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>holidays_no</code></strong> — one row per Norwegian public holiday, 2018–2027</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Column</th>
+<th style="text-align: left;">Contains</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>date</code></td>
+<td style="text-align: left;">the calendar date of the holiday</td>
+</tr>
+</tbody>
+</table>
+<section id="cheat-sheet-tslm-syntax" class="level4">
+<h4 class="anchored" data-anchor-id="cheat-sheet-tslm-syntax">Cheat sheet: <code>TSLM()</code> syntax</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 43%">
+<col style="width: 56%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Term</th>
+<th style="text-align: left;">Syntax</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Weekly seasonal dummies</td>
+<td style="text-align: left;"><code>season(period = "week")</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Fourier terms</td>
+<td style="text-align: left;"><code>fourier(K = ..., period = "week")</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">An extra 0/1 or numeric predictor</td>
+<td style="text-align: left;">add the column directly, e.g.&nbsp;<code>+ is_holiday</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Fit</td>
+<td style="text-align: left;"><code>model(name = TSLM(log(y) ~ ...))</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Forecast a known window</td>
+<td style="text-align: left;"><code>forecast(fit, new_data = test)</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Accuracy vs.&nbsp;the actuals</td>
+<td style="text-align: left;"><code>accuracy(fc, full_data)</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="part-1-shared-foundation" class="level3">
+<h3 class="anchored" data-anchor-id="part-1-shared-foundation">Part 1: Shared foundation</h3>
+<section id="task-1-build-the-tsibble" class="level4">
+<h4 class="anchored" data-anchor-id="task-1-build-the-tsibble">Task 1: Build the tsibble</h4>
 <details>
 <summary>
-Code
+💡 Code hint
 </summary>
-<div class="cell" data-warnings="false">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># -- Read in data (see the Moving averages page for details): --</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/NorwayEmployment_15-74years_bySex.xlsx"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Quarter =</span> <span class="fu">str_replace</span>(Quarter, <span class="st">"K"</span>,<span class="st">"Q"</span>),</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">Quarter =</span> <span class="fu">yearquarter</span>(Quarter))</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(dat)[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="st">"Employed"</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Quarter) <span class="sc">%&gt;%</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Employed =</span> <span class="fu">sum</span>(Employed)) <span class="sc">%&gt;%</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> Quarter)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">classical_decomposition</span>(Employed, <span class="at">type =</span> <span class="st">"additive"</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">components</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 8 rows containing missing values or values outside the scale range
-(`geom_line()`).</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="3_classicaldecomposition_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>traffic_ts <span class="ot">&lt;-</span> traffic_danmarksplass <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> datetime) <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fill_gaps</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+</section>
+<section id="task-2-time-plot" class="level4">
+<h4 class="anchored" data-anchor-id="task-2-time-plot">Task 2: Time plot</h4>
+<p>Plot the whole series. What does the trend look like over 8+ years? Where do you see the strongest seasonality — daily, weekly, or yearly?</p>
+</section>
+<section id="task-3-choosing-a-transformation" class="level4">
+<h4 class="anchored" data-anchor-id="task-3-choosing-a-transformation">Task 3: Choosing a transformation</h4>
+<p>Look back at your Task 2 plot — does the variance of <code>vehicles</code> look roughly constant over time, or does it grow with the level? Use <code>guerrero</code> to find the Box-Cox transformation that stabilises it best, and compare it to a plain log.</p>
+<details>
+<summary>
+💡 Code hint
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>traffic_ts <span class="sc">%&gt;%</span> <span class="fu">features</span>(vehicles, <span class="at">features =</span> guerrero)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> traffic_ts <span class="sc">%&gt;%</span> <span class="fu">features</span>(vehicles, <span class="at">features =</span> guerrero) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(lambda_guerrero)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>traffic_ts <span class="sc">%&gt;%</span> <span class="fu">autoplot</span>(<span class="fu">box_cox</span>(vehicles, lambda))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<p><strong>Q:</strong> How close is <code>lambda</code> to 0 (a log transform)? Given how close (or not) it is, would you expect Box-Cox to meaningfully beat a plain log once you get to modelling — or is log probably “close enough”? Keep <code>lambda</code> around; Task 1 in Part 2 asks you to check.</p>
+</section>
+<section id="task-4-a-new-variable-derived-from-a-date" class="level4">
+<h4 class="anchored" data-anchor-id="task-4-a-new-variable-derived-from-a-date">Task 4: A new variable, derived from a date</h4>
+<p><code>holidays_no</code> is just a list of dates. Turn it into a 0/1 <code>is_holiday</code> column on <code>traffic_ts</code>, marking every hour that falls on a Norwegian public holiday.</p>
+<details>
+<summary>
+💡 Code hint
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>traffic_ts <span class="ot">&lt;-</span> traffic_ts <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">is_holiday =</span> <span class="fu">as.numeric</span>(<span class="fu">as_date</span>(datetime) <span class="sc">%in%</span> holidays_no<span class="sc">$</span>date))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</section>
+<section id="task-5-traintest-split" class="level4">
+<h4 class="anchored" data-anchor-id="task-5-traintest-split">Task 5: Train/test split</h4>
+<p>Use this exact split — everyone needs the same one, or the leaderboard comparison won’t make sense:</p>
+<ul>
+<li><strong>train</strong>: everything before 2025-12-20</li>
+<li><strong>test</strong>: 2025-12-20 up to (not including) 2026-01-20 — a four-week window spanning Christmas, Boxing Day <em>and</em> New Year’s Day</li>
+</ul>
+<details>
+<summary>
+💡 Code hint
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> traffic_ts <span class="sc">%&gt;%</span> <span class="fu">filter</span>(datetime <span class="sc">&lt;</span> <span class="fu">ymd</span>(<span class="st">"2025-12-20"</span>))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>test  <span class="ot">&lt;-</span> traffic_ts <span class="sc">%&gt;%</span> <span class="fu">filter</span>(datetime <span class="sc">&gt;=</span> <span class="fu">ymd</span>(<span class="st">"2025-12-20"</span>), datetime <span class="sc">&lt;</span> <span class="fu">ymd</span>(<span class="st">"2026-01-20"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</section>
+<section id="task-6-a-closer-look" class="level4">
+<h4 class="anchored" data-anchor-id="task-6-a-closer-look">Task 6: A closer look</h4>
+<p>Facet the <strong>training</strong> data by weekday, with hour of day on the x-axis and one line per date (colour by date). Where do weekends visibly differ from weekdays? Do any weekday dates look like they’re “acting like” a weekend?</p>
+<details>
+<summary>
+💡 Code hint
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>train <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">wday =</span> <span class="fu">wday</span>(datetime, <span class="at">label =</span> <span class="cn">TRUE</span>), <span class="at">hour =</span> <span class="fu">hour</span>(datetime), <span class="at">date =</span> <span class="fu">as_date</span>(datetime)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> hour, <span class="at">y =</span> vehicles, <span class="at">group =</span> date, <span class="at">colour =</span> date)) <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>wday)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<p>Keep that plot in mind — it’s the visual version of the problem every task below is trying to solve numerically.</p>
+<hr>
+</section>
+</section>
+<section id="part-2-build-every-model" class="level3">
+<h3 class="anchored" data-anchor-id="part-2-build-every-model">Part 2: Build every model</h3>
+<p>For each task, build the model described, forecast the test window, and write down its <strong>test-set RMSE and MASE</strong>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fc <span class="ot">&lt;-</span> fit <span class="sc">%&gt;%</span> <span class="fu">forecast</span>(<span class="at">new_data =</span> test)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>fc <span class="sc">%&gt;%</span> <span class="fu">accuracy</span>(traffic_ts) <span class="sc">%&gt;%</span> <span class="fu">select</span>(.model, RMSE, MASE)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="task-1-weekly-seasonal-dummies" class="level4">
+<h4 class="anchored" data-anchor-id="task-1-weekly-seasonal-dummies">Task 1: Weekly seasonal dummies</h4>
+<p>Fit <code>TSLM()</code> with <code>season(period = "week")</code> — that’s 168 dummy predictors, one per hour-of-week. Try it on the raw response, the log-transformed response, and the Box-Cox transform from Part 1 (<code>lambda</code>).</p>
+<details>
+<summary>
+💡 Code hint
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fit_A <span class="ot">&lt;-</span> train <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">raw    =</span> <span class="fu">TSLM</span>(vehicles <span class="sc">~</span> <span class="fu">season</span>(<span class="at">period =</span> <span class="st">"week"</span>)),</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">log    =</span> <span class="fu">TSLM</span>(<span class="fu">log</span>(vehicles) <span class="sc">~</span> <span class="fu">season</span>(<span class="at">period =</span> <span class="st">"week"</span>)),</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">boxcox =</span> <span class="fu">TSLM</span>(<span class="fu">box_cox</span>(vehicles, lambda) <span class="sc">~</span> <span class="fu">season</span>(<span class="at">period =</span> <span class="st">"week"</span>))</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<p><strong>Q:</strong> Which of the three fits best on the test set? Did Box-Cox actually beat log, or was your Part 1 hunch about <code>lambda</code> being “close enough” to 0 correct?</p>
+</section>
+<section id="task-2-fourier-terms" class="level4">
+<h4 class="anchored" data-anchor-id="task-2-fourier-terms">Task 2: Fourier terms</h4>
+<p>Same idea as Task 1, but replace the 168 dummies with a handful of <code>fourier(K = ..., period = "week")</code> terms. Try a couple of values of <code>K</code>.</p>
+<details>
+<summary>
+💡 Code hint
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fit_B <span class="ot">&lt;-</span> train <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">fourier_10 =</span> <span class="fu">TSLM</span>(<span class="fu">log</span>(vehicles) <span class="sc">~</span> <span class="fu">fourier</span>(<span class="at">K =</span> <span class="dv">10</span>, <span class="at">period =</span> <span class="st">"week"</span>)),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">fourier_40 =</span> <span class="fu">TSLM</span>(<span class="fu">log</span>(vehicles) <span class="sc">~</span> <span class="fu">fourier</span>(<span class="at">K =</span> <span class="dv">40</span>, <span class="at">period =</span> <span class="st">"week"</span>))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(fit_B) <span class="sc">%&gt;%</span> <span class="fu">select</span>(.model, AIC, AICc, BIC)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<p><strong>Q:</strong> How does <code>AICc</code> change with <code>K</code>? How few parameters can you get away with before test accuracy visibly gets worse?</p>
+</section>
+<section id="task-3-holidays" class="level4">
+<h4 class="anchored" data-anchor-id="task-3-holidays">Task 3: Holidays</h4>
+<p>Add the <code>is_holiday</code> column you built in Part 1 to a weekly-seasonal model.</p>
+<details>
+<summary>
+💡 Code hint
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fit_C <span class="ot">&lt;-</span> train <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">no_holiday   =</span> <span class="fu">TSLM</span>(<span class="fu">log</span>(vehicles) <span class="sc">~</span> <span class="fu">season</span>(<span class="at">period =</span> <span class="st">"week"</span>)),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">with_holiday =</span> <span class="fu">TSLM</span>(<span class="fu">log</span>(vehicles) <span class="sc">~</span> <span class="fu">season</span>(<span class="at">period =</span> <span class="st">"week"</span>) <span class="sc">+</span> is_holiday)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>fc_C <span class="ot">&lt;-</span> fit_C <span class="sc">%&gt;%</span> <span class="fu">forecast</span>(<span class="at">new_data =</span> test)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<p><strong>Q:</strong> Zoom in on 24 Dec – 2 Jan specifically. How badly does the <code>no_holiday</code> model miss on those days? What other dates might deserve their own dummy, beyond what <code>holidays_no</code> gives you (Christmas Eve? New Year’s Eve? the day <em>before</em> a holiday)?</p>
+</section>
+<section id="task-4-external-predictor-the-ferry-traffic-sensor" class="level4">
+<h4 class="anchored" data-anchor-id="task-4-external-predictor-the-ferry-traffic-sensor">Task 4: External predictor (the ferry-traffic sensor)</h4>
+<p><code>moberg</code> (Halhjem ferry-arrival traffic) is already a column on <code>train</code>/<code>test</code> — add it as a predictor.</p>
+<details>
+<summary>
+💡 Code hint
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fit_D <span class="ot">&lt;-</span> train <span class="sc">%&gt;%</span> <span class="fu">model</span>(<span class="at">ext =</span> <span class="fu">TSLM</span>(<span class="fu">log</span>(vehicles) <span class="sc">~</span> <span class="fu">season</span>(<span class="at">period =</span> <span class="st">"week"</span>) <span class="sc">+</span> <span class="fu">log</span>(<span class="dv">1</span> <span class="sc">+</span> moberg)))</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>fc_D  <span class="ot">&lt;-</span> fit_D <span class="sc">%&gt;%</span> <span class="fu">forecast</span>(<span class="at">new_data =</span> test)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<p><strong>Q:</strong> This forecast only works because <code>test</code> already <em>has</em> real <code>moberg</code> values for every test hour. In a genuine forecasting situation, would you have those? What kind of forecast is this and what could you do instead?</p>
+<hr>
+</section>
+</section>
+<section id="part-3-combine-and-submit" class="level3">
+<h3 class="anchored" data-anchor-id="part-3-combine-and-submit">Part 3: Combine and submit</h3>
+<ol type="1">
+<li>Look back at your four RMSE/MASE numbers. Which idea helped most — the log transform, Fourier vs.&nbsp;dummies, the holiday term, the external predictor?</li>
+<li>Fit <strong>one combined model</strong> that borrows the best pieces. Two kinds of submission are both welcome on the leaderboard — just label which one you’re making:
+<ul>
+<li><strong>ex-ante</strong>: only uses information a real forecaster would actually have at the time (e.g.&nbsp;Fourier + the holiday dummy — <em>not</em> <code>moberg</code>’s real test-window values)</li>
+<li><strong>ex-post</strong>: allowed to use the real observed test-window values (e.g.&nbsp;<code>moberg</code> as-is). Not a genuine forecast, but a useful ceiling to compare against</li>
+</ul></li>
+<li>Compare against a seasonal naïve benchmark:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>train <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="at">snaive =</span> <span class="fu">SNAIVE</span>(vehicles)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">new_data =</span> test) <span class="sc">%&gt;%</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">accuracy</span>(traffic_ts) <span class="sc">%&gt;%</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(.model, RMSE, MASE)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="4" type="1">
+<li>Submit your combined model’s score to the live leaderboard, labelled:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leaderboard_score</span>(fc_final, <span class="at">team =</span> <span class="st">"Your team name"</span>, <span class="at">type =</span> <span class="st">"ex-ante"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If you have time, submit <strong>both</strong>: your best genuine ex-ante model, and an ex-post version that’s allowed to peek at <code>moberg</code>. The gap between your own two scores is worth having a real number for.</p>
+<details>
+<summary>
+💡 What’s <code>leaderboard_score()</code>?
+</summary>
+<p>A small helper that scores a forecast the same way <code>accuracy()</code> does throughout this lab, and prints a submission card you can read off:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>leaderboard_score <span class="ot">&lt;-</span> <span class="cf">function</span>(fc, team, <span class="at">type =</span> <span class="fu">c</span>(<span class="st">"ex-ante"</span>, <span class="st">"ex-post"</span>)) {</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  type <span class="ot">&lt;-</span> <span class="fu">match.arg</span>(type)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  acc <span class="ot">&lt;-</span> fc <span class="sc">%&gt;%</span> <span class="fu">accuracy</span>(traffic_ts) <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"================================</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">" LEADERBOARD SUBMISSION</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"================================</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">" Team:"</span>, team, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">" Type:"</span>, type, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">" RMSE:"</span>, <span class="fu">round</span>(acc<span class="sc">$</span>RMSE, <span class="dv">1</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">" MASE:"</span>, <span class="fu">round</span>(acc<span class="sc">$</span>MASE, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"================================</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">invisible</span>(acc)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Run this once at the top of your session, then call <code>leaderboard_score(fc_final, "Your team name", type = "ex-ante")</code> (or <code>"ex-post"</code>) on any forecast object — Track A–D or your combined one. Report the printed RMSE, MASE and type in the form below. Resubmitting the same team name <strong>and</strong> type replaces that entry, so submit early and keep improving — a team can hold one ex-ante <em>and</em> one ex-post entry at the same time.</p>
+</details>
+<p>Nobody’s checking that your combined model is <em>novel</em> — reusing one track’s model as-is is a perfectly fine first submission. The point is having a number on the board to improve on.</p>
+<div id="lb-app">
+<div id="lb-status" style="font-size:0.9em;color:#6c757d;margin-bottom:0.5rem;">Loading leaderboard…</div>
+
+<h5 style="margin-top:1rem;" class="anchored">Ex-ante leaderboard</h5>
+<div style="overflow-x:auto;">
+
+<table class="table table-hover caption-top" style="max-width:640px;">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="width: 3em">#</th>
+<th data-quarto-table-cell-role="th">Team</th>
+<th class="text-end" data-quarto-table-cell-role="th">RMSE</th>
+<th class="text-end" data-quarto-table-cell-role="th">MASE</th>
+<th data-quarto-table-cell-role="th" style="width: 2.5em"></th>
+</tr>
+</thead>
+<tbody id="lb-rows-ante">
+</tbody>
+</table>
+
+</div>
+<div id="lb-empty-ante" style="display:none;color:#6c757d;padding:0.5rem 0 1rem;">No ex-ante submissions yet — be the first team on the board.</div>
+
+<h5 style="margin-top:1.5rem;color:#6c757d;" class="anchored">Ex-post reference <span style="font-weight:normal;font-size:0.85em;">(peeked at the real test-window data — not a fair comparison)</span></h5>
+<div style="overflow-x:auto;">
+
+<table class="table table-hover caption-top" style="max-width:640px;opacity:0.85;">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="width: 3em">#</th>
+<th data-quarto-table-cell-role="th">Team</th>
+<th class="text-end" data-quarto-table-cell-role="th">RMSE</th>
+<th class="text-end" data-quarto-table-cell-role="th">MASE</th>
+<th data-quarto-table-cell-role="th" style="width: 2.5em"></th>
+</tr>
+</thead>
+<tbody id="lb-rows-post">
+</tbody>
+</table>
+
+</div>
+<div id="lb-empty-post" style="display:none;color:#6c757d;padding:0.5rem 0 1rem;">No ex-post submissions yet.</div>
+
+<div style="max-width:640px;border:1px solid #dee2e6;border-radius:0.375rem;padding:1rem 1.25rem;margin-top:1rem;">
+<strong>Report a score</strong>
+<div style="display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr auto;gap:0.6rem;align-items:end;margin-top:0.6rem;">
+<div>
+<label for="lb-team" style="font-size:0.85em;display:block;">Team name</label>
+<input type="text" id="lb-team" class="form-control" placeholder="Team Rocket">
+</div>
+<div>
+<label for="lb-type" style="font-size:0.85em;display:block;">Type</label>
+<select id="lb-type" class="form-control">
+<option value="ex-ante">ex-ante</option>
+<option value="ex-post">ex-post</option>
+</select>
+</div>
+<div>
+<label for="lb-rmse" style="font-size:0.85em;display:block;">RMSE</label>
+<input type="number" step="any" id="lb-rmse" class="form-control" placeholder="559.3">
+</div>
+<div>
+<label for="lb-mase" style="font-size:0.85em;display:block;">MASE</label>
+<input type="number" step="any" id="lb-mase" class="form-control" placeholder="1.046">
+</div>
+<button id="lb-submit" class="btn" style="background:#00395A;color:#fff;">Submit</button>
+</div>
+<div id="lb-msg" style="font-size:0.9em;margin-top:0.6rem;min-height:1.2em;"></div>
+</div>
+</div>
+
+<script>
+(function(){
+  var ENDPOINT = "https://script.google.com/macros/s/AKfycbx9CvG6lM2pWwZtwRwg9rqo-wdd3xVGMSbJcm8xsUawVqJ6JBG4fu10evg2nBJQJp6a/exec";
+  var rowsAnteEl = document.getElementById('lb-rows-ante');
+  var rowsPostEl = document.getElementById('lb-rows-post');
+  var emptyAnteEl = document.getElementById('lb-empty-ante');
+  var emptyPostEl = document.getElementById('lb-empty-post');
+  var statusEl = document.getElementById('lb-status');
+  var msgEl = document.getElementById('lb-msg');
+  var btn = document.getElementById('lb-submit');
+  var fTeam = document.getElementById('lb-team');
+  var fType = document.getElementById('lb-type');
+  var fRmse = document.getElementById('lb-rmse');
+  var fMase = document.getElementById('lb-mase');
+
+  function esc(s){
+    var d = document.createElement('div');
+    d.textContent = s == null ? '' : String(s);
+    return d.innerHTML;
+  }
+  function fmt(n, d){
+    if (n === null || n === undefined || n === '' || isNaN(n)) return '—';
+    return Number(n).toFixed(d);
+  }
+  function medal(i){
+    if (i === 0) return 'background:#fff3cd;';
+    if (i === 1) return 'background:#f1f1f1;';
+    if (i === 2) return 'background:#f7e6da;';
+    return '';
+  }
+
+  function renderGroup(teams, rowsEl, emptyEl){
+    teams = teams.slice().sort(function(a,b){ return a.rmse - b.rmse; });
+    if (!teams.length){
+      emptyEl.style.display = 'block';
+      rowsEl.innerHTML = '';
+      return;
+    }
+    emptyEl.style.display = 'none';
+    rowsEl.innerHTML = teams.map(function(t, i){
+      return '<tr style="' + medal(i) + '">' +
+        '<td>' + (i+1) + '</td>' +
+        '<td>' + esc(t.team) + '</td>' +
+        '<td class="text-end">' + fmt(t.rmse, 1) + '</td>' +
+        '<td class="text-end">' + fmt(t.mase, 3) + '</td>' +
+        '<td><button class="btn btn-sm" data-team="' + esc(t.team) + '" data-type="' + esc(t.type) + '" style="color:#adb5bd;border:none;background:none;" title="Remove">&times;</button></td>' +
+        '</tr>';
+    }).join('');
+  }
+
+  function render(all){
+    var ante = all.filter(function(t){ return t.type === 'ex-ante'; });
+    var post = all.filter(function(t){ return t.type === 'ex-post'; });
+    renderGroup(ante, rowsAnteEl, emptyAnteEl);
+    renderGroup(post, rowsPostEl, emptyPostEl);
+  }
+
+  async function refresh(){
+    try {
+      var res = await fetch(ENDPOINT);
+      var data = await res.json();
+      statusEl.textContent = data.length + (data.length === 1 ? ' submission' : ' submissions') + ' on the board · updates every few seconds';
+      render(data);
+    } catch (e) {
+      statusEl.textContent = 'Could not reach the leaderboard — retrying…';
+    }
+  }
+
+  btn.addEventListener('click', async function(){
+    msgEl.textContent = '';
+    msgEl.style.color = '';
+    var team = fTeam.value.trim();
+    var type = fType.value;
+    var rmse = parseFloat(fRmse.value);
+    var mase = fMase.value.trim() === '' ? null : parseFloat(fMase.value);
+    if (!team){ msgEl.textContent = 'Enter a team name first.'; msgEl.style.color = '#b02a37'; return; }
+    if (isNaN(rmse)){ msgEl.textContent = 'Enter a numeric RMSE.'; msgEl.style.color = '#b02a37'; return; }
+    btn.disabled = true;
+    try {
+      var res = await fetch(ENDPOINT, {
+        method: 'POST',
+        body: JSON.stringify({team: team, type: type, rmse: rmse, mase: mase})
+      });
+      var out = await res.json();
+      if (out.ok){
+        msgEl.textContent = 'Submitted! Check your rank above.';
+        msgEl.style.color = '#198754';
+        fRmse.value = '';
+        fMase.value = '';
+        refresh();
+      } else {
+        msgEl.textContent = 'Could not submit: ' + (out.error || 'try again');
+        msgEl.style.color = '#b02a37';
+      }
+    } catch (e) {
+      msgEl.textContent = 'Could not submit — check your connection and try again.';
+      msgEl.style.color = '#b02a37';
+    } finally {
+      btn.disabled = false;
+    }
+  });
+
+  function handleDelete(ev){
+    var del = ev.target.closest('button[data-team]');
+    if (!del) return;
+    del.disabled = true;
+    fetch(ENDPOINT, { method: 'POST', body: JSON.stringify({action: 'delete', team: del.getAttribute('data-team'), type: del.getAttribute('data-type')}) })
+      .then(refresh)
+      .catch(function(){ del.disabled = false; });
+  }
+  rowsAnteEl.addEventListener('click', handleDelete);
+  rowsPostEl.addEventListener('click', handleDelete);
+
+  refresh();
+  setInterval(refresh, 4000);
+})();
+</script>
+<hr>
+</section>
+<section id="wrap-up-discussion" class="level3">
+<h3 class="anchored" data-anchor-id="wrap-up-discussion">Wrap-up discussion</h3>
+<p>Once a few teams are on the board:</p>
+<ul>
+<li>Who’s leading the <strong>ex-ante</strong> board, and with what kind of model? Was it the most complex one, or did a simpler combination do just as well?</li>
+<li>If your pair submitted both: how big was your own gap between ex-ante and ex-post? Is everyone’s gap roughly the same size, or does it vary a lot by team?</li>
+<li>Did the holiday term help everyone by roughly the same amount? What about the external predictor, for those who tried an ex-post version?</li>
+<li>Revisit the ex-ante/ex-post question from Track D — <code>moberg</code> only helps once you’re allowed to see it. What would a genuinely ex-ante use of <code>moberg</code> look like (a lag? forecasting <code>moberg</code> itself first?), and would it actually help?</li>
+<li>What would you try next if you had another hour? (residual diagnostics on the leading model, a longer forecast horizon, a different external predictor, a stronger benchmark)</li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -1039,13 +1487,13 @@ Code
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./3_movingaverages.html" class="pagination-link" aria-label="Moving averages">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Moving averages</span>
+      <a href="./Lab_decomposition.html" class="pagination-link" aria-label="Time series decomposition">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Time series decomposition</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./3_x11seats.html" class="pagination-link" aria-label="Statistics agencies: X11 and SEATS">
-        <span class="nav-page-text">Statistics agencies: X11 and SEATS</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./WS_tsibble.html" class="pagination-link" aria-label="tsibble, graphics and decomposition">
+        <span class="nav-page-text">tsibble, graphics and decomposition</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
