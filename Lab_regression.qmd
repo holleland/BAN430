@@ -303,11 +303,11 @@ leaderboard_score <- function(fc, team, type = c("ex-ante", "ex-post")) {
 }
 ```
 
-Run this once at the top of your session, then call `leaderboard_score(fc_final, "Your team name", type = "ex-ante")` (or `"ex-post"`) on any forecast object — Track A–D or your combined one. Report the printed RMSE, MASE and type in the form below. Resubmitting the same team name **and** type replaces that entry, so submit early and keep improving — a team can hold one ex-ante *and* one ex-post entry at the same time.
+Run this once at the top of your session, then call `leaderboard_score(fc_final, "Your team name", type = "ex-ante")` (or `"ex-post"`) on any forecast object — Task 1–4 or your combined one. Report the printed RMSE, MASE and type in the form below. Resubmitting the same team name **and** type replaces that entry, so submit early and keep improving — a team can hold one ex-ante *and* one ex-post entry at the same time.
 
 </details>
 
-Nobody's checking that your combined model is *novel* — reusing one track's model as-is is a perfectly fine first submission. The point is having a number on the board to improve on.
+Nobody's checking that your combined model is *novel* — reusing one task's model as-is is a perfectly fine first submission. The point is having a number on the board to improve on.
 
 ::: {.content-visible when-format="pdf"}
 The live leaderboard only works on the web version of this page — open it there to see the current standings and submit a score.
@@ -495,5 +495,5 @@ Once a few teams are on the board:
 - Who's leading the **ex-ante** board, and with what kind of model? Was it the most complex one, or did a simpler combination do just as well?
 - If your pair submitted both: how big was your own gap between ex-ante and ex-post? Is everyone's gap roughly the same size, or does it vary a lot by team?
 - Did the holiday term help everyone by roughly the same amount? What about the external predictor, for those who tried an ex-post version?
-- Revisit the ex-ante/ex-post question from Track D — `moberg` only helps once you're allowed to see it. What would a genuinely ex-ante use of `moberg` look like (a lag? forecasting `moberg` itself first?), and would it actually help?
+- Revisit the ex-ante/ex-post question from Task 4 — `moberg` only helps once you're allowed to see it. What would a genuinely ex-ante use of `moberg` look like (a lag? forecasting `moberg` itself first?), and would it actually help?
 - What would you try next if you had another hour? (residual diagnostics on the leading model, a longer forecast horizon, a different external predictor, a stronger benchmark)

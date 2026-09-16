@@ -876,9 +876,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"================================</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">invisible</span>(acc)</span>
 <span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Run this once at the top of your session, then call <code>leaderboard_score(fc_final, "Your team name", type = "ex-ante")</code> (or <code>"ex-post"</code>) on any forecast object — Track A–D or your combined one. Report the printed RMSE, MASE and type in the form below. Resubmitting the same team name <strong>and</strong> type replaces that entry, so submit early and keep improving — a team can hold one ex-ante <em>and</em> one ex-post entry at the same time.</p>
+<p>Run this once at the top of your session, then call <code>leaderboard_score(fc_final, "Your team name", type = "ex-ante")</code> (or <code>"ex-post"</code>) on any forecast object — Task 1–4 or your combined one. Report the printed RMSE, MASE and type in the form below. Resubmitting the same team name <strong>and</strong> type replaces that entry, so submit early and keep improving — a team can hold one ex-ante <em>and</em> one ex-post entry at the same time.</p>
 </details>
-<p>Nobody’s checking that your combined model is <em>novel</em> — reusing one track’s model as-is is a perfectly fine first submission. The point is having a number on the board to improve on.</p>
+<p>Nobody’s checking that your combined model is <em>novel</em> — reusing one task’s model as-is is a perfectly fine first submission. The point is having a number on the board to improve on.</p>
 <div id="lb-app">
 <div id="lb-status" style="font-size:0.9em;color:#6c757d;margin-bottom:0.5rem;">Loading leaderboard…</div>
 
@@ -1076,7 +1076,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Who’s leading the <strong>ex-ante</strong> board, and with what kind of model? Was it the most complex one, or did a simpler combination do just as well?</li>
 <li>If your pair submitted both: how big was your own gap between ex-ante and ex-post? Is everyone’s gap roughly the same size, or does it vary a lot by team?</li>
 <li>Did the holiday term help everyone by roughly the same amount? What about the external predictor, for those who tried an ex-post version?</li>
-<li>Revisit the ex-ante/ex-post question from Track D — <code>moberg</code> only helps once you’re allowed to see it. What would a genuinely ex-ante use of <code>moberg</code> look like (a lag? forecasting <code>moberg</code> itself first?), and would it actually help?</li>
+<li>Revisit the ex-ante/ex-post question from Task 4 — <code>moberg</code> only helps once you’re allowed to see it. What would a genuinely ex-ante use of <code>moberg</code> look like (a lag? forecasting <code>moberg</code> itself first?), and would it actually help?</li>
 <li>What would you try next if you had another hour? (residual diagnostics on the leading model, a longer forecast horizon, a different external predictor, a stronger benchmark)</li>
 </ul>
 
