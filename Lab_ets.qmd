@@ -18,7 +18,7 @@ theme_set(
 
 📄 [Print-friendly PDF version](https://raw.githubusercontent.com/holleland/BAN430/master/pdfs/Lab_ets.pdf)
 
-Work in pairs. Four series, each from a different part of the Norwegian economy: how many people live here, what a US dollar costs in kroner, what it costs a bank to borrow overnight from Norges Bank, and how many nights people spent in Norwegian hotels. For each one, split into training and test data, fit a few candidate `ETS()` specifications, forecast, and check against the test set what actually helped.
+Four series, each from a different part of the Norwegian economy: how many people live here, what a US dollar costs in kroner, what it costs a bank to borrow overnight from Norges Bank, and how many nights people spent in Norwegian hotels. For each one, split into training and test data, fit a few candidate `ETS()` specifications, forecast, and check against the test set what actually helped.
 
 ### The data
 
