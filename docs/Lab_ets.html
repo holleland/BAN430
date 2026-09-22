@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>features – BAN430 Forecasting</title>
+<title>lab_ets – BAN430 Forecasting</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -71,8 +71,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./4_tourismexample.html" rel="next">
-<link href="./4_timeseriesfeatures.html" rel="prev">
+<link href="./WS_tsibble.html" rel="next">
+<link href="./Lab_regression.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -155,7 +155,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./4_timeseriesfeatures.html">4 Time series features</a></li><li class="breadcrumb-item"><a href="./4_features.html">Features</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Lab_timeseriesgraphics.html">Labs</a></li><li class="breadcrumb-item"><a href="./Lab_ets.html">Exponential smoothing</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -322,13 +322,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
  <span class="menu-text">4 Time series features</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./4_timeseriesfeatures.html" class="sidebar-item-text sidebar-link">
@@ -337,7 +337,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./4_features.html" class="sidebar-item-text sidebar-link active">
+  <a href="./4_features.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Features</span></a>
   </div>
 </li>
@@ -495,13 +495,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true">
  <span class="menu-text">Labs</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Lab_timeseriesgraphics.html" class="sidebar-item-text sidebar-link">
@@ -522,7 +522,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Lab_ets.html" class="sidebar-item-text sidebar-link">
+  <a href="./Lab_ets.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Exponential smoothing</span></a>
   </div>
 </li>
@@ -593,149 +593,238 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./4_timeseriesfeatures.html">4 Time series features</a></li><li class="breadcrumb-item"><a href="./4_features.html">Features</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Lab_timeseriesgraphics.html">Labs</a></li><li class="breadcrumb-item"><a href="./Lab_ets.html">Exponential smoothing</a></li></ol></nav></header>
 
 
 
 
-<section id="features" class="level1">
-<h1>Features</h1>
-<p>Here we will go through how to calculate features in R and show some examples of features you can calculate for time series using the feasts package. You find more details in <a href="https://otexts.com/fpp3/some-simple-statistics.html">Chapter 4.1-4.3 of Hyndman and Athanasopoulos(2021)</a>. The code used in this lecture is an adaptation of what you find in these sections.</p>
-<iframe src="https://player.vimeo.com/video/770666062?h=ead0e1cf78" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen="">
-</iframe>
+<section id="exponential-smoothing" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="exponential-smoothing">Exponential smoothing</h2>
+<p>📄 <a href="Lab_ets.pdf">Print-friendly PDF version</a></p>
+<p>Work in pairs. Four series, each from a different part of the Norwegian economy: how many people live here, what a US dollar costs in kroner, what it costs a bank to borrow overnight from Norges Bank, and how many nights people spent in Norwegian hotels. For each one, split into training and test data, fit a few candidate <code>ETS()</code> specifications, forecast, and check against the test set what actually helped.</p>
+<section id="the-data" class="level3">
+<h3 class="anchored" data-anchor-id="the-data">The data</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"holleland/ban430data"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fpp3)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ban430data)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(decomposition)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(ets_lab)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Object</th>
+<th style="text-align: left;">Series</th>
+<th style="text-align: left;">Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>population_no</code></td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Norway’s national population at the start of each quarter, 1997 Q4 → today</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>exchange_usdnok</code></td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">average monthly USD/NOK spot exchange rate, 2010 → today</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>policy_rate_no</code></td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Norges Bank’s key policy rate, monthly, 2010 → today</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>hotel_guestnights</code></td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">monthly guest nights at hotels and similar accommodation, all of Norway, 1986 → today</td>
+</tr>
+</tbody>
+</table>
+<section id="cheat-sheet-ets-syntax" class="level4">
+<h4 class="anchored" data-anchor-id="cheat-sheet-ets-syntax">Cheat sheet: <code>ETS()</code> syntax</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Term</th>
+<th style="text-align: left;">Syntax</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Simple exponential smoothing</td>
+<td style="text-align: left;"><code>ETS(y ~ error("A") + trend("N") + season("N"))</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Holt’s linear trend</td>
+<td style="text-align: left;"><code>ETS(y ~ error("A") + trend("A") + season("N"))</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Damped trend</td>
+<td style="text-align: left;"><code>ETS(y ~ error("A") + trend("Ad") + season("N"))</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Holt-Winters, additive season</td>
+<td style="text-align: left;"><code>ETS(y ~ error("A") + trend("A") + season("A"))</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Holt-Winters, multiplicative season</td>
+<td style="text-align: left;"><code>ETS(y ~ error("M") + trend("A") + season("M"))</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Let <code>ETS()</code> choose everything</td>
+<td style="text-align: left;"><code>ETS(y)</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Fit</td>
+<td style="text-align: left;"><code>model(name = ETS(...))</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Inspect a fitted model</td>
+<td style="text-align: left;"><code>report(fit)</code> or <code>fit %&gt;% select(name) %&gt;% report()</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Forecast a known window</td>
+<td style="text-align: left;"><code>forecast(fit, new_data = test)</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Accuracy vs.&nbsp;the actuals</td>
+<td style="text-align: left;"><code>accuracy(fc, full_data)</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="series-1-norwegian-population" class="level3">
+<h3 class="anchored" data-anchor-id="series-1-norwegian-population">Series 1: Norwegian population</h3>
+<p>Quarterly, 1997 Q4 → today.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>train_pop <span class="ot">&lt;-</span> population_no <span class="sc">%&gt;%</span> <span class="fu">filter</span>(quarter <span class="sc">&lt;</span> <span class="fu">yearquarter</span>(<span class="st">"2023 Q3"</span>))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>test_pop  <span class="ot">&lt;-</span> population_no <span class="sc">%&gt;%</span> <span class="fu">filter</span>(quarter <span class="sc">&gt;=</span> <span class="fu">yearquarter</span>(<span class="st">"2023 Q3"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Fit a few candidate <code>ETS()</code> specifications on <code>train_pop</code>, forecast <code>test_pop</code>, and compare their accuracy.</p>
 <details>
 <summary>
-Code used in video
+💡 Code hint
 </summary>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Time series features ---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fpp3)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>            <span class="fu">theme</span>(<span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span><span class="st">"white"</span>,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                                                  <span class="at">color =</span> <span class="st">"transparent"</span>)))</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># -- Features: mean --</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>tourism <span class="sc">%&gt;%</span> </span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(Trips, <span class="fu">list</span>(<span class="at">mean =</span> mean)) <span class="sc">%&gt;%</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(mean)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 304 × 4
-   Region          State              Purpose   mean
-   &lt;chr&gt;           &lt;chr&gt;              &lt;chr&gt;    &lt;dbl&gt;
- 1 Kangaroo Island South Australia    Other    0.340
- 2 MacDonnell      Northern Territory Other    0.449
- 3 Wilderness West Tasmania           Other    0.478
- 4 Barkly          Northern Territory Other    0.632
- 5 Clare Valley    South Australia    Other    0.898
- 6 Barossa         South Australia    Other    1.02 
- 7 Kakadu Arnhem   Northern Territory Other    1.04 
- 8 Lasseter        Northern Territory Other    1.14 
- 9 Wimmera         Victoria           Other    1.15 
-10 MacDonnell      Northern Territory Visiting 1.18 
-# ℹ 294 more rows</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># -- Features: mean, sd, 2.5 and 97.5 percentiles --</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>tourism <span class="sc">%&gt;%</span> </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(Trips, <span class="fu">list</span>(<span class="at">mean =</span> mean,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">sd   =</span> sd,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">p    =</span> <span class="sc">~</span><span class="fu">quantile</span>(., <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>)))) <span class="sc">%&gt;%</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(sd))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 304 × 7
-   Region                 State           Purpose  mean    sd `p_2.5%` `p_97.5%`
-   &lt;chr&gt;                  &lt;chr&gt;           &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
- 1 South Coast            New South Wales Holiday  495. 170.     285.       812.
- 2 North Coast NSW        New South Wales Holiday  588. 117.     404.       815.
- 3 Sydney                 New South Wales Busine…  602. 117.     402.       884.
- 4 Great Ocean Road       Victoria        Holiday  281. 116.     135.       545.
- 5 Melbourne              Victoria        Holiday  507. 103.     354.       736.
- 6 Peninsula              Victoria        Holiday  185.  96.7     70.8      458.
- 7 Australia's South West Western Austra… Holiday  309.  95.3    179.       541.
- 8 Melbourne              Victoria        Visiti…  619.  93.6    472.       807.
- 9 Brisbane               Queensland      Visiti…  493.  90.6    344.       663.
-10 Sydney                 New South Wales Visiti…  747.  89.6    564.       916.
-# ℹ 294 more rows</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># -- dplyr equivalent: --</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>tourism  <span class="sc">%&gt;%</span> </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Region,State,Purpose) <span class="sc">%&gt;%</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(Trips)) <span class="sc">%&gt;%</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(mean)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 304 × 4
-# Groups:   Region, State [76]
-   Region          State              Purpose   mean
-   &lt;chr&gt;           &lt;chr&gt;              &lt;chr&gt;    &lt;dbl&gt;
- 1 Kangaroo Island South Australia    Other    0.340
- 2 MacDonnell      Northern Territory Other    0.449
- 3 Wilderness West Tasmania           Other    0.478
- 4 Barkly          Northern Territory Other    0.632
- 5 Clare Valley    South Australia    Other    0.898
- 6 Barossa         South Australia    Other    1.02 
- 7 Kakadu Arnhem   Northern Territory Other    1.04 
- 8 Lasseter        Northern Territory Other    1.14 
- 9 Wimmera         Victoria           Other    1.15 
-10 MacDonnell      Northern Territory Visiting 1.18 
-# ℹ 294 more rows</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># -- ACF features --</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>tourism <span class="sc">%&gt;%</span> </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(Trips, feat_acf) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 304 × 10
-   Region         State Purpose     acf1 acf10 diff1_acf1 diff1_acf10 diff2_acf1
-   &lt;chr&gt;          &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;
- 1 Adelaide       Sout… Busine…  0.0333  0.131     -0.520       0.463     -0.676
- 2 Adelaide       Sout… Holiday  0.0456  0.372     -0.343       0.614     -0.487
- 3 Adelaide       Sout… Other    0.517   1.15      -0.409       0.383     -0.675
- 4 Adelaide       Sout… Visiti…  0.0684  0.294     -0.394       0.452     -0.518
- 5 Adelaide Hills Sout… Busine…  0.0709  0.134     -0.580       0.415     -0.750
- 6 Adelaide Hills Sout… Holiday  0.131   0.313     -0.536       0.500     -0.716
- 7 Adelaide Hills Sout… Other    0.261   0.330     -0.253       0.317     -0.457
- 8 Adelaide Hills Sout… Visiti…  0.139   0.117     -0.472       0.239     -0.626
- 9 Alice Springs  Nort… Busine…  0.217   0.367     -0.500       0.381     -0.658
-10 Alice Springs  Nort… Holiday -0.00660 2.11      -0.153       2.11      -0.274
-# ℹ 294 more rows
-# ℹ 2 more variables: diff2_acf10 &lt;dbl&gt;, season_acf1 &lt;dbl&gt;</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># -- STL features --</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>tourism <span class="sc">%&gt;%</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(Trips, feat_stl) <span class="sc">%&gt;%</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> trend_strength, <span class="at">y=</span>seasonal_strength_year,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> Purpose)) <span class="sc">+</span> </span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(State))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="4_features_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># -- Time series with strongest seasonal component: --</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>tourism <span class="sc">%&gt;%</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(Trips, feat_stl) <span class="sc">%&gt;%</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    seasonal_strength_year <span class="sc">==</span> <span class="fu">max</span>(seasonal_strength_year)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(tourism, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Region"</span>,<span class="st">"State"</span>,<span class="st">"Purpose"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Quarter, <span class="at">y =</span> Trips)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="fu">vars</span>(Region,State,Purpose))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="4_features_files/figure-html/unnamed-chunk-1-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fit_pop <span class="ot">&lt;-</span> train_pop <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">SES    =</span> <span class="fu">ETS</span>(population <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"N"</span>)  <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"N"</span>)),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Holt   =</span> <span class="fu">ETS</span>(population <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"A"</span>)  <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"N"</span>)),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Damped =</span> <span class="fu">ETS</span>(population <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"Ad"</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"N"</span>)),</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Auto   =</span> <span class="fu">ETS</span>(population)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>fit_pop <span class="sc">%&gt;%</span> <span class="fu">forecast</span>(<span class="at">new_data =</span> test_pop) <span class="sc">%&gt;%</span> <span class="fu">accuracy</span>(population_no) <span class="sc">%&gt;%</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(.model, RMSE, MASE) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(RMSE)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<p>Print <code>report()</code> for the automatically selected model (<code>fit_pop %&gt;% select(Auto) %&gt;% report()</code>) and read off which components it actually contains.</p>
+<p><strong>Q:</strong> Which components — trend, damping, season — actually earned their place on the test set, and which just added complexity without improving the forecast?</p>
+<hr>
+</section>
+<section id="series-2-the-usdnok-exchange-rate" class="level3">
+<h3 class="anchored" data-anchor-id="series-2-the-usdnok-exchange-rate">Series 2: the USD/NOK exchange rate</h3>
+<p>Monthly, 2010 → today.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>train_fx <span class="ot">&lt;-</span> exchange_usdnok <span class="sc">%&gt;%</span> <span class="fu">filter</span>(month <span class="sc">&lt;</span> <span class="fu">yearmonth</span>(<span class="st">"2025-09"</span>))</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>test_fx  <span class="ot">&lt;-</span> exchange_usdnok <span class="sc">%&gt;%</span> <span class="fu">filter</span>(month <span class="sc">&gt;=</span> <span class="fu">yearmonth</span>(<span class="st">"2025-09"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Fit a few candidate <code>ETS()</code> specifications on <code>train_fx</code>, forecast <code>test_fx</code>, and compare their accuracy.</p>
+<details>
+<summary>
+💡 Code hint
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fit_fx <span class="ot">&lt;-</span> train_fx <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">SES    =</span> <span class="fu">ETS</span>(rate <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"N"</span>)  <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"N"</span>)),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Holt   =</span> <span class="fu">ETS</span>(rate <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"A"</span>)  <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"N"</span>)),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Auto   =</span> <span class="fu">ETS</span>(rate),</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Naive  =</span> <span class="fu">NAIVE</span>(rate)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>fit_fx <span class="sc">%&gt;%</span> <span class="fu">forecast</span>(<span class="at">new_data =</span> test_fx) <span class="sc">%&gt;%</span> <span class="fu">accuracy</span>(exchange_usdnok) <span class="sc">%&gt;%</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(.model, RMSE, MASE) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(RMSE)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<p>Print <code>report()</code> for the automatically selected model and for <code>Naive</code>’s closest competitor — what do their fitted parameters have in common?</p>
+<p><strong>Q:</strong> Did adding a trend component help here, hurt, or make no real difference? What does that tell you about which component actually matters for this series?</p>
+<hr>
+</section>
+<section id="series-3-norges-banks-key-policy-rate" class="level3">
+<h3 class="anchored" data-anchor-id="series-3-norges-banks-key-policy-rate">Series 3: Norges Bank’s key policy rate</h3>
+<p>Monthly. Train on data only through the end of 2023, and forecast the two years after.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>train_rate <span class="ot">&lt;-</span> policy_rate_no <span class="sc">%&gt;%</span> <span class="fu">filter</span>(month <span class="sc">&lt;</span> <span class="fu">yearmonth</span>(<span class="st">"2024-01"</span>))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>test_rate  <span class="ot">&lt;-</span> policy_rate_no <span class="sc">%&gt;%</span> <span class="fu">filter</span>(month <span class="sc">&gt;=</span> <span class="fu">yearmonth</span>(<span class="st">"2024-01"</span>), month <span class="sc">&lt;</span> <span class="fu">yearmonth</span>(<span class="st">"2026-01"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Fit a couple of candidate <code>ETS()</code> specifications on <code>train_rate</code> and forecast <code>test_rate</code>.</p>
+<details>
+<summary>
+💡 Code hint
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fit_rate <span class="ot">&lt;-</span> train_rate <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Holt   =</span> <span class="fu">ETS</span>(rate <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"A"</span>)  <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"N"</span>)),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Damped =</span> <span class="fu">ETS</span>(rate <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"Ad"</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"N"</span>))</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>fc_rate <span class="ot">&lt;-</span> fit_rate <span class="sc">%&gt;%</span> <span class="fu">forecast</span>(<span class="at">new_data =</span> test_rate)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>fc_rate <span class="sc">%&gt;%</span> <span class="fu">accuracy</span>(policy_rate_no) <span class="sc">%&gt;%</span> <span class="fu">select</span>(.model, RMSE, MASE)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<p>Print <code>report()</code> for both models, then plot both forecasts against what actually happened:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fc_rate <span class="sc">%&gt;%</span> <span class="fu">autoplot</span>(policy_rate_no <span class="sc">%&gt;%</span> <span class="fu">filter</span>(month <span class="sc">&gt;=</span> <span class="fu">yearmonth</span>(<span class="st">"2022-01"</span>)), <span class="at">level =</span> <span class="cn">NULL</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Q:</strong> By how many percentage points do the two forecasts disagree two years out? What did the rate actually do? Which single component — trend or damping — is responsible for almost all of that gap?</p>
+<hr>
+</section>
+<section id="series-4-hotel-guest-nights" class="level3">
+<h3 class="anchored" data-anchor-id="series-4-hotel-guest-nights">Series 4: hotel guest nights</h3>
+<p>Monthly, 1986 → today. This is the one from the decomposition lecture.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>hotel <span class="ot">&lt;-</span> hotel_guestnights <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">guests =</span> <span class="st">`</span><span class="at">Guest nights</span><span class="st">`</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>train_hotel <span class="ot">&lt;-</span> hotel <span class="sc">%&gt;%</span> <span class="fu">filter</span>(yearmonth <span class="sc">&lt;</span> <span class="fu">yearmonth</span>(<span class="st">"2024-07"</span>))</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>test_hotel  <span class="ot">&lt;-</span> hotel <span class="sc">%&gt;%</span> <span class="fu">filter</span>(yearmonth <span class="sc">&gt;=</span> <span class="fu">yearmonth</span>(<span class="st">"2024-07"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Fit a few candidate <code>ETS()</code> specifications on <code>train_hotel</code>, forecast <code>test_hotel</code>, and compare their accuracy.</p>
+<details>
+<summary>
+💡 Code hint
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fit_hotel <span class="ot">&lt;-</span> train_hotel <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">SES     =</span> <span class="fu">ETS</span>(guests <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"N"</span>)  <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"N"</span>)),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">HW_add  =</span> <span class="fu">ETS</span>(guests <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"A"</span>)  <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"A"</span>)),</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">HW_mult =</span> <span class="fu">ETS</span>(guests <span class="sc">~</span> <span class="fu">error</span>(<span class="st">"M"</span>) <span class="sc">+</span> <span class="fu">trend</span>(<span class="st">"A"</span>)  <span class="sc">+</span> <span class="fu">season</span>(<span class="st">"M"</span>)),</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Auto    =</span> <span class="fu">ETS</span>(guests)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>fit_hotel <span class="sc">%&gt;%</span> <span class="fu">forecast</span>(<span class="at">new_data =</span> test_hotel) <span class="sc">%&gt;%</span> <span class="fu">accuracy</span>(hotel) <span class="sc">%&gt;%</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(.model, RMSE, MASE) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(RMSE)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<p>Print <code>report()</code> for the automatically selected model.</p>
+<p><strong>Q:</strong> Adding a season component clearly matters here — but does it matter <em>how</em> you add it? Look back at the full series plot: is there anything around early 2020 that might explain why an additive vs.&nbsp;multiplicative season makes such a difference?</p>
+<hr>
+</section>
+<section id="wrap-up-discussion" class="level3">
+<h3 class="anchored" data-anchor-id="wrap-up-discussion">Wrap-up discussion</h3>
+<ul>
+<li>For each of the four series: which ETS components (trend, damping, season, and the choice between additive/multiplicative) actually mattered, and which ones didn’t move the needle? Is there a series where none of the extra components beat simple exponential smoothing?</li>
+<li>In how many of your four series did <code>ETS()</code>’s own automatic pick actually win on the test set? Would you trust automatic selection for a model you had to actually deploy — or would you always want to check it against a held-out test set, and read its <code>report()</code>, first?</li>
+<li>The policy-rate series trains right up to the peak of a rapid change. Real deployed forecasting systems don’t get to choose such a convenient cutoff — how would you <em>know</em>, in practice, that you were sitting at a turning point where an undamped trend was about to go badly wrong?</li>
+<li>Which of today’s four series would you be comfortable handing a fully automatic <code>ETS()</code> pipeline for, with no human checking the forecast before it’s used? Which would you not — and what would you want a human to check first?</li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -1141,13 +1230,13 @@ Code used in video
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./4_timeseriesfeatures.html" class="pagination-link" aria-label="Time series features">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Time series features</span>
+      <a href="./Lab_regression.html" class="pagination-link" aria-label="Time series regression: Bergen traffic (lab)">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Time series regression: Bergen traffic (lab)</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./4_tourismexample.html" class="pagination-link" aria-label="Exploring Australian tourism example">
-        <span class="nav-page-text">Exploring Australian tourism example</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./WS_tsibble.html" class="pagination-link" aria-label="tsibble, graphics and decomposition">
+        <span class="nav-page-text">tsibble, graphics and decomposition</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

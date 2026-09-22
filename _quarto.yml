@@ -87,6 +87,7 @@ website:
           - Lab_timeseriesgraphics.qmd
           - Lab_decomposition.qmd
           - Lab_regression.qmd
+          - Lab_ets.qmd
       - section: "Workshops"
         contents:
           - WS_tsibble.qmd
