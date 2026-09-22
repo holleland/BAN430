@@ -16,7 +16,7 @@ theme_set(
 )
 ```
 
-📄 [Print-friendly PDF version](Lab_regression.pdf)
+📄 [Print-friendly PDF version](https://raw.githubusercontent.com/holleland/BAN430/master/pdfs/Lab_regression.pdf)
 
 ![](bilder/traffic2.PNG){width="50%"}
 
