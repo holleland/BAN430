@@ -1,3 +1,12 @@
+---
+format:
+  pdf:
+    papersize: a4
+    geometry:
+      - margin=3cm
+    toc: false
+---
+
 ## Exponential smoothing {.unnumbered}
 
 ```{r}
