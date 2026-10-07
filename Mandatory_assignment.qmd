@@ -12,8 +12,6 @@ format:
 
 📄 [Print-friendly PDF version](https://raw.githubusercontent.com/holleland/BAN430/master/pdfs/Mandatory_assignment.pdf)
 
-![](bilder/fireplace.png){width="60%"}
-
 You will build a forecasting model for the **daily electricity price** in Western Norway, evaluate it properly, and use it to forecast the rest of **October 2026**, while October is still going on. The same model is then used to say something about the **average price of the whole month**. Everything is allowed as long as you can defend it: the choice of methods is yours. In addition to the report, every group submits an actual forecast, and we compare the forecasts when October is over, as a competition.
 
 |  |  |
@@ -226,7 +224,7 @@ The simulated paths come from the model, so a better model gives you better path
 
 ### Hand-in and approval
 
-Hand in the report and the code (a Quarto or R Markdown file that reproduces the report) on the course's learning platform before the deadline. Write the names of all group members in the report, and the group name you used for the forecast submission.
+Hand in the report as pdf or html, including the code you used. I recommend using Quarto or R Markdown to produce the report. Submit the report on **Canvas** before the deadline. Write the names of all group members in the report, and the group name you used for the forecast submission. Each student submits their own copy of the report, but please indicate who you worked with.
 
 The assignment is approved if
 
@@ -234,7 +232,7 @@ The assignment is approved if
 - the methods are compared with the benchmarks, using an evaluation on past data that you describe and justify, and
 - a valid forecast has been submitted before the deadline.
 
-Do not spend time making the report long. A short report with a clear line of thought and good graphics is much better than a long one. The code should be well organised, and it should be possible to run it from the start to the end.
+Do not spend time making the report long. A short report with a clear line of thought and good graphics is much better than a long one. The code should be well organised, and it should be possible to run it from the start to the end. Don't worry too much about submitting the report with the most updated numbers. You may submit a more updated forecast close to the deadline, without necessarily updating the report.
 
 <details>
 

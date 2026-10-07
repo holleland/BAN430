@@ -1,9 +1,6 @@
 project:
   type: website
   output-dir: docs
-  render:
-    - "*.qmd"
-    - "!WS_electricityprices.qmd"
 
 website:
   title: "BAN430 Forecasting"
@@ -95,6 +92,7 @@ website:
         contents:
           - WS_tsibble.qmd
           - WS_traffic.qmd
+          - WS_electricityprices.qmd
           - WS_walmart.qmd
       - section: "Mandatory assignment"
         contents:
