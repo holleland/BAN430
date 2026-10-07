@@ -1,6 +1,7 @@
 ---
 format:
-  html: default
+  html:
+    format-links: false
   pdf:
     papersize: a4
     geometry:
