@@ -97,6 +97,8 @@ website:
       - section: "Mandatory assignment"
         contents:
           - Mandatory_assignment.qmd
+          - text: "Live tracker ⚡"
+            href: https://holleland.github.io/BAN430-live/
       - section: "Appendix"
         contents:
           - 12_data_appendix.qmd

@@ -13,6 +13,8 @@ format:
 
 📄 [Print-friendly PDF version](https://raw.githubusercontent.com/holleland/BAN430/master/pdfs/Mandatory_assignment.pdf)
 
+⚡ [Live tracker](https://holleland.github.io/BAN430-live/): the latest prices, the benchmark forecast and the projected October average, updated automatically.
+
 You will build a forecasting model for the **daily electricity price** in Western Norway, evaluate it properly, and use it to forecast the rest of **October 2026**, while October is still going on. The same model is then used to say something about the **average price of the whole month**. Everything is allowed as long as you can defend it: the choice of methods is yours. In addition to the report, every group submits an actual forecast, and we compare the forecasts when October is over, as a competition.
 
 |  |  |
