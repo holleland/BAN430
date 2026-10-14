@@ -621,6 +621,12 @@ window.Quarto = {
  <span class="menu-text">Mandatory assignment: forecasting the electricity price</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://holleland.github.io/BAN430-live/" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Live tracker ⚡</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -704,57 +710,57 @@ Distribution    : norm
 Optimal Parameters
 ------------------------------------
         Estimate  Std. Error  t value Pr(&gt;|t|)
-omega   0.000018    0.000002   7.9202        0
-alpha1  0.124592    0.016232   7.6756        0
-beta1   0.814623    0.019754  41.2380        0
+omega   0.000018    0.000002   7.9512        0
+alpha1  0.125267    0.016398   7.6392        0
+beta1   0.813647    0.019921  40.8440        0
 
 Robust Standard Errors:
         Estimate  Std. Error  t value Pr(&gt;|t|)
-omega   0.000018    0.000003   5.9400  0.0e+00
-alpha1  0.124592    0.029490   4.2249  2.4e-05
-beta1   0.814623    0.031448  25.9040  0.0e+00
+omega   0.000018    0.000003   6.0184  0.0e+00
+alpha1  0.125267    0.029764   4.2086  2.6e-05
+beta1   0.813647    0.031815  25.5747  0.0e+00
 
-LogLikelihood : 7595.078 
+LogLikelihood : 7611.263 
 
 Information Criteria
 ------------------------------------
                     
-Akaike       -5.5095
-Bayes        -5.5030
-Shibata      -5.5095
-Hannan-Quinn -5.5072
+Akaike       -5.5112
+Bayes        -5.5048
+Shibata      -5.5112
+Hannan-Quinn -5.5089
 
 Weighted Ljung-Box Test on Standardized Residuals
 ------------------------------------
                         statistic  p-value
-Lag[1]                      6.688 0.009705
-Lag[2*(p+q)+(p+q)-1][2]     7.726 0.007648
-Lag[4*(p+q)+(p+q)-1][5]     8.601 0.020858
+Lag[1]                      6.668 0.009814
+Lag[2*(p+q)+(p+q)-1][2]     7.707 0.007735
+Lag[4*(p+q)+(p+q)-1][5]     8.583 0.021079
 d.o.f=0
 H0 : No serial correlation
 
 Weighted Ljung-Box Test on Standardized Squared Residuals
 ------------------------------------
                         statistic p-value
-Lag[1]                     0.1904  0.6626
-Lag[2*(p+q)+(p+q)-1][5]    0.6163  0.9383
-Lag[4*(p+q)+(p+q)-1][9]    1.6966  0.9380
+Lag[1]                     0.1974  0.6568
+Lag[2*(p+q)+(p+q)-1][5]    0.6263  0.9366
+Lag[4*(p+q)+(p+q)-1][9]    1.7031  0.9373
 d.o.f=2
 
 Weighted ARCH LM Tests
 ------------------------------------
             Statistic Shape Scale P-Value
-ARCH Lag[3]   0.02808 0.500 2.000  0.8669
-ARCH Lag[5]   0.43607 1.440 1.667  0.9023
-ARCH Lag[7]   1.00316 2.315 1.543  0.9130
+ARCH Lag[3]   0.02905 0.500 2.000  0.8647
+ARCH Lag[5]   0.43195 1.440 1.667  0.9035
+ARCH Lag[7]   0.99129 2.315 1.543  0.9150
 
 Nyblom stability test
 ------------------------------------
-Joint Statistic:  5.8357
-Individual Statistics:             
-omega  0.3578
-alpha1 0.0923
-beta1  0.1501
+Joint Statistic:  5.432
+Individual Statistics:              
+omega  0.35423
+alpha1 0.09401
+beta1  0.14711
 
 Asymptotic Critical Values (10% 5% 1%)
 Joint Statistic:         0.846 1.01 1.35
@@ -763,22 +769,22 @@ Individual Statistic:    0.35 0.47 0.75
 Sign Bias Test
 ------------------------------------
                    t-value   prob sig
-Sign Bias          0.04725 0.9623    
-Negative Sign Bias 1.31409 0.1889    
-Positive Sign Bias 0.70243 0.4825    
-Joint Effect       3.83718 0.2796    
+Sign Bias          0.03457 0.9724    
+Negative Sign Bias 1.30446 0.1922    
+Positive Sign Bias 0.70805 0.4790    
+Joint Effect       3.85523 0.2775    
 
 
 Adjusted Pearson Goodness-of-Fit Test:
 ------------------------------------
   group statistic p-value(g-1)
-1    20     175.1    2.877e-27
-2    30     188.5    2.693e-25
-3    40     198.9    2.582e-23
-4    50     210.8    5.887e-22
+1    20     176.5    1.494e-27
+2    30     190.6    1.088e-25
+3    40     201.0    1.098e-23
+4    50     212.4    3.112e-22
 
 
-Elapsed time : 0.04246497 </code></pre>
+Elapsed time : 0.04707003 </code></pre>
 </div>
 </div>
 <p>It is very long with a lot of test results, but the main infromation is the parameter estimates. In this case, we estimate a model with <span class="math inline">\omega = 0.000019</span>, <span class="math inline">\alpha_1 = 0.162506</span> and <span class="math inline">\beta_1 = 0.783419</span>. Note that <span class="math inline">\alpha_1+\beta_1 = 0.946 &lt;1</span>, indicating that we have a stationary GARCH(1,1) model (given other model assumptions are fulfilled).</p>
@@ -872,7 +878,7 @@ Elapsed time : 0.04246497 </code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fpm</span>(fc) <span class="co"># forecast performance measures</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           MSE        MAE DAC
-1 0.0004711697 0.01497791   0</code></pre>
+1 0.0004740144 0.01510115   0</code></pre>
 </div>
 </div>
 <p>We can simulate from a fitted model using the <em>ugarchsim</em> function. Check out the help file.</p>
@@ -909,8 +915,8 @@ Elapsed time : 0.04246497 </code></pre>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>      <span class="st">"ARMA-GARCH"</span><span class="ot">=</span><span class="fu">fpm</span>(fc3))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                    MSE        MAE   DAC
-GARCH      0.0004711697 0.01497791 0.000
-ARMA-GARCH 0.0004844898 0.01529142 0.465</code></pre>
+GARCH      0.0004740144 0.01510115 0.000
+ARMA-GARCH 0.0004874860 0.01543367 0.455</code></pre>
 </div>
 </div>
 <p>It seems the pure GARCH model is better, except for the directional accuracy. Accurately predicting the return of tomorrows is difficult. But there may be other contexts where an ARMA-GARCH model is more suited.</p>
