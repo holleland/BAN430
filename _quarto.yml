@@ -88,6 +88,7 @@ website:
           - Lab_decomposition.qmd
           - Lab_regression.qmd
           - Lab_ets.qmd
+          - Lab_volatility.qmd
       - section: "Workshops"
         contents:
           - WS_tsibble.qmd
