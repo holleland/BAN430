@@ -89,12 +89,12 @@ website:
           - Lab_regression.qmd
           - Lab_ets.qmd
           - Lab_volatility.qmd
+          - Lab_walmart.qmd
       - section: "Workshops"
         contents:
           - WS_tsibble.qmd
           - WS_traffic.qmd
           - WS_electricityprices.qmd
-          - WS_walmart.qmd
       - section: "Mandatory assignment"
         contents:
           - Mandatory_assignment.qmd
