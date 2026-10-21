@@ -769,7 +769,7 @@ window.Quarto = {
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Forecast</td>
-<td style="text-align: left;"><code>ugarchforecast(fit, n.ahead = 10)</code>; rolling: see the lecture notes (<code>n.roll</code>, <code>out.sample</code>)</td>
+<td style="text-align: left;"><code>ugarchforecast(fit, n.ahead = 10)</code>, plot with <code>plot(fc, which = 3)</code> (the volatility forecast); rolling: see the lecture notes (<code>n.roll</code>, <code>out.sample</code>), plot with <code>which = 4</code></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Quantile of a distribution</td>
@@ -899,15 +899,15 @@ window.Quarto = {
 </section>
 <section id="part-4-forecasting-the-volatility" class="level3">
 <h3 class="anchored" data-anchor-id="part-4-forecasting-the-volatility">Part 4: Forecasting the volatility</h3>
-<p><strong>Several days ahead.</strong> Forecast the volatility 20 days ahead from the end of your sample with the <span class="math inline">t</span>-GARCH(1,1), and plot it together with the unconditional standard deviation from Part 2.</p>
+<p><strong>Several days ahead.</strong> Forecast the volatility 20 days ahead from the end of your sample with the <span class="math inline">t</span>-GARCH(1,1), and plot it. Compare the forecast for day 20 with the unconditional standard deviation from Part 2.</p>
 <details>
 <summary>
 💡 Code hint
 </summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fc20 <span class="ot">&lt;-</span> <span class="fu">ugarchforecast</span>(fit_t, <span class="at">n.ahead =</span> <span class="dv">20</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">h =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">sigma =</span> <span class="fu">as.numeric</span>(<span class="fu">sigma</span>(fc20))) <span class="sc">%&gt;%</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> h, <span class="at">y =</span> sigma)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">sqrt</span>(<span class="fu">unname</span>(<span class="fu">coef</span>(fit_t)[<span class="st">"omega"</span>]) <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> pers)), <span class="at">linetype =</span> <span class="st">"dashed"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fc20, <span class="at">which =</span> <span class="dv">3</span>)                                   <span class="co"># the forecast of sigma</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sigma</span>(fc20)[<span class="dv">20</span>]                                         <span class="co"># the forecast for day 20</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">unname</span>(<span class="fu">coef</span>(fit_t)[<span class="st">"omega"</span>]) <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> pers))         <span class="co"># the unconditional sd</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <p><strong>Q:</strong> Is the volatility of your asset today above or below its long-run level? What happens to the forecast as the horizon grows, and how fast?</p>
 <p><strong>Out of sample.</strong> Now the test set comes in. Fix the parameters of the <span class="math inline">t</span>-GARCH(1,1) that you estimated on the training data, and make one-step-ahead forecasts of the volatility for each of the 250 test days (this is what the <code>n.roll</code> and <code>out.sample</code> arguments of <code>ugarchforecast</code> are for, see the in-class notes). The forecasts need the observed test returns to update the volatility, so give <code>ugarchforecast</code> the training and the test data together. From the forecasts, make 90% prediction intervals for the returns, and check how many of the test returns that fall inside.</p>
