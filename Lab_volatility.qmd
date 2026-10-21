@@ -54,7 +54,7 @@ library(rugarch)
 | Parameters, volatility and residuals | `coef(fit)`, `sigma(fit)`, `residuals(fit, standardize = TRUE)` |
 | Information criteria, convergence | `infocriteria(fit)`, `convergence(fit)` (`0` means converged) |
 | Diagnostic plots | `plot(fit)` (choose a plot with `which = `; 12 is the news impact curve) |
-| Forecast | `ugarchforecast(fit, n.ahead = 10)`; rolling: see the lecture notes (`n.roll`, `out.sample`) |
+| Forecast | `ugarchforecast(fit, n.ahead = 10)`, plot with `plot(fc, which = 3)` (the volatility forecast); rolling: see the lecture notes (`n.roll`, `out.sample`), plot with `which = 4` |
 | Quantile of a distribution | `qdist("std", p = 0.95, shape = coef(fit)["shape"])` |
 
 ------------------------------------------------------------------------
@@ -204,7 +204,7 @@ rbind("ARCH(1)" = infocriteria(fit_arch1)[1:2, 1],
 
 ### Part 4: Forecasting the volatility
 
-**Several days ahead.** Forecast the volatility 20 days ahead from the end of your sample with the $t$-GARCH(1,1), and plot it together with the unconditional standard deviation from Part 2.
+**Several days ahead.** Forecast the volatility 20 days ahead from the end of your sample with the $t$-GARCH(1,1), and plot it. Compare the forecast for day 20 with the unconditional standard deviation from Part 2.
 
 <details>
 
@@ -212,9 +212,9 @@ rbind("ARCH(1)" = infocriteria(fit_arch1)[1:2, 1],
 
 ``` r
 fc20 <- ugarchforecast(fit_t, n.ahead = 20)
-tibble(h = 1:20, sigma = as.numeric(sigma(fc20))) %>%
-  ggplot(aes(x = h, y = sigma)) + geom_line() + geom_point() +
-  geom_hline(yintercept = sqrt(unname(coef(fit_t)["omega"]) / (1 - pers)), linetype = "dashed")
+plot(fc20, which = 3)                                   # the forecast of sigma
+sigma(fc20)[20]                                         # the forecast for day 20
+sqrt(unname(coef(fit_t)["omega"]) / (1 - pers))         # the unconditional sd
 ```
 
 </details>
